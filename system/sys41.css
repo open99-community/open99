@@ -1,3 +1,4 @@
+/* <blink> element */
 @-webkit-keyframes blinker {
    0% { visibility: visible; }
    50% { visibility: hidden; }
@@ -11,4 +12,11 @@
 blink {
    -webkit-animation: blinker steps(1) 1s infinite;
    animation: blinker steps(1) 1s infinite;
+}
+
+/* bootscreen */
+.bootscreen {
+   background-color: #000;
+   color: #c3ff00;
+   text-align: left;
 }
