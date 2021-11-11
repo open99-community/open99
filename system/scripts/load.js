@@ -33,7 +33,5 @@ if (nav.indexOf("Firefox") > -1) {
 }
 
 for(var i = 0; i < navigator.plugins.length; i++) {
-  //coming soon
-}
-
-if (location.pathname === / || location.pathname === /index.html) {getElementsByTagName('p')[0].innerHTML = `yay it worked`}
+  getElementsByTagName('p')[i].innerHTML = navigator.plugins.name[i];
+};
