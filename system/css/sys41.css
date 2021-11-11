@@ -25,3 +25,6 @@ blink {
 .boottext {
    top: 10px;
 }
+.hidden {
+   display: none !important;
+}
