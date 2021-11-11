@@ -19,4 +19,5 @@ blink {
    background-color: #000;
    color: #c3ff00;
    text-align: left;
+   font-family: monospace;
 }
