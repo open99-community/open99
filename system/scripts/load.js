@@ -35,7 +35,7 @@ if (nav.indexOf("Firefox") > -1) {
 if ($(".bootscreen")[0]){
     var agent = document.getElementsByTagName("p")[1]
     agent.classList.remove('hidden');
-    agent.innerText = 'it worked';
+    agent.innerText = sys41.user.navigatorFull;
 };
 for(var i = 0; i < navigator.plugins.length; i++) {
   getElementsByTagName('p')[i].innerHTML = navigator.plugins.name[i];
