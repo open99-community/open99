@@ -32,6 +32,11 @@ if (nav.indexOf("Firefox") > -1) {
   sys41.user.navigator = "unknown";
 }
 
+if ($(".bootscreen")[0]){
+    var agent = document.getElementsByTagName("p")[1]
+    agent.classList.remove('hidden');
+    agent.innerText = 'it worked';
+};
 for(var i = 0; i < navigator.plugins.length; i++) {
   getElementsByTagName('p')[i].innerHTML = navigator.plugins.name[i];
 };
