@@ -33,9 +33,25 @@ if (nav.indexOf("Firefox") > -1) {
 }
 
 if ($(".bootscreen")[0]){
-    var agent = document.getElementsByTagName("p")[1]
-    agent.classList.remove('hidden');
+    var welcome = document.getElementsByTagName("p")[0];
+    var agent = document.getElementsByTagName("p")[1];
+    var date = document.getElementsByTagName("p")[2];
+    var server = document.getElementsByTagName("p")[3];
+    var port = document.getElementsByTagName("p")[4];
+    var protocol = document.getElementsByTagName("p")[5];
     agent.innerText = sys41.user.navigatorFull;
+    date.innerText = 'Booting system on ' + Date();
+    server.innerText = location.hostname;
+    if (location.port === undefined || location.port === null) {
+      port.classList.add("hidden");
+    } else {
+      port.innerText = location.port
+    };
+    if (protocol === 'https:') {
+      protocol.innerText = 'secure'
+    } else {
+      protocol.innerText = location.protocol
+    };
 };
 for(var i = 0; i < navigator.plugins.length; i++) {
   getElementsByTagName('p')[i].innerHTML = navigator.plugins.name[i];
