@@ -16,7 +16,7 @@ blink {
 
 /* bootscreen */
 .bootscreen {
-   background-color: #000;
+   /*background-color: #000;*/
    color: #c3ff00;
    text-align: left;
    -webkit-touch-callout: none;
