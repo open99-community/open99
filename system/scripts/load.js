@@ -33,16 +33,13 @@ if (nav.indexOf("Firefox") > -1) {
 }
 
 if ($(".bootscreen")[0]){
-    var welcome = document.getElementsByTagName("p")[0];
-    var agent = document.getElementsByTagName("p")[1];
-    var date = document.getElementsByTagName("p")[2];
+    var welcomeAgentDate = document.getElementsByTagName("p")[0];
     var server = document.getElementsByTagName("p")[3];
     var plugins = document.getElementsByTagName("p")[4];
     var port = document.getElementsByTagName("p")[5];
     var protocol = document.getElementsByTagName("p")[6];
     var hash = document.getElementsByTagName("p")[7];
-    agent.innerText = sys41.user.navigatorFull;
-    date.innerText = 'Booting system on ' + Date();
+    welcomeAgentDate.innerHTML = `system41 presents <a class="rainbow-text">Windows 99</a> version 0.4 (official.dev)<br />licensed under the <b>Mozilla Public License</b><br /><br />booting ` + date() + `<br />on ` + sys41.user.navigator + `<br />`
     server.innerText = 'Server: ' + location.hostname;
     if (location.port === undefined || location.port === null) {
       port.classList.add("hidden");
@@ -55,6 +52,6 @@ if ($(".bootscreen")[0]){
       protocol.innerText = 'Protocol: ' + location.protocol
     };
 };
-for(var i = 0; i < navigator.plugins.length; i++) {
+/*for(var i = 0; i < navigator.plugins.length; i++) {
   getElementsByTagName('p')[i].innerHTML = navigator.plugins[1].name;
-};
+};*/
