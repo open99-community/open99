@@ -5,71 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>404</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-        ::-moz-selection {
-          background: #b3d4fc;
-          text-shadow: none;
-        }
-        ::selection {
-          background: #b3d4fc;
-          text-shadow: none;
-        }
-        body, html {
-          height: 100%;
-          overflow: hidden;
-          padding: 0;
-          margin: 0;
-        }
-        body {
-          background:#0000aa;
-          color:#ffffff;
-          font-family:courier;
-          font-size:12pt;
-          text-align:center;
-          margin:100px;
-          margin-top: 14%;
-        }
-        .bold-grand {
-          background:#fff;
-          color:#0000aa;
-          padding:2px 8px;
-          font-weight:bold;
-        }
-        p {
-          margin: 30px 100px;
-          text-align: left;
-          width: 650px;
-          margin-left: auto;
-          margin-right: auto;
-        }
-        a,a:hover {
-          color:inherit;
-          font:inherit;
-          text-decoration: none;
-        }
-        @-webkit-keyframes blinker {
-          0% { visibility: visible; }
-          50% { visibility: hidden; }
-          100% { visibility: visible; }
-        }
-        @keyframes blinker {
-          0% { visibility: visible; }
-          50% { visibility: hidden; }
-          100% { visibility: visible; }
-        }
-        blink {
-          -webkit-animation: blinker steps(1) 1s infinite;
-              animation: blinker steps(1) 1s infinite;
-        }
-    </style>
+    <link rel="stylesheet" href="bug.css">
+    <script>function gohome() {window.location.href='/';}</script>
 </head>
-
 <body onkeydown="gohome()" onclick="gohome()"> <span class="bold-grand">ERROR 404</span>
     <p> The page no longer exists or never was written. You can wait and<br /> see if it becomes available again, or you can reboot your system. </p>
     <p> * Press CTRL+ALT+DEL to reboot your computer. You will<br /> &nbsp; lose any unsaved information in any programs that are running. </p> <a href="/">Press any key to continue <blink>_</blink></a>
 </body>
-<script>
-    function gohome() {window.location.href='/';}
-</script>
-
 </html>
