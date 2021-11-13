@@ -1,15 +1,29 @@
+//SYS41 SETUP
 var sys41 = {
   'user': {},
   'system': {}
 }
 sys41.system.version = '0.1'
 
-//Remove right-click functionality
-document.addEventListener("contextmenu", function(evt) {
-  evt.preventDefault();
-});
+sys41.system.themes = {
+  "Windows 7": {
+    "url": "system/styles/themes/7.css",
+    "abt": "Standard Windows 7 theme. Comes with windows99",
+    "default": false,
+  },
+  "Windows 98": {
+    "url": "system/styles/themes/98.css",
+    "abt": "Standard Windows 98 theme. Comes with windows99 and is the default theme on first boot",
+    "default": true
+  },
+  "Windows XP": {
+    "url":"system/styles/themes/xp.css"
+    "abt": "Standard Windows XP theme. Comes with windows99",
+    "default": false
+  }
+}
 
-//Browser detector
+  //Browser detector
 var nav = navigator.userAgent;
 sys41.user.navigatorFull = navigator.userAgent;
 if (nav.indexOf("Firefox") > -1) {
@@ -32,6 +46,7 @@ if (nav.indexOf("Firefox") > -1) {
   sys41.user.navigator = "unknown";
 }
 
+//BOOTSCREEN
 if ($(".bootscreen")[0]){
     var welcomeAgentDate = document.getElementsByTagName("p")[0];
     var server = document.getElementsByTagName("p")[3];
@@ -52,6 +67,8 @@ if ($(".bootscreen")[0]){
       protocol.innerText = 'Protocol: ' + location.protocol
     };
 };
-/*for(var i = 0; i < navigator.plugins.length; i++) {
-  getElementsByTagName('p')[i].innerHTML = navigator.plugins[1].name;
-};*/
+
+//Remove right-click functionality
+document.addEventListener("contextmenu", function(evt) {
+  evt.preventDefault();
+});
