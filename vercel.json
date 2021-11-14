@@ -3,5 +3,7 @@
     { "handle": "filesystem" },
     { "src": "/(.*)", "status": 404, "dest": "/special/404.html" }
   ],
-  "public": false
+  "public": false,
+  "cleanUrls": true,
+  "trailingSlash": false
 }
