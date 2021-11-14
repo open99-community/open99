@@ -1,0 +1,49 @@
+::-moz-selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+::selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+body,
+html {
+    height: 100%;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background: #0000aa;
+    color: #ffffff;
+    font-family: courier;
+    font-size: 12pt;
+    text-align: center;
+    margin: 100px;
+    margin-top: 14%;
+}
+
+.title {
+    background: #fff;
+    color: #0000aa;
+    padding: 2px 8px;
+    font-weight: bold;
+}
+
+p {
+    margin: 30px 100px;
+    text-align: left;
+    width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+a,
+a:hover {
+    color: inherit;
+    font: inherit;
+    text-decoration: none;
+}
