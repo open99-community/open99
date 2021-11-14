@@ -27,3 +27,9 @@ document.head.getElementById("stylelink").setAttribute("href", "system/styles/th
 document.addEventListener("contextmenu", function(evt) {
   evt.preventDefault();
 });
+
+//DEBUG
+$('#draggable').draggable();
+$('#draggable').click(function() {
+        $('#bigger').toggleClass('hidden');
+    });
