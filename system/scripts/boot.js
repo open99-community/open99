@@ -1,22 +1,40 @@
 //BOOTSCREEN
 if ($(".bootscreen")[0]){
-    var welcomeAgentDate = document.getElementsByTagName("p")[0];
-    var server = document.getElementsByTagName("p")[3];
-    var plugins = document.getElementsByTagName("p")[4];
-    var port = document.getElementsByTagName("p")[5];
-    var protocol = document.getElementsByTagName("p")[6];
-    var hash = document.getElementsByTagName("p")[7];
-    welcomeAgentDate.innerHTML = `system41 presents <a class="rainbow-text">Windows 99</a> version 0.4 (official.dev)<br />licensed under the <b>Mozilla Public License</b><br /><br />booting ` + date() + `<br />on ` + sys41.user.navigator + `<br />`
+    //Variable setup
+    var welcome = document.getElementById("welcome");
+    var dateUserAgent = document.getElementById("dateUserAgent");
+    var devmodeText = document.getElementById("devmode");
+    var server = document.getElementById("server");
+    var port = document.getElementById("port");
+    var plugins = document.getElementById("plugins");
+    var protocol = document.getElementById("protocol");
+    var hash = document.getElementById("hash");
+    //Actual boot
+    welcome.innerHTML = `
+    system41 presents <a class="rainbow-text">Windows 99</a> version 0.4 (official.dev)<br />
+    licensed under the <b>Mozilla Public License</b>` 
+    dateUserAgent.innerHTML = `booting on ` + date() + `<br />in ` + sys41.user.navigator + `<br />`
+    if (!location.port || !location.href === 'https://windows99.vercel.app') {
+        devmodeText.classList.add("hidden")
+    } else {
+        devmodeText.innerHTML = `<span class="warning-boot">WARNING: you are running this on a custom or non-production server.<br />
+        please be aware this is not an official release of windows99. <a href="https://itspablo.gitbook.io/windows99/forking/faq#unverified_boot_error">learn how to remove this</a></span>`
+    };
     server.innerText = 'Server: ' + location.hostname;
     if (location.port === undefined || location.port === null) {
       port.classList.add("hidden");
     } else {
-      port.innerText = 'Port number: ' + location.port
+      port.innerHTML = 'Port number: ' + location.port
     };
-    if (protocol === 'https:') {
-      protocol.innerText = 'Protocol: secure'
+    
+    for(var i = 0; i < navigator.plugins.length; i++) {
+        plugins.innerHTML = `<p>` + navigator.plugins.name[i] + `</p>`
+    }
+    
+    if (protocol === "https:") {
+      protocol.innerHTML = 'Protocol: secure'
     } else {
-      protocol.innerText = 'Protocol: ' + location.protocol
+      protocol.innerHTML = 'Protocol: ' + location.protocol
     };
 };
 
