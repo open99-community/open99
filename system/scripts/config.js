@@ -1,7 +1,7 @@
 //SYS41 SETUP
 var sys41 = {
   "user": {},
-  "system": {}
+  "system": {},
   "apps": {}
 }
 sys41.system.version = '0.1'
