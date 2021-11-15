@@ -3,6 +3,7 @@ CONTRIBUTING.md
 .vercelignore
 vercel.json
 system/assets
+files
 README.md
 /*/README.md
 /*/*/README.md
