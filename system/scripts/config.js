@@ -6,7 +6,8 @@ var sys41 = {
   "system": {
     "boot": {
       "stopped": false,
-      "update": false
+      "update": false,
+      "html": {}
     }
   },
   "apps": "coming soon!"/*{}*/
