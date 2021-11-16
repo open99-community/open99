@@ -46,8 +46,10 @@ document.addEventListener("contextmenu", function(evt) {
   evt.preventDefault();
 });
 
-//DEBUG
-$('#draggable').draggable();
-$('#draggable').click(function() {
-        $('#bigger').toggleClass('hidden');
-    });
+function openNav() {
+  document.getElementById("myDebug").style.width = "250px";
+}
+
+function closeNav() {
+  document.getElementById("myDebug").style.width = "0";
+}
