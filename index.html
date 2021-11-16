@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="system/styles/sys41.css">
     <link rel="stylesheet" id="stylelink" href="system/styles/themes/98.css">
-    <div id="goog">
+    <div id="googanal">
         <!-- Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-MSQ0XB265H"></script>
         <script>
@@ -16,6 +16,26 @@
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', 'G-MSQ0XB265H');
+        </script>
+    </div>
+    <div id="firebase">
+        <script type="module">
+            // Import the functions you need from the SDKs you need
+             import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.1/firebase-app.js";
+             import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.4.1/firebase-analytics.js";
+             const firebaseConfig = {
+                apiKey: "AIzaSyCmCvV7IYSQ72MTfLvzN1spviQaEivs_ss",
+                authDomain: "windows99-sys41.firebaseapp.com",
+                projectId: "windows99-sys41",
+                storageBucket: "windows99-sys41.appspot.com",
+                messagingSenderId: "857830253593",
+                appId: "1:857830253593:web:297dcb36c993f368f1b688",
+                measurementId: "G-EBBJBG8JT5"
+             };
+
+             // Initialize Firebase
+             const app = initializeApp(firebaseConfig);
+             const analytics = getAnalytics(app);
         </script>
     </div>
     <link rel="manifest" href="manifest.json">
