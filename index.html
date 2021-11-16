@@ -25,10 +25,13 @@
 <body class="bootscreen">
     <div id="myDebug" class="debug-menu">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-        <a href="#">About</a>
-        <a href="#">Services</a>
-        <a href="#">Clients</a>
-        <a href="#">Contact</a>
+        <textarea id="textDebug"></textarea>
+        <button onclick="runAlert()"></button>
+        <script>
+        function runAlert() {
+            alert(document.getElementById("textDebug").value;
+        }
+        </script>
     </div>
     <div class="boottext">
         <p id="welcome">Loading start</p>
