@@ -1,8 +1,15 @@
 //SYS41 SETUP
 var sys41 = {
-  "user": {},
-  "system": {},
-  "apps": {}
+  "user": {
+    "files": {}
+  },
+  "system": {
+    "boot": {
+      "stopped": false,
+      "update": false
+    }
+  },
+  "apps": "coming soon!"/*{}*/
 }
 sys41.system.version = '0.1'
 
@@ -24,6 +31,7 @@ sys41.system.themes = {
   }
 };
 
+localforage.setItem("sys41", sys41)
 
   //Browser detector
 var nav = navigator.userAgent;
@@ -46,4 +54,6 @@ if (nav.indexOf("Firefox") > -1) {
   sys41.user.navigator = "Apple Safari";
 } else {
   sys41.user.navigator = "unknown";
-}
+};
+
+alert(localforage.getItem("sys41"))
