@@ -31,6 +31,12 @@ blink {
 .boottext {
    top: 10px;
 }
+
+.boottext .error {
+   color: red;
+   font-weight: bold;
+}
+
 .hidden {
    display: none !important;
 }
