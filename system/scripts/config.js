@@ -55,5 +55,3 @@ if (nav.indexOf("Firefox") > -1) {
 } else {
   sys41.user.navigator = "unknown";
 };
-
-alert(localforage.getItem("sys41.system.themes"))
