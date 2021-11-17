@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="system/styles/sys41.css">
     <link rel="stylesheet" id="stylelink" href="system/styles/themes/98.css">
+    <link rel="manifest" href="manifest.json">
     <div id="googanal">
         <!-- Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-MSQ0XB265H"></script>
@@ -77,6 +78,7 @@
         <script src="system/scripts/config.js"></script>
         <script src="system/scripts/boot.js"></script>
         <script src="system/scripts/signin.js"></script>
+        <script>if ('serviceWorker' in navigator) {navigator.serviceWorker.register('/sw.js')}</script>
     </div>
 </body>
 
