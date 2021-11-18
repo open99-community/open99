@@ -3,3 +3,4 @@ This directory contains all of the scripts needed for Windows 99 to run. Third p
 ## Rundown
 * `config.js` sets up the `sys41` api
 * `boot.js` sets up the bootscreen
+* `signin.js` sets up the firebase signin thing
