@@ -8,7 +8,7 @@
       "sizes": "512x512"
     },
     {
-      "src": "https://via.placeholder.com/192",
+      "src": "files/img/logo/sys41-192.png",
       "type": "image/png",
       "sizes": "192x192"
     }
@@ -20,31 +20,17 @@
   "theme_color": "#000",
   "shortcuts": [
     {
-      "name": "How's weather today?",
-      "short_name": "Today",
-      "description": "View weather information for today",
-      "url": "/today?source=pwa",
-      "icons": [{ "src": "/images/today.png", "sizes": "192x192" }]
-    },
-    {
-      "name": "How's weather tomorrow?",
-      "short_name": "Tomorrow",
-      "description": "View weather information for tomorrow",
-      "url": "/tomorrow?source=pwa",
-      "icons": [{ "src": "/images/tomorrow.png", "sizes": "192x192" }]
+      "name": "Report bug",
+      "short_name": "Bug report",
+      "description": "Report a bug or an error. Requires an internet connection.",
+      "url": "/bugs",
+      "icons": [
+        {
+          "src": "files/img/logo/sys41-192.png",
+          "sizes": "192x192"
+        }
+      ]
     }
   ],
-  "description": "Weather forecast information",
-  "screenshots": [
-    {
-      "src": "/images/screenshot1.png",
-      "type": "image/png",
-      "sizes": "540x720"
-    },
-    {
-      "src": "/images/screenshot2.jpg",
-      "type": "image/jpg",
-      "sizes": "540x720"
-    }
-  ]
+  "description": "Windows99 as an installable program"
 }
