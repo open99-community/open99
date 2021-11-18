@@ -9,8 +9,7 @@ var sys41 = {
       "update": false,
       "html": {}
     }
-  },
-  "apps": "coming soon!"/*{}*/
+  }
 }
 sys41.system.version = '0.1'
 
@@ -31,8 +30,6 @@ sys41.system.themes = {
     "current": false
   }
 };
-
-localforage.setItem("sys41", sys41)
 
   //Browser detector
 var nav = navigator.userAgent;
