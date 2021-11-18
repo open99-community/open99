@@ -1,9 +1,9 @@
 {
-  "short_name": "Weather",
-  "name": "Weather: Do I need an umbrella?",
+  "short_name": "Windows99",
+  "name": "Windows 99 BETA",
   "icons": [
     {
-      "src": "https://via.placeholder.com/512",
+      "src": "files/img/logo/sys41-512.png",
       "type": "image/png",
       "sizes": "512x512"
     },
@@ -11,11 +11,6 @@
       "src": "https://via.placeholder.com/192",
       "type": "image/png",
       "sizes": "192x192"
-    },
-    {
-      "src": "https://via.placeholder.com/512",
-      "type": "image/png",
-      "sizes": "512x512"
     }
   ],
   "start_url": "/",
