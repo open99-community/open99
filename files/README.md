@@ -1,3 +1,3 @@
 # `files`
 
-Currently unused. Will be the default `C:/` drive, maybe.
+Currently unused for the most part. These are just system assets.
