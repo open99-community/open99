@@ -6,7 +6,7 @@ Windows99 is an open-sourced Web OS, similar to Windows93 or Windows96. You can 
 * Refrain from removing files, *even if they are not used*.
 * Refrain from editing README's when possible.
 * Never spam in the issues or pull requests sections - this will get you a ban
-* In no way, shape, or form should any content in this repository not be in English.
+* In no way, shape, or form should any content in this repository not be in American English. Writing content in other languages will guarantee you a temporary ban.
 ## Known bugs
 > None so far!
 ## Github & Contributing
