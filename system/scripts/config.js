@@ -25,7 +25,7 @@ sys41.system.themes = {
     "current": true
   },
   "Windows XP": {
-    "url":"system/styles/themes/xp.css"
+    "url":"system/styles/themes/xp.css",
     "abt": "Standard Windows XP theme. Comes with windows99",
     "current": false
   }
