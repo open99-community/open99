@@ -11,7 +11,9 @@
     </head>
     <body onkeydown="gohome()" onclick="gohome()"> <span class="bold-grand" id="url">ERROR 404</span>
         <p>The page you're attempting to visit no longer exists or never was written. You can wait and see if it becomes available again, or<br />you can reboot your system. </p>
-        <p>&bull; Press CTRL+ALT+DEL to reboot your computer - You will<br /> &nbsp; lose any unsaved information in any programs that are running. </p> <a href="/">Press any key to continue <blink>_</blink></a>
+        <p>&bull; Press CTRL+ALT+DEL to reboot your computer - You will<br /> &nbsp; lose any unsaved information in any programs that are running.</p>
+        <p>&bull; <a onclick="location.assign("/bugs")">Click here to report a bug or a missing page</a></p>
+        <a href="/">Press any key to reboot <blink>_</blink></a>
         <script>document.getElementById("url").innerHTML = `ERROR 404 - ` + location.pathname;</script>
     </body>
 </html>
