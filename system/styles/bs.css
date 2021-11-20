@@ -47,7 +47,3 @@ a:hover {
     font: inherit;
     text-decoration: none;
 }
-
-#url {
-    cursor: url("/system/cursors/pointer.cur"), pointer;
-}
