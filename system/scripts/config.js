@@ -8,28 +8,29 @@ var sys41 = {
       "stopped": false,
       "update": false,
       "html": {}
+    },
+    "themes": {
+      "change": function(name){}
     }
   }
 }
 sys41.system.version = '0.1'
 
-sys41.system.themes = {
-  "Windows 7": {
+sys41.system.themes["Windows 7"] = {
     "url": "system/styles/themes/7.css",
     "abt": "Standard Windows 7 theme. Comes with windows99",
     "current": false
-  },
-  "Windows 98": {
+}
+sys41.system.themes["Windows 98"] = {
     "url": "system/styles/themes/98.css",
     "abt": "Standard Windows 98 theme. Comes with windows99 and is the default theme on first boot",
     "current": true
-  },
-  "Windows XP": {
+}
+sys41.system.themes["Windows XP"] = {
     "url":"system/styles/themes/xp.css",
     "abt": "Standard Windows XP theme. Comes with windows99",
     "current": false
-  }
-};
+}
 
   //Browser detector
 var nav = navigator.userAgent;
