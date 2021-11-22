@@ -10,7 +10,7 @@ var sys41 = {
       "html": {}
     },
     "themes": {
-      "change": function(name){}
+      "change": function(name){eval('sys41.themes.' + name + 'current = true')} //COMING SOON
     }
   }
 }
@@ -54,3 +54,9 @@ if (nav.indexOf("Firefox") > -1) {
 } else {
   sys41.user.navigator = "unknown";
 };
+
+//COMING SOON: LOCALFORAGE FILE SAVING - FILES GO TO sys41.files
+for(var i = 0; i < localforage.length(); i++) {
+  //COMING SOON
+  return;
+}
