@@ -16,3 +16,9 @@ When forking windows99, be sure to include the same license and credit your proj
 Please read the contributing guidelines [here](CONTRIBUTING.md). If you make a mistake and you don't read the contributing guidelines, you are subject to a ban from this repository. Please - try to keep contributions clean. When writing a commit message, make sure to add, in detail, what you changed, added, or removed. We don't want to go through every file in every commit individually.
 ## Security
 Read our security policy [here](%)
+## Plans for the future
+* Complete login component ('local login, for the webOS') that uses firebase. If the user does not have an internet connection, it may choose to not login, which is the same thing as logging in anonymously, which technically still gives them a firebase login ID. In other words, users have to log in whether they like it or not.
+* Support for adding multiple drives
+* A ROFS which is just the windows99 root files - we still cannot make this because it would have to be manual, because I don't know nor have the time to write a web scraping script. Feel free to contribute this, though!
+* Support for adding more drives (up to 26)
+* Boot scripts and styles
