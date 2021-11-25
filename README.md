@@ -19,6 +19,7 @@ Read our security policy [here](%)
 ## Plans for the future
 * Complete login component ('local login, for the webOS') that uses firebase. If the user does not have an internet connection, it may choose to not login, which is the same thing as logging in anonymously, which technically still gives them a firebase login ID. In other words, users have to log in whether they like it or not.
 * Support for adding multiple drives
+   * As well as reading files from USB maybe? Only supported on chrome [check it out](https://developer.mozilla.org/en-US/docs/Web/API/USB)
 * A ROFS which is just the windows99 root files - we still cannot make this because it would have to be manual, because I don't know nor have the time to write a web scraping script. Feel free to contribute this, though!
 * Support for adding more drives (up to 26)
 * Boot scripts and styles
