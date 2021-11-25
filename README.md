@@ -3,7 +3,7 @@
 ## About
 Windows99 is an open-sourced Web OS, similar to Windows93 or Windows96. You can view a similar version at [this site](https://itspablo.glitch.me), and view the source code right on this repo. Feel free to contribute! Just keep in mind:
 * Scripts should go in the `system/scripts` folder, styles go in `system/styles` folder, etc.
-* Refrain from removing files, *even if they are not used*.
+* Refrain from removing files, *even if they are not used* - just mention it in the directory README or your commit description.
 * Refrain from editing README's when possible.
 * Never spam in the issues or pull requests sections - this will get you a ban
 * In no way, shape, or form should any content in this repository not be in American English. Writing content in other languages will guarantee you a temporary ban.
