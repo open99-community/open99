@@ -60,3 +60,5 @@ for(var i = 0; i < localforage.length(); i++) {
   //COMING SOON
   return;
 }
+
+module.exports = {sys41};
