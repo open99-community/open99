@@ -1,5 +1,3 @@
-const {sys41} = require('config.js');
-
 //BOOTSCREEN
 var sys41.boot.html[welcome] = document.getElementById("welcome");
 var sys41.boot.html[dateUserAgent] = document.getElementById("dateUserAgent");
