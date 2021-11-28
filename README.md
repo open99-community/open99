@@ -5,6 +5,7 @@ Windows99 is an open-sourced Web OS, similar to Windows93 or Windows96. You can 
 ### Links
 * [Windows 99 Stable](https://windows99.vercel.app)
 * [Windows 99 Development](https://windows99dev.vercel.app)
+* [Vercel overview](https://vercel.com/its-pablo/windows99)
 
 Feel free to contribute! Just keep in mind:
 * Scripts should go in the `system/scripts` folder, styles go in `system/styles` folder, etc.
