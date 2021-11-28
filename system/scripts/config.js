@@ -1,5 +1,5 @@
 //SYS41 SETUP
-var sys41 = {
+sys41 = {
   "user": {
     "files": {}
   },
