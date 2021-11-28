@@ -1,15 +1,12 @@
 //windows99 uses firebase for 'local' authentication.
 //when the user is offline, they can choose to sign in anonymously
-
-import { getAuth, signInAnonymously } from "firebase/auth";
-
-const auth = getAuth();
-signInAnonymously(auth)
+//temporarily, anonymous signin is required
+firebase.auth().signInAnonymously()
   .then(() => {
-    alert(auth);
+    // Signed in
   })
   .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    alert(error.message);
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    alert(error.code + " " + error.message)
   });
