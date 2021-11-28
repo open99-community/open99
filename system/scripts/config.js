@@ -58,5 +58,4 @@ if (nav.indexOf("Firefox") > -1) {
 //COMING SOON: LOCALFORAGE FILE SAVING - FILES GO TO sys41.files
 for(var i = 0; i < localforage.length(); i++) {
   //COMING SOON
-  return;
 }
