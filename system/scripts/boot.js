@@ -1,12 +1,12 @@
 //BOOTSCREEN
-var sys41.boot.html[welcome] = document.getElementById("welcome");
-var sys41.boot.html[dateUserAgent] = document.getElementById("dateUserAgent");
-var sys41.boot.html[devmodeText] = document.getElementById("devmode");
-var sys41.boot.html[server] = document.getElementById("server");
-var sys41.boot.html[port] = document.getElementById("port");
-var sys41.boot.html[plugins] = document.getElementById("plugins");
-var sys41.boot.html[protocol] = document.getElementById("protocol");
-var sys41.boot.html[hash] = document.getElementById("hash");
+sys41.boot.html[welcome] = document.getElementById("welcome");
+sys41.boot.html[dateUserAgent] = document.getElementById("dateUserAgent");
+sys41.boot.html[devmodeText] = document.getElementById("devmode");
+sys41.boot.html[server] = document.getElementById("server");
+sys41.boot.html[port] = document.getElementById("port");
+sys41.boot.html[plugins] = document.getElementById("plugins");
+sys41.boot.html[protocol] = document.getElementById("protocol");
+sys41.boot.html[hash] = document.getElementById("hash");
 
 //Actual boot
 if ($(".bootscreen")[0]){
