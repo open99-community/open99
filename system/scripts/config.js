@@ -7,7 +7,16 @@ sys41 = {
     "boot": {
       "stopped": false,
       "update": false,
-      "html": {}
+      "html": {
+        "welcome": document.getElementById("welcome"),
+        "dateUserAgent": document.getElementById("dateUserAgent"),
+        "devmodeText": document.getElementById("devmode"),
+        "server": document.getElementById("server"),
+        "port": document.getElementById("port"),
+        "plugins": document.getElementById("plugins"),
+        "protocol": document.getElementById("protocol"),
+        "hash": document.getElementById("hash")
+      }
     },
     "themes": {
       "change": function(name){eval('sys41.themes.' + name + 'current = true')} //COMING SOON
