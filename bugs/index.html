@@ -13,9 +13,18 @@
     <script src="bug.js"></script>
   </head>
   <body>
-    <p>coming soon</p>
+    <p>Coming soon!</p>
     <form>
-      <label>Nope<input></input</label>
+      <label>Subject<input type="text" placeholder="Specific icon isn't showing" required></input></label>
+      <label>Extended description<textarea required placeholder="After boot, I opened My Computer and for some reason the top icon in the status bar was..."></textarea></label>
+      <p>Where did this occur?</p>
+      <label>Specific app<input type="radio"></input></label>
+      <label class="hidden">Which app, specifically?<input type="text" placeholder="File Explorer"></input></label>
+      <label>Boot<input type="radio"></input></label>
+      <label>Start menu<input type="radio"></input></label>
+      <label>Other<input type="radio"></input></label>
+      <label>I verify that the information above is true and correct, and that System41 has the right to block my IP Address for misuse of our services<input type="checkbox" required></input></label>
+      <input type="submit" value="Submit Bug Report"></input>
     </form>
   </body>
 </html>
