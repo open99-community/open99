@@ -1,3 +1,6 @@
+//Setup
+document.onclick = function(e) {e.preventDefault}
+
 //Actual boot
 if ($(".bootscreen")[0]){
     sys41.boot.html.welcome.innerHTML = `
