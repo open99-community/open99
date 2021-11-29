@@ -1,5 +1,5 @@
 //BOOTSCREEN
-sys41.boot.html[welcome] = document.getElementById("welcome");
+sys41.boot.html.welcome = document.getElementById("welcome");
 sys41.boot.html[dateUserAgent] = document.getElementById("dateUserAgent");
 sys41.boot.html[devmodeText] = document.getElementById("devmode");
 sys41.boot.html[server] = document.getElementById("server");
