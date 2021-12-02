@@ -1,2 +1,4 @@
+# Empty robots.txt yay
+
 User-agent: *
 Allow: /
