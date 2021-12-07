@@ -1,5 +1,3 @@
-(function() {
-//SYS41 SETUP
 sys41 = {
   "user": {
     "files": {}
@@ -61,7 +59,7 @@ if (nav.indexOf("Firefox") > -1) {
 } else if (nav.indexOf("Edg") > -1) {
   sys41.user.navigator = "Microsoft Edge";
 } else if (nav.indexOf("Chrome") > -1) {
-  sys41.user.navigator = "Chrome/Chromium";
+  sys41.user.navigator = "Chrome or Chromium";
 } else if (nav.indexOf("Safari") > -1) {
   sys41.user.navigator = "Apple Safari";
 } else {
@@ -72,4 +70,3 @@ if (nav.indexOf("Firefox") > -1) {
 for(var i = 0; i < localforage.length(); i++) {
   //COMING SOON
 }
-}())
