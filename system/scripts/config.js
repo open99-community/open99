@@ -1,3 +1,4 @@
+(function() {
 //SYS41 SETUP
 sys41 = {
   "user": {
@@ -19,26 +20,29 @@ sys41 = {
       }
     },
     "themes": {
-      "change": function(name){eval('sys41.themes.' + name + 'current = true')} //COMING SOON
+      "change": function(name){sys41.themes[name].current = true} //COMING SOON
     }
   }
 }
 sys41.system.version = '0.1'
 
-sys41.system.themes["Windows 7"] = {
+sys41.system.themes.win7 = {
     "url": "system/styles/themes/7.css",
     "abt": "Standard Windows 7 theme. Comes with windows99",
-    "current": false
+    "current": false,
+    "name": "Windows9 7"
 }
-sys41.system.themes["Windows 98"] = {
+sys41.system.themes.win98 = {
     "url": "system/styles/themes/98.css",
     "abt": "Standard Windows 98 theme. Comes with windows99 and is the default theme on first boot",
-    "current": true
+    "current": true,
+    "name": "Windows 98"
 }
-sys41.system.themes["Windows XP"] = {
+sys41.system.themes.winxp = {
     "url":"system/styles/themes/xp.css",
     "abt": "Standard Windows XP theme. Comes with windows99",
-    "current": false
+    "current": false,
+    "name": "Windows XP"
 }
 
   //Browser detector
@@ -61,10 +65,11 @@ if (nav.indexOf("Firefox") > -1) {
 } else if (nav.indexOf("Safari") > -1) {
   sys41.user.navigator = "Apple Safari";
 } else {
-  sys41.user.navigator = "unknown";
+  sys41.user.navigator = "Unknown Navigator";
 };
 
 //COMING SOON: LOCALFORAGE FILE SAVING - FILES GO TO sys41.files
 for(var i = 0; i < localforage.length(); i++) {
   //COMING SOON
 }
+}())
