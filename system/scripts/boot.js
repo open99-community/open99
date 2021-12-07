@@ -2,7 +2,7 @@
 document.onclick = function(e) {e.preventDefault}
 
 //Actual boot
-if ($(".bootscreen")[0]){
+/*if ($(".bootscreen")[0]){*/
     sys41.boot.html.welcome.innerHTML = `
     system41 presents <a class="rainbow-text">Windows 99</a> version 0.4 (official.dev)<br />
     licensed under the <b>Mozilla Public License</b>` 
@@ -29,7 +29,7 @@ if ($(".bootscreen")[0]){
     } else {
       sys41.boot.html.protocol.innerHTML = 'Protocol: ' + location.protocol
     };
-};
+/*};*/
 
 alert("debug")
 //SET THEME
