@@ -48,9 +48,7 @@ if ($(".bootscreen")[0]){
 head.getElementById("stylelink").setAttribute("href", "system/styles/themes/98.css")
 
 //Remove right-click functionality
-document.addEventListener("contextmenu", function(evt) {
-  evt.preventDefault();
-});
+document.oncontextmenu(function(e) {e.preventDefault();})
 
 function openNav() {
   document.getElementById("myDebug").style.width = "250px";
