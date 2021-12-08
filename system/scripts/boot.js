@@ -7,7 +7,7 @@ if ($(".bootscreen")[0]){
     system41 presents <a class="rainbow-text">Windows 99</a> version 0.4 (official.dev)<br />
     licensed under the <b>Mozilla Public License</b>` 
     sys41.system.boot.html.dateUserAgent.innerHTML = `booting on ` + Date() + `<br />in ` + sys41.user.navigator + `<br />`
-    if (!location.port || !location.href === 'https://windows99.vercel.app') {
+    if (location.href === 'https://windows99.vercel.app') {
         sys41.system.boot.html.devmodeText.classList.add("hidden")
     } else {
         sys41.system.boot.html.devmodeText.innerHTML = `<span class="warning-boot">WARNING: you are running this on a custom or non-production server.<br />
@@ -20,6 +20,7 @@ if ($(".bootscreen")[0]){
       sys41.system.boot.html.port.innerHTML = 'Port number: ' + location.port
     };
     
+    sys41.system.plugins.innerHTML = ``;
     for(var i = 0; i < navigator.plugins.length; i++) {
         sys41.system.boot.html.plugins.innerHTML = `<p>` + navigator.plugins.name[i] + `</p>`
     }
