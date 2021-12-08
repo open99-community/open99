@@ -32,7 +32,7 @@ if ($(".bootscreen")[0]){
       sys41.system.boot.html.protocol.innerHTML = 'Protocol: ' + location.protocol
     };
     //hash
-    sys41.system.boot.html.hash.innerHTML = location.hash;
+    sys41.system.boot.html.hash.innerHTML = "Hash: " + location.hash;
     //plugins
     sys41.system.boot.html.plugins.innerHTML = ``;
     for(var i = 0; i < navigator.plugins.length; i++) {
