@@ -15,14 +15,14 @@ if ($(".bootscreen")[0]){
         sys41.system.boot.html.devmodeText.innerHTML = `<span class="warning-boot">WARNING: you are running this on a custom or non-production server.<br />
         please be aware this is not an official release of windows99. <a target="_blank" href="https://itspablo.gitbook.io/windows99/forking/faq#unverified_boot_error"><b>learn how to remove this</b></a></span>`
     };
-    sys41.system.boot.href.server.innerText = 'Server: ' + location.href;
-    if ((location.port === undefined) || (location.port === null)) {
-      sys41.system.boot.html.port.classList.add("hidden");
+    sys41.system.boot.html.server.innerText = 'Server: ' + location.href;
+    if (location.port === undefined || location.port === null) {
+      sys41.system.boot.html.port.innerHTML = "Port number: none"
     } else {
       sys41.system.boot.html.port.innerHTML = 'Port number: ' + location.port
     };
     
-    sys41.system.plugins.innerHTML = ``;
+    sys41.system.boot.html.plugins.innerHTML = ``;
     for(var i = 0; i < navigator.plugins.length; i++) {
         sys41.system.boot.html.plugins.innerHTML = `<p>` + navigator.plugins.name[i] + `</p>`
     }
