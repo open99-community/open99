@@ -13,7 +13,7 @@ if ($(".bootscreen")[0]){
         sys41.system.boot.html.devmodeText.classList.add("hidden")
     } else {
         sys41.system.boot.html.devmodeText.innerHTML = `<span class="warning-boot">WARNING: you are running this on a custom or non-production server.<br />
-        please be aware this is not an official release of windows99. <a target="_blank" href="https://itspablo.gitbook.io/windows99/forking/faq#unverified_boot_error"><b>learn how to remove this</b></a></span>`
+        please be aware this is not an official release of windows99. <a href="" onclick="open(https://itspablo.gitbook.io/windows99/forking/faq#unverified_boot_error, _blank)"><b>learn how to remove this</b></a></span>`
     };
     sys41.system.boot.html.server.innerText = 'Server: ' + location.href;
     if (!location.port) {
