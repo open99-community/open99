@@ -32,7 +32,6 @@ if ($(".bootscreen")[0]){
     };
 };
 
-alert("debug")
 //SET THEME
 document.head.getElementById("stylelink").setAttribute("href", "system/styles/themes/98.css")
 
