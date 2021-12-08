@@ -1,3 +1,5 @@
+var head = document.getElementsByTagName('head')[0]
+
 //Setup
 document.onclick = function(e) {e.preventDefault}
 
@@ -33,7 +35,7 @@ if ($(".bootscreen")[0]){
 };
 
 //SET THEME
-document.head.getElementById("stylelink").setAttribute("href", "system/styles/themes/98.css")
+head.getElementById("stylelink").setAttribute("href", "system/styles/themes/98.css")
 
 //Remove right-click functionality
 document.addEventListener("contextmenu", function(evt) {
