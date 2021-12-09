@@ -80,8 +80,9 @@ html {
   cursor: url("../cursors/default.cur"), default;
 }
 button,
-a:link,
+a,
 select,
+input[type="checkbox"],
 .ld {
   cursor: url("../cursors/pointer.cur"), pointer;
 }
@@ -94,12 +95,6 @@ textarea {
   width: 65rem;
   margin-left: 240px;
   margin-bottom: 60px;
-}
-input[type="checkbox"] {
-  cursor: url("../cursors/pointer.cur"), pointer;
-}
-::-webkit-scrollbar {
-  cursor: url("../cursors/pointer.cur"), pointer;
 }
 .draggable {
   width: 25%;

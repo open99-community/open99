@@ -15,6 +15,17 @@ sys41 = {
         "plugins": document.getElementById("plugins"),
         "protocol": document.getElementById("protocol"),
         "hash": document.getElementById("hash")
+      },
+      "finish": function(){
+        var bootscreen = document.getElementsByClassName("bootscreen")[0];
+        bootscreen.parentNode.removeChild(bootscreen);
+        var el = document.createElement("div");
+        el.classList.add("postboot");
+        
+      },
+      "stop": function(){
+        //I need to add a way to bypass this. This is too boring!
+        sys41.system.boot.finish = null
       }
     },
     "themes": {
@@ -28,7 +39,7 @@ sys41.system.themes.win7 = {
     "url": "system/styles/themes/7.css",
     "abt": "Standard Windows 7 theme. Comes with windows99",
     "current": false,
-    "name": "Windows9 7"
+    "name": "Windows 7"
 }
 sys41.system.themes.win98 = {
     "url": "system/styles/themes/98.css",
@@ -69,4 +80,12 @@ if (nav.indexOf("Firefox") > -1) {
 //COMING SOON: LOCALFORAGE FILE SAVING - FILES GO TO sys41.files
 for(var i = 0; i < localforage.length(); i++) {
   //COMING SOON
+}
+
+function openNav() {
+  document.getElementById("myDebug").style.width = "250px";
+}
+
+function closeNav() {
+  document.getElementById("myDebug").style.width = "0";
 }

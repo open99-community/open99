@@ -51,10 +51,7 @@ head.getElementById("stylelink").setAttribute("href", "system/styles/themes/98.c
 //Remove right-click functionality
 document.oncontextmenu(function(e) {e.preventDefault();})
 
-function openNav() {
-  document.getElementById("myDebug").style.width = "250px";
-}
-
-function closeNav() {
-  document.getElementById("myDebug").style.width = "0";
-}
+//Finish boot!
+setTimeout(function(){
+  sys41.system.boot.finish()
+}, 3000);
