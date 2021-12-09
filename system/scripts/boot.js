@@ -27,7 +27,7 @@ if ($(".bootscreen")[0]){
     };
     //protocol
     if (location.protocol === "https:") {
-      sys41.system.boot.html.protocol.innerText = 'Protocol: secure'
+      sys41.system.boot.html.protocol.innerText = 'Protocol: ✔️ secure'
     } else {
       sys41.system.boot.html.protocol.innerHTML = 'Protocol: ' + location.protocol + '<p href="" class="boot-error"> Watch out! The protocol you are using is insecure and therefore many windows99 features will fail to work. <a href="">learn how to remove this.</a></p>'
     };
