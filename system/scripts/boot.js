@@ -27,9 +27,9 @@ if ($(".bootscreen")[0]){
     };
     //protocol
     if (location.protocol === "https:") {
-      sys41.system.boot.html.protocol.innerHTML = 'Protocol: secure'
+      sys41.system.boot.html.protocol.innerText = 'Protocol: secure'
     } else {
-      sys41.system.boot.html.protocol.innerHTML = 'Protocol: ' + location.protocol
+      sys41.system.boot.html.protocol.innerHTML = 'Protocol: ' + location.protocol + '<p href="" class="boot-error"> Watch out! The protocol you are using is insecure and therefore many windows99 features will fail to work. <a href="">learn how to remove this.</a></p>'
     };
     //hash
     if (location.hash) {
@@ -37,6 +37,7 @@ if ($(".bootscreen")[0]){
     } else {
       sys41.system.boot.html.hash.classList.add("hidden")
     }
+    sys41.system.boot.html
     //plugins
     sys41.system.boot.html.plugins.innerHTML = ``;
     for(var i = 0; i < navigator.plugins.length; i++) {
