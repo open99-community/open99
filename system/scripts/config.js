@@ -1,6 +1,33 @@
 sys41 = {
   "user": {
-    "files": {}
+    "files": {},
+    "apps": {
+      "sys": {
+        "bsod": function(text, title){
+          document.body.innerHTML = `
+          <link rel="stylesheet" href="/system/styles/bs.css">
+          <script>function gohome() {window.location.href='/';}</script>
+
+          <div onclick = "gohome()" onkeydown="gohome()" class="bsod">
+            <span class="title">ERROR ${title}</span>
+            <p>${text}</p>
+            <p>&bull; Press CTRL+ALT+DEL to reboot your computer - You will<br /> &nbsp; lose any unsaved information in any programs that are running.</p>
+            <a href="/">Press any key to reboot <blink>_</blink></a>
+          </div>
+          `
+        },
+        "reboot": function(){
+          location.reload()
+        },
+        "shutDown": function(tryClose){
+          if (!typeof tryClose == "boolean") {
+            return TypeError("Must be boolean")
+          }
+          document.body.innerHTML = ``;
+          document.head.innerHTML = ``
+        }
+      }
+    }
   },
   "system": {
     "boot": {

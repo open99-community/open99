@@ -1,22 +1,17 @@
-::-moz-selection {
+.bsod ::-moz-selection {
     background: #b3d4fc;
     text-shadow: none;
 }
 
-::selection {
+.bsod ::selection {
     background: #b3d4fc;
     text-shadow: none;
 }
 
-body,
-html {
+.bsod {
     height: 100%;
     overflow: hidden;
     padding: 0;
-    margin: 0;
-}
-
-body {
     background: #0000aa;
     color: #ffffff;
     font-family: courier;
@@ -26,14 +21,14 @@ body {
     margin-top: 14%;
 }
 
-.title {
+.bsod .title {
     background: #fff;
     color: #0000aa;
     padding: 2px 8px;
     font-weight: bold;
 }
 
-p {
+.bsod p {
     margin: 30px 100px;
     text-align: left;
     width: 650px;
@@ -41,8 +36,8 @@ p {
     margin-right: auto;
 }
 
-a,
-a:hover {
+.bsod a,
+.bsod a:hover {
     color: inherit;
     font: inherit;
     text-decoration: none;
