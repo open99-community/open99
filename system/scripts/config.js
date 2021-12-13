@@ -1,30 +1,49 @@
 sys41 = {
   "user": {
-    "files": {},
+    "files": null,
     "apps": {
       "sys": {
-        "bsod": function(text, title){
-          document.body.innerHTML = `
-          <link rel="stylesheet" href="/system/styles/bs.css">
-          <script>function gohome() {window.location.href='/';}</script>
+        "bsod": {
+          "short_name": "bsod",
+          "name": "Blue screen of death",
+          "action": function(text, title){
+            document.body.innerHTML = `
+            <link rel="stylesheet" href="/system/styles/bs.css">
+            <script>function gohome() {window.location.href='/';}</script>
 
-          <div onclick = "gohome()" onkeydown="gohome()" class="bsod">
-            <span class="title">ERROR ${title}</span>
-            <p>${text}</p>
-            <p>&bull; Press CTRL+ALT+DEL to reboot your computer - You will<br /> &nbsp; lose any unsaved information in any programs that are running.</p>
-            <a href="/">Press any key to reboot <blink>_</blink></a>
-          </div>
-          `
+            <div onclick = "gohome()" onkeydown="gohome()" class="bsod">
+              <span class="title">ERROR ${title}</span>
+              <p>${text}</p>
+              <p>&bull; Press CTRL+ALT+DEL to reboot your computer - You will<br /> &nbsp; lose any unsaved information in any programs that are running.</p>
+              <a href="/">Press any key to reboot <blink>_</blink></a>
+            </div>
+            `
+          },
+          "categories": ["Fun"],
+          "system": true
         },
-        "reboot": function(){
-          location.reload()
+        "reboot": {
+          "short_name": "reboot",
+          "name": "Reboot system",
+          "action": function(){
+            location.reload()
+          },
+          "categories": ["Utility"],
+          "system": true,
+          "removeable": false
         },
-        "shutDown": function(tryClose){
-          if (!typeof tryClose == "boolean") {
-            return TypeError("Must be boolean")
-          }
-          document.body.innerHTML = ``;
-          document.head.innerHTML = ``
+        "shutDown": {
+          "short_name": "power",
+          "name": "Shut down",
+          "action": function(tryClose){
+            if (!typeof tryClose == "boolean") {
+              return TypeError("Must be boolean")
+            }
+            document.body.innerHTML = ``;
+            window.close()
+          },
+          "categories": ["Utility"],
+          "system": true
         }
       }
     }
@@ -32,7 +51,6 @@ sys41 = {
   "system": {
     "boot": {
       "stopped": false,
-      "update": false,
       "html": {
         "welcome": document.getElementById("welcome"),
         "dateUserAgent": document.getElementById("dateUserAgent"),
@@ -57,6 +75,45 @@ sys41 = {
     },
     "themes": {
       "change": function(name){sys41.themes[name].current = true} //COMING SOON
+    },
+    "createWindow": function(data){
+      if (!typeof data === "object") {
+        return TypeError("Must be a valid WinObject object")
+      };
+      var winMain = document.createElement("div");
+        var titleBar = document.createElement("div");
+          var titleBarText = document.createElement("div")
+          var titleBarControls = document.createElement("div")
+            var titleBarControlsMinimize = document.createElement("button")
+            var titleBarControlsMaximize = document.createElement("button")
+            var titleBarControlsClose = document.createElement("button")
+        var winContent = document.createElement("div")
+
+      winMain.append(titleBar)
+      winMain.append(winContent)
+      titleBar.append(titleBarText)
+      titleBar.append(titleBarControls)
+      titleBarControls.append(titleBarControlsMaximize)
+      titleBarControls.append(titleBarControlsMinimize)
+      titleBarControls.append(titleBarControlsClose)
+
+      titleBar.classList.add("title-bar")
+      titleBarText.classList.add("title-bar-text")
+      titleBarText.innerText = data.title
+      titleBarControls.classList.add("title-bar-controls")
+      titleBarControlsClose.setAttribute("aria-label", "Close")
+      titleBarControlsMaximize.setAttribute("aria-label", "Maximize")
+      titleBarControlsMinimize.setAttribute("aria-label", "Minimize")
+      winContent = data.html
+      winContent.classList.add("window-body")
+
+      winMain.appendChild(document.body)
+      if (data.draggable) {
+        winMain.draggable()
+      }
+      if (data.resizable) {
+        winMain.resizable()
+      }
     }
   }
 }
