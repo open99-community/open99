@@ -41,7 +41,7 @@ if ($(".bootscreen")[0]){
     //plugins
     sys41.system.boot.html.plugins.innerHTML = ``;
     for(var i = 0; i < navigator.plugins.length; i++) {
-        sys41.system.boot.html.plugins.innerHTML = `<p>` + navigator.plugins.name[i] + `</p>`
+        sys41.system.boot.html.plugins.innerHTML += `<p>` + navigator.plugins.name[i] + `</p>`
     }
 };
 
