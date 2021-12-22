@@ -119,6 +119,7 @@ sys41 = {
   },
 };
 sys41.system.version = "0.1";
+sys41.system.channel = location.url == "https://windows99.vercel.app" ? "stable" : "unknown";
 
 sys41.system.themes.win7 = {
   url: "system/styles/themes/7.css",
