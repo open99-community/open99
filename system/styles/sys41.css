@@ -83,6 +83,7 @@ button,
 a,
 select,
 input[type="checkbox"],
+input[type="radio"],
 .ld {
   cursor: url("../cursors/pointer.cur"), pointer;
 }
