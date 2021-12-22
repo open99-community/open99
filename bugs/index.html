@@ -18,8 +18,8 @@
       <br />
       <label>Extended description<textarea rows="11" required placeholder="After boot, I opened My Computer and for some reason the top icon in the status bar was..."></textarea></label>
       <br />
-      <p>Where did this occur?</p>
-      <br />
+      <fieldset>
+      <legend>Where did this occur?</legend>
       <label>Specific app<input id="specificApp" type="radio"></label>
       <br />
       <label id="whichApp" class="hidden">Which app, specifically?<input type="text" placeholder="File Explorer"></input></label>
@@ -29,7 +29,7 @@
       <label>Start menu<input type="radio"></input></label>
       <br />
       <label>Other<input type="radio"></input></label>
-      <br />
+      </fieldset>
       <label>I verify that the information above is true and correct, and that System41 has the right to block my IP Address for misuse of our services<input type="checkbox" required></input></label>
       <br />
       <button>Submit Bug Report</button>
@@ -37,9 +37,7 @@
     <div id="scripts">
        <!-- Third party scripts -->
        <script src="system/scripts/3party/jquery.js"></script>
-       <script src="system/scripts/3party/screenshot.js"></script>
        <script src="system/scripts/3party/localforage.js"></script>
-       <script src="system/scripts/3party/howler.js"></script>
     </div>
   </body>
 </html>
