@@ -9,7 +9,7 @@ function whereOccurSpecificApp() {
 }
 
 //WEB3FORMS INJECTION
-(function () {
+(function() {
   var form = document.getElementsByTagName("form")[0];
   var accessKey = document.createElement("input");
   accessKey.setAttribute("type", "hidden");
