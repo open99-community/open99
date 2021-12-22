@@ -7,8 +7,8 @@
   <title>REPORT ERROR</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Stylesheets -->
-    <link rel="stylesheet" id="stylelink" href="../system/styles/themes/98.css">
-    <link rel="stylesheet" href="../system/styles/sys41.css">
+  <link rel="stylesheet" id="stylelink" href="../system/styles/themes/98.css">
+  <link rel="stylesheet" href="../system/styles/sys41.css">
   <!-- Scripts -->
   <script src="bugs/bug.js"></script>
 </head>
@@ -23,7 +23,9 @@
     <br />
     <fieldset>
       <legend>Where did this occur?</legend>
-      <label><input type="radio" name="whereOccur" onclick="whereOccurSpecificApp()">Specific app</label>
+      <div class="field-row">
+        <label><input type="radio" name="whereOccur" onclick="whereOccurSpecificApp()">Specific app</label>
+      </div>
       <label id="whichApp" class="hidden">Which app, specifically?<input type="text"
           placeholder="File Explorer"></input></label>
       <br />
@@ -33,7 +35,8 @@
       <br />
       <label><input name="whereOccur" type="radio" value="other">Other</label>
     </fieldset>
-    <label><input type="checkbox" name="tos" required>I verify that the information above is true and correct, and that System41 has the right to block my IP
+    <label><input type="checkbox" name="tos" required>I verify that the information above is true and correct, and that
+      System41 has the right to block my IP
       Address for immature usage of our services</label>
     <br />
     <button>Submit Bug Report</button>
