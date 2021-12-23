@@ -2,12 +2,11 @@ sys41 = {
   user: {
     files: null,
     apps: {
-      sys: {
-        bsod: {
-          short_name: "bsod",
-          name: "Blue screen of death",
-          action: function (text, title) {
-            document.body.innerHTML = `
+      bsod: {
+        short_name: "bsod",
+        name: "Blue screen of death",
+        action: function (text, title) {
+          document.body.innerHTML = `
             <link rel="stylesheet" href="/system/styles/bs.css">
             <script>function gohome() {window.location.href='/';}</script>
 
@@ -18,33 +17,32 @@ sys41 = {
               <a href="/">Press any key to reboot <blink>_</blink></a>
             </div>
             `;
-          },
-          categories: ["Fun"],
-          system: true,
         },
-        reboot: {
-          short_name: "reboot",
-          name: "Reboot system",
-          action: function () {
-            location.reload();
-          },
-          categories: ["Utility"],
-          system: true,
-          removeable: false,
+        categories: ["Fun"],
+        system: true,
+      },
+      reboot: {
+        short_name: "reboot",
+        name: "Reboot system",
+        action: function () {
+          location.reload();
         },
-        shutDown: {
-          short_name: "power",
-          name: "Shut down",
-          action: function (tryClose) {
-            if (!typeof tryClose == "boolean") {
-              return TypeError("Must be boolean");
-            }
-            document.body.innerHTML = ``;
-            window.close();
-          },
-          categories: ["Utility"],
-          system: true,
+        categories: ["Utility"],
+        system: true,
+        removeable: false,
+      },
+      shutDown: {
+        short_name: "power",
+        name: "Shut down",
+        action: function (tryClose) {
+          if (!typeof tryClose == "boolean") {
+            return TypeError("Must be boolean");
+          }
+          document.body.innerHTML = ``;
+          window.close();
         },
+        categories: ["Utility"],
+        system: true,
       },
     },
   },
