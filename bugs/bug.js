@@ -1,4 +1,5 @@
 //COMING SOON
+document.getElementById("specificApp").addEventListener('click', whereOccurSpecificApp)
 
 function whereOccurSpecificApp() {
   if (document.getElementById("specificApp").checked) {
