@@ -31,12 +31,18 @@
         <input id="whichApp" type="text" placeholder="File Explorer"></input>
         <label for="whichApp" id="whichApp" class="hidden">Which app, specifically?</label>
       </div>
-      <br />
-      <label><input name="whereOccur" type="radio" value="boot">Boot</label>
-      <br />
-      <label><input name="whereOccur" type="radio" value="start">Start menu</label>
-      <br />
-      <label><input name="whereOccur" type="radio" value="other">Other</label>
+      <div class="field-row">
+        <input id="whereOccurBoot" name="whereOccur" type="radio" value="boot">
+        <label for="whereOccurBoot">Boot</label>
+      </div>
+      <div class="field-row">
+        <input id="whereOccurStart" name="whereOccur" type="radio" value="start">
+        <label for="whereOccurStart">Start menu</label>
+      </div>
+      <div class="field-row">
+        <input id="whereOccurOther" name="whereOccur" type="radio" value="other">
+        <label for="whereOccurOther">Other</label>
+      </div>
     </fieldset>
     <label><input type="checkbox" name="tos" required>I verify that the information above is true and correct, and that
       System41 has the right to block my IP
