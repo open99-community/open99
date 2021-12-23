@@ -28,8 +28,15 @@
         <label for="specificApp">Specific app</label>
       </div>
       <div class="field-row hidden>
-        <input id="whichApp" type="text" placeholder="File Explorer"></input>
+        <input id="whichApp" list="apps" placeholder="File Explorer"></input>
         <label for="whichApp" id="whichApp">Which app, specifically?</label>
+        <datalist id="apps">
+          <option value="Textedit">
+          <option value="Terminal">
+          <option value="App Store/Package Manager">
+          <option value="Opera">
+          <option value="Safari">
+        </datalist>
       </div>
       <div class="field-row">
         <input id="whereOccurBoot" name="whereOccur" type="radio" value="boot">
