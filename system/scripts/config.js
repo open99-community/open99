@@ -116,28 +116,33 @@ sys41 = {
         winMain.resizable();
       }
     },
+    removeWindow: function () {},
   },
 };
 sys41.system.version = "0.1";
-sys41.system.channel = location.url == "https://windows99.vercel.app" ? "stable" : "unknown";
+sys41.system.channel =
+  location.url == "https://windows99.vercel.app" ? "stable" : "unknown";
 
 sys41.system.themes.win7 = {
   url: "system/styles/themes/7.css",
   abt: "Standard Windows 7 theme. Comes with windows99",
   current: false,
   name: "Windows 7",
+  img: null,
 };
 sys41.system.themes.win98 = {
   url: "system/styles/themes/98.css",
   abt: "Standard Windows 98 theme. Comes with windows99 and is the default theme on first boot",
   current: true,
   name: "Windows 98",
+  img: null,
 };
 sys41.system.themes.winxp = {
   url: "system/styles/themes/xp.css",
   abt: "Standard Windows XP theme. Comes with windows99",
   current: false,
   name: "Windows XP",
+  img: null,
 };
 
 //Browser detector
