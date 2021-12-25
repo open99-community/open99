@@ -59,6 +59,21 @@ sys41 = {
         protocol: document.getElementById("protocol"),
         hash: document.getElementById("hash"),
       },
+      dom: {
+        element: document.getElementById("boottext"),
+      },
+      add: function (text, error, id) {
+        var el = document.createElement("p");
+        el.innerHTML = text;
+        if (error) {
+          el.classList.add("boot-error");
+        }
+        el.appendChild(sys41.system.boot.dom.element);
+        if (id) {
+          el.id = id
+        }
+        return el;
+      },
       finish: function () {
         var bootscreen = document.getElementsByClassName("bootscreen")[0];
         bootscreen.parentNode.removeChild(bootscreen);
@@ -66,7 +81,6 @@ sys41 = {
         el.classList.add("postboot");
       },
       stop: function () {
-        //I need to add a way to bypass this. This is too boring!
         sys41.system.boot.finish = null;
       },
     },
