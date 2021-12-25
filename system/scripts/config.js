@@ -49,18 +49,9 @@ sys41 = {
   system: {
     boot: {
       stopped: false,
-      html: {
-        welcome: document.getElementById("welcome"),
-        dateUserAgent: document.getElementById("dateUserAgent"),
-        devmodeText: document.getElementById("devmode"),
-        server: document.getElementById("server"),
-        port: document.getElementById("port"),
-        plugins: document.getElementById("plugins"),
-        protocol: document.getElementById("protocol"),
-        hash: document.getElementById("hash"),
-      },
       dom: {
         element: document.getElementById("boottext"),
+        mainElement: document.getElementById("bootscreen"),
       },
       add: function (text, error, id) {
         var el = document.createElement("p");
@@ -70,7 +61,7 @@ sys41 = {
         }
         el.appendChild(sys41.system.boot.dom.element);
         if (id) {
-          el.id = id
+          el.id = id;
         }
         return el;
       },
