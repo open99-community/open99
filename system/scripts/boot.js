@@ -30,26 +30,24 @@ if ($(".bootscreen")[0]) {
   }
   //protocol
   if (location.protocol === "https:") {
-    sys41.system.boot.html.protocol.innerText = "Protocol: ✔️ secure";
+    sys41.system.boot.add("Protocol: ✔️ secure");
   } else {
-    sys41.system.boot.html.protocol.innerHTML =
+    sys41.system.boot.add(
       "Protocol: " +
-      location.protocol +
-      '<p href="" class="boot-error"> Watch out! The protocol you are using is insecure and therefore many windows99 features will fail to work. <a href="">learn how to remove this.</a></p>';
+        location.protocol +
+        '<p href="" class="boot-error"> Watch out! The protocol you are using is insecure and therefore many windows99 features will fail to work. <a href="">learn how to remove this.</a></p>',
+      true
+    );
   }
   //hash
   if (location.hash) {
-    sys41.system.boot.html.hash.innerHTML = "Hash: " + location.hash;
-  } else {
-    sys41.system.boot.html.hash.classList.add("hidden");
+    sys41.system.boot.add("Hash: " + location.hash);
   }
-  sys41.system.boot.html;
   //plugins
-  sys41.system.boot.html.plugins.innerHTML = ``;
-  for (var i = 0; i < navigator.plugins.length; i++) {
+  /*for (var i = 0; i < navigator.plugins.length; i++) {
     sys41.system.boot.html.plugins.innerHTML +=
       `<p>` + navigator.plugins.name[i] + `</p>`;
-  }
+  }*/
 }
 
 //SET THEME

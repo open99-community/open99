@@ -1,16 +1,18 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="description" content="Windows99 is a web-based open-source operating system, with the goal of providing a Windows 98-ish experience to your modern desktop.">
+    <meta name="description"
+        content="Windows99 is a web-based open-source operating system, with the goal of providing a Windows 98-ish experience to your modern desktop.">
     <title>windows99</title>
-    <link rel="shortcut icon" type="image/ico" href="favicon.ico"/>
+    <link rel="shortcut icon" type="image/ico" href="favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="system/styles/sys41.css">
     <link rel="stylesheet" id="stylelink" href="system/styles/themes/98.css">
     <link rel="manifest" href="manifest.json">
-    
+
     <link rel="manifest" href="manifest.json">
 </head>
 
@@ -21,25 +23,13 @@
         <textarea id="textDebug"></textarea>
         <button onclick="runAlert()">alert!</button>
         <script>
-        function runAlert() {
-            alert(eval(document.getElementById("textDebug").value));
-        }
+            function runAlert() {
+                alert(eval(document.getElementById("textDebug").value));
+            }
         </script>
     </div>
-    <div class="boottext">
-        <p id="welcome">Loading start</p>
-        <p id="devmode">Loading devText</p>
-        <p id="dateUserAgent">Loading content</p>
-        <p id="server">Loading server</p>
-        <p id="port">Loading port</p>
-        <div id="plugins">
-            <p>Loading plugins</p>
-        </div>
-        <p id="protocol">Loading protocol</p>
-        <p id="hash">Loading hash</p>
-        <p id="referrer">Loading referrer</p>
-        <button onclick="openNav()">DEBUG ONLY</button>
-    </div>
+    <div class="boottext"></div>
+    <!--<button onclick="openNav()">DEBUG ONLY</button>-->
     <div id="scripts">
         <!-- Third party scripts -->
         <script src="system/scripts/3party/jquery.js"></script>
@@ -52,13 +42,13 @@
         <script defer src="system/scripts/config.js"></script>
         <script defer src="system/scripts/boot.js"></script>
         <script src="system/scripts/signin.js"></script>
-        <script>if ('serviceWorker' in navigator) {navigator.serviceWorker.register('/sw.js')}</script>
+        <script>if ('serviceWorker' in navigator) { navigator.serviceWorker.register('/sw.js') }</script>
         <div id="googanal">
             <!-- Google Analytics -->
             <script async src="https://www.googletagmanager.com/gtag/js?id=G-MSQ0XB265H"></script>
             <script>
                 window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
+                function gtag() { dataLayer.push(arguments); }
                 gtag('js', new Date());
                 gtag('config', 'G-MSQ0XB265H');
             </script>
@@ -68,4 +58,5 @@
         </div>
     </div>
 </body>
+
 </html>
