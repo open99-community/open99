@@ -21,7 +21,7 @@ if ($(".bootscreen")[0]) {
         please be aware this is not an official release of windows99. <a onclick='open("https://itspablo.gitbook.io/windows99/forking/faq#unverified_boot_error", "_blank")'><b>learn how to remove this</b></a></span>`)
   }
   //server
-  sys41.system.boot.add(Server: " + location.href)
+  sys41.system.boot.add("Server: " + location.href)
   //port
   if (!location.port) {
     sys41.system.boot.add("Port number: none")
