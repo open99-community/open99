@@ -34,10 +34,7 @@ sys41 = {
       shutDown: {
         short_name: "power",
         name: "Shut down",
-        action: function (tryClose) {
-          if (!typeof tryClose == "boolean") {
-            return TypeError("Must be boolean");
-          }
+        action: function () {
           document.body.innerHTML = ``;
           window.close();
         },
@@ -59,10 +56,10 @@ sys41 = {
         if (error) {
           el.classList.add("boot-error");
         }
-        el.appendChild(sys41.system.boot.dom.element);
         if (id) {
           el.id = id;
         }
+        el.appendChild(sys41.system.boot.dom.element);
         return el;
       },
       finish: function () {
