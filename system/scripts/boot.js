@@ -8,25 +8,25 @@ document.onclick = function (e) {
 //Actual boot
 if ($(".bootscreen")[0]) {
   //Welcome
-  sys41.system.boot.html.welcome.innerHTML = `
+  sys41.system.boot.add(`
     system41 presents <a class="rainbow-text">Windows 99</a> version 0.4 (official.dev)<br />
-    licensed under the <b>Mozilla Public License</b>`;
+    licensed under the <b>Mozilla Public License</b>`)
   //date and useragent
-  sys41.system.boot.html.dateUserAgent.innerHTML =
-    `booting on ` + Date() + `<br />in ` + sys41.user.navigator + `<br />`;
+  var dateNav = sys41.system.boot.add(
+    `booting on ` + Date() + `<br />in ` + sys41.user.navigator + `<br />`)
   if (location.href === "https://windows99.vercel.app") {
-    sys41.system.boot.html.devmodeText.classList.add("hidden");
+    dateNav.classList.add("hidden");
   } else {
-    sys41.system.boot.html.devmodeText.innerHTML = `<span class="warning-boot">WARNING: you are running this on a custom or non-production server.<br />
-        please be aware this is not an official release of windows99. <a onclick='open("https://itspablo.gitbook.io/windows99/forking/faq#unverified_boot_error", "_blank")'><b>learn how to remove this</b></a></span>`;
+    sys41.system.boot.add(`<span class="warning-boot">WARNING: you are running this on a custom or non-production server.<br />
+        please be aware this is not an official release of windows99. <a onclick='open("https://itspablo.gitbook.io/windows99/forking/faq#unverified_boot_error", "_blank")'><b>learn how to remove this</b></a></span>`)
   }
   //server
-  sys41.system.boot.html.server.innerText = "Server: " + location.href;
+  sys41.system.boot.add(Server: " + location.href)
   //port
   if (!location.port) {
-    sys41.system.boot.html.port.innerHTML = "Port number: none";
+    sys41.system.boot.add("Port number: none")
   } else {
-    sys41.system.boot.html.port.innerHTML = "Port number: " + location.port;
+    sys41.system.boot.add("Port number: " + location.port)
   }
   //protocol
   if (location.protocol === "https:") {
