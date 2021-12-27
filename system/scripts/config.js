@@ -41,6 +41,14 @@ sys41 = {
         categories: ["Utility"],
         system: true,
       },
+      batteryDetector: {
+        short_name: "battery",
+        name: "Battery Detector",
+        action: null,
+        background_action: function () {},
+        categories: ["Background"],
+        system: true,
+      },
     },
   },
   system: {
