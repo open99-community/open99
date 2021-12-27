@@ -3,10 +3,12 @@
 
 <head>
     <script src="https://unpkg.com/@supabase/supabase-js"></script>
-    <script>import { createClient } from '@supabase/supabase-js'
-
-        // Create a single supabase client for interacting with your database 
-        const supabase = createClient('https://jacqfjuuakfrhukrzlfu.supabase.co', 'public-anon-key')</script>
+    <script>
+        import { createClient } from '@supabase/supabase-js'
+        
+        const supabaseUrl = 'https://jacqfjuuakfrhukrzlfu.supabase.co'
+        const supabaseKey = process.env.SUPABASE_KEY
+        const supabase = createClient(supabaseUrl, supabaseKey)</script>
 </head>
 
 <body>
