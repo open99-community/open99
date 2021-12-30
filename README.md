@@ -2,6 +2,14 @@
 ![](https://therealsujitk-vercel-badge.vercel.app/?app=windows99) [![GitHub issues](https://img.shields.io/github/issues/its-pablo/windows99)](https://github.com/its-pablo/windows99/issues) [![GitHub forks](https://img.shields.io/github/forks/its-pablo/windows99)](https://github.com/its-pablo/windows99/network) [![GitHub stars](https://img.shields.io/github/stars/its-pablo/windows99)](https://github.com/its-pablo/windows99/stargazers) [![GitHub license](https://img.shields.io/github/license/its-pablo/windows99)](https://github.com/its-pablo/windows99) ![GitHub repo size](https://img.shields.io/github/repo-size/its-pablo/windows99) ![Lines of code](https://img.shields.io/tokei/lines/github/its-pablo/windows99) ![GitHub contributors](https://img.shields.io/github/contributors/its-pablo/windows99)   
 ## About
 Windows99 is an open-sourced Web OS, similar to Windows93 or Windows96. You can view a similar version at [this site](https://itspablo.glitch.me), and view the source code right on this repo.  
+### Projects
+| Project                                                                         | Short description                                  |
+|---------------------------------------------------------------------------------|----------------------------------------------------|
+| [windows99](https://github.com/its-pablo/windows99)                             | Frontend code for Windows 99. Main repository      |
+| [windows99-signup-screen](https://github.com/its-pablo/windows99-signup-screen) | Standalone signup and config screen for Windows 99 |
+| [windows99-plugin](https://github.com/its-pablo/windows99-plugin)               | Plugin (JS) for Windows 99 apps                    |
+| [99captcha](https://github.com/its-pablo/99captcha)                             | Funny reCAPTCHA alternative for Windows 99         |
+
 ### Links
 * Windows 99
   * [Live (stable)](https://windows99.vercel.app)
