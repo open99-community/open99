@@ -40,6 +40,7 @@ sys41 = {
         },
         categories: ["Utility"],
         system: true,
+        removeable: false,
       },
       batteryDetector: {
         short_name: "battery",
