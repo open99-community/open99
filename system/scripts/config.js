@@ -1,4 +1,4 @@
-sys41 = {
+var sys41 = {
   user: {
     files: null,
     apps: {
@@ -83,8 +83,9 @@ sys41 = {
     },
     themes: {
       change: function (name) {
-        sys41.themes[name].current = true;
-      }, //COMING SOON
+        sys41.system.themes[name].current = true;
+      },
+      current: sys41.system.themes.win98
     },
     createWindow: function (data) {
       if (!typeof data === "object") {
@@ -127,6 +128,33 @@ sys41 = {
     },
     removeWindow: function () {},
   },
+  ui: {
+    createProgBar: function(element, features){
+      if (sys41.system.themes.current.supports.progBar) {
+        var el = document.createElement("div")
+        el.setAttribute("role", "progressbar")
+        el.setAttribute("aria-valuemin", features.min)
+        el.setAttribute("aria-valuemax", features.max)
+        el.setAttribute("aria-valuenow", features.now)
+        var elIn = document.createElement("div")
+        elIn.style.width = features.width
+        elIn.append(el)
+        el.append(element)
+      } else {
+        return Error("Theme " + sys41.system.themes.current.name + "does not support progress bar")
+      }
+    },
+    createBalloon: function(element, features){
+      if (sys41.system.themes.current.supports.balloon || sys41.system.themes.current.supports.tooltip) {
+        var el = document.createElement("div")
+        el.ariaRoleDescription = "tooltip"
+        el.innerText = features.text
+        el.append(element)
+      } else {
+        return Error("Theme " + sys41.system.themes.current.name + "does not support tooltip/balloon")
+      }
+    },
+  },
 };
 sys41.system.version = "0.1";
 sys41.system.channel =
@@ -138,6 +166,11 @@ sys41.system.themes.win7 = {
   current: false,
   name: "Windows 7",
   img: null,
+  supports: {
+    ballon: true,
+    progBar: true,
+    tabs: true,
+  }
 };
 sys41.system.themes.win98 = {
   url: "system/styles/themes/98.css",
@@ -145,6 +178,11 @@ sys41.system.themes.win98 = {
   current: true,
   name: "Windows 98",
   img: null,
+  supports: {
+    ballon: false,
+    progBar: false,
+    tabs: true,
+  }
 };
 sys41.system.themes.winxp = {
   url: "system/styles/themes/xp.css",
@@ -152,6 +190,11 @@ sys41.system.themes.winxp = {
   current: false,
   name: "Windows XP",
   img: null,
+  supports: {
+    balloon: false,
+    progBar: false,
+    tabs: false,
+  }
 };
 
 //Browser detector
@@ -176,6 +219,8 @@ if (nav.indexOf("Firefox") > -1) {
 } else {
   sys41.user.navigator = "Unknown Navigator";
 }
+
+
 
 //COMING SOON: LOCALFORAGE FILE SAVING - FILES GO TO sys41.files
 for (var i = 0; i < localforage.length(); i++) {
