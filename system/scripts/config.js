@@ -59,14 +59,11 @@ var sys41 = {
         element: document.getElementById("boottext"),
         mainElement: document.getElementById("bootscreen"),
       },
-      add: function (text, error, id) {
+      add: function (text, error) {
         var el = document.createElement("p");
         el.innerHTML = text;
         if (error) {
           el.classList.add("boot-error");
-        }
-        if (id) {
-          el.id = id;
         }
         el.appendChild(sys41.system.boot.dom.element);
         return el;
