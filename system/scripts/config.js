@@ -20,6 +20,7 @@ var sys41 = {
         },
         categories: ["Fun"],
         system: true,
+        permissions: ["administrateSystem"]
       },
       reboot: {
         short_name: "reboot",
@@ -30,6 +31,7 @@ var sys41 = {
         categories: ["Utility"],
         system: true,
         removeable: false,
+        permissions: ["administrateSystem"]
       },
       shutDown: {
         short_name: "power",
@@ -37,10 +39,12 @@ var sys41 = {
         action: function () {
           document.body.innerHTML = ``;
           window.close();
+          self.close()
         },
         categories: ["Utility"],
         system: true,
         removeable: false,
+        permissions: ["administrateSystem"]
       },
       batteryDetector: {
         short_name: "battery",
@@ -49,6 +53,7 @@ var sys41 = {
         background_action: function () {},
         categories: ["Background"],
         system: true,
+        permissions: ["widget"]
       },
     },
   },
@@ -127,19 +132,20 @@ var sys41 = {
       var winMain = document.createElement("div");
       var titleBar = document.createElement("div");
       var titleBarText = document.createElement("div");
+      var titleBarIcon = null; //for now
       var titleBarControls = document.createElement("div");
       var titleBarControlsMinimize = document.createElement("button");
       var titleBarControlsMaximize = document.createElement("button");
       var titleBarControlsClose = document.createElement("button");
       var winContent = document.createElement("div");
 
-      winMain.append(titleBar);
-      winMain.append(winContent);
-      titleBar.append(titleBarText);
-      titleBar.append(titleBarControls);
-      titleBarControls.append(titleBarControlsMaximize);
-      titleBarControls.append(titleBarControlsMinimize);
-      titleBarControls.append(titleBarControlsClose);
+      titleBar.append(winMain);
+      winContent.append(winMain);
+      titleBarText.append(titleBar);
+      titleBarControls.append(titleBar);
+      titleBarControlsMaximize.append(titleBarControls);
+      titleBarControlsMinimize.append(titleBarControls);
+      titleBarControlsClose.append(titleBarControls);
 
       titleBar.classList.add("title-bar");
       titleBarText.classList.add("title-bar-text");
@@ -159,7 +165,7 @@ var sys41 = {
         winMain.resizable();
       }
     },
-    removeWindow: function () {},
+    removeWindow: function () {return},
   },
   ui: {
     createProgBar: function(element, features){
