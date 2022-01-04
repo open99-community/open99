@@ -194,7 +194,7 @@ var sys41 = {
 };
 sys41.system.version = "0.1";
 sys41.system.channel =
-  location.url == "https://windows99.vercel.app" ? "stable" : "unknown";
+  location.url == "https://windows99.vercel.app" ? "stable" : location.url == "https://windows99dev.vercel.app" ? "development" : "unknown";
 
 //Browser detector
 var nav = navigator.userAgent;
