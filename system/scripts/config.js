@@ -85,7 +85,43 @@ var sys41 = {
       change: function (name) {
         sys41.system.themes[name].current = true;
       },
-      current: sys41.system.themes.win98
+      current: sys41.system.themes.win98,
+      win7: {
+        url: "system/styles/themes/7.css",
+        abt: "Standard Windows 7 theme. Comes with windows99",
+        current: false,
+        name: "Windows 7",
+        img: null,
+        supports: {
+          ballon: true,
+          progBar: true,
+          tabs: true,
+        }
+      },
+      win98 = {
+        url: "system/styles/themes/98.css",
+        abt: "Standard Windows 98 theme. Comes with windows99 and is the default theme on first boot",
+        current: true,
+        name: "Windows 98",
+        img: null,
+        supports: {
+          ballon: false,
+          progBar: false,
+          tabs: true,
+        }
+      },
+      winxp = {
+        url: "system/styles/themes/xp.css",
+        abt: "Standard Windows XP theme. Comes with windows99",
+        current: false,
+        name: "Windows XP",
+        img: null,
+        supports: {
+          balloon: false,
+          progBar: false,
+          tabs: false,
+        }
+      }
     },
     createWindow: function (data) {
       if (!typeof data === "object") {
@@ -159,43 +195,6 @@ var sys41 = {
 sys41.system.version = "0.1";
 sys41.system.channel =
   location.url == "https://windows99.vercel.app" ? "stable" : "unknown";
-
-sys41.system.themes.win7 = {
-  url: "system/styles/themes/7.css",
-  abt: "Standard Windows 7 theme. Comes with windows99",
-  current: false,
-  name: "Windows 7",
-  img: null,
-  supports: {
-    ballon: true,
-    progBar: true,
-    tabs: true,
-  }
-};
-sys41.system.themes.win98 = {
-  url: "system/styles/themes/98.css",
-  abt: "Standard Windows 98 theme. Comes with windows99 and is the default theme on first boot",
-  current: true,
-  name: "Windows 98",
-  img: null,
-  supports: {
-    ballon: false,
-    progBar: false,
-    tabs: true,
-  }
-};
-sys41.system.themes.winxp = {
-  url: "system/styles/themes/xp.css",
-  abt: "Standard Windows XP theme. Comes with windows99",
-  current: false,
-  name: "Windows XP",
-  img: null,
-  supports: {
-    balloon: false,
-    progBar: false,
-    tabs: false,
-  }
-};
 
 //Browser detector
 var nav = navigator.userAgent;
