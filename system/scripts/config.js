@@ -168,10 +168,10 @@ var sys41 = {
     createProgBar: function(element, features){
       if (sys41.system.themes.current.supports.progBar) {
         var el = document.createElement("div")
-        el.setAttribute("role", "progressbar")
-        el.setAttribute("aria-valuemin", features.min)
-        el.setAttribute("aria-valuemax", features.max)
-        el.setAttribute("aria-valuenow", features.now)
+        el.ariaRoleDescription = "progressbar"
+        el.ariaValueMin = features.min
+        el.ariaValueMax = features.max
+        el.ariaValueNow = features.now
         var elIn = document.createElement("div")
         elIn.style.width = features.width
         elIn.append(el)
