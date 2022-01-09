@@ -1,6 +1,12 @@
 var sys41 = {
   user: {
     files: null,
+    addFile: function(key, value){
+      if (sys41.user.files === null){
+        sys41.user.files = {}
+      };
+      sys41.user.files[key] = value
+    },
     apps: {
       bsod: {
         short_name: "bsod",
@@ -193,6 +199,9 @@ var sys41 = {
         return Error("Theme " + sys41.system.themes.current.name + "does not support tooltip/balloon")
       }
     },
+  },
+  utils: {
+    get: function(url){fetch(url)}
   },
 };
 sys41.system.version = "0.1";
