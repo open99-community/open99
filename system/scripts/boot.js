@@ -1,3 +1,5 @@
+const localforage = require("./3party/localforage");
+
 var head = document.getElementsByTagName("head")[0];
 
 //Setup
@@ -58,6 +60,14 @@ head
 //Remove right-click functionality
 document.oncontextmenu(function (e) {
   e.preventDefault();
+});
+
+localforage.iterate(function(value, key, iterationNumber) {
+  sys41.user.addFile(key, value)
+}).then(function() {
+  console.log('File iteration has completed!');
+}).catch(function(err) {
+  console.error(err);
 });
 
 //Finish boot!
