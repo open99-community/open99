@@ -231,13 +231,6 @@ if (nav.indexOf("Firefox") > -1) {
   sys41.user.navigator = "Unknown Navigator";
 }
 
-
-
-//COMING SOON: LOCALFORAGE FILE SAVING - FILES GO TO sys41.files
-for (var i = 0; i < localforage.length(); i++) {
-  //COMING SOON
-}
-
 function openNav() {
   document.getElementById("myDebug").style.width = "250px";
 }
