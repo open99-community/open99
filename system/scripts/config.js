@@ -76,7 +76,7 @@ var sys41 = {
         if (error) {
           el.classList.add("boot-error");
         }
-        el.appendChild(sys41.system.boot.dom.element);
+        sys41.system.boot.dom.element.appendChild(el);
         return el;
       },
       finish: function () {
