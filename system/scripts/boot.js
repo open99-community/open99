@@ -6,11 +6,10 @@ var head = document.getElementsByTagName("head")[0];
 document.onclick = function (e) {
   e.preventDefault;
 };
-
+alert()
 //Actual boot
 if ($(".bootscreen")[0]) {
   //Welcome
-  alert()
   sys41.system.boot.add(`
     system41 presents <a class="rainbow-text">Windows 99</a> version 0.4 (official.dev)<br />
     licensed under the <b>Mozilla Public License</b>`)
