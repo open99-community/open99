@@ -62,6 +62,16 @@ var sys41 = {
         permissions: ["widget"]
       },
     },
+    profile: {
+      "accountType": null,
+      "userName": null,
+      "icon": null,
+      "background": {
+        "type": null,
+        "url": null,
+      },
+      "email": null,
+    },
   },
   system: {
     boot: {
@@ -72,11 +82,11 @@ var sys41 = {
       },
       add: function (text, error) {
         var el = document.createElement("p");
-        el.innerHTML = text;
+        el.innerText = text;
         if (error) {
           el.classList.add("boot-error");
         };
-        sys41.system.boot.dom.element.appendChild(el);
+        document.getElementById("boottext").appendChild(el);
         return el;
       },
       finish: function () {
