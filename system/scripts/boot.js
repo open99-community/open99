@@ -1,5 +1,3 @@
-const localforage = require("./3party/localforage");
-
 var head = document.getElementsByTagName("head")[0];
 
 //Setup
