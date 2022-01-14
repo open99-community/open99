@@ -8,7 +8,7 @@ document.onclick = function (e) {
 };
 alert()
 //Actual boot
-if ($(".bootscreen")[0]) {
+(function() {
   //Welcome
   sys41.system.boot.add(`
     system41 presents <a class="rainbow-text">Windows 99</a> version 0.4 (official.dev)<br />
@@ -50,7 +50,7 @@ if ($(".bootscreen")[0]) {
     sys41.system.boot.html.plugins.innerHTML +=
       `<p>` + navigator.plugins.name[i] + `</p>`;
   }*/
-}
+})()
 
 //SET THEME
 head
