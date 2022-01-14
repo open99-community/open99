@@ -81,13 +81,17 @@ var sys41 = {
         mainElement: document.getElementById("bootscreen"),
       },
       add: function (text, error) {
-        var el = document.createElement("p");
+        /*var el = document.createElement("p");
         el.innerText = text;
         if (error) {
           el.classList.add("boot-error");
         };
         document.getElementById("boottext").appendChild(el);
-        return el;
+        return el;*/
+        var node = document.createElement("li");
+        var textnode = document.createTextNode(text);
+        node.appendChild(textnode);
+        document.getElementById("boottext").appendChild(node);
       },
       finish: function () {
         var bootscreen = document.getElementsByClassName("bootscreen")[0];
@@ -209,9 +213,6 @@ var sys41 = {
         return Error("Theme " + sys41.system.themes.current.name + "does not support tooltip/balloon")
       }
     },
-  },
-  utils: {
-    get: function(url){fetch(url)}
   },
 };
 sys41.system.version = "0.1";
