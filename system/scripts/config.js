@@ -120,7 +120,7 @@ var sys41 = {
           tabs: true,
         }
       },
-      win98 = {
+      win98: {
         url: "system/styles/themes/98.css",
         abt: "Standard Windows 98 theme. Comes with windows99 and is the default theme on first boot",
         current: true,
@@ -132,7 +132,7 @@ var sys41 = {
           tabs: true,
         }
       },
-      winxp = {
+      winxp: {
         url: "system/styles/themes/xp.css",
         abt: "Standard Windows XP theme. Comes with windows99",
         current: false,
