@@ -2,15 +2,11 @@
 /* Modified by Pablo */
 @font-face {
   font-family: "Pixelated MS Sans Serif";
-  src: url(ms_sans_serif.woff)format("woff");
-  src: url(ms_sans_serif.woff2)format("woff2");
   font-weight: 400;
   font-style: normal;
 }
 @font-face {
   font-family: "Pixelated MS Sans Serif";
-  src: url(ms_sans_serif_bold.woff)format("woff");
-  src: url(ms_sans_serif_bold.woff2)format("woff2");
   font-weight: 700;
   font-style: normal;
 }
