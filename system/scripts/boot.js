@@ -49,9 +49,7 @@ document.onclick = function (e) {
 })()
 
 //SET THEME
-head
-  .getElementById("stylelink")
-  .setAttribute("href", "system/styles/themes/98.css");
+document.getElementById("stylelink").setAttribute("href", "system/styles/themes/98.css");
 
 //Remove right-click functionality
 document.oncontextmenu(function (e) {
