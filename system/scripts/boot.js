@@ -1,19 +1,11 @@
-var head = document.getElementsByTagName("head")[0];
-
-//Setup
-document.onclick = function (e) {
-  e.preventDefault;
-};
-//Actual boot
 (function() {
   //Welcome
   sys41.system.boot.add(`
     system41 presents <a class="rainbow-text">Windows 99</a> version 0.4 (official.dev)<br />
     licensed under the <b>Mozilla Public License</b>`)
-  var g = setInterval(getDate, 500);
-  function getDate() {return Date()}
+  function currentTime(){}
   var dateNav = sys41.system.boot.add(
-    `booting on ` + g + `<br />in ` + sys41.user.navigator + `<br />`)
+    `booting on ` + Date() + `<br />in ` + sys41.user.navigator + `<br />`)
   if (location.href === "https://windows99.vercel.app") {
     dateNav.classList.add("hidden");
   } else {
