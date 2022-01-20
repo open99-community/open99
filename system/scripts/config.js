@@ -77,7 +77,7 @@ var sys41 = {
     boot: {
       stopped: false,
       dom: {
-        element: document.getElementById("boottext"),
+        element: document.getElementsByClassName("boottext")[0],
         mainElement: document.getElementById("bootscreen"),
       },
       add: function (text, error) {
