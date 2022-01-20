@@ -107,7 +107,7 @@ var sys41 = {
       change: function (name) {
         sys41.system.themes[name].current = true;
       },
-      current: sys41.system.themes.win98,
+      current: null,
       win7: {
         url: "system/styles/themes/7.css",
         abt: "Standard Windows 7 theme. Comes with windows99",
