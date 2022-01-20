@@ -82,7 +82,7 @@ var sys41 = {
       },
       add: function (text, error) {
         var el = document.createElement("p");
-        el.innerText = text;
+        el.innerHTML = text;
         if (error) {
           el.classList.add("boot-error");
         };
