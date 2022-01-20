@@ -91,7 +91,7 @@ var sys41 = {
         var node = document.createElement("li");
         var textnode = document.createTextNode(text);
         node.appendChild(textnode);
-        document.getElementById("boottext").appendChild(node);
+        document.getElementsByClassName("boottext")[0].appendChild(node);
       },
       finish: function () {
         var bootscreen = document.getElementsByClassName("bootscreen")[0];
