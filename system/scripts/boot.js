@@ -10,7 +10,7 @@
     dateNav.classList.add("hidden");
   } else {
     sys41.system.boot.add(`<span class="warning-boot">WARNING: you are running this on a custom or non-production server.<br />
-        please be aware this is not an official release of windows99. <a href='https://itspablo.gitbook.io/windows99/forking/faq#unverified_boot_error' target="_blank"><b>learn how to remove this</b></a></span>`, true)
+        please be aware this is not an official release of windows99. <a href='https://itspablo.gitbook.io/windows99/forking/faq#unverified_boot_error' target="_blank"><b>learn how to remove this</b></a></span>`, {error: true})
   }
   //server
   sys41.system.boot.add("Server: " + location.href)
@@ -22,13 +22,13 @@
   }
   //protocol
   if (location.protocol === "https:") {
-    sys41.system.boot.add("Protocol: ✔️ secure");
+    sys41.system.boot.add("Protocol: ✔️ secure", {success: true});
   } else {
     sys41.system.boot.add(
       "Protocol: " +
         location.protocol +
-        '<p href="" class="boot-error"> Watch out! The protocol you are using is insecure and therefore many windows99 features will fail to work. <a href="">learn how to remove this.</a></p>',
-      true
+        'Watch out! The protocol you are using is insecure and therefore many windows99 features will fail to work. <a href="">learn how to remove this.</a>',
+      {error: true}
     );
   }
   //hash
