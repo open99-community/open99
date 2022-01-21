@@ -80,7 +80,7 @@ var sys41 = {
         element: document.getElementsByClassName("boottext")[0],
         mainElement: document.getElementById("bootscreen"),
       },
-      add: function (text, features) {
+      add: function (text = "message not specified", features = {}) {
         var el = document.createElement("p");
         el.innerHTML = text;
         if (features['error']) {
@@ -104,7 +104,7 @@ var sys41 = {
       },
     },
     themes: {
-      change: function (name) {
+      change: function (name = sys41.system.themes.current) {
         sys41.system.themes[name].current = true;
       },
       current: null,
@@ -145,7 +145,7 @@ var sys41 = {
         }
       }
     },
-    createWindow: function (data) {
+    createWindow: function (data = {}) {
       if (!typeof data === "object") {
         return TypeError("Must be a valid WinObject object");
       }
