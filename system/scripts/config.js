@@ -83,7 +83,7 @@ var sys41 = {
       add: function (text, features) {
         var el = document.createElement("p");
         el.innerHTML = text;
-        if (features.error) {
+        if (features['error']) {
           el.classList.add("boot-error");
         };
         if (features.success) {
