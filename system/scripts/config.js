@@ -145,7 +145,7 @@ var sys41 = {
         }
       }
     },
-    createWindow: function (data = {}) {
+    createWindow: function (data = {"draggable": true, "resizable": true, "html": `<p>No data</p>`}) {
       if (!typeof data === "object") {
         return TypeError("Must be a valid WinObject object");
       }
