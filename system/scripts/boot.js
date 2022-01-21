@@ -3,9 +3,9 @@
   sys41.system.boot.add(`
     system41 presents <a class="rainbow-text">Windows 99</a> version 0.4 (official.dev)<br />
     licensed under the <b>Mozilla Public License</b>`)
-  function currentTime(){}
+  function currentTime(){setTimeout(currentTime, 1000); return new Date()}
   var dateNav = sys41.system.boot.add(
-    `booting on ` + Date() + `<br />in ` + sys41.user.navigator + `<br />`)
+    `booting on ` + currentTime() + `<br />in ` + sys41.user.navigator + `<br />`)
   if (location.href === "https://windows99.vercel.app") {
     dateNav.classList.add("hidden");
   } else {
