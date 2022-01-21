@@ -80,11 +80,15 @@ var sys41 = {
         element: document.getElementsByClassName("boottext")[0],
         mainElement: document.getElementById("bootscreen"),
       },
-      add: function (text, error) {
+      add: function (text, features) {
         var el = document.createElement("p");
         el.innerHTML = text;
-        if (error) {
+        if (features.error) {
           el.classList.add("boot-error");
+        };
+        if (features.success) {
+          el.innerHTML = `<span><img src="system/assets/98/device/check.png"></span>` + text;
+          el.classList.add("boot-success")
         };
         document.getElementsByClassName("boottext")[0].appendChild(el);
         return el;
