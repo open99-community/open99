@@ -114,6 +114,8 @@ var sys41 = {
           indexeddb: webfs.INDEXEDDB,
           webSQL: webfs.WEBSQL,
           localStorage: webfs.LOCALSTORAGE,
+          navigator: null,
+          navigatorFull: null,
         }
       }
     },
