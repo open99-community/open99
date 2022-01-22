@@ -1,23 +1,35 @@
+const localforage = require("./3party/localforage");
+
+(function () {
+  localforage.config({
+    driver: localforage.INDEXEDDB,
+    name: "webfs",
+    description: "Main offline storage backend for open99. Uses IndexedDB.",
+  });
+})();
 var sys41 = {
   user: {
     files: null,
-    addFile: function(key, value){
-      if (sys41.user.files === null){
-        sys41.user.files = {}
-      };
-      sys41.user.files[key] = value
+    addFile: function (key, value) {
+      if (sys41.user.files === null) {
+        sys41.user.files = {};
+      }
+      if (key.indexOf("/")) {
+        localforage;
+      }
+      sys41.user.files[key] = value;
     },
     apps: {
       bsod: {
         short_name: "bsod",
         name: "Blue screen of death",
-        action: function (text, title) {
+        action: function (text = "Your system encountered an error and needs to reboot", title = "Fatal error") {
           document.body.innerHTML = `
             <link rel="stylesheet" href="/system/styles/bs.css">
             <script>function gohome() {window.location.href='/';}</script>
 
-            <div onclick = "gohome()" onkeydown="gohome()" class="bsod">
-              <span class="title">ERROR ${title}</span>
+            <div onclick="gohome()" onkeydown="gohome()" class="bsod">
+              <span class="title">${title}</span>
               <p>${text}</p>
               <p>&bull; Press CTRL+ALT+DEL to reboot your computer - You will<br /> &nbsp; lose any unsaved information in any programs that are running.</p>
               <a href="/">Press any key to reboot <blink>_</blink></a>
@@ -26,7 +38,7 @@ var sys41 = {
         },
         categories: ["Fun"],
         system: true,
-        permissions: ["administrateSystem"]
+        permissions: ["administrateSystem"],
       },
       reboot: {
         short_name: "reboot",
@@ -37,7 +49,7 @@ var sys41 = {
         categories: ["Utility"],
         system: true,
         removeable: false,
-        permissions: ["administrateSystem"]
+        permissions: ["administrateSystem"],
       },
       shutDown: {
         short_name: "power",
@@ -45,32 +57,65 @@ var sys41 = {
         action: function () {
           document.body.innerHTML = ``;
           window.close();
-          self.close()
+          self.close();
         },
         categories: ["Utility"],
         system: true,
         removeable: false,
-        permissions: ["administrateSystem"]
+        permissions: ["administrateSystem"],
       },
       batteryDetector: {
         short_name: "battery",
         name: "Battery Detector",
-        action: null,
-        background_action: function () {},
-        categories: ["Background"],
+        action: function () {},
+        categories: ["System"],
         system: true,
-        permissions: ["widget"]
+        removeable: false,
+        permissions: ["widget", "background"],
+      },
+      antiVirus: {
+        short_name: "antivirus",
+        name: "Antivirus",
+        action: function(){
+          if (!sys41 || !sys41.system || !sys41.user || !sys41.user.apps || !sys41.user.profile || !sys41.user.profile.data || !sys41.system.boot) {
+            (function() {
+              document.body.innerHTML = `
+                <link rel="stylesheet" href="/system/styles/bs.css">
+                <script>function gohome() {window.location.href='/';}</script>
+    
+                <div onclick="gohome()" onkeydown="gohome()" class="bsod">
+                  <span class="title">Fatal error</span>
+                  <p>Your computer suffered a fatal error that ocurrs when malicious code runs and removes important parts of the system41 API. You can clear your cache if rebooting doesn't work</p>
+                  <p>&bull; Press CTRL+ALT+DEL to reboot your computer - You will<br /> &nbsp; lose any unsaved information in any programs that are running.</p>
+                  <p>&bull; &bull; After this, try rebooting in Safe Mode and clearing all boot scripts. You should also rid your PC of suspicious apps.</p>
+                  <a href="/">Press any key to reboot <blink>_</blink></a>
+                </div>
+                `;
+            })()
+          }
+        },
+        categories: ["System"],
+        system: true,
+        removeable: true,
+        permissions: ["administrateSystem"],
       },
     },
     profile: {
-      "accountType": null,
-      "userName": null,
-      "icon": null,
-      "background": {
-        "type": null,
-        "url": null,
+      accountType: null,
+      userName: null,
+      icon: null,
+      background: {
+        type: null,
+        url: null,
       },
-      "email": null,
+      email: null,
+      data: {
+        webAPI: {
+          indexeddb: webfs.INDEXEDDB,
+          webSQL: webfs.WEBSQL,
+          localStorage: webfs.LOCALSTORAGE,
+        }
+      }
     },
   },
   system: {
@@ -83,13 +128,14 @@ var sys41 = {
       add: function (text = "message not specified", features = {}) {
         var el = document.createElement("p");
         el.innerHTML = text;
-        if (features['error']) {
+        if (features["error"]) {
           el.classList.add("boot-error");
-        };
+        }
         if (features.success) {
-          el.innerHTML = `<span><img src="system/assets/98/device/check.png"></span>` + text;
-          el.classList.add("boot-success")
-        };
+          el.innerHTML =
+            `<span><img src="system/assets/98/device/check.png"></span>` + text;
+          el.classList.add("boot-success");
+        }
         document.getElementsByClassName("boottext")[0].appendChild(el);
         return el;
       },
@@ -118,7 +164,7 @@ var sys41 = {
           ballon: true,
           progBar: true,
           tabs: true,
-        }
+        },
       },
       win98: {
         url: "system/styles/themes/98.css",
@@ -130,7 +176,7 @@ var sys41 = {
           ballon: false,
           progBar: false,
           tabs: true,
-        }
+        },
       },
       winxp: {
         url: "system/styles/themes/xp.css",
@@ -142,10 +188,12 @@ var sys41 = {
           balloon: false,
           progBar: false,
           tabs: false,
-        }
-      }
+        },
+      },
     },
-    createWindow: function (data = {"draggable": true, "resizable": true, "html": `<p>No data</p>`}) {
+    createWindow: function (
+      data = { draggable: true, resizable: true, html: `<p>No data</p>` }
+    ) {
       if (!typeof data === "object") {
         return TypeError("Must be a valid WinObject object");
       }
@@ -185,61 +233,78 @@ var sys41 = {
         winMain.resizable();
       }
     },
-    removeWindow: function () {return},
+    removeWindow: function () {
+      return;
+    },
   },
   ui: {
-    createProgBar: function(element, features){
+    createProgBar: function (element, features) {
       if (sys41.system.themes.current.supports.progBar) {
-        var el = document.createElement("div")
-        el.ariaRoleDescription = "progressbar"
-        el.ariaValueMin = features.min
-        el.ariaValueMax = features.max
-        el.ariaValueNow = features.now
-        var elIn = document.createElement("div")
-        elIn.style.width = features.width
-        elIn.append(el)
-        el.append(element)
+        var el = document.createElement("div");
+        el.ariaRoleDescription = "progressbar";
+        el.ariaValueMin = features.min;
+        el.ariaValueMax = features.max;
+        el.ariaValueNow = features.now;
+        var elIn = document.createElement("div");
+        elIn.style.width = features.width;
+        elIn.append(el);
+        el.append(element);
       } else {
-        return Error("Theme " + sys41.system.themes.current.name + "does not support progress bar")
+        return Error(
+          "Theme " +
+            sys41.system.themes.current.name +
+            "does not support progress bar"
+        );
       }
     },
-    createBalloon: function(element, features){
-      if (sys41.system.themes.current.supports.balloon || sys41.system.themes.current.supports.tooltip) {
-        var el = document.createElement("div")
-        el.ariaRoleDescription = "tooltip"
-        el.innerText = features.text
-        el.append(element)
+    createBalloon: function (element, features) {
+      if (
+        sys41.system.themes.current.supports.balloon ||
+        sys41.system.themes.current.supports.tooltip
+      ) {
+        var el = document.createElement("div");
+        el.ariaRoleDescription = "tooltip";
+        el.innerText = features.text;
+        el.append(element);
       } else {
-        return Error("Theme " + sys41.system.themes.current.name + "does not support tooltip/balloon")
+        return Error(
+          "Theme " +
+            sys41.system.themes.current.name +
+            "does not support tooltip/balloon"
+        );
       }
     },
   },
 };
 sys41.system.version = "0.1";
 sys41.system.channel =
-  location.url == "https://windows99.vercel.app" ? "stable" : location.url == "https://windows99dev.vercel.app" ? "development" : "unknown";
+  location.url == "https://windows99.vercel.app"
+    ? "stable"
+    : location.url == "https://windows99dev.vercel.app"
+    ? "development"
+    : "unknown";
 
 //Browser detector
 var nav = navigator.userAgent;
 sys41.user.navigatorFull = navigator.userAgent;
 if (nav.indexOf("Firefox") > -1) {
-  sys41.user.navigator = "Mozilla Firefox";
+  sys41.user.profile.data.navigator = "Mozilla Firefox";
 } else if (nav.indexOf("SamsungBrowser") > -1) {
-  sys41.user.navigator = "Samsung Internet";
+  sys41.user.profile.data.navigator = "Samsung Internet";
 } else if (nav.indexOf("Opera") > -1 || nav.indexOf("OPR") > -1) {
-  sys41.user.navigator = "Opera";
+  sys41.user.profile.data.navigator = "Opera";
 } else if (nav.indexOf("Trident") > -1) {
-  sys41.user.navigator = "Microsoft Internet Explorer";
+  sys41.user.profile.data.navigator = "Microsoft Internet Explorer";
 } else if (nav.indexOf("Edge") > -1) {
-  sys41.user.navigator = "Microsoft Edge (Legacy)";
+  sys41.user.profile.data.navigator = "Microsoft Edge (Legacy)";
 } else if (nav.indexOf("Edg") > -1) {
-  sys41.user.navigator = "Microsoft Edge";
+  sys41.user.profile.data.navigator = "Microsoft Edge";
 } else if (nav.indexOf("Chrome") > -1) {
-  sys41.user.navigator = "Chrome or Chromium";
+  sys41.user.profile.data.navigator = "Chrome or Chromium";
 } else if (nav.indexOf("Safari") > -1) {
-  sys41.user.navigator = "Apple Safari";
+  sys41.user.profile.data.navigator = "Apple Safari";
 } else {
-  sys41.user.navigator = "Unknown Navigator";
+  sys41.user.profile.data.navigator = "Unknown navigator";
 }
 
 function openNav() {
