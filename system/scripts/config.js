@@ -1,10 +1,10 @@
-/*(function () {
+(function () {
   localforage.config({
     driver: localforage.INDEXEDDB,
     name: "webfs",
     description: "Main offline storage backend for open99. Uses IndexedDB.",
   });
-})();*/
+})();
 var sys41 = {
   user: {
     files: null,
@@ -108,10 +108,10 @@ var sys41 = {
       },
       email: null,
       data: {
-        webAPI: {
+        webAPI: {/*
           indexeddb: webfs.INDEXEDDB,
           webSQL: webfs.WEBSQL,
-          localStorage: webfs.LOCALSTORAGE,
+          localStorage: webfs.LOCALSTORAGE,*/
           navigator: null,
           navigatorFull: null,
         }
