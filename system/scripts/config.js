@@ -65,7 +65,7 @@ var sys41 = {
       batteryDetector: {
         short_name: "battery",
         name: "Battery Detector",
-        action: function () {},
+        action: function () { },
         categories: ["System"],
         system: true,
         removeable: false,
@@ -74,9 +74,9 @@ var sys41 = {
       antiVirus: {
         short_name: "antivirus",
         name: "Antivirus",
-        action: function(){
+        action: function () {
           if (!sys41 || !sys41.system || !sys41.user || !sys41.user.apps || !sys41.user.profile || !sys41.user.profile.data || !sys41.system.boot) {
-            (function() {
+            (function () {
               document.body.innerHTML = `
                 <link rel="stylesheet" href="/system/styles/bs.css">
                 <script>function gohome() {window.location.href='/';}</script>
@@ -139,11 +139,20 @@ var sys41 = {
         document.getElementsByClassName("boottext")[0].appendChild(el);
         return el;
       },
+      bootable: function () {
+        if (sys41.user.files) {
+          return true;
+        } else {
+          return false;
+        }
+      },
       finish: function () {
-        var bootscreen = document.getElementsByClassName("bootscreen")[0];
-        bootscreen.parentNode.removeChild(bootscreen);
-        var el = document.createElement("div");
-        el.classList.add("postboot");
+        if (sys41.system.boot.bootable) {
+          var bootscreen = document.getElementsByClassName("bootscreen")[0];
+          bootscreen.parentNode.removeChild(bootscreen);
+          var el = document.createElement("div");
+          el.classList.add("postboot");
+        }
       },
       stop: function () {
         sys41.system.boot.finish = null;
@@ -252,8 +261,8 @@ var sys41 = {
       } else {
         return Error(
           "Theme " +
-            sys41.system.themes.current.name +
-            "does not support progress bar"
+          sys41.system.themes.current.name +
+          "does not support progress bar"
         );
       }
     },
@@ -269,8 +278,8 @@ var sys41 = {
       } else {
         return Error(
           "Theme " +
-            sys41.system.themes.current.name +
-            "does not support tooltip/balloon"
+          sys41.system.themes.current.name +
+          "does not support tooltip/balloon"
         );
       }
     },
@@ -281,8 +290,8 @@ sys41.system.channel =
   location.url == "https://windows99.vercel.app"
     ? "stable"
     : location.url == "https://windows99dev.vercel.app"
-    ? "development"
-    : "unknown";
+      ? "development"
+      : "unknown";
 
 //Browser detector
 var nav = navigator.userAgent;
