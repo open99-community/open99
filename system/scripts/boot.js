@@ -46,9 +46,9 @@
 document.getElementById("stylelink").setAttribute("href", "system/styles/themes/98.css");
 
 //Remove right-click functionality
-document.oncontextmenu(function (e) {
+/*document.oncontextmenu(function (e) {
   e.preventDefault();
-});
+});*/
 
 localforage.iterate(function(value, key, iterationNumber) {
   sys41.user.addFile(key, value)
