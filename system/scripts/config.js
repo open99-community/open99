@@ -1,5 +1,3 @@
-const localforage = require("./3party/localforage");
-
 (function () {
   localforage.config({
     driver: localforage.INDEXEDDB,
