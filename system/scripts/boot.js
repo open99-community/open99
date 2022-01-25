@@ -8,7 +8,7 @@
     dateNav.classList.add("hidden");
   } else {
     sys41.system.boot.add(`<span class="warning-boot">WARNING: you are running this on a custom or non-production server.<br />
-        please be aware this is not an official release of windows99. <a href='https://itspablo.gitbook.io/windows99/forking/faq#unverified_boot_error' target="_blank"><b>learn how to remove this</b></a></span>`, {error: true})
+        please be aware this is not an official release of windows99. <a href='https://itspablo.gitbook.io/windows99/forking/faq#unverified_boot_error' target="_blank"><b>learn how to remove this</b></a></span>`, {warning: true})
   }
   //server
   sys41.system.boot.add("Server: " + location.href)
