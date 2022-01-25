@@ -1,3 +1,4 @@
+const uid = new ShortUniqueId({ length: 10 });
 (function () {
   localforage.config({
     driver: localforage.INDEXEDDB,
@@ -125,6 +126,7 @@ var sys41 = {
         element: document.getElementsByClassName("boottext")[0],
         mainElement: document.getElementById("bootscreen"),
       },
+      elements: {},
       add: function (text = "message not specified", features = {}) {
         var el = document.createElement("p");
         el.innerHTML = text;
@@ -145,6 +147,7 @@ var sys41 = {
         }
         document.getElementsByClassName("boottext")[0].appendChild(el);
         return el;
+        sys41.system.boot.elements[uid()] = el;
       },
       bootable: function () {
         if (sys41.user.files) {
