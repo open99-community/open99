@@ -138,6 +138,11 @@ var sys41 = {
             `<span><img class="boot-image" src="system/assets/98/device/check.png"></span>` + text;
           el.classList.add("boot-success");
         }
+        if (features.warning) {
+          el.innerHTML =
+            `<span><img class="boot-image" src="system/assets/98/device/warning.png"></span>` + text;
+          el.classList.add("boot-success");
+        }
         document.getElementsByClassName("boottext")[0].appendChild(el);
         return el;
       },
