@@ -172,6 +172,7 @@ var sys41 = {
         sys41.system.boot.elements[id] = el;
         return {"element": el, "id": id}
       },
+      remove: function(id,){},
       bootable: function () {
         if (sys41.user.files) {
           return true;
