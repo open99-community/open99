@@ -3,7 +3,7 @@
     system41 presents <a class="rainbow-text">Windows 99</a> version 0.4 (official.dev)<br />
     licensed under the <b>Mozilla Public License</b>`)
   function currentTime(){return new Date()};
-  setTimeout(currentTime, 1000)
+  setinterval(currentTime, 1000)
   var dateNav = sys41.system.boot.add(
     `booting on ` + currentTime() + `<br />in ` + sys41.user.navigator + `<br />`)
   if (location.href === "https://windows99.vercel.app") {
@@ -27,7 +27,7 @@
     sys41.system.boot.add(
       "Protocol: " +
         location.protocol +
-        'Watch out! The protocol you are using is insecure and therefore many windows99 features will fail to work. <a href="">learn how to remove this.</a>',
+        'Watch out! The protocol you are using is insecure and therefore many windows99 features will fail to work. <a href="">learn more</a>',
       {error: true}
     );
   }
