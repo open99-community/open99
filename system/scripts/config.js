@@ -112,7 +112,7 @@ var sys41 = {
         webAPI: {/*
           indexeddb: webfs.INDEXEDDB,
           webSQL: webfs.WEBSQL,
-          localStorage: webfs.LOCALSTORAGE,*/
+          localStorage: webfs.LOCALSTORAGE,*/ //webfs is undefined
           navigator: null,
           navigatorFull: null,
         }
