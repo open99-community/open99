@@ -146,8 +146,9 @@ var sys41 = {
           el.classList.add("boot-success");
         }
         document.getElementsByClassName("boottext")[0].appendChild(el);
-        return el;
-        sys41.system.boot.elements[uid()] = el;
+        const id = uid()
+        sys41.system.boot.elements[id] = el;
+        return {"element": el, "id": id}
       },
       bootable: function () {
         if (sys41.user.files) {
