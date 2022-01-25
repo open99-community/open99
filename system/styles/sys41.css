@@ -154,6 +154,6 @@ label {
   vertical-align: middle
 }
 
-*:link {
+a:link {
   color: turquoise
 }
