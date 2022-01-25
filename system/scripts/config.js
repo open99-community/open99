@@ -133,7 +133,7 @@ var sys41 = {
         }
         if (features.success) {
           el.innerHTML =
-            `<span><img src="system/assets/98/device/check.png"></span>` + text;
+            `<span><img class="boot-image" src="system/assets/98/device/check.png"></span>` + text;
           el.classList.add("boot-success");
         }
         document.getElementsByClassName("boottext")[0].appendChild(el);
