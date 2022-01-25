@@ -168,11 +168,14 @@ var sys41 = {
             `<p class="boot-warning"><span><img class="boot-image" src="system/assets/98/device/warning.png"></span>` + text + `</p>`;
           el.classList.add("boot-success");
         }
-        document.getElementsByClassName("boottext")[0].appendChild(el);
         sys41.system.boot.elements[id] = el;
         return {"element": el, "id": id}
       },
-      remove: function(id,){},
+      remove: function(id){
+        var el = sys41.system.boot.elements[id]
+        el.parentNode.removeChild(el)
+        delete sys41.system.boot.elements[id]
+      },
       bootable: function () {
         if (sys41.user.files) {
           return true;
