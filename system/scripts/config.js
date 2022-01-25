@@ -96,7 +96,7 @@ var sys41 = {
         categories: ["System"],
         system: true,
         removeable: true,
-        permissions: ["administrateSystem"],
+        permissions: ["administrateSystem", "antivirusBypass"],
       },
     },
     profile: {
