@@ -22,7 +22,7 @@
   }
   //protocol
   if (location.protocol === "https:") {
-    sys41.system.boot.add("Protocol: ✔️ secure", {success: true});
+    sys41.system.boot.add("Protocol: secure (HTTPS)", {success: true});
   } else {
     sys41.system.boot.add(
       "Protocol: " +
