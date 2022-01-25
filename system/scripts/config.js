@@ -150,6 +150,28 @@ var sys41 = {
         sys41.system.boot.elements[id] = el;
         return {"element": el, "id": id}
       },
+      edit: function(id, text = "message not specified", features = {}){
+        var el = sys41.system.boot.elements[id]
+        el.innerHTML = text;
+        if (features.error) {
+          el.innerHTML =
+            `<p class="boot-error"><span><img class="boot-image" src="system/assets/98/device/error.png"></span>` + text + `</p>`;
+          el.classList.add("boot-error");
+        }
+        if (features.success) {
+          el.innerHTML =
+            `<p class="boot-success"><span><img class="boot-image" src="system/assets/98/device/check.png"></span>` + text + `</p>`;
+          el.classList.add("boot-success");
+        }
+        if (features.warning) {
+          el.innerHTML =
+            `<p class="boot-warning"><span><img class="boot-image" src="system/assets/98/device/warning.png"></span>` + text + `</p>`;
+          el.classList.add("boot-success");
+        }
+        document.getElementsByClassName("boottext")[0].appendChild(el);
+        sys41.system.boot.elements[id] = el;
+        return {"element": el, "id": id}
+      },
       bootable: function () {
         if (sys41.user.files) {
           return true;
