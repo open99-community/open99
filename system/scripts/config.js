@@ -147,7 +147,7 @@ var sys41 = {
         }
       },
       finish: function () {
-        if (sys41.system.boot.bootable) {
+        if (sys41.system.boot.bootable()) {
           var bootscreen = document.getElementsByClassName("bootscreen")[0];
           bootscreen.parentNode.removeChild(bootscreen);
           var el = document.createElement("div");
