@@ -128,7 +128,9 @@ var sys41 = {
       add: function (text = "message not specified", features = {}) {
         var el = document.createElement("p");
         el.innerHTML = text;
-        if (features["error"]) {
+        if (features.error) {
+          el.innerHTML =
+            `<span><img class="boot-image" src="system/assets/98/device/error.png"></span>` + text;
           el.classList.add("boot-error");
         }
         if (features.success) {
