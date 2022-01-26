@@ -115,7 +115,8 @@ var sys41 = {
           localStorage: webfs.LOCALSTORAGE,*/ //webfs is undefined
           navigator: null,
           navigatorFull: null,
-        }
+        },
+      firstTime: null,
       }
     },
   },
