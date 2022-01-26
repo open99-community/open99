@@ -152,7 +152,7 @@ label {
 
 .bootscreen .boot-image {
   vertical-align: middle;
-  margin-right: 5%;
+  margin-right: 5px;
 }
 
 .bootscreen a:link, .bootscreen a:visited, .bootscreen :link {
