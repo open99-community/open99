@@ -8,15 +8,43 @@ const uid = new ShortUniqueId({ length: 10 });
 })();
 var sys41 = {
   user: {
-    files: null,
-    addFile: function (key, value) {
-      if (sys41.user.files === null) {
-        sys41.user.files = {};
+    fs: {
+      files: null,
+      add: function (key, value) {
+        if (sys41.user.fs.files === null) {
+          sys41.user.fs.files = {};
+        }
+        if (sys41.user.fs.files[key]) {
+          return Error("File already exists, use sys41.user.fs.edit API instead.")
+        } else {
+          if (!key.indexOf("/") && !key.indexOf("_")) {
+            sys41.user.fs.files[key] = "/" + value
+          } else {
+            sys41.user.fs.files[key] = value;
+          }
+          return sys41.user.fs.files[key]
+        }
+      },
+      edit: function (key, value) {
+        if (!sys41.user.fs.files[key]) {
+          return Error("File doesn't exist, use sys41.user.fs.add API instead.")
+        } else {
+          if (!key.indexOf("/") && !key.indexOf("_")) {
+            sys41.user.fs.files[key] = "/" + value
+          } else {
+            sys41.user.fs.files[key] = value;
+          }
+          return sys41.user.fs.files[key]
+        }
+      },
+      delete: function (key){
+        if (!sys41.user.fs.files[key]) {
+          return Error("File doesn't exist, use sys41.user.fs.add API instead.")
+        } else {
+          delete sys41.user.fs.files[key];
+          return true;
+        }
       }
-      if (key.indexOf("/")) {
-        localforage;
-      }
-      sys41.user.files[key] = value;
     },
     apps: {
       bsod: {
@@ -116,7 +144,7 @@ var sys41 = {
           navigator: null,
           navigatorFull: null,
         },
-      firstTime: null,
+        firstTime: null,
       }
     },
   },
@@ -149,9 +177,9 @@ var sys41 = {
         document.getElementsByClassName("boottext")[0].appendChild(el);
         const id = uid()
         sys41.system.boot.elements[id] = el;
-        return {"element": el, "id": id}
+        return { "element": el, "id": id }
       },
-      edit: function(id, text = "message not specified", features = {}){
+      edit: function (id, text = "message not specified", features = {}) {
         var el = sys41.system.boot.elements[id]
         el.innerHTML = text;
         if (features.error) {
@@ -170,9 +198,9 @@ var sys41 = {
           el.classList.add("boot-success");
         }
         sys41.system.boot.elements[id] = el;
-        return {"element": el, "id": id}
+        return { "element": el, "id": id }
       },
-      remove: function(id){
+      remove: function (id) {
         var el = sys41.system.boot.elements[id]
         el.parentNode.removeChild(el)
         delete sys41.system.boot.elements[id]
@@ -353,6 +381,7 @@ if (nav.indexOf("Firefox") > -1) {
 } else {
   sys41.user.profile.data.navigator = "Unknown navigator";
 }
+const $fs = sys41.user.fs;
 
 function openNav() {
   document.getElementById("myDebug").style.width = "250px";

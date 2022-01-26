@@ -156,5 +156,5 @@ label {
 
 .bootscreen a:link, .bootscreen a:visited, .bootscreen :link {
   color: turquoise;
-  outline-color: none;
+  outline: none;
 }
