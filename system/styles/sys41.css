@@ -154,6 +154,6 @@ label {
   vertical-align: middle
 }
 
-a:link {
+.bootscreen a:link, .bootscreen a:visited, .bootscreen :link {
   color: turquoise
 }
