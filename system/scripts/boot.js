@@ -54,6 +54,7 @@ localforage.iterate(function(value, key, iterationNumber) {
   sys41.user.addFile(key, value)
 }).then(function() {
   console.log('File iteration has completed. localforage files are now on sys41.user.files');
+  sys41.system.boot.add(iterationNumber + " files processed")
 }).catch(function(err) {
   sys41.system.boot.add(err, {"error": true});
   console.error(err)
