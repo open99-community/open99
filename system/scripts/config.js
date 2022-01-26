@@ -37,7 +37,7 @@ var sys41 = {
           return sys41.user.fs.files[key]
         }
       },
-      delete: function (key){
+      delete: function (key) {
         if (!sys41.user.fs.files[key]) {
           return Error("File doesn't exist, use sys41.user.fs.add API instead.")
         } else {
@@ -46,8 +46,8 @@ var sys41 = {
         }
       }
     },
-    apps: {
-      bsod: {
+    apps: [
+      {
         short_name: "bsod",
         name: "Blue screen of death",
         action: function (text = "Your system encountered an error and needs to reboot", title = "Fatal error") {
@@ -67,7 +67,7 @@ var sys41 = {
         system: true,
         permissions: ["administrateSystem"],
       },
-      reboot: {
+      {
         short_name: "reboot",
         name: "Reboot system",
         action: function () {
@@ -78,7 +78,7 @@ var sys41 = {
         removeable: false,
         permissions: ["administrateSystem"],
       },
-      shutDown: {
+      {
         short_name: "power",
         name: "Shut down",
         action: function () {
@@ -91,7 +91,7 @@ var sys41 = {
         removeable: false,
         permissions: ["administrateSystem"],
       },
-      batteryDetector: {
+      {
         short_name: "battery",
         name: "Battery Detector",
         action: function () { },
@@ -100,7 +100,7 @@ var sys41 = {
         removeable: false,
         permissions: ["widget", "background"],
       },
-      antiVirus: {
+      {
         short_name: "antivirus",
         name: "Antivirus",
         action: function () {
@@ -126,7 +126,7 @@ var sys41 = {
         removeable: true,
         permissions: ["administrateSystem", "antivirusBypass"],
       },
-    },
+    ],
     profile: {
       accountType: null,
       userName: null,
