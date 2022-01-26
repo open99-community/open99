@@ -36,10 +36,9 @@
     sys41.system.boot.add("Hash: none")
   }
   //plugins
-  /*for (var i = 0; i < navigator.plugins.length; i++) {
-    sys41.system.boot.html.plugins.innerHTML +=
-      `<p>` + navigator.plugins.name[i] + `</p>`;
-  }*/
+  for (var i = 0; i < navigator.plugins.length; i++) {
+    sys41.system.boot.add(`<p>` + navigator.plugins.name[i] + `</p>`)
+  }
 })()
 
 //SET THEME
@@ -53,6 +52,15 @@ document.body.addEventListener("contextmenu", function (e) {
 localforage.iterate(function(value, key, iterationNumber) {
   sys41.user.fs.add(key, value)
   sys41.system.boot.add("Extracted " + key)
+  function startsWithSlash(){
+    if (key.indexOf("/") == 0){
+      sys41.system.boot.add("Extracted /" + key)
+    } else {
+      if (key.indexOf("_") == 0){
+        //silent
+      }
+    }
+  }
 }).then(function() {
   sys41.system.boot.add('File iteration has completed. localforage files are now on sys41.user.fs.files');
 }).catch(function(err) {
