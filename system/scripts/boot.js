@@ -46,7 +46,7 @@
 document.getElementById("stylelink").setAttribute("href", "system/styles/themes/98.css");
 
 //Remove right-click functionality
-document.body.addEventListener(function (e) {
+document.body.addEventListener("contextmenu", function (e) {
   e.preventDefault();
 });
 
