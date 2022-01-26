@@ -1,5 +1,3 @@
-const localforage = require("./3party/localforage");
-
 const uid = new ShortUniqueId({ length: 10 });
 (function () {
   localforage.config({
