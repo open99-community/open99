@@ -174,6 +174,9 @@ var sys41 = {
             `<p class="boot-warning"><span><img class="boot-image" src="system/assets/98/device/warning.png"></span>` + text + `</p>`;
           el.classList.add("boot-success");
         }
+        if (features.blink) {
+          el.innerHTML = "<blink>" + el.innerHTML + "</blink>"
+        }
         document.getElementsByClassName("boottext")[0].appendChild(el);
         const id = uid()
         sys41.system.boot.elements[id] = el;
@@ -196,6 +199,9 @@ var sys41 = {
           el.innerHTML =
             `<p class="boot-warning"><span><img class="boot-image" src="system/assets/98/device/warning.png"></span>` + text + `</p>`;
           el.classList.add("boot-success");
+        }
+        if (features.blink) {
+          el.innerHTML = "<blink>" + el.innerHTML + "</blink>"
         }
         sys41.system.boot.elements[id] = el;
         return { "element": el, "id": id }
