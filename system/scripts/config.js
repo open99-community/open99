@@ -197,12 +197,15 @@ var sys41 = {
         if (features.blink) {
           el.innerHTML = "<blink>" + el.innerHTML + "</blink>"
         }
+        if (features.color) {
+          el.style.color = features.color
+        }
         document.getElementsByClassName("boottext")[0].appendChild(el);
         const id = uid()
         sys41.system.boot.elements[id] = el;
         return { "element": el, "id": id }
       },
-      edit: function (id, text = "message not specified", features = {}) {
+      edit: function (id = "", text = "message not specified", features = {}) {
         var el = sys41.system.boot.elements[id]
         el.innerHTML = text;
         if (features.error) {
@@ -223,16 +226,19 @@ var sys41 = {
         if (features.blink) {
           el.innerHTML = "<blink>" + el.innerHTML + "</blink>"
         }
+        if (features.color) {
+          el.style.color = features.color
+        }
         sys41.system.boot.elements[id] = el;
         return { "element": el, "id": id }
       },
-      remove: function (id) {
+      remove: function (id = "") {
         var el = sys41.system.boot.elements[id]
         el.parentNode.removeChild(el)
         delete sys41.system.boot.elements[id]
       },
       bootable: function () {
-        if (sys41.user.files) {
+        if (sys41.user.fs.files) {
           return true;
         } else {
           return false;
