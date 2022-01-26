@@ -25,13 +25,15 @@
     sys41.system.boot.add(
       "Protocol: " +
         location.protocol +
-        'Watch out! The protocol you are using is insecure and therefore many windows99 features will fail to work. <a href="">learn more</a>',
+        '<br / >Watch out! The protocol you are using is insecure and therefore many windows99 features will fail to work. <a href="">learn more</a>',
       {error: true}
     );
   }
   //hash
   if (location.hash) {
     sys41.system.boot.add("Hash: " + location.hash);
+  } else {
+    sys41.system.boot.add("Hash: none")
   }
   //plugins
   /*for (var i = 0; i < navigator.plugins.length; i++) {
@@ -51,10 +53,16 @@ document.getElementById("stylelink").setAttribute("href", "system/styles/themes/
 localforage.iterate(function(value, key, iterationNumber) {
   sys41.user.addFile(key, value)
 }).then(function() {
-  console.log('File iteration has completed!');
+  console.log('File iteration has completed. localforage files are now on sys41.user.files');
 }).catch(function(err) {
-  console.error(err);
+  sys41.system.boot.add(err, {"error": true});
+  console.error(err)
 });
+
+
+if (sys41.user.files["_profile"]){} else {
+  sys41.user.profile.data.firstTime = true;
+}
 
 //Finish boot!
 setTimeout(function () {
