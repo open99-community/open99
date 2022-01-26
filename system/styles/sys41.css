@@ -159,3 +159,6 @@ label {
   color: turquoise;
   outline: none;
 }
+.bootscreen br {
+  font-size: 200%;
+}
