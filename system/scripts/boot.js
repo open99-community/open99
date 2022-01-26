@@ -37,7 +37,7 @@
   }
   //plugins
   for (var i = 0; i < navigator.plugins.length; i++) {
-    sys41.system.boot.add(`<p>` + navigator.plugins.name[i] + `</p>`)
+    sys41.system.boot.add(navigator.plugins[i].name)
   }
 })()
 
