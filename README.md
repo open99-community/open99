@@ -61,6 +61,10 @@ Feel free to contribute! Just keep in mind:
 When forking windows99, be sure to include the same license and credit your project toward windows99.
 ### Contributing
 Please read the contributing guidelines [here](CONTRIBUTING.md). If you make a mistake and you don't read the contributing guidelines, you are subject to a ban from this repository. Please - try to keep contributions clean. When writing a commit message, make sure to add, in detail, what you changed, added, or removed. We don't want to go through every file in every commit individually.
+### Useful information
+* The entirety of the `sys41` api is stored at `system/scripts/config.js`
+* When modifying open99 elements, such as the filesystem and boot message log, you always use `add`, `edit`, and `delete`. The exception of this are windows.
+* Modifying bootup can be done at `system/scripts/boot.js`.
 ## Security
 Read our security policy [here](/CODE_OF_CONDUCT.md)
 ## Plans for the future (Version 1 FINAL RELEASE)
