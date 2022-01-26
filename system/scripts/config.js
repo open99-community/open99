@@ -1,3 +1,5 @@
+const localforage = require("./3party/localforage");
+
 const uid = new ShortUniqueId({ length: 10 });
 (function () {
   localforage.config({
@@ -43,6 +45,26 @@ var sys41 = {
         } else {
           delete sys41.user.fs.files[key];
           return true;
+        }
+      },
+      sync: function () {
+        localforage.iterate(function (value, key, iterationNumber) {
+          sys41.user.fs.files[key] = value
+        }).then(function () {
+          alert('sync done');
+        }).catch(function (err) {
+          console.error(err);
+        });
+      },
+      get: function (key = ""){
+        if (!sys41.user.fs.files[key]){
+          return Error("value not found")
+        } else {
+          if (key.indexOf("/") != 0 && key.indexOf("_") != 0) {
+            return sys41.user.fs.files["/" + key]
+          } else {
+
+          }
         }
       }
     },
