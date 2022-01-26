@@ -5,4 +5,4 @@ in no particular order
     [] RELEASE BOOT
 [x] finalize boot add api
 [x] finalize other boot logging API's
-[] create better fs api
+[x] create better fs api
