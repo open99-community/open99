@@ -46,9 +46,9 @@
 document.getElementById("stylelink").setAttribute("href", "system/styles/themes/98.css");
 
 //Remove right-click functionality
-/*document.oncontextmenu(function (e) {
+document.body.addEventListener(function (e) {
   e.preventDefault();
-});*/
+});
 
 localforage.iterate(function(value, key, iterationNumber) {
   sys41.user.fs.add(key, value)
@@ -60,12 +60,10 @@ localforage.iterate(function(value, key, iterationNumber) {
   console.error(err)
 });
 
-
-if (sys41.user.files["_profile"]){} else {
-  sys41.user.profile.data.firstTime = true;
-}
-
 //Finish boot!
 setTimeout(function () {
+  if (sys41.user.files["_profile"]){} else {
+    sys41.user.profile.data.firstTime = true;
+  }
   sys41.system.boot.finish();
 }, 3000);
