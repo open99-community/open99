@@ -9,11 +9,8 @@ const uid = new ShortUniqueId({ length: 10 });
 var sys41 = {
   user: {
     fs: {
-      files: null,
+      files: {},
       add: function (key, value) {
-        if (sys41.user.fs.files === null) {
-          sys41.user.fs.files = {};
-        }
         if (sys41.user.fs.files[key]) {
           return Error("File already exists, use sys41.user.fs.edit API instead.")
         } else {
@@ -43,26 +40,6 @@ var sys41 = {
         } else {
           delete sys41.user.fs.files[key];
           return true;
-        }
-      },
-      sync: function () {
-        localforage.iterate(function (value, key, iterationNumber) {
-          sys41.user.fs.files[key] = value
-        }).then(function () {
-          alert('sync done');
-        }).catch(function (err) {
-          console.error(err);
-        });
-      },
-      get: function (key = ""){
-        if (!sys41.user.fs.files[key]){
-          return Error("value not found")
-        } else {
-          if (key.indexOf("/") != 0 && key.indexOf("_") != 0) {
-            return sys41.user.fs.files["/" + key]
-          } else {
-
-          }
         }
       }
     },
@@ -197,15 +174,12 @@ var sys41 = {
         if (features.blink) {
           el.innerHTML = "<blink>" + el.innerHTML + "</blink>"
         }
-        if (features.color) {
-          el.style.color = features.color
-        }
         document.getElementsByClassName("boottext")[0].appendChild(el);
         const id = uid()
         sys41.system.boot.elements[id] = el;
         return { "element": el, "id": id }
       },
-      edit: function (id = "", text = "message not specified", features = {}) {
+      edit: function (id, text = "message not specified", features = {}) {
         var el = sys41.system.boot.elements[id]
         el.innerHTML = text;
         if (features.error) {
@@ -226,19 +200,16 @@ var sys41 = {
         if (features.blink) {
           el.innerHTML = "<blink>" + el.innerHTML + "</blink>"
         }
-        if (features.color) {
-          el.style.color = features.color
-        }
         sys41.system.boot.elements[id] = el;
         return { "element": el, "id": id }
       },
-      remove: function (id = "") {
+      remove: function (id) {
         var el = sys41.system.boot.elements[id]
         el.parentNode.removeChild(el)
         delete sys41.system.boot.elements[id]
       },
       bootable: function () {
-        if (sys41.user.fs.files) {
+        if (sys41.user.files) {
           return true;
         } else {
           return false;
