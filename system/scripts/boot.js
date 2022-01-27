@@ -31,7 +31,7 @@
   }
   //hash
   if (location.hash) {
-    sys41.system.boot.add("Hash: " + location.hash);
+    sys41.system.boot.add("Hash: " + decodeURI(location.hash));
   } else {
     sys41.system.boot.add("Hash: none")
   }
