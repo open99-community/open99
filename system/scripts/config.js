@@ -174,6 +174,9 @@ var sys41 = {
         if (features.blink) {
           el.innerHTML = "<blink>" + el.innerHTML + "</blink>"
         }
+        if (features.color) {
+          el.style.color = features.color
+        }
         document.getElementsByClassName("boottext")[0].appendChild(el);
         const id = uid()
         sys41.system.boot.elements[id] = el;
@@ -199,6 +202,9 @@ var sys41 = {
         }
         if (features.blink) {
           el.innerHTML = "<blink>" + el.innerHTML + "</blink>"
+        }
+        if (features.color) {
+          el.style.color = features.color
         }
         sys41.system.boot.elements[id] = el;
         return { "element": el, "id": id }
