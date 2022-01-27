@@ -36,10 +36,11 @@
     sys41.system.boot.add("Hash: none")
   }
   //plugins
-  sys41.system.boot.add("System plugins", {"color": "lime"})
+  var plugins = []
   for (var i = 0; i < navigator.plugins.length; i++) {
-    sys41.system.boot.add("    " + navigator.plugins[i].name)
+    plugins.push(navigator.plugins[i].name)
   }
+  sys41.system.boot.add(plugins.join(", "), {"color": "lime"})
 })()
 
 //SET THEME
