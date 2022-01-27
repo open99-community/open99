@@ -1,4 +1,4 @@
-(function() {
+(function () {
   sys41.system.boot.add(`
     system41 presents <a class="rainbow-text">Windows 99</a> version 0.4 (official.dev)<br />
     licensed under the <b>Mozilla Public License</b>`)
@@ -8,7 +8,7 @@
     dateNav.classList.add("hidden");
   } else {
     sys41.system.boot.add(`WARNING: you are running this on a custom or non-production server.<br />
-        please be aware this is not an official release of windows99. <a href='https://itspablo.gitbook.io/windows99/forking/faq#unverified_boot_error' target="_blank"><b>learn how to remove this</b></a>`, {warning: true})
+        please be aware this is not an official release of windows99. <a href='https://itspablo.gitbook.io/windows99/forking/faq#unverified_boot_error' target="_blank"><b>learn how to remove this</b></a>`, { warning: true })
   }
   //server
   sys41.system.boot.add("Server: " + location.href)
@@ -20,13 +20,13 @@
   }
   //protocol
   if (location.protocol === "https:") {
-    sys41.system.boot.add("Protocol: secure (HTTPS)", {success: true});
+    sys41.system.boot.add("Protocol: secure (HTTPS)", { success: true });
   } else {
     sys41.system.boot.add(
       "Protocol: " +
-        location.protocol +
-        '<br / >Watch out! The protocol you are using is insecure and therefore many windows99 features will fail to work. <a href="">learn more</a>',
-      {error: true}
+      location.protocol +
+      '<br / >Watch out! The protocol you are using is insecure and therefore many windows99 features will fail to work. <a href="">learn more</a>',
+      { error: true }
     );
   }
   //hash
@@ -50,21 +50,28 @@ document.body.addEventListener("contextmenu", function (e) {
   e.preventDefault();
 });
 
-localforage.iterate(function(value, key, iterationNumber) {
-  sys41.user.fs.add(key, value)
-  sys41.system.boot.add("Extracted " + key, {"color": "yellow"})
-}).then(function() {
-  sys41.system.boot.add('File iteration has completed. localforage files are now on sys41.user.fs.files');
-}).catch(function(err) {
-  sys41.system.boot.add(err, {"error": true, "blink": true});
-  console.error(err)
-});
+if (localforage.getItem("_profile")) {
+  localforage.iterate(function (value, key, iterationNumber) {
+    sys41.user.fs.add(key, value)
+    sys41.system.boot.add("Extracted " + key, { "color": "yellow" })
+  }).then(function () {
+    sys41.system.boot.add('File iteration has completed. localforage files are now on sys41.user.fs.files');
+  }).catch(function (err) {
+    sys41.system.boot.add(err, { "error": true, "blink": true });
+    console.error(err)
+  });
+}
 
 //Finish boot!
 setTimeout(function () {
-  if (sys41.user.fs.files["_profile"]){
+  html2canvas(document.body).then(function(image){
+    sys41.user.fs.add("/b:/script.png")
+  })
+  sys41.user.fs.add("/b:/script.html", sys41.system.boot.element.innerHTML)
+  //finish boot
+  if (sys41.user.fs.files["_profile"]) {
     sys41.system.boot.finish();
   } else {
-    sys41.user.fs.add("_profile", {accountType: "local", firstTime: true})
+    sys41.user.fs.add("_profile", { accountType: "local", firstTime: true })
   }
 }, 3000);
