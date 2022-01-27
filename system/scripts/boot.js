@@ -52,9 +52,9 @@ document.body.addEventListener("contextmenu", function (e) {
 
 localforage.iterate(function(value, key, iterationNumber) {
   sys41.user.fs.add(key, value)
+  sys41.system.boot.add("Extracted " + key)
 }).then(function() {
-  console.log('File iteration has completed. localforage files are now on sys41.user.files');
-  sys41.system.boot.add(iterationNumber + " files processed")
+  sys41.system.boot.add('File iteration has completed. localforage files are now on sys41.user.fs.files');
 }).catch(function(err) {
   sys41.system.boot.add(err, {"error": true, "blink": true});
   console.error(err)
