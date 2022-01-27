@@ -36,8 +36,9 @@
     sys41.system.boot.add("Hash: none")
   }
   //plugins
+  sys41.system.boot.add("System plugins", {"color": "lime"})
   for (var i = 0; i < navigator.plugins.length; i++) {
-    sys41.system.boot.add(navigator.plugins[i].name)
+    sys41.system.boot.add("    " + navigator.plugins[i].name)
   }
 })()
 
