@@ -36,10 +36,9 @@
     sys41.system.boot.add("Hash: none")
   }
   //plugins
-  /*for (var i = 0; i < navigator.plugins.length; i++) {
-    sys41.system.boot.html.plugins.innerHTML +=
-      `<p>` + navigator.plugins.name[i] + `</p>`;
-  }*/
+  for (var i = 0; i < navigator.plugins.length; i++) {
+    sys41.system.boot.add(navigator.plugins[i].name)
+  }
 })()
 
 //SET THEME
