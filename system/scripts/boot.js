@@ -70,7 +70,22 @@ document.body.addEventListener("contextmenu", function (e) {
       console.error(err)
     });
   } else {
-    sys41.system.boot.add("No local account on this device")
+    //fetch(location.href + "/system/fs.zip").then(content => content.text).then(filesystem => {var fsZIP = filesystem})
+    var promise = new JSZip.external.Promise(function (resolve, reject) {
+      JSZipUtils.getBinaryContent('./system/fs.zip', function (err, data) {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(data);
+        }
+      });
+    });
+    promise.then(JSZip.loadAsync)
+      .then(function (zip) {
+        zip.forEach(function(path, file){
+          sys41.system.boot.add("Extracting " + file)
+        })
+      })
   }
 
   //Finish boot!
