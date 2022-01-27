@@ -69,6 +69,8 @@ document.body.addEventListener("contextmenu", function (e) {
       sys41.system.boot.add(err, { "error": true, "blink": true });
       console.error(err)
     });
+  } else {
+    sys41.system.boot.add("No local account on this device")
   }
 
   //Finish boot!
