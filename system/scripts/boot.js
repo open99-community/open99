@@ -50,28 +50,38 @@ document.body.addEventListener("contextmenu", function (e) {
   e.preventDefault();
 });
 
-if (localforage.getItem("_profile")) {
-  localforage.iterate(function (value, key, iterationNumber) {
-    sys41.user.fs.add(key, value)
-    sys41.system.boot.add("Extracted " + key, { "color": "yellow" })
-  }).then(function () {
-    sys41.system.boot.add('File iteration has completed. localforage files are now on sys41.user.fs.files');
-  }).catch(function (err) {
-    sys41.system.boot.add(err, { "error": true, "blink": true });
-    console.error(err)
-  });
-}
-
-//Finish boot!
-setTimeout(function () {
-  html2canvas(document.body).then(function(image){
-    sys41.user.fs.add("/b:/script.png")
+(function () {
+  var accountExist
+  localforage.getItem("_profile").then(function (value) {
+    if (value) {
+      accountExist = true
+    } else {
+      accountExist = false
+    }
   })
-  sys41.user.fs.add("/b:/script.html", sys41.system.boot.element.innerHTML)
-  //finish boot
-  if (sys41.user.fs.files["_profile"]) {
-    sys41.system.boot.finish();
-  } else {
-    sys41.user.fs.add("_profile", { accountType: "local", firstTime: true })
+  if (accountExist) {
+    localforage.iterate(function (value, key, iterationNumber) {
+      sys41.user.fs.add(key, value)
+      sys41.system.boot.add("Extracted " + key, { "color": "yellow" })
+    }).then(function () {
+      sys41.system.boot.add('File iteration has completed. localforage files are now on sys41.user.fs.files');
+    }).catch(function (err) {
+      sys41.system.boot.add(err, { "error": true, "blink": true });
+      console.error(err)
+    });
   }
-}, 3000);
+
+  //Finish boot!
+  setTimeout(function () {
+    html2canvas(document.body).then(function (image) {
+      sys41.user.fs.add("/b:/script.png")
+    })
+    sys41.user.fs.add("/b:/script.html", sys41.system.boot.element.innerHTML)
+    //finish boot
+    if (accountExist) {
+      sys41.system.boot.finish();
+    } else {
+      sys41.user.fs.add("_profile", { accountType: "local", firstTime: true })
+    }
+  }, 3000);
+})()
