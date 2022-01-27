@@ -40,7 +40,7 @@
   for (var i = 0; i < navigator.plugins.length; i++) {
     plugins.push(navigator.plugins[i].name)
   }
-  sys41.system.boot.add(plugins.join(", "), {"color": "lime"})
+  sys41.system.boot.add("System plugins: " + plugins.join(", "), {"color": "lime"})
 })()
 
 //SET THEME
