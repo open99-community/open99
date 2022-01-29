@@ -26,7 +26,7 @@ var sys41 = {
         if (!sys41.user.fs.files[key]) {
           return Error("File doesn't exist, use sys41.user.fs.add API instead.")
         } else {
-          if (!key.indexOf("/") && !key.indexOf("_")) {
+          if (!key.indexOf("/") == 0 && !key.indexOf("_") == 0) {
             sys41.user.fs.files[key] = "/" + value
           } else {
             sys41.user.fs.files[key] = value;
@@ -43,6 +43,7 @@ var sys41 = {
         }
       }
     },
+    appAddress: "",
     apps: [
       {
         short_name: "bsod",
