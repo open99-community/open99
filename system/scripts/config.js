@@ -191,33 +191,6 @@ var sys41 = {
           return { "element": el, "id": id }
         }
       },
-      edit: function (id, text = "message not specified", features = {}) {
-        var el = sys41.system.boot.elements[id]
-        el.innerHTML = text;
-        if (features.error) {
-          el.innerHTML =
-            `<p class="boot-error"><span><img class="boot-image" src="system/assets/98/device/error.png"></span>` + text + `</p>`;
-          el.classList.add("boot-error");
-        }
-        if (features.success) {
-          el.innerHTML =
-            `<p class="boot-success"><span><img class="boot-image" src="system/assets/98/device/check.png"></span>` + text + `</p>`;
-          el.classList.add("boot-success");
-        }
-        if (features.warning) {
-          el.innerHTML =
-            `<p class="boot-warning"><span><img class="boot-image" src="system/assets/98/device/warning.png"></span>` + text + `</p>`;
-          el.classList.add("boot-success");
-        }
-        if (features.blink) {
-          el.innerHTML = "<blink>" + el.innerHTML + "</blink>"
-        }
-        if (features.color) {
-          el.style.color = features.color
-        }
-        sys41.system.boot.elements[id] = el;
-        return { "element": el, "id": id }
-      },
       remove: function (id) {
         var el = sys41.system.boot.elements[id]
         el.parentNode.removeChild(el)
