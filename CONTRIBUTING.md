@@ -9,6 +9,10 @@ Following these guidelines is mandatory for all commits.
 * In no way, shape, or form should any content in this repository not be in American English. Writing content in other languages will guarantee you a temporary ban.
 * Windows 99 is a semi-casual app. NSFW content should not be included. Do not overload parts of the app with funny memes.
 * _NEVER_ edit any vercel files (`vercel.json`, `.vercelignore`).
+## Useful information
+* The entirety of the `sys41` api is stored at `system/scripts/config.js`
+* When modifying open99 elements, such as the filesystem and boot message log, you always use `add`, `edit`, and `delete`. The exception of this are windows.
+* Modifying bootup can be done at `system/scripts/boot.js`.
 
 ## Known bugs
 

@@ -154,22 +154,22 @@ var sys41 = {
         mainElement: document.getElementById("bootscreen"),
       },
       elements: {},
-      add: function (text = "message not specified", features = {}) {
+      add: function (text = "message not specified", features = {}, id) {
         var el = document.createElement("p");
         el.innerHTML = text;
         if (features.error) {
           el.innerHTML =
-            `<p class="boot-error"><span><img class="boot-image" src="system/assets/98/device/error.png"></span>` + text + `</p>`;
+            `<p class="boot-error"><span><img class="boot-image" src="system/assets/98/dialog/error.png"></span>` + text + `</p>`;
           el.classList.add("boot-error");
         }
         if (features.success) {
           el.innerHTML =
-            `<p class="boot-success"><span><img class="boot-image" src="system/assets/98/device/check.png"></span>` + text + `</p>`;
+            `<p class="boot-success"><span><img class="boot-image" src="system/assets/98/dialog/check.png"></span>` + text + `</p>`;
           el.classList.add("boot-success");
         }
         if (features.warning) {
           el.innerHTML =
-            `<p class="boot-warning"><span><img class="boot-image" src="system/assets/98/device/warning.png"></span>` + text + `</p>`;
+            `<p class="boot-warning"><span><img class="boot-image" src="system/assets/98/dialog/warning.png"></span>` + text + `</p>`;
           el.classList.add("boot-success");
         }
         if (features.blink) {
@@ -178,9 +178,13 @@ var sys41 = {
         if (features.color) {
           el.style.color = features.color
         }
-        document.getElementsByClassName("boottext")[0].appendChild(el);
-        const id = uid()
-        sys41.system.boot.elements[id] = el;
+        if (id) {
+          document.getElementsByClassName("boottext")[0].appendChild(el);
+          const id = uid()
+          sys41.system.boot.elements[id] = el;
+        } else {
+          sys41.system.boot.elements[id] = el
+        }
         return { "element": el, "id": id }
       },
       edit: function (id, text = "message not specified", features = {}) {

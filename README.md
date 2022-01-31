@@ -7,8 +7,6 @@ Windows99 is an open-sourced Web OS, similar to Windows93 or Windows96. It is ba
 |---------------------------------------------------------------------------------|----------------------------------------------------|
 | [windows99](https://github.com/its-pablo/windows99)                             | Frontend code for Windows 99. Main repository      |
 | [windows99-signup-screen](https://github.com/its-pablo/windows99-signup-screen) | Standalone signup and config screen for Windows 99 |
-| [windows99-plugin](https://github.com/its-pablo/windows99-plugin)               | Plugin (JS) for Windows 99 apps                    |
-| [99captcha](https://github.com/its-pablo/99captcha)                             | Funny reCAPTCHA alternative for Windows 99         |
 
 ### Links
 * Windows 99
@@ -33,13 +31,7 @@ windows99.vercel.app is the main Windows 99 site. It is completely stable, with 
 This is the open-sourced setup screen end users view when first booting Windows 99. It does not synchronize directly with Windows 99 itself - all changes made on `windows99-signup-screen` must be reviewed manually and merged via a pull request.  
 ---
 ## Contributing
-Please read the contributing guidelines [here](CONTRIBUTING.md). If you make a mistake and you don't read the contributing guidelines, you are subject to a ban from this repository. Please - try to keep contributions clean. When writing a commit message, make sure to add, in detail, what you changed, added, or removed. We don't want to go through every file in every commit individually.
-### Useful information
-* The entirety of the `sys41` api is stored at `system/scripts/config.js`
-* When modifying open99 elements, such as the filesystem and boot message log, you always use `add`, `edit`, and `delete`. The exception of this are windows.
-* Modifying bootup can be done at `system/scripts/boot.js`.
-## Security
-Read our security policy [here](/CODE_OF_CONDUCT.md)
+Please read the contributing guidelines [here](CONTRIBUTING.md). If you make a mistake and you don't read the contributing guidelines, you are subject to a ban from this repository. Please - try to keep contributions clean. When writing a commit message, make sure to add some sort of commit message. It can be vague
 ## Plans for the future (Version 1 FINAL RELEASE)
 * Complete login component ('local login, for the webOS') that uses firebase. If the user does not have an internet connection, they may choose to not login, which is the same thing as logging in anonymously - which technically still gives them a firebase login ID. In other words, users have to log in whether they like it or not.
 * Support for adding multiple drives (up to 26)
