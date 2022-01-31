@@ -178,7 +178,7 @@ var sys41 = {
         if (features.color) {
           el.style.color = features.color
         }
-        if (id) {
+        if (!id) {
           document.getElementsByClassName("boottext")[0].appendChild(el);
           const id = uid()
           sys41.system.boot.elements[id] = el;
