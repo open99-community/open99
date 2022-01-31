@@ -183,7 +183,8 @@ var sys41 = {
           const id = uid()
           sys41.system.boot.elements[id] = el;
           el.scrollIntoView()
-          return { "element": el, "id": new uid() }
+          var newid = new uid()
+          return { "element": el, "id": newid }
         } else {
           sys41.system.boot.elements[id] = el
           el.scrollIntoView()
