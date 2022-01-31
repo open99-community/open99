@@ -1,7 +1,7 @@
 # windows99
 ![Vercel status](https://therealsujitk-vercel-badge.vercel.app/?app=windows99)  
 ## About
-Windows99 is an open-sourced Web OS, similar to Windows93 or Windows96. You can view a similar version at [this site](https://itspablo.glitch.me), and view the source code right on this repo.  
+Windows99 is an open-sourced Web OS, similar to Windows93 or Windows96. It is based on the System41 open99 project, and   
 ### Projects
 | Project                                                                         | Short description                                  |
 |---------------------------------------------------------------------------------|----------------------------------------------------|
@@ -15,51 +15,24 @@ Windows99 is an open-sourced Web OS, similar to Windows93 or Windows96. You can 
   * [Live (stable)](https://windows99.vercel.app)
   * [Live (development)](https://windows99dev.vercel.app)
   * [Github](https://github.com/its-pablo/windows99)
-  * [Vercel overview](https://vercel.com/its-pablo/windows99) *requires proper permissions*
+  * [Vercel overview](https://vercel.com/its-pablo/windows99)
 * Windows 99 standalone signup screen
   * [Github](https://github.com/its-pablo/windows99-signup-screen)
   * [Live](https://windows99-signup-screen.vercel.app)
-* Windows 99 Plugin
-  * [Github](https://github.com/its-pablo/windows99-plugin)
-  * [Live](https://its-pablo.github.io/windows99-plugin)
-* 99captcha
-  * [Github](https://github.com/its-pablo/99captcha)
-  * [Live](https://its-pablo.github.io/99captcha)
+  * [Vercel overview](https://vercel.com/its-pablo/windows99-signup-screen)
 #### Windows 99 Stable
 * [Live (stable)](https://windows99.vercel.app)
 * [Live (development)](https://windows99dev.vercel.app)
 * [Github](https://github.com/its-pablo/windows99)
-* [Vercel overview](https://vercel.com/its-pablo/windows99) *requires proper permissions*  
+* [Vercel overview](https://vercel.com/its-pablo/windows99)  
 windows99.vercel.app is the main Windows 99 site. It is completely stable, with no bugs, and is the channel you should usually use. windows99dev.vercel.app, on the other hand, is completely unstable and filled with bugs - development happens **directly on it**. Refrain from using our development server. Windows 99 is served and hosted using Vercel. Our Vercel overview is only meant for administrators to view (for now), so most of the general public cannot access this portal.
 #### Windows 99 standalone signup screen
 * [Github](https://github.com/its-pablo/windows99-signup-screen)
 * [Live](https://windows99-signup-screen.vercel.app)  
-This is the open-sourced setup screen end users view when first booting Windows 99. It does not synchronize directly with Windows 99 itself - all changes made on `windows99-signup-screen` must be reviewed manually and merged via a pull request.
-#### Windows 99 Plugin
-* [Github](https://github.com/its-pablo/windows99-plugin)
-* [Live](https://its-pablo.github.io/windows99-plugin)
-This plugin (script) should be used for all Windows 99 applications planning on being entered into the Package Manager (coming soon!) unless it does not fit the general theme of the application - exceptions are made ;)
-#### 99captcha
-* [Github](https://github.com/its-pablo/99captcha)
-* [Live](https://its-pablo.github.io/99captcha)
-This funny captcha parody is soon to be the main captcha used in forms (signup, bugs). Once we reach a large amount of visitors, Google Recaptcha will be used and the `99captcha` repository will be archived.
+* [Vercel overview](https://vercel.com/its-pablo/windows99-signup-screen)  
+This is the open-sourced setup screen end users view when first booting Windows 99. It does not synchronize directly with Windows 99 itself - all changes made on `windows99-signup-screen` must be reviewed manually and merged via a pull request.  
 ---
-
-Feel free to contribute! Just keep in mind:
-* Scripts should go in the `system/scripts` folder, styles go in `system/styles` folder, etc.
-* Refrain from removing files, *even if they are not used* - just mention it in the directory README or your commit description.
-* README's have a specific formatting all must follow.
-  * Please look at an example (read any README but this one) when contributing.
-* Never spam in the issues or pull requests sections - this will get you a ban
-* In no way, shape, or form should any content in this repository not be in American English. Writing content in other languages will guarantee you a temporary ban.
-* Windows 99 is a semi-casual app. NSFW content should not be included. Do not overload parts of the app with funny memes.
-* _NEVER_ edit any vercel files (`vercel.json`, `.vercelignore`).
-## Known bugs
-> None so far
-## Github & Contributing
-### Forking
-When forking windows99, be sure to include the same license and credit your project toward windows99.
-### Contributing
+## Contributing
 Please read the contributing guidelines [here](CONTRIBUTING.md). If you make a mistake and you don't read the contributing guidelines, you are subject to a ban from this repository. Please - try to keep contributions clean. When writing a commit message, make sure to add, in detail, what you changed, added, or removed. We don't want to go through every file in every commit individually.
 ### Useful information
 * The entirety of the `sys41` api is stored at `system/scripts/config.js`
