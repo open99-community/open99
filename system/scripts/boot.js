@@ -94,7 +94,7 @@ document.body.addEventListener("contextmenu", function (e) {
     html2canvas(document.body).then(function (image) {
       sys41.user.fs.add("/b:/script.png")
     })
-    sys41.user.fs.add("/b:/script.html", sys41.system.boot.element.innerHTML)
+    sys41.user.fs.add("/b:/script.html", sys41.system.boot.dom.element.innerHTML)
     //finish boot
     if (accountExist) {
       sys41.system.boot.finish();
