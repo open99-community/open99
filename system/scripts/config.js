@@ -186,6 +186,7 @@ var sys41 = {
           sys41.system.boot.elements[id] = el
         }
         return { "element": el, "id": id }
+        el.scrollIntoView()
       },
       edit: function (id, text = "message not specified", features = {}) {
         var el = sys41.system.boot.elements[id]
