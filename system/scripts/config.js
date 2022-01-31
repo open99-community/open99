@@ -196,12 +196,15 @@ var sys41 = {
         el.parentNode.removeChild(el)
         delete sys41.system.boot.elements[id]
       },
-      bootable: function () {
+      get bootable() {
         if (sys41.user.files) {
           return true;
         } else {
           return false;
         }
+      },
+      set bootable() {
+        throw new Error("property cannot be set")
       },
       finish: function () {
         if (sys41.system.boot.bootable()) {
