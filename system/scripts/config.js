@@ -182,11 +182,13 @@ var sys41 = {
           document.getElementsByClassName("boottext")[0].appendChild(el);
           const id = uid()
           sys41.system.boot.elements[id] = el;
+          el.scrollIntoView()
+          return { "element": el, "id": new uid() }
         } else {
           sys41.system.boot.elements[id] = el
+          el.scrollIntoView()
+          return { "element": el, "id": id }
         }
-        return { "element": el, "id": id }
-        el.scrollIntoView()
       },
       edit: function (id, text = "message not specified", features = {}) {
         var el = sys41.system.boot.elements[id]
