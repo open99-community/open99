@@ -84,7 +84,7 @@ document.body.addEventListener("contextmenu", function (e) {
     promise.then(JSZip.loadAsync)
       .then(function (zip) {
         zip.forEach(function(path, file){
-          sys41.system.boot.add("Extracting " + file)
+          sys41.system.boot.add("Extracting " + path)
         })
       })
   }
