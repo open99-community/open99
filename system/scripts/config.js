@@ -202,10 +202,10 @@ var sys41 = {
         } else {
           return false;
         }
-      },
+      },/*
       set bootable() {
         throw new Error("property cannot be set")
-      },
+      },*/
       finish: function () {
         if (sys41.system.boot.bootable) {
           var bootscreen = document.getElementsByClassName("bootscreen")[0];
