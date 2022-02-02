@@ -2,8 +2,6 @@ const ASSETS = [
   "index.html",
   "404.html",
   "bugs/index.html",
-  "files/audio/system/boot.mp3",
-  "files/img/logo/favicon.ico",
   "system/cursors/text.cur",
   "system/cursors/default.cur",
   "system/cursors/pointer.cur",
@@ -18,8 +16,7 @@ const ASSETS = [
   "system/styles/bs.css",
   "system/styles/themes/7.css",
   "system/styles/themes/98.css",
-  "system/styles/themes/xp.css",
-  "system/styles/3party/menu98.css"
+  "system/styles/themes/xp.css"
 ]
 
 self.addEventListener('install', function(event) {
