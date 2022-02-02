@@ -377,10 +377,4 @@ if (nav.indexOf("Firefox") > -1) {
 }
 const $fs = sys41.user.fs;
 
-function openNav() {
-  document.getElementById("myDebug").style.width = "250px";
-}
 
-function closeNav() {
-  document.getElementById("myDebug").style.width = "0";
-}
