@@ -196,7 +196,7 @@ var sys41 = {
         el.parentNode.removeChild(el)
         delete sys41.system.boot.elements[id]
       },
-      get bootable() {
+      get bootable(value) {
         if (sys41.user.files) {
           return true;
         } else {
