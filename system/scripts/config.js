@@ -322,7 +322,7 @@ var sys41 = {
         return Error(
           "Theme " +
           sys41.system.themes.current.name +
-          "does not support progress bar"
+          " does not support progress bar"
         );
       }
     },
@@ -339,7 +339,7 @@ var sys41 = {
         return Error(
           "Theme " +
           sys41.system.themes.current.name +
-          "does not support tooltip/balloon"
+          " does not support tooltip/balloon"
         );
       }
     },
