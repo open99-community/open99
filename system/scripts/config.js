@@ -141,8 +141,13 @@ var sys41 = {
           webSQL: webfs.WEBSQL,
           localStorage: webfs.LOCALSTORAGE,*/ //webfs is undefined
         },
-        navigator: null,
-        navigatorFull: null,
+        platform: {
+          name: platform.name,
+          version: platform.version,
+          os: platform.os,
+          description: platform.description,
+          userAgent: platform.ua
+        }
       }
     },
   },
