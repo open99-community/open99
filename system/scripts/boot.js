@@ -13,11 +13,11 @@
   if (location.href.includes("#")){
     let position = location.href.indexOf('#')
     let newhref = location.href.slice(0, position)
-    sys41.system.boot.add(newhref)
+    sys41.system.boot.add("Server: " + newhref)
   } else if (location.href.includes("?")){
     let position = location.href.indexOf('?')
     let newhref = location.href.slice(0, position)
-    sys41.system.boot.add(newhref)
+    sys41.system.boot.add("Server: " + newhref)
   }
   //port
   if (!location.port) {
