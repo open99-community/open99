@@ -1,16 +1,24 @@
 (function () {
   sys41.system.boot.add(`
     system41 presents <a class="rainbow-text">Windows 99</a> version 0.4 (official.dev)`)
-  var dateNav = sys41.system.boot.add(
+  let dateNav = sys41.system.boot.add(
     `booting on ` + Date() + `<br />in ` + sys41.user.profile.data.navigator + `<br />`)
   if (location.href === "https://windows99.vercel.app") {
     dateNav.classList.add("hidden");
   } else {
-    sys41.system.boot.add(`WARNING: you are running this on a custom or non-production server.<br />
+    sys41.system.boot.add(`WARNING: you are running this on a custom, development, or staging server.<br />
         please be aware this is not an official release of windows99. <a href='https://itspablo.gitbook.io/windows99/forking/faq#unverified_boot_error' target="_blank"><b>learn how to remove this</b></a>`, { warning: true })
   }
   //server
-  sys41.system.boot.add("Server: " + location.href)
+  if (location.href.includes("#")){
+    let position = location.href.indexOf('#')
+    let newhref = location.href.slice(0, position)
+    sys41.system.boot.add(newhref)
+  } else if (location.href.includes("?")){
+    let position = location.href.indexOf('?')
+    let newhref = location.href.slice(0, position)
+    sys41.system.boot.add(newhref)
+  }
   //port
   if (!location.port) {
     sys41.system.boot.add("Port: none")
@@ -35,8 +43,8 @@
     sys41.system.boot.add("Hash: none")
   }
   //plugins
-  var plugins = []
-  for (var i = 0; i < navigator.plugins.length; i++) {
+  let plugins = []
+  for (let i = 0; i < navigator.plugins.length; i++) {
     plugins.push(navigator.plugins[i].name)
   }
   sys41.system.boot.add("System plugins: " + plugins.join(", "), {"color": "lime"})
@@ -51,7 +59,7 @@ document.body.addEventListener("contextmenu", function (e) {
 });
 
 (function () {
-  var accountExist
+  let accountExist
   localforage.getItem("_profile").then(function (value) {
     if (value) {
       accountExist = true
@@ -70,8 +78,8 @@ document.body.addEventListener("contextmenu", function (e) {
       console.error(err)
     });
   } else {
-    //fetch(location.href + "/system/fs.zip").then(content => content.text).then(filesystem => {var fsZIP = filesystem})
-    var promise = new JSZip.external.Promise(function (resolve, reject) {
+    //fetch(location.href + "/system/fs.zip").then(content => content.text).then(filesystem => {let fsZIP = filesystem})
+    let promise = new JSZip.external.Promise(function (resolve, reject) {
       JSZipUtils.getBinaryContent('./system/fs.zip', function (err, data) {
         if (err) {
           reject(err);
