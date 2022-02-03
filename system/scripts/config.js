@@ -162,20 +162,22 @@ var sys41 = {
       add: function (text = "message not specified", features = {}, id) {
         var el = document.createElement("p");
         el.innerHTML = text;
-        if (features.error) {
-          el.innerHTML =
+        if (features.icon) {
+          if (features.icon === "error") {
+            el.innerHTML =
             `<p class="boot-error"><span><img class="boot-image" src="system/assets/98/dialog/error.png"></span>` + text + `</p>`;
-          el.classList.add("boot-error");
-        }
-        if (features.success) {
-          el.innerHTML =
-            `<p class="boot-success"><span><img class="boot-image" src="system/assets/98/dialog/check.png"></span>` + text + `</p>`;
-          el.classList.add("boot-success");
-        }
-        if (features.warning) {
-          el.innerHTML =
-            `<p class="boot-warning"><span><img class="boot-image" src="system/assets/98/dialog/warning.png"></span>` + text + `</p>`;
-          el.classList.add("boot-success");
+            el.classList.add("boot-error");
+          }
+          if (features.icon === "success") {
+            el.innerHTML =
+              `<p class="boot-success"><span><img class="boot-image" src="system/assets/98/dialog/check.png"></span>` + text + `</p>`;
+            el.classList.add("boot-success");
+          }
+          if (features.icon ==="warning") {
+            el.innerHTML =
+              `<p class="boot-warning"><span><img class="boot-image" src="system/assets/98/dialog/warning.png"></span>` + text + `</p>`;
+            el.classList.add("boot-success");
+          }
         }
         if (features.blink) {
           el.innerHTML = "<blink>" + el.innerHTML + "</blink>"
@@ -185,10 +187,9 @@ var sys41 = {
         }
         if (!id) {
           document.getElementsByClassName("boottext")[0].appendChild(el);
-          const id = uid()
+          let newid = new uid()
           sys41.system.boot.elements[id] = el;
           el.scrollIntoView()
-          var newid = new uid()
           return { "element": el, "id": newid }
         } else {
           sys41.system.boot.elements[id] = el
