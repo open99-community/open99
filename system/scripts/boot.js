@@ -7,7 +7,7 @@
     dateNav.classList.add("hidden");
   } else {
     sys41.system.boot.add(`WARNING: you are running this on a custom, development, or staging server.<br />
-        please be aware this is not an official release of windows99. <a href='https://itspablo.gitbook.io/windows99/forking/faq#unverified_boot_error' target="_blank"><b>learn how to remove this</b></a>`, { warning: true })
+        please be aware this is not an official release of windows99. <a href='https://itspablo.gitbook.io/windows99/forking/faq#unverified_boot_error' target="_blank"><b>learn how to remove this</b></a>`, { icon: "warning" })
   }
   //server
   if (location.href.includes("#")){
@@ -27,13 +27,13 @@
   }
   //protocol
   if (location.protocol === "https:") {
-    sys41.system.boot.add("Protocol: secure (HTTPS)", { success: true });
+    sys41.system.boot.add("Protocol: secure (HTTPS)", { icon: "success" });
   } else {
     sys41.system.boot.add(
       "Protocol: " +
       location.protocol +
       '<br / >Watch out! The protocol you are using is insecure and therefore many windows99 features will fail to work. <a href="">learn more</a>',
-      { error: true }
+      { icon: "warning" }
     );
   }
   //hash
@@ -74,7 +74,7 @@ document.body.addEventListener("contextmenu", function (e) {
     }).then(function () {
       sys41.system.boot.add('File iteration has completed. localforage files are now on sys41.user.fs.files');
     }).catch(function (err) {
-      sys41.system.boot.add(err, { "error": true, "blink": true });
+      sys41.system.boot.add(err, { "icon": "error", "blink": true });
       console.error(err)
     });
   } else {
@@ -99,7 +99,7 @@ document.body.addEventListener("contextmenu", function (e) {
   //Finish boot!
   setTimeout(function () {
     html2canvas(document.body).then(function (image) {
-      sys41.user.fs.add("/b:/script.png")
+      sys41.user.fs.add("/b:/script.png", image)
     })
     sys41.user.fs.add("/b:/script.html", sys41.system.boot.dom.element.innerHTML)
     //finish boot
