@@ -134,15 +134,15 @@ var sys41 = {
         url: null,
       },
       email: null,
+      firstTime: null,
       data: {
         webAPI: {/*
           indexeddb: webfs.INDEXEDDB,
           webSQL: webfs.WEBSQL,
           localStorage: webfs.LOCALSTORAGE,*/ //webfs is undefined
-          navigator: null,
-          navigatorFull: null,
         },
-        firstTime: null,
+        navigator: null,
+        navigatorFull: null,
       }
     },
   },
@@ -353,28 +353,5 @@ sys41.system.channel =
       ? "development"
       : "unknown";
 
-//Browser detector
-var nav = navigator.userAgent;
-sys41.user.navigatorFull = navigator.userAgent;
-if (nav.indexOf("Firefox") > -1) {
-  sys41.user.profile.data.navigator = "Mozilla Firefox";
-} else if (nav.indexOf("SamsungBrowser") > -1) {
-  sys41.user.profile.data.navigator = "Samsung Internet";
-} else if (nav.indexOf("Opera") > -1 || nav.indexOf("OPR") > -1) {
-  sys41.user.profile.data.navigator = "Opera";
-} else if (nav.indexOf("Trident") > -1) {
-  sys41.user.profile.data.navigator = "Microsoft Internet Explorer";
-} else if (nav.indexOf("Edge") > -1) {
-  sys41.user.profile.data.navigator = "Microsoft Edge (Legacy)";
-} else if (nav.indexOf("Edg") > -1) {
-  sys41.user.profile.data.navigator = "Microsoft Edge";
-} else if (nav.indexOf("Chrome") > -1) {
-  sys41.user.profile.data.navigator = "Chrome or Chromium";
-} else if (nav.indexOf("Safari") > -1) {
-  sys41.user.profile.data.navigator = "Apple Safari";
-} else {
-  sys41.user.profile.data.navigator = "Unknown navigator";
-}
+
 const $fs = sys41.user.fs;
-
-
