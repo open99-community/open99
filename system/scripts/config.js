@@ -349,6 +349,11 @@ var sys41 = {
         );
       }
     },
+    cursors: {
+      "default": "",
+      "pointer": "",
+      
+    },
   },
 };
 sys41.system.version = "0.1";

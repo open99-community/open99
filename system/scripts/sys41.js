@@ -59,7 +59,7 @@ document.body.addEventListener("contextmenu", function (e) {
 });
 
 (function () {
-  let accountExist
+  let accountExist;
   localforage.getItem("_profile").then(function (value) {
     if (value) {
       accountExist = true
