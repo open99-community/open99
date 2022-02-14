@@ -2,14 +2,17 @@ const uid = new ShortUniqueId({ length: 10 });
 (function () {
   localforage.config({
     driver: localforage.INDEXEDDB,
-    name: "webfs",
     description: "Main offline storage backend for open99. Uses IndexedDB.",
   });
 })();
 var sys41 = {
   user: {
     fs: {
-      files: {},
+      get: function(key){
+        localforage.getItem(key).then(function(value){
+          return value
+        })
+      },
       add: function (key, value) {
         if (sys41.user.fs.files[key]) {
           return Error("File already exists, use sys41.user.fs.edit API instead.")
@@ -152,6 +155,21 @@ var sys41 = {
     },
   },
   system: {
+    get version(){
+      fetch("version.txt").then(function(ver){return ver})
+    },
+    set version(value){return new Error("version " + ver + " cannot be set via api. use version.txt file instead.")},
+    get channel(){
+      let chan;
+      if (location.href === "windows99.vercel.app"){
+        chan = "main"
+      } else if (location.href === "windows99dev.vercel.app"){
+        chan = "devel"
+      } else {
+        chan = "custom"
+      }
+    }, 
+    set channel(value){return new Error("please modify api file to change channel name.")},
     boot: {
       stopped: false,
       dom: {
@@ -356,13 +374,5 @@ var sys41 = {
     },
   },
 };
-sys41.system.version = "0.1";
-sys41.system.channel =
-  location.url == "https://windows99.vercel.app"
-    ? "stable"
-    : location.url == "https://windows99dev.vercel.app"
-      ? "development"
-      : "unknown";
-
 
 const $fs = sys41.user.fs;
