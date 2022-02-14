@@ -8,42 +8,40 @@ const uid = new ShortUniqueId({ length: 10 });
 var sys41 = {
   user: {
     fs: {
-      get: function(key){
-        localforage.getItem(key).then(function(value){
-          return value
-        })
-      },
-      add: function (key, value) {
-        if (sys41.user.fs.files[key]) {
-          return Error("File already exists, use sys41.user.fs.edit API instead.")
+      get: function (key) {
+        if (key[1] !== ":" && key[0] === "/") {
+          return localforage.removeItem(sys41.user.fs.utils.defaultDrive + "/" + key)
+        } else if (key[1] === ":" && key[0] !== "/") {
+          return await localforage.getItem(key)
         } else {
-          if (!key.indexOf("/") && !key.indexOf("_")) {
-            sys41.user.fs.files[key] = "/" + value
-          } else {
-            sys41.user.fs.files[key] = value;
-          }
-          return sys41.user.fs.files[key]
+          return new Error("Not valid format, check docs")
         }
       },
-      edit: function (key, value) {
-        if (!sys41.user.fs.files[key]) {
-          return Error("File doesn't exist, use sys41.user.fs.add API instead.")
+      set: function (key, value) {
+        if (key[1] !== ":" && key[0] === "/") {
+          await localforage.setItem(sys41.user.fs.utils.defaultDrive + "/" + key, value)
+        } else if (key[1] === ":" && key[0] !== "/") {
+          await localforage.setItem(key, value)
         } else {
-          if (!key.indexOf("/") == 0 && !key.indexOf("_") == 0) {
-            sys41.user.fs.files[key] = "/" + value
-          } else {
-            sys41.user.fs.files[key] = value;
-          }
-          return sys41.user.fs.files[key]
+          return new Error("Not valid format, check docs")
         }
+        return await sys41.user.fs.get(key)
+
       },
       delete: function (key) {
-        if (!sys41.user.fs.files[key]) {
-          return Error("File doesn't exist, use sys41.user.fs.add API instead.")
+        if (!await sys41.user.fs.getItem[key]) {
+          return Error("File doesn't exist")
+        } else if (key[1] !== ":" && key[0] === "/") {
+          await localforage.removeItem(sys41.user.fs.utils.defaultDrive + "/" + key, value)
+        } else if (key[1] === ":" && key[0] !== "/") {
+          await localforage.removeItem(key, value)
         } else {
-          delete sys41.user.fs.files[key];
-          return true;
+          return new Error("Not valid format, check docs")
         }
+      },
+      utils: {
+        "config": await localforage.getItem("_profile"),
+        "defaultDrive": "C:",
       }
     },
     appAddress: "",
@@ -155,21 +153,21 @@ var sys41 = {
     },
   },
   system: {
-    get version(){
-      fetch("version.txt").then(function(ver){return ver})
+    get version() {
+      fetch("version.txt").then(function (ver) { return ver })
     },
-    set version(value){return new Error("version " + ver + " cannot be set via api. use version.txt file instead.")},
-    get channel(){
+    set version(value) { return new Error("version " + ver + " cannot be set via api. use version.txt file instead.") },
+    get channel() {
       let chan;
-      if (location.href === "windows99.vercel.app"){
+      if (location.href === "windows99.vercel.app") {
         chan = "main"
-      } else if (location.href === "windows99dev.vercel.app"){
+      } else if (location.href === "windows99dev.vercel.app") {
         chan = "devel"
       } else {
         chan = "custom"
       }
-    }, 
-    set channel(value){return new Error("please modify api file to change channel name.")},
+    },
+    set channel(value) { return new Error("please modify api file to change channel name.") },
     boot: {
       stopped: false,
       dom: {
@@ -183,7 +181,7 @@ var sys41 = {
         if (features.icon) {
           if (features.icon === "error") {
             el.innerHTML =
-            `<p class="boot-error"><span><img class="boot-image" src="system/assets/98/dialog/error.png"></span>` + text + `</p>`;
+              `<p class="boot-error"><span><img class="boot-image" src="system/assets/98/dialog/error.png"></span>` + text + `</p>`;
             el.classList.add("boot-error");
           }
           if (features.icon === "success") {
@@ -191,7 +189,7 @@ var sys41 = {
               `<p class="boot-success"><span><img class="boot-image" src="system/assets/98/dialog/check.png"></span>` + text + `</p>`;
             el.classList.add("boot-success");
           }
-          if (features.icon ==="warning") {
+          if (features.icon === "warning") {
             el.innerHTML =
               `<p class="boot-warning"><span><img class="boot-image" src="system/assets/98/dialog/warning.png"></span>` + text + `</p>`;
             el.classList.add("boot-success");
@@ -370,13 +368,13 @@ var sys41 = {
     cursors: {
       "default": "",
       "pointer": "",
-      
+
     },
   },
 };
 
 const $fs = sys41.user.fs;
-const win93api = [$fs,$window,$prompt,$alert,$io,$url,$form,$confirm,$log]
+const win93apis = [$fs, $window, $prompt, $alert, $io, $url, $form, $confirm, $log]
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
