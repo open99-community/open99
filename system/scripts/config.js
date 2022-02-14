@@ -27,7 +27,7 @@ var sys41 = {
         }
         return await sys41.user.fs.get(key)
 
-      },
+      }, 
       delete: function (key) {
         if (!await sys41.user.fs.getItem[key]) {
           return Error("File doesn't exist")
