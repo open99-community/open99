@@ -376,3 +376,6 @@ var sys41 = {
 };
 
 const $fs = sys41.user.fs;
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
