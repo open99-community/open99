@@ -376,6 +376,7 @@ var sys41 = {
 };
 
 const $fs = sys41.user.fs;
+const win93api = [$fs,$window,$prompt,$alert,$io,$url,$form,$confirm,$log]
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
