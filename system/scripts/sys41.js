@@ -69,7 +69,7 @@ document.body.addEventListener("contextmenu", function (e) {
   })
   if (accountExist) {
     localforage.iterate(function (value, key, iterationNumber) {
-      sys41.user.fs.add(key, value)
+      sys41.user.fs.set(key, value)
       sys41.system.boot.add("Extracted " + key, { "color": "yellow" })
     }).then(function () {
       sys41.system.boot.add('File iteration has completed. localforage files are now on sys41.user.fs.files');
@@ -99,14 +99,14 @@ document.body.addEventListener("contextmenu", function (e) {
   //Finish boot!
   setTimeout(function () {
     html2canvas(document.body).then(function (image) {
-      sys41.user.fs.add("/b:/script.png", image)
+      sys41.user.fs.set("/b:/script.png", image)
     })
-    sys41.user.fs.add("/b:/script.html", sys41.system.boot.dom.element.innerHTML)
+    sys41.user.fs.set("/b:/script.html", sys41.system.boot.dom.element.innerHTML)
     //finish boot
     if (accountExist) {
       sys41.system.boot.finish();
     } else {
-      sys41.user.fs.add("_profile", { accountType: "local", firstTime: true })
+      sys41.user.fs.set("_profile", { accountType: "local", firstTime: true })
     }
   }, 3000);
 })()
