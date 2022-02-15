@@ -3,10 +3,10 @@ CONTRIBUTING.md
 .vercelignore
 .github
 vercel.json
-README.md
-/*/README.md
-/*/*/README.md
-/*/*/*/README.md
-/*/*/*/*/README.md
-/*/*/*/*/*/README.md
-/*/*/*/*/*/*/README.md
+*.md
+/*/*.md
+/*/*/*.md
+/*/*/*/*.md
+/*/*/*/*/*.md
+/*/*/*/*/*/*.md
+/*/*/*/*/*/*/*.md
