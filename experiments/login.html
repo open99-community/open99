@@ -16,7 +16,9 @@
     <script type="module">
         import { createClient } from '//unpkg.com/@supabase/supabase-js'
         const supabase = createClient('https://jacqfjuuakfrhukrzlfu.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTY0MDQ0NTQ4MiwiZXhwIjoxOTU2MDIxNDgyfQ.AwEAclJjmi9d9aks33thcBMXFLABn4SXo-c85gffKxA')
-        function hello(){let { user, error } = await supabase.auth.signIn({provider: 'github'})}
+        function hello(){
+            let { user, error } = await supabase.auth.signIn({provider: 'github'})
+        }
     </script>
 </body>
 
