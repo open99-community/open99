@@ -6,6 +6,9 @@
     <script>
         import { createClient } from '@supabase/supabase-js'
         const supabase = createClient('https://jacqfjuuakfrhukrzlfu.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTY0MDQ0NTQ4MiwiZXhwIjoxOTU2MDIxNDgyfQ.AwEAclJjmi9d9aks33thcBMXFLABn4SXo-c85gffKxA')
+        function hello(){let { user, error } = await supabase.auth.signIn({
+  provider: 'github'
+})}
     </script>
 </head>
 
@@ -15,9 +18,7 @@
     <input id="emailSignup"><input id="passwordSignup">
     <hr>
     <input id="emailLogin"><input id="emailLogin">
-    <button onclick="let { user, error } = await supabase.auth.signIn({
-        provider: 'github'
-      })">click to log with gh</button>
+    <button onclick="hello()">click to log with gh</button>
 </body>
 
 </html>
