@@ -8,7 +8,7 @@ const uid = new ShortUniqueId({ length: 10 });
 var sys41 = {
   user: {
     fs: {
-      get: await function (key) {
+      get: async function (key) {
         if (key[1] !== ":" && key[0] === "/") {
           return localforage.removeItem(sys41.user.fs.utils.defaultDrive + "/" + key)
         } else if (key[1] === ":" && key[0] !== "/") {
@@ -17,7 +17,7 @@ var sys41 = {
           return new Error("Not valid format, check docs")
         }
       },
-      set: await function (key, value) {
+      set: async function (key, value) {
         if (key[1] !== ":" && key[0] === "/") {
           localforage.setItem(sys41.user.fs.utils.defaultDrive + "/" + key, value)
         } else if (key[1] === ":" && key[0] !== "/") {
@@ -25,10 +25,10 @@ var sys41 = {
         } else {
           return new Error("Not valid format, check docs")
         }
-        return await sys41.user.fs.get(key)
+        return sys41.user.fs.get(key)
 
       }, 
-      delete: await function (key) {
+      delete: async function (key) {
         if (!sys41.user.fs.getItem[key]) {
           return Error("File doesn't exist")
         } else if (key[1] !== ":" && key[0] === "/") {
@@ -40,7 +40,7 @@ var sys41 = {
         }
       },
       utils: {
-        "config": await function(){localforage.getItem("_profile")},
+        "config": async function(){localforage.getItem("_profile")},
         "defaultDrive": "C:",
       }
     },
