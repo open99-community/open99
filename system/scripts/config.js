@@ -8,39 +8,39 @@ const uid = new ShortUniqueId({ length: 10 });
 var sys41 = {
   user: {
     fs: {
-      get: function (key) {
+      get: await function (key) {
         if (key[1] !== ":" && key[0] === "/") {
           return localforage.removeItem(sys41.user.fs.utils.defaultDrive + "/" + key)
         } else if (key[1] === ":" && key[0] !== "/") {
-          return await localforage.getItem(key)
+          return localforage.getItem(key)
         } else {
           return new Error("Not valid format, check docs")
         }
       },
-      set: function (key, value) {
+      set: await function (key, value) {
         if (key[1] !== ":" && key[0] === "/") {
-          await localforage.setItem(sys41.user.fs.utils.defaultDrive + "/" + key, value)
+          localforage.setItem(sys41.user.fs.utils.defaultDrive + "/" + key, value)
         } else if (key[1] === ":" && key[0] !== "/") {
-          await localforage.setItem(key, value)
+          localforage.setItem(key, value)
         } else {
           return new Error("Not valid format, check docs")
         }
         return await sys41.user.fs.get(key)
 
       }, 
-      delete: function (key) {
-        if (!await sys41.user.fs.getItem[key]) {
+      delete: await function (key) {
+        if (!sys41.user.fs.getItem[key]) {
           return Error("File doesn't exist")
         } else if (key[1] !== ":" && key[0] === "/") {
-          await localforage.removeItem(sys41.user.fs.utils.defaultDrive + "/" + key, value)
+          localforage.removeItem(sys41.user.fs.utils.defaultDrive + "/" + key, value)
         } else if (key[1] === ":" && key[0] !== "/") {
-          await localforage.removeItem(key, value)
+          localforage.removeItem(key, value)
         } else {
           return new Error("Not valid format, check docs")
         }
       },
       utils: {
-        "config": await localforage.getItem("_profile"),
+        "config": await function(){localforage.getItem("_profile")},
         "defaultDrive": "C:",
       }
     },
