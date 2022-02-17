@@ -1,7 +1,9 @@
-CODE_OF_CONDUCT.md
-CONTRIBUTING.md
+# modifying this file can expose files
+#
+# BE CAREFUL
+# ##############################################################
 .vercelignore
-.github
+.github/*
 vercel.json
 *.md
 /*/*.md
