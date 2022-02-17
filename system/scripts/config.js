@@ -374,6 +374,14 @@ var sys41 = {
 };
 
 const $fs = sys41.user.fs;
+const $window = sys41.system.createWindow;
+const $prompt = null;
+const $alert = null;
+const $io = null;
+const $url = null;
+const $form = null;
+const $confirm = null;
+const $log = null;
 const win93apis = [$fs, $window, $prompt, $alert, $io, $url, $form, $confirm, $log]
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
