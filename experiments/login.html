@@ -3,6 +3,11 @@
 
 <head>
     <script src="https://unpkg.com/@supabase/supabase-js"></script>
+    <script type="module">
+        var supabae = supabase.createClient('https://jacqfjuuakfrhukrzlfu.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTY0MDQ0NTQ4MiwiZXhwIjoxOTU2MDIxNDgyfQ.AwEAclJjmi9d9aks33thcBMXFLABn4SXo-c85gffKxA')
+        await function hello(){
+        }
+    </script>
 </head>
 
 <body>
@@ -12,13 +17,7 @@
     <hr>
     <input id="emailLogin"><input id="emailLogin">
     <button onclick="
-    let { user, error } = supabase.auth.signIn({provider: 'github'})">click to log with gh</button>
-    
-    <script type="module">
-        var supabae = supabase.createClient('https://jacqfjuuakfrhukrzlfu.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTY0MDQ0NTQ4MiwiZXhwIjoxOTU2MDIxNDgyfQ.AwEAclJjmi9d9aks33thcBMXFLABn4SXo-c85gffKxA')
-        await function hello(){
-        }
-    </script>
+    let { user, error } = supabae.auth.signIn({provider: 'github'})">click to log with gh</button>
 </body>
 
 </html>
