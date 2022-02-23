@@ -1,9 +1,9 @@
-# modifying this file can expose files
-#
-# BE CAREFUL
-# ##############################################################
+# Modifying this file will result in pages being publically accessible, beware!
+
+CODE_OF_CONDUCT.md
+CONTRIBUTING.md
 .vercelignore
-.github/*
+.github
 vercel.json
 *.md
 /*/*.md
