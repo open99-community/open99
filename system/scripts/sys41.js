@@ -7,14 +7,14 @@
     dateNav.classList.add("hidden");
   } else {
     sys41.system.boot.add(`WARNING: you are running this on a custom, development, or staging server.<br />
-        please be aware this is not an official release of windows99. <a href='https://itspablo.gitbook.io/windows99/forking/faq#unverified_boot_error' target="_blank"><b>learn how to remove this</b></a>`, { icon: "warning" })
+        please be aware this is not an official release of windows99. <a href='https://itspablo.gitbook.io/windows99/forking/faq#unverified_boot_error' target="_blank"><b>learn more</b></a>`, { icon: "warning" })
   }
   //server
-  if (location.href.includes("#")){
+  if (location.href.includes("#")) {
     let position = location.href.indexOf('#')
     let newhref = location.href.slice(0, position)
     sys41.system.boot.add("Server: " + newhref)
-  } else if (location.href.includes("?")){
+  } else if (location.href.includes("?")) {
     let position = location.href.indexOf('?')
     let newhref = location.href.slice(0, position)
     sys41.system.boot.add("Server: " + newhref)
@@ -26,6 +26,8 @@
     sys41.system.boot.add("Port number: " + location.port)
   }
   //protocol
+  /*                                                                                       TODO*/
+  "?error=access_denied&error_description=The+user+has+denied+your+application+access."
   if (location.protocol === "https:") {
     sys41.system.boot.add("Protocol: secure (HTTPS)", { icon: "success" });
   } else {
@@ -38,7 +40,11 @@
   }
   //hash
   if (location.hash) {
-    sys41.system.boot.add("Hash: " + decodeURI(location.hash));
+    if (location.hash.indexOf("access_token=") > -1 && location.hash.indexOf("refresh_token=") > -1 && location.hash.indexOf("token_type") > -1 && location.hash.indexOf("expires_in") > -1) {
+      sys41.system.boot.add("Hash: none (signin)")
+    } else {
+      sys41.system.boot.add("Hash: " + decodeURI(location.hash));
+    }
   } else {
     sys41.system.boot.add("Hash: none")
   }
@@ -47,7 +53,7 @@
   for (let i = 0; i < navigator.plugins.length; i++) {
     plugins.push(navigator.plugins[i].name)
   }
-  sys41.system.boot.add("System plugins: " + plugins.join(", "), {"color": "lime"})
+  sys41.system.boot.add("System plugins: " + plugins.join(", "), { "color": "lime" })
 })()
 
 //SET THEME
@@ -90,7 +96,7 @@ document.body.addEventListener("contextmenu", function (e) {
     });
     promise.then(JSZip.loadAsync)
       .then(function (zip) {
-        zip.forEach(function(path, file){
+        zip.forEach(function (path, file) {
           sys41.system.boot.add("Extracting " + path)
         })
       })
