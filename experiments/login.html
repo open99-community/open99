@@ -19,7 +19,7 @@ var supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY)
     <hr>
     <input id="emailLogin"><input id="emailLogin">
     <button onclick="
-    let { user, error } = supabae.auth.signIn({provider: 'github'})">click to log with gh</button>
+    let { user, error } = supabase.auth.signIn({provider: 'github'})">click to log with gh</button>
 </body>
 
 </html>
