@@ -22,10 +22,14 @@
         password: document.getElementById('passwordSignup').value
     })
     ">sign up</button>
-    <script>
-    </script>
     <hr>
-    <input id="emailLogin"><input id="emailLogin">
+    <h2>Log in</h2>
+    <input id="emailLogin"><input id="passwordLogin"><button onclick="
+    let { user, error } = await supabase.auth.signUp({
+        email: document.getElementById('emailLogin').value,
+        password: document.getElementById('passwordLogin').value
+    })
+    ">sign up</button>
     <hr />
     <button onclick="
     let { user, error } = supabase.auth.signIn({provider: 'github'})">Sign in with Github</button>
