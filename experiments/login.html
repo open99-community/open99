@@ -23,10 +23,11 @@
     <br />
     <label>Password<input id="passwordSignup"></label>
     <button onclick="
+    (async function(){
     let { user, error } = await supabase.auth.signUp({
         email: document.getElementById('emailSignup').value,
         password: document.getElementById('passwordSignup').value
-    })
+    })})()
     ">sign up</button>
     <hr>
     <h2>Log in</h2>
@@ -34,10 +35,11 @@
     <br />
     <label>Password<input id="passwordLogin"></label>
     <button onclick="
+    (async function(){
     let { user, error } = await supabase.auth.signUp({
         email: document.getElementById('emailLogin').value,
         password: document.getElementById('passwordLogin').value
-    })
+    })})()
     ">log in</button>
     <hr />
     <button onclick="
