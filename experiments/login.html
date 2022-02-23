@@ -16,7 +16,8 @@
     <h2>Sign up</h2>
     <label>Email<input id="emailSignup"></label>
     <br />
-    <label>Password<input id="passwordSignup"></label><button onclick="
+    <label>Password<input id="passwordSignup"></label>
+    <button onclick="
     let { user, error } = await supabase.auth.signUp({
         email: document.getElementById('emailSignup').value,
         password: document.getElementById('passwordSignup').value
@@ -24,12 +25,14 @@
     ">sign up</button>
     <hr>
     <h2>Log in</h2>
-    <input id="emailLogin"><input id="passwordLogin"><button onclick="
+    <input id="emailLogin">
+    <input id="passwordLogin">
+    <button onclick="
     let { user, error } = await supabase.auth.signUp({
         email: document.getElementById('emailLogin').value,
         password: document.getElementById('passwordLogin').value
     })
-    ">sign up</button>
+    ">log in</button>
     <hr />
     <button onclick="
     let { user, error } = supabase.auth.signIn({provider: 'github'})">Sign in with Github</button>
