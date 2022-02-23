@@ -10,7 +10,7 @@
         please be aware this is not an official release of windows99. <a href='https://itspablo.gitbook.io/windows99/forking/faq#unverified_boot_error' target="_blank"><b>learn more</b></a>`, { icon: "warning" })
   }
   //server
-  var servURL
+  let servURL
   if (location.href.includes("#")) {
     let position = location.href.indexOf('#')
     servURL = location.href.slice(0, position)
