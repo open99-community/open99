@@ -5,17 +5,25 @@
     <script src="https://unpkg.com/@supabase/supabase-js@1.30.6/dist/umd/supabase.js"></script>
     <script>
         var SUPABASE_URL = 'https://jacqfjuuakfrhukrzlfu.supabase.co'
-var SUPABASE_KEY =
-'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTY0MDQ0NTQ4MiwiZXhwIjoxOTU2MDIxNDgyfQ.AwEAclJjmi9d9aks33thcBMXFLABn4SXo-c85gffKxA'
+        var SUPABASE_KEY =
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTY0MDQ0NTQ4MiwiZXhwIjoxOTU2MDIxNDgyfQ.AwEAclJjmi9d9aks33thcBMXFLABn4SXo-c85gffKxA'
 
-var supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY)
+        var supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY)
+        function signup() {
+            let { user, error } = await supabase.auth.signUp({
+                email: document.getElementById("emailSignup").value,
+                password: document.getElementById("passwordSignup").value
+            })
+        }
     </script>
 </head>
 
 <body>
     <p id="email"></p>
     <hr>
-    <input id="emailSignup"><input id="passwordSignup">
+    <input id="emailSignup"><input id="passwordSignup"><button onclick="signup()">sign up</button>
+    <script>
+    </script>
     <hr>
     <input id="emailLogin"><input id="emailLogin">
     <button onclick="
