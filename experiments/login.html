@@ -16,10 +16,12 @@
     <h2>Sign up</h2>
     <label>Email<input id="emailSignup"></label>
     <br />
-    <label>Password<input id="passwordSignup"></label><button onclick=`let { user, error } = await supabase.auth.signUp({
-        email: document.getElementById("emailSignup").value,
-        password: document.getElementById("passwordSignup").value
-    })`>sign up</button>
+    <label>Password<input id="passwordSignup"></label><button onclick="
+    let { user, error } = await supabase.auth.signUp({
+        email: document.getElementById('emailSignup').value,
+        password: document.getElementById('passwordSignup').value
+    })
+    ">sign up</button>
     <script>
     </script>
     <hr>
