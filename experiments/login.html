@@ -25,8 +25,8 @@
     ">sign up</button>
     <hr>
     <h2>Log in</h2>
-    <input id="emailLogin">
-    <input id="passwordLogin">
+    <label>Email<input id="emailLogin"></label>
+    <label>Password<input id="passwordLogin"></label>
     <button onclick="
     let { user, error } = await supabase.auth.signUp({
         email: document.getElementById('emailLogin').value,
