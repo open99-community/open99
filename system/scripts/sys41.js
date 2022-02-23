@@ -10,14 +10,15 @@
         please be aware this is not an official release of windows99. <a href='https://itspablo.gitbook.io/windows99/forking/faq#unverified_boot_error' target="_blank"><b>learn more</b></a>`, { icon: "warning" })
   }
   //server
+  var servURL
   if (location.href.includes("#")) {
     let position = location.href.indexOf('#')
-    let newhref = location.href.slice(0, position)
-    sys41.system.boot.add("Server: " + newhref)
+    servURL = location.href.slice(0, position)
+    sys41.system.boot.add("Server: " + servURL)
   } else if (location.href.includes("?")) {
     let position = location.href.indexOf('?')
-    let newhref = location.href.slice(0, position)
-    sys41.system.boot.add("Server: " + newhref)
+    servURL = location.href.slice(0, position)
+    sys41.system.boot.add("Server: " + servURL)
   }
   //port
   if (!location.port) {
@@ -54,6 +55,10 @@
     plugins.push(navigator.plugins[i].name)
   }
   sys41.system.boot.add("System plugins: " + plugins.join(", "), { "color": "lime" })
+  //account control
+  if (location.href.indexOf("?error") === servURL.length + 1){
+    sys41.system.boot.add("Error: " + location.href.slice(location.href.indexOf("?error="), location.href.indexOf("&")) + location.href.slice(location.href.indexOf("?error_description="), location.href.length));
+  }
 })()
 
 //SET THEME
