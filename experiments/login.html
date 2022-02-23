@@ -9,12 +9,6 @@
             'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTY0MDQ0NTQ4MiwiZXhwIjoxOTU2MDIxNDgyfQ.AwEAclJjmi9d9aks33thcBMXFLABn4SXo-c85gffKxA'
 
         var supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY)
-        function signup() {
-            let { user, error } = await supabase.auth.signUp({
-                email: document.getElementById("emailSignup").value,
-                password: document.getElementById("passwordSignup").value
-            })
-        }
     </script>
 </head>
 
@@ -23,7 +17,10 @@
     <hr>
     <label>Email<input id="emailSignup"></label>
     <br />
-    <label>Password<input id="passwordSignup"></label><button onclick="signup()">sign up</button>
+    <label>Password<input id="passwordSignup"></label><button onclick=`let { user, error } = await supabase.auth.signUp({
+        email: document.getElementById("emailSignup").value,
+        password: document.getElementById("passwordSignup").value
+    })`>sign up</button>
     <script>
     </script>
     <hr>
