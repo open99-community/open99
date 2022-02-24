@@ -27,8 +27,6 @@
     sys41.system.boot.add("Port number: " + location.port)
   }
   //protocol
-  /*                                                                                       TODO*/
-  "?error=access_denied&error_description=The+user+has+denied+your+application+access."
   if (location.protocol === "https:") {
     sys41.system.boot.add("Protocol: secure (HTTPS)", { icon: "success" });
   } else {
