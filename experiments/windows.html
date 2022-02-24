@@ -21,12 +21,24 @@
     </div>
 
 
-    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+    <script src="https://unpkg.com/interactjs"></script>
     <script>
-        $(".window:not(.title-bar-text, .title-bar-controls, .window-body)")
-            .draggable()
-            .resizable()
+        const position = { x: 0, y: 0 }
+
+        interact('.window').draggable({
+            listeners: {
+                start(event) {
+                    console.log(event.type, event.target)
+                },
+                move(event) {
+                    position.x += event.dx
+                    position.y += event.dy
+
+                    event.target.style.transform =
+                        `translate(${position.x}px, ${position.y}px)`
+                },
+            }
+        })
     </script>
 </body>
 
