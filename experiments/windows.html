@@ -25,20 +25,26 @@
     <script>
         const position = { x: 0, y: 0 }
 
-        interact('.window').draggable({
-            listeners: {
-                start(event) {
-                    console.log(event.type, event.target)
-                },
-                move(event) {
-                    position.x += event.dx
-                    position.y += event.dy
+        interact('.window')
+            .draggable({
+                listeners: {
+                    move(event) {
+                        position.x += event.dx
+                        position.y += event.dy
 
-                    event.target.style.transform =
-                        `translate(${position.x}px, ${position.y}px)`
-                },
-            }
-        })
+                        event.target.style.transform =
+                            `translate(${position.x}px, ${position.y}px)`
+                    },
+                }
+            })
+            .resizable({
+                edges: {
+                    top: true,       // Use pointer coords to check for resize.
+                    left: false,      // Disable resizing from left edge.
+                    bottom: '.resize-s',// Resize if pointer target matches selector
+                    right: handleEl    // Resize if pointer target is the given Element
+                }
+            })
     </script>
 </body>
 
