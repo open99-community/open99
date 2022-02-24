@@ -282,6 +282,7 @@ var sys41 = {
         },
       },
     },
+    iframeUrls: [],
     createWindow: function (
       data = { draggable: true, resizable: true, html: `<p>No data</p>` }
     ) {
@@ -371,7 +372,13 @@ var sys41 = {
 
     },
   },
+  apiUrl: "https://jacqfjuuakfrhukrzlfu.supabase.co"
 };
+class iframe {
+  constructor(url){
+
+  }
+}
 
 const $fs = sys41.user.fs;
 const $window = sys41.system.createWindow;
