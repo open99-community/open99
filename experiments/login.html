@@ -31,6 +31,7 @@
     ">sign up</button>
     <hr>
     <h2>Log in</h2>
+    <p>To receive a magic link in your email, leave the password field blank.</p>
     <label>Email<input id="emailLogin"></label>
     <br />
     <label>Password<input id="passwordLogin"></label>
@@ -42,6 +43,12 @@
     })})()
     ">log in</button>
     <hr />
+    <h2>Log out</h2>
+    <button onclick="
+    let { error } = await supabase.auth.signOut()
+    ">Logout</button>
+    <hr />
+    <h2>Third-parties</h2>
     <button onclick="
     let { user, error } = supabase.auth.signIn({provider: 'github'})">
         Sign in with Github</button>
