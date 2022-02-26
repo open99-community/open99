@@ -54,20 +54,18 @@
   }
   sys41.system.boot.add("System plugins: " + plugins.join(", "), { "color": "lime" })
   //account control
-  if (location.href.indexOf("?error") === servURL.length + 1){
+  if (location.href.indexOf("?error") === servURL.length + 1) {
     sys41.system.boot.add("Error: " + location.href.slice(location.href.indexOf("?error="), location.href.indexOf("&")) + location.href.slice(location.href.indexOf("?error_description="), location.href.length));
   }
-})()
 
-//SET THEME
-document.getElementById("stylelink").setAttribute("href", "system/styles/themes/98.css");
+  //SET THEME
+  document.getElementById("stylelink").setAttribute("href", "system/styles/themes/98.css");
 
-//Remove right-click functionality
-document.body.addEventListener("contextmenu", function (e) {
-  e.preventDefault();
-});
+  //Remove right-click functionality
+  document.body.addEventListener("contextmenu", function (e) {
+    e.preventDefault();
+  });
 
-(function () {
   let accountExist;
   localforage.getItem("_profile").then(function (value) {
     if (value) {
@@ -118,4 +116,16 @@ document.body.addEventListener("contextmenu", function (e) {
       sys41.user.fs.set("_profile", { accountType: "local", firstTime: true })
     }
   }, 3000);
+
+  (async function animateTitle() {
+    while (true) {
+      var str = document.title;
+      var title = " "
+      for (var i = 0; i < str.length; i++) {
+        title = title.concat(str.charAt(i));
+        document.title = title;
+        await sleep(1000);
+      }
+    }
+  })()
 })()
