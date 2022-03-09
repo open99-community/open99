@@ -54,15 +54,15 @@
     <hr />
     <h2>Log out</h2>
     <button onclick="
-    let { error } = await supabase.auth.signOut()
+    (async function(){let { error } = await supabase.auth.signOut()})
     ">Logout</button>
     <hr />
     <h2>Third-parties</h2>
     <button onclick="
-    let { user, error } = supabase.auth.signIn({provider: 'github'})">
+    (async function(){let { user, error } = supabase.auth.signIn({provider: 'github'})})">
         Sign in with Github</button>
     <button onclick="
-    let { user, error } = supabase.auth.signIn({provider: 'google'})">
+    (async function(){let { user, error } = supabase.auth.signIn({provider: 'google'})})">
         Sign in with Google</button>
 </body>
 
