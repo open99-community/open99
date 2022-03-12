@@ -11,16 +11,16 @@ function whereOccurSpecificApp() {
 
 //WEB3FORMS INJECTION
 (function() {
-  var form = document.getElementsByTagName("form")[0];
-  var accessKey = document.createElement("input");
+  let form = document.getElementsByTagName("form")[0];
+  let accessKey = document.createElement("input");
   accessKey.setAttribute("type", "hidden");
   accessKey.setAttribute("name", "apikey");
   accessKey.setAttribute("value", "896d2f9a-f729-443b-be74-041986e1e117"); //Change if this is your own fork
-  var subject = document.createElement("input");
+  let subject = document.createElement("input");
   subject.setAttribute("type", "hidden");
   subject.setAttribute("name", "subject");
   subject.setAttribute("value", "New bug report - Windows99");
-  var version = document.createElement("input");
+  let version = document.createElement("input");
   subject.setAttribute("type", "hidden");
   subject.setAttribute("name", "version");
   subject.setAttribute(
@@ -31,7 +31,7 @@ function whereOccurSpecificApp() {
       " using " +
       sys41.system.channel
   );
-  var fromName = document.createElement("input");
+  let fromName = document.createElement("input");
   subject.setAttribute("type", "hidden");
   subject.setAttribute("name", "from_name");
   subject.setAttribute("value", "Windows99 Bugs");
@@ -39,11 +39,11 @@ function whereOccurSpecificApp() {
   form.addEventListener("submit", function (e) {
     const formData = new FormData(form);
     e.preventDefault();
-    var object = {};
+    let object = {};
     formData.forEach((value, key) => {
       object[key] = value;
     });
-    var json = JSON.stringify(object);
+    let json = JSON.stringify(object);
 
     fetch("https://api.web3forms.com/submit", {
       method: "POST",
