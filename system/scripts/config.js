@@ -5,7 +5,7 @@ const uid = new ShortUniqueId({ length: 10 });
     description: "Main offline storage backend for open99. Uses IndexedDB.",
   });
 })();
-var sys41 = {
+let sys41 = {
   user: {
     fs: {
       get: async function (key) {
@@ -167,17 +167,16 @@ var sys41 = {
         chan = "custom"
       }
     },
-    set channel(value) { return new Error("please modify api file to change channel name.") },
+    set channel(value) { return new Error("modify api file to change channel name.") },
     boot: {
       stopped: false,
       dom: {
         element: document.getElementsByClassName("boottext")[0],
         mainElement: document.getElementById("bootscreen"),
       },
-      elements: {},
-      add: function (text = "message not specified", features = {}, id) {
-        var el = document.createElement("p");
-        el.innerHTML = text;
+      set: function (text = "", features = {}, id) {
+        let el = el || document.createElement("p");
+        el.innerHTML = text || el.innerHTML;
         if (features.icon) {
           if (features.icon === "error") {
             el.innerHTML =
@@ -203,20 +202,11 @@ var sys41 = {
         }
         if (!id) {
           document.getElementsByClassName("boottext")[0].appendChild(el);
-          let newid = new uid()
-          sys41.system.boot.elements[id] = el;
           el.scrollIntoView()
-          return { "element": el, "id": newid }
+          return el
         } else {
-          sys41.system.boot.elements[id] = el
-          el.scrollIntoView()
-          return { "element": el, "id": id }
+          return el
         }
-      },
-      remove: function (id) {
-        var el = sys41.system.boot.elements[id]
-        el.parentNode.removeChild(el)
-        delete sys41.system.boot.elements[id]
       },
       get bootable() {
         if (sys41.user.files) {
@@ -224,15 +214,12 @@ var sys41 = {
         } else {
           return false;
         }
-      },/*
-      set bootable(value) {
-        throw new Error("property cannot be set")
-      },*/
+      },
       finish: function () {
         if (sys41.system.boot.bootable) {
-          var bootscreen = document.getElementsByClassName("bootscreen")[0];
+          let bootscreen = document.getElementsByClassName("bootscreen")[0];
           bootscreen.parentNode.removeChild(bootscreen);
-          var el = document.createElement("div");
+          let el = document.createElement("div");
           el.classList.add("postboot");
         }
       },
@@ -289,15 +276,15 @@ var sys41 = {
       if (!typeof data === "object") {
         return TypeError("Must be a valid WinObject object");
       }
-      var winMain = document.createElement("div");
-      var titleBar = document.createElement("div");
-      var titleBarText = document.createElement("div");
-      var titleBarIcon = null; //for now
-      var titleBarControls = document.createElement("div");
-      var titleBarControlsMinimize = document.createElement("button");
-      var titleBarControlsMaximize = document.createElement("button");
-      var titleBarControlsClose = document.createElement("button");
-      var winContent = document.createElement("div");
+      let winMain = document.createElement("div");
+      let titleBar = document.createElement("div");
+      let titleBarText = document.createElement("div");
+      let titleBarIcon = null; //for now
+      let titleBarControls = document.createElement("div");
+      let titleBarControlsMinimize = document.createElement("button");
+      let titleBarControlsMaximize = document.createElement("button");
+      let titleBarControlsClose = document.createElement("button");
+      let winContent = document.createElement("div");
 
       titleBar.append(winMain);
       winContent.append(winMain);
@@ -332,12 +319,12 @@ var sys41 = {
   ui: {
     createProgBar: function (element, features) {
       if (sys41.system.themes.current.supports.progBar) {
-        var el = document.createElement("div");
+        let el = document.createElement("div");
         el.ariaRoleDescription = "progressbar";
         el.ariaValueMin = features.min;
         el.ariaValueMax = features.max;
         el.ariaValueNow = features.now;
-        var elIn = document.createElement("div");
+        let elIn = document.createElement("div");
         elIn.style.width = features.width;
         elIn.append(el);
         el.append(element);
@@ -354,7 +341,7 @@ var sys41 = {
         sys41.system.themes.current.supports.balloon ||
         sys41.system.themes.current.supports.tooltip
       ) {
-        var el = document.createElement("div");
+        let el = document.createElement("div");
         el.ariaRoleDescription = "tooltip";
         el.innerText = features.text;
         el.append(element);
@@ -374,11 +361,6 @@ var sys41 = {
   },
   apiUrl: "https://jacqfjuuakfrhukrzlfu.supabase.co"
 };
-class iframe {
-  constructor(url){
-
-  }
-}
 
 const $fs = sys41.user.fs;
 const $window = sys41.system.createWindow;
