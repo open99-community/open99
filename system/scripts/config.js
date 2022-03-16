@@ -180,17 +180,17 @@ let sys41 = {
         if (features.icon) {
           if (features.icon === "error") {
             el.innerHTML =
-              `<p class="boot-error"><span><img class="boot-image" src="system/assets/98/dialog/error.png"></span>` + text + `</p>`;
+              `<p class="boot-error"><span><img class="boot-image" alt="error icon" src="system/assets/98/dialog/error.png"></span>` + text + `</p>`;
             el.classList.add("boot-error");
           }
           if (features.icon === "success") {
             el.innerHTML =
-              `<p class="boot-success"><span><img class="boot-image" src="system/assets/98/dialog/check.png"></span>` + text + `</p>`;
+              `<p class="boot-success"><span><img class="boot-image" alt="success check" src="system/assets/98/dialog/check.png"></span>` + text + `</p>`;
             el.classList.add("boot-success");
           }
           if (features.icon === "warning") {
             el.innerHTML =
-              `<p class="boot-warning"><span><img class="boot-image" src="system/assets/98/dialog/warning.png"></span>` + text + `</p>`;
+              `<p class="boot-warning"><span><img class="boot-image" alt="warning icon" src="system/assets/98/dialog/warning.png"></span>` + text + `</p>`;
             el.classList.add("boot-success");
           }
         }
