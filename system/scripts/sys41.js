@@ -87,9 +87,10 @@
   } else {
     //fetch(location.href + "/system/fs.zip").then(content => content.text).then(filesystem => {let fsZIP = filesystem})
     let promise = new JSZip.external.Promise(function (resolve, reject) {
-      JSZipUtils.getBinaryContent('./system/fs.zip', function (err, data) {
+      JSZipUtils.getBinaryContent('./system/fs/rootfs.zip', function (err, data) {
         if (err) {
           reject(err);
+          sys41.system.boot.set(err, {'error': true})
         } else {
           resolve(data);
         }
