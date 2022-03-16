@@ -28,15 +28,20 @@ blink {
    font-family: Ubuntu Mono, Consolas, Andale Mono WT, Andale Mono, Lucida Console, Lucida Sans Typewriter, DejaVu Sans Mono, Bitstream Vera Sans Mono, Liberation Mono, Nimbus Mono L, Monaco, Menlo, source-code-pro, Courier New, Courier, monospace;
    padding-left: 15px;
    width: 70%;
-}
-
-.boottext {
    top: 10px;
 }
 
-.boottext .error {
-   color: red;
-   font-weight: bold;
+.boottext .boot-error {
+  color: red;
+  font-weight: bold;
+}
+.boottext .boot-success {
+  color: #c3ff00;
+  font-weight: bold;
+}
+.boottext .boot-warning {
+  color: yellow;
+  font-weight: bold;
 }
 
 .hidden {
@@ -138,15 +143,6 @@ label {
   margin-left: 50px;
 }
 
-.boottext .boot-error {
-  color: red;
-}
-.boottext .boot-success {
-  color: #c3ff00;
-}
-.boottext .boot-warning {
-  color: yellow;
-}
 /*Clippy styling*/
 .clippy,.clippy-balloon{position:fixed;z-index:1000;cursor:pointer}.clippy-balloon{background:#FFC;color:black;padding:8px;border:1px solid black;border-radius:5px}.clippy-content{max-width:200px;min-width:120px;font-family:"Microsoft Sans",sans-serif;font-size:10pt}.clippy-tip{width:10px;height:16px;background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAgCAMAAAAlvKiEAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAAlQTFRF///MAAAA////52QwgAAAAAN0Uk5T//8A18oNQQAAAGxJREFUeNqs0kEOwCAIRFHn3//QTUU6xMyyxii+jQosrTPkyPEM6IN3FtzIRk1U4dFeKWQiH6pRRowMVKEmvronEynkwj0uZJgR22+YLopPSo9P34wJSamLSU7lSIWLJU7NkNomNlhqxUeAAQC+TQLZyEuJBwAAAABJRU5ErkJggg==)no-repeat;position:absolute}.clippy-top-left .clippy-tip{top:100%;margin-top:0px;left:100%;margin-left:-50px}.clippy-top-right .clippy-tip{top:100%;margin-top:0px;left:0;margin-left:50px;background-position:-10px 0}.clippy-bottom-right .clippy-tip{top:0;margin-top:-16px;left:0;margin-left:50px;background-position:-10px-16px}.clippy-bottom-left .clippy-tip{top:0;margin-top:-16px;left:100%;margin-left:-50px;background-position:0px-16px}
 
@@ -159,6 +155,7 @@ label {
   color: turquoise;
   outline: none;
 }
+
 .bootscreen br {
   font-size: 150%;
 }
