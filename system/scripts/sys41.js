@@ -7,7 +7,7 @@
     dateNav.classList.add("hidden");
   } else {
     sys41.system.boot.set(`WARNING: you are running this on a custom, development, or staging server.<br />
-        please be aware this is not an official release of windows99. <a href='https://itspablo.gitbook.io/windows99/forking/faq#unverified_boot_error' target="_blank"><b>learn more</b></a>`, { icon: "warning" })
+        please be aware this is not an official release of windows99. <a href="//docs.open99.ga/hosting/server" target="_blank"><b>learn more</b></a>`, { icon: "warning" })
   }
   //server
   let servURL
@@ -33,7 +33,7 @@
     sys41.system.boot.set(
       "Protocol: " +
       location.protocol +
-      '<br / >Watch out! The protocol you are using is insecure and therefore many windows99 features will fail to work. <a href="">learn more</a>',
+      '<br / >Watch out! The protocol you are using is insecure and therefore many windows99 features will fail to work. <a href="//docs.open99.ga/hosting/insecure-protocol">learn more</a>',
       { icon: "warning" }
     );
   }
