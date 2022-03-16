@@ -116,16 +116,4 @@
       sys41.user.fs.set("_profile", { accountType: "local", firstTime: true })
     }
   }, 3000);
-
-  (async function animateTitle() {
-    while (true) {
-      let str = document.title;
-      let title = " "
-      for (let i = 0; i < str.length; i++) {
-        title = title.concat(str.charAt(i));
-        document.title = title;
-        await sleep(1000);
-      }
-    }
-  })()
 })()
