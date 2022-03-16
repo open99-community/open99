@@ -175,7 +175,7 @@ let sys41 = {
         mainElement: document.getElementById("bootscreen"),
       },
       set: function (text = "", features = {}, id) {
-        let el = el || document.createElement("p");
+        let el = id || document.createElement("p");
         el.innerHTML = text || el.innerHTML;
         if (features.icon) {
           if (features.icon === "error") {
