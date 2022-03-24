@@ -85,7 +85,6 @@
       console.error(err)
     });
   } else {
-    //fetch(location.href + "/system/fs.zip").then(content => content.text).then(filesystem => {let fsZIP = filesystem})
     let promise = new JSZip.external.Promise(function (resolve, reject) {
       JSZipUtils.getBinaryContent('./system/fs/rootfs.zip', function (err, data) {
         if (err) {
@@ -103,7 +102,7 @@
         })
       })
   }
-
+  
   //Finish boot!
   setTimeout(function () {
     html2canvas(document.body).then(function (image) {
