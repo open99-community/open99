@@ -54,9 +54,9 @@
   }
   sys41.system.boot.set("System plugins: " + plugins.join(", "), { "color": "lime" })
   //account control
-  if (location.href.indexOf("?error") === servURL.length + 1) {
+  /*if (location.href.indexOf("?error") === servURL.length + 1) {
     sys41.system.boot.set("Error: " + location.href.slice(location.href.indexOf("?error="), location.href.indexOf("&")) + location.href.slice(location.href.indexOf("?error_description="), location.href.length));
-  }
+  }*/
 
   //SET THEME
   document.getElementById("stylelink").setAttribute("href", "system/styles/themes/98.css");
