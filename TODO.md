@@ -6,3 +6,4 @@ in no particular order
 - [x] finalize boot add api
 - [x] finalize other boot logging API's
 - [x] create better fs api
+- [ ] make boot logs classes
