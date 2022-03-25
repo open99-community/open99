@@ -8,16 +8,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-      - name: Auto Minify
-        uses: nizarmah/auto-minify@v2.1.1
+      - name: HTML/CSS/JS Minifier
+        uses: docker://devatherock/minify-js:1.0.3
         with:
-          overwrite: false
-          directory: .
-          maxdepth: 9
-      - name: Auto commit minified files
-        uses: stefanzweifel/git-auto-commit-action@v4
-        with:
+          directory: 'src'
           commit_message: "Github Action: Auto Minified JS and CSS files"
           branch: ${{ github.ref }}
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.head_ref }}
