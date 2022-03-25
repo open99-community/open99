@@ -15,7 +15,7 @@
 
 <body class="bug bootscreen">
   <p>Coming soon!</p>
-  <form method="POST">
+  <form data-netlify="true">
     <label>Subject<input type="text" placeholder="Specific icon isn't showing" required></input></label>
     <br />
     <label>Extended description<textarea rows="11" required
@@ -28,7 +28,7 @@
         <label for="specificApp">Specific app</label>
       </div>
       <div class="field-row hidden>
-        <input id="whichApp" list="apps" placeholder="File Explorer"></input>
+        <input id=" whichApp" list="apps" placeholder="File Explorer"></input>
         <label for="whichApp" id="whichApp">Which app, specifically?</label>
         <datalist id="apps">
           <option value="Textedit">
@@ -61,13 +61,8 @@
     <label><input type="checkbox" name="tos" required>I verify that the information above is true and correct, and that
       System41 has the right to block my IP
       Address for immature usage of our services</label>
-    <button>Submit Bug Report</button>
+    <button type="submit">Submit Bug Report</button>
   </form>
-  <div id="scripts">
-    <!-- Third party scripts -->
-    <script src="system/scripts/3party/jquery.js"></script>
-    <script src="system/scripts/3party/localforage.js"></script>
-  </div>
 </body>
 
 </html>
