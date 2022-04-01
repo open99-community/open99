@@ -27,7 +27,7 @@ let sys41 = {
         }
         return sys41.user.fs.get(key)
 
-      }, 
+      },
       delete: async function (key) {
         if (!sys41.user.fs.getItem[key]) {
           return Error("File doesn't exist")
@@ -40,7 +40,7 @@ let sys41 = {
         }
       },
       utils: {
-        "config": async function(){localforage.getItem("_profile")},
+        "config": async function () { localforage.getItem("_profile") },
         "defaultDrive": "C:",
       }
     },
@@ -358,6 +358,79 @@ let sys41 = {
       "pointer": "",
 
     },
+  },
+  window: class {
+    constructor({ title: winTitle, body: winBody, draggable: isDraggable = true } = {}) {
+      this.title = winTitle;
+      this.body = winBody;
+      this.draggable = isDraggable;
+      /* ---- */
+      let win = `
+        <div class="window">
+            <div class="title-bar">
+                <div class="title-bar-text">${winTitle}</div>
+                <div class="title-bar-controls">
+                    <button aria-label="Minimize">
+                    <button aria-label="Maximize">
+                    <button aria-label="Close">
+                </div>
+            </div>
+            <div class="window-body">${winBody}</div>
+        </div>
+        `
+      let newWin = document.body.appendChild(win)
+      if (isDraggable) {
+        let x, y, target = null;
+        newWin.addEventListener('mousedown', function (e) {
+          let clickedDragger = false;
+          if (e.path[i].classList.contains('title-bar')) {
+            clickedDragger = true;
+          }
+          else if (clickedDragger) {
+            target = e.path[i];
+            target.classList.add('dragging');
+            x = e.clientX - target.style.left.slice(0, -2);
+            y = e.clientY - target.style.top.slice(0, -2);
+            return;
+          }
+        });
+
+        newWin.addEventListener('mouseup', function () {
+          if (target !== null) target.classList.remove('dragging');
+          target = null;
+        });
+
+        newWin.addEventListener('mousemove', function (e) {
+          if (target === null) return;
+          target.style.left = e.clientX - x + 'px';
+          target.style.top = e.clientY - y + 'px';
+          let pRect = target.parentElement.getBoundingClientRect();
+          let tgtRect = target.getBoundingClientRect();
+
+          if (tgtRect.left < pRect.left) target.style.left = 0;
+          if (tgtRect.top < pRect.top) target.style.top = 0;
+          if (tgtRect.right > pRect.right) target.style.left = pRect.width - tgtRect.width + 'px';
+          if (tgtRect.bottom > pRect.bottom) target.style.top = pRect.height - tgtRect.height + 'px';
+        });
+      } else {
+        this.draggable = false;
+      }
+      this.element = newWin;
+      return this;
+    }
+    get footer(){
+      return null;
+    }
+    set footer(value){
+      return this;
+    }
+    get title(){
+      return this.newWin.firstChild.firstChild.innerText
+    }
+    set title(value){
+      this.newWin.firstChild.firstChild.innerText = value
+      return this;
+    }
   },
   apiUrl: "https://jacqfjuuakfrhukrzlfu.supabase.co"
 };
