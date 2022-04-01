@@ -9,3 +9,4 @@ in no particular order
 - [ ] make boot logs classes
 - [ ] fix bug with localforage not working
 - [ ] research localStorage
+- [ ] fix pwa not installable for some reason
