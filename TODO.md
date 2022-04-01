@@ -7,3 +7,5 @@ in no particular order
 - [x] finalize other boot logging API's
 - [x] create better fs api
 - [ ] make boot logs classes
+- [ ] fix bug with localforage not working
+- [ ] research localStorage
