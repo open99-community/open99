@@ -359,7 +359,7 @@ let sys41 = {
 
     },
   },
-  window: class {
+  Window: class {
     constructor({ title: winTitle, body: winBody, draggable: isDraggable = true } = {}) {
       this.title = winTitle;
       this.body = winBody;
