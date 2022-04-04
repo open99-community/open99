@@ -425,10 +425,10 @@ let sys41 = {
       return this;
     }
     get title(){
-      return this.newWin.firstChild.firstChild.innerText
+      //return this.newWin.firstChild.firstChild.innerText
     }
     set title(value){
-      this.newWin.firstChild.firstChild.innerText = value
+      //this.newWin.firstChild.firstChild.innerText = value
       return this;
     }
   },
