@@ -169,27 +169,25 @@ let sys41 = {
     set channel(value) { return new Error("modify api file to change channel name.") },
     boot: {
       stopped: false,
-      dom: {
-        mainElement: document.getElementById("boot"),
-      },
+      dom: document.getElementById("boot"),
       set: function (text = "", features = {}, id) {
         let el = id || document.createElement("p");
         el.innerHTML = text || el.innerHTML;
         if (features.icon) {
           if (features.icon === "error") {
             el.innerHTML =
-              `<p class="boot-error"><span><img class="boot-image" alt="error icon" src="system/assets/98/dialog/error.png"></span>` + text + `</p>`;
-            el.classList.add("boot-error");
+              `<p class="error"><span><img class="boot-image" alt="error icon" src="system/assets/98/dialog/error.png"></span>` + text + `</p>`;
+            el.classList.add("error");
           }
           if (features.icon === "success") {
             el.innerHTML =
-              `<p class="boot-success"><span><img class="boot-image" alt="success check" src="system/assets/98/dialog/check.png"></span>` + text + `</p>`;
-            el.classList.add("boot-success");
+              `<p class="success"><span><img class="boot-image" alt="success check" src="system/assets/98/dialog/check.png"></span>` + text + `</p>`;
+            el.classList.add("success");
           }
           if (features.icon === "warning") {
             el.innerHTML =
-              `<p class="boot-warning"><span><img class="boot-image" alt="warning icon" src="system/assets/98/dialog/warning.png"></span>` + text + `</p>`;
-            el.classList.add("boot-success");
+              `<p class="warning"><span><img class="boot-image" alt="warning icon" src="system/assets/98/dialog/warning.png"></span>` + text + `</p>`;
+            el.classList.add("success");
           }
         }
         if (features.blink) {

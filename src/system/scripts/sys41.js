@@ -108,7 +108,7 @@
     html2canvas(document.body).then(function (image) {
       sys41.user.fs.set("/b:/script.png", image.toDataURL)
     })
-    sys41.user.fs.set("/b:/script.html", sys41.system.boot.dom.element.innerHTML)
+    sys41.user.fs.set("/b:/script.html", sys41.system.boot.dom.innerHTML)
     //finish boot
     if (accountExist) {
       sys41.system.boot.finish();
