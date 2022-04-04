@@ -1,3 +1,2 @@
-//windows99 uses supabase for 'local' authentication.
-//when the user is offline, they can choose to sign in anonymously
-//temporarily, anonymous signin is required
+//init client
+let supabase = supabase.createClient('https://jacqfjuuakfrhukrzlfu.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTY0MDQ0NTQ4MiwiZXhwIjoxOTU2MDIxNDgyfQ.AwEAclJjmi9d9aks33thcBMXFLABn4SXo-c85gffKxA')
