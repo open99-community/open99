@@ -156,7 +156,6 @@ let sys41 = {
     get version() {
       fetch("version.txt").then(function (ver) { return ver })
     },
-    set version(value) { return new Error("version " + ver + " cannot be set via api. use version.txt file instead.") },
     get channel() {
       let chan;
       if (location.href === "windows99.vercel.app") {
@@ -171,8 +170,7 @@ let sys41 = {
     boot: {
       stopped: false,
       dom: {
-        element: document.getElementsByClassName("boottext")[0],
-        mainElement: document.getElementById("bootscreen"),
+        mainElement: document.getElementById("boot"),
       },
       set: function (text = "", features = {}, id) {
         let el = id || document.createElement("p");
@@ -201,7 +199,7 @@ let sys41 = {
           el.style.color = features.color
         }
         if (!id) {
-          document.getElementsByClassName("boottext")[0].appendChild(el);
+          document.getElementsByClassName("boot")[0].appendChild(el);
           el.scrollIntoView()
           return el
         } else {
@@ -217,8 +215,8 @@ let sys41 = {
       },
       finish: function () {
         if (sys41.system.boot.bootable) {
-          let bootscreen = document.getElementsByClassName("bootscreen")[0];
-          bootscreen.parentNode.removeChild(bootscreen);
+          let boot = document.getElementsByClassName("boot")[0];
+          boot.parentNode.removeChild(boot);
           let el = document.createElement("div");
           el.classList.add("postboot");
         }
