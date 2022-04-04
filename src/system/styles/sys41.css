@@ -31,15 +31,15 @@ blink {
    top: 10px;
 }
 
-.boot .boot-error {
+.boot .error {
   color: red;
   font-weight: bold;
 }
-.boot .boot-success {
+.boot .success {
   color: #c3ff00;
   font-weight: bold;
 }
-.boot .boot-warning {
+.boot .warning {
   color: yellow;
   font-weight: bold;
 }
