@@ -365,8 +365,7 @@ let sys41 = {
       this.body = winBody;
       this.draggable = isDraggable;
       /* ---- */
-      let win = `
-        <div class="window">
+      let winInner = `
             <div class="title-bar">
                 <div class="title-bar-text">${winTitle}</div>
                 <div class="title-bar-controls">
@@ -376,9 +375,11 @@ let sys41 = {
                 </div>
             </div>
             <div class="window-body">${winBody}</div>
-        </div>
         `
-      let newWin = document.body.appendChild(win)
+      let thing = document.createElement('div')
+      thing.className = "window"
+      thing.innerHTML = winInner
+      let newWin = document.body.appendChild(thing)
       if (isDraggable) {
         let x, y, target = null;
         newWin.addEventListener('mousedown', function (e) {
