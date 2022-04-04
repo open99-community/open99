@@ -445,3 +445,5 @@ const win93apis = [$fs, $window, $prompt, $alert, $io, $url, $form, $confirm, $l
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
+
+window.onbeforeunload = () => {return "Are you sure?"}
