@@ -108,7 +108,6 @@ let sys41 = {
               document.body.innerHTML = `
                 <link rel="stylesheet" href="/system/styles/bs.css">
                 <script>function gohome() {window.location.href='/';}</script>
-    
                 <div onclick="gohome()" onkeydown="gohome()" class="bsod">
                   <span class="title">Fatal error</span>
                   <p>Your computer suffered a fatal error that ocurrs when malicious code runs and removes important parts of the system41 API. You can clear your cache if rebooting doesn't work</p>
@@ -169,7 +168,7 @@ let sys41 = {
     set channel(value) { return new Error("modify api file to change channel name.") },
     boot: {
       stopped: false,
-      dom: document.getElementById("boot"),
+      dom: document.getElementsByClassName("boot")[0],
       set: function (text = "", features = {}, id) {
         let el = id || document.createElement("p");
         el.innerHTML = text || el.innerHTML;
