@@ -10,3 +10,4 @@ in no particular order
 - [ ] fix bug with localforage not working
 - [ ] research localStorage
 - [ ] fix pwa not installable for some reason
+- [ ] make good enough window system
