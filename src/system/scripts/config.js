@@ -380,15 +380,17 @@ let sys41 = {
         let x, y, target = null;
         newWin.addEventListener('mousedown', function (e) {
           let clickedDragger = false;
-          if (e.path[i].classList.contains('title-bar')) {
-            clickedDragger = true;
-          }
-          else if (clickedDragger) {
-            target = e.path[i];
-            target.classList.add('dragging');
-            x = e.clientX - target.style.left.slice(0, -2);
-            y = e.clientY - target.style.top.slice(0, -2);
-            return;
+          for (var i = 0; e.path[i] !== document.body; i++) {
+            if (e.path[i].classList.contains('title-bar')) {
+              clickedDragger = true;
+            }
+            else if (clickedDragger) {
+              target = e.path[i];
+              target.classList.add('dragging');
+              x = e.clientX - target.style.left.slice(0, -2);
+              y = e.clientY - target.style.top.slice(0, -2);
+              return;
+            }
           }
         });
 
@@ -415,16 +417,16 @@ let sys41 = {
       this.element = newWin;
       return this;
     }
-    get footer(){
+    get footer() {
       return null;
     }
-    set footer(value){
+    set footer(value) {
       return this;
     }
-    get title(){
+    get title() {
       //return this.newWin.firstChild.firstChild.innerText
     }
-    set title(value){
+    set title(value) {
       //this.newWin.firstChild.firstChild.innerText = value
       return this;
     }
@@ -446,4 +448,4 @@ function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-window.onbeforeunload = () => {return "Are you sure?"}
+window.onbeforeunload = () => { return "Are you sure?" }
