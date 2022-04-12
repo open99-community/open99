@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="robots" content="noindex">
+        <title>404</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/system/styles/sys41.css">
+        <link rel="stylesheet" href="/system/styles/bs.css">
+        <script>function gohome() {window.location.href='/';}</script>
+        <!-- 
+        
+            ╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋┏┓╋╋┏━┓╋╋╋╋╋╋╋╋╋╋┏┓
+            ╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋┏┛┗┓╋┃┏┛╋╋╋╋╋╋╋╋╋╋┃┃
+            ┏━━┳━━┳━━┳━━┓┏━┓┏━┻┓┏┛┏┛┗┳━━┳┓┏┳━┓┏━┛┃
+            ┃┏┓┃┏┓┃┏┓┃┃━┫┃┏┓┫┏┓┃┃╋┗┓┏┫┏┓┃┃┃┃┏┓┫┏┓┃
+            ┃┗┛┃┏┓┃┗┛┃┃━┫┃┃┃┃┗┛┃┗┓╋┃┃┃┗┛┃┗┛┃┃┃┃┗┛┃
+            ┃┏━┻┛┗┻━┓┣━━┛┗┛┗┻━━┻━┛╋┗┛┗━━┻━━┻┛┗┻━━┛
+            ┃┃╋╋╋╋┏━┛┃
+            ┗┛╋╋╋╋┗━━┛
+        -->
+    </head>
+    <body onkeydown="gohome()" onclick="gohome()" class="bsod">
+        <span class="title" id="url">ERROR 404</span>
+        <p>The page you're attempting to visit no longer exists or never was written. You can wait and see if it becomes available again, or<br />you can reboot your system. </p>
+        <p>&bull; Press CTRL+ALT+DEL to reboot your computer - You will<br /> &nbsp; lose any unsaved information in any programs that are running.</p>
+        <p>&bull; <a onclick="location.assign('/bugs')" style="cursor: url('/system/cursors/pointer.cur'), pointer">Click here to report a bug or a missing page</a></p>
+        <a href="/">Press any key to reboot <blink>_</blink></a>
+        <script>document.getElementById("url").innerHTML = `ERROR 404 - ` + location.pathname;</script>
+    </body>
+</html>
