@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>REPORT ERROR</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Stylesheets -->
+  <link rel="stylesheet" id="stylelink" href="../system/styles/themes/98.css">
+  <link rel="stylesheet" href="../system/styles/sys41.css">
+  <!-- Scripts -->
+  <script src="bugs/bug.js"></script>
+</head>
+
+<body class="bug">
+  <p>Coming soon!</p>
+  <form data-netlify="true">
+    <label>Subject<input type="text" placeholder="Specific icon isn't showing" required></input></label>
+    <br />
+    <label>Extended description<textarea rows="11" required
+        placeholder="After boot, I opened My Computer and for some reason the top icon in the status bar was..."></textarea></label>
+    <br />
+    <fieldset>
+      <legend>Where did this occur?</legend>
+      <div class="field-row">
+        <input id="specificApp" type="radio" name="whereOccur" onclick="whereOccurSpecificApp()">
+        <label for="specificApp">Specific app</label>
+      </div>
+      <div class="field-row hidden>
+        <input id=" whichApp" list="apps" placeholder="File Explorer"></input>
+        <label for="whichApp" id="whichApp">Which app, specifically?</label>
+        <datalist id="apps">
+          <option value="Textedit">
+          <option value="Terminal">
+          <option value="App Store/Package Manager">
+          <option value="Calculator">
+          <option value="Internet">
+          <option value="File Explorer">
+          <option value="Wiki">
+          <option value="Settings/Control Panel">
+        </datalist>
+      </div>
+      <div class="field-row">
+        <input id="whereOccurBoot" name="whereOccur" type="radio" value="boot">
+        <label for="whereOccurBoot">Boot</label>
+      </div>
+      <div class="field-row">
+        <input id="whereOccurStart" name="whereOccur" type="radio" value="start">
+        <label for="whereOccurStart">Start menu</label>
+      </div>
+      <div class="field-row">
+        <input id="whereOccurOther" name="whereOccur" type="radio" value="other">
+        <label for="whereOccurOther">Other</label>
+      </div>
+      <div class="field-row hidden">
+        <input id="otherDescribeWhere" type="text" name="Other describe">
+        <label for="otherDescribeWhere">Please explain.</label>
+      </div>
+    </fieldset>
+    <label><input type="checkbox" name="tos" required>I verify that the information above is true and correct, and that
+      System41 has the right to block my IP
+      Address for immature usage of our services</label>
+    <button type="submit">Submit Bug Report</button>
+  </form>
+</body>
+
+</html>
