@@ -61,8 +61,7 @@
     <button onclick="
     (async function(){let { user, error } = supa.auth.signIn({provider: 'github'})})">
         Sign in with Github</button>
-    <button onclick="
-    (async function(){let { user, error } = supa.auth.signIn({provider: 'google'})})">
+    <button onclick="supa.auth.signIn({provider: 'google'})">
         Sign in with Google</button>
 </body>
 
