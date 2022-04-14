@@ -30,11 +30,10 @@
     <label for="passwordSignup">Password</label>
     <input id="passwordSignup">
     <button onclick="
-    (async function(){
-    let { user, error } = await supa.auth.signUp({
+    supa.auth.signUp({
         email: document.getElementById('emailSignup').value,
         password: document.getElementById('passwordSignup').value
-    })})()
+    })
     ">sign up</button>
     <hr>
     <h2>Log in</h2>
@@ -45,21 +44,17 @@
     <label for="passwordLogin">Password</label>
     <input id="passwordLogin">
     <button onclick="
-    (async function(){
-    let { user, error } = await supa.auth.signUp({
+    supa.auth.signUp({
         email: document.getElementById('emailLogin').value,
         password: document.getElementById('passwordLogin').value
-    })})()
+    })
     ">log in</button>
     <hr />
     <h2>Log out</h2>
-    <button onclick="
-    (async function(){let { error } = await supa.auth.signOut()})
-    ">Logout</button>
+    <button onclick="supa.auth.signOut()">Logout</button>
     <hr />
     <h2>Third-parties</h2>
-    <button onclick="
-    (async function(){let { user, error } = supa.auth.signIn({provider: 'github'})})">
+    <button onclick="supa.auth.signIn({provider: 'github'})">
         Sign in with Github</button>
     <button onclick="supa.auth.signIn({provider: 'google'})">
         Sign in with Google</button>
