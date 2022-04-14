@@ -1,5 +1,5 @@
 # windows99
-![Vercel status](https://therealsujitk-vercel-badge.vercel.app/?app=windows99)  
+
 ## About
 Windows99 is an open-sourced Web OS, similar to Windows93 or Windows96. It is based on the System41 open99 project, and   
 ### Projects
