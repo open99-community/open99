@@ -8,7 +8,7 @@
         let SUPABASE_KEY =
             'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTY0MDQ0NTQ4MiwiZXhwIjoxOTU2MDIxNDgyfQ.AwEAclJjmi9d9aks33thcBMXFLABn4SXo-c85gffKxA'
 
-        supabase.createClient(SUPABASE_URL, SUPABASE_KEY)
+        let supa = supabase.createClient(SUPABASE_URL, SUPABASE_KEY)
     </script>
     <style>
         * {
@@ -31,7 +31,7 @@
     <input id="passwordSignup">
     <button onclick="
     (async function(){
-    let { user, error } = await supabase.auth.signUp({
+    let { user, error } = await supa.auth.signUp({
         email: document.getElementById('emailSignup').value,
         password: document.getElementById('passwordSignup').value
     })})()
@@ -46,7 +46,7 @@
     <input id="passwordLogin">
     <button onclick="
     (async function(){
-    let { user, error } = await supabase.auth.signUp({
+    let { user, error } = await supa.auth.signUp({
         email: document.getElementById('emailLogin').value,
         password: document.getElementById('passwordLogin').value
     })})()
@@ -54,15 +54,15 @@
     <hr />
     <h2>Log out</h2>
     <button onclick="
-    (async function(){let { error } = await supabase.auth.signOut()})
+    (async function(){let { error } = await supa.auth.signOut()})
     ">Logout</button>
     <hr />
     <h2>Third-parties</h2>
     <button onclick="
-    (async function(){let { user, error } = supabase.auth.signIn({provider: 'github'})})">
+    (async function(){let { user, error } = supa.auth.signIn({provider: 'github'})})">
         Sign in with Github</button>
     <button onclick="
-    (async function(){let { user, error } = supabase.auth.signIn({provider: 'google'})})">
+    (async function(){let { user, error } = supa.auth.signIn({provider: 'google'})})">
         Sign in with Google</button>
 </body>
 
