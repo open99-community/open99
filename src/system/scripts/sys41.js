@@ -105,8 +105,8 @@
   
   //Finish boot!
   setTimeout(function () {
-    html2canvas(document.body).then(function (image) {
-      sys41.user.fs.set("/b:/script.png", image.toDataURL)
+    html2canvas(document.body).then(image => {
+      sys41.user.fs.set("/b:/script.png", image.toDataURL())
     })
     sys41.user.fs.set("/b:/script.html", sys41.system.boot.dom.innerHTML)
     //finish boot
