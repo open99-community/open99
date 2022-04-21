@@ -52,6 +52,7 @@ blink {
 .boot p {
   width: 70%;
   padding-left: 15px;
+  line-height: 15px;
 }
 
 .boot .error {
