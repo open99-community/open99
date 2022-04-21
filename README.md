@@ -1,34 +1,47 @@
-# windows99
+# open99
 
 ## About
-Windows99 is an open-sourced Web OS, similar to Windows93 or Windows96. It is based on the System41 open99 project, and   
+open99 is an open-sourced Web OS, similar to Windows93 or Windows96. It is based on the System41 open99 project, and   
 ### Projects
 | Project                                                                         | Short description                                  |
 |---------------------------------------------------------------------------------|----------------------------------------------------|
-| [windows99](https://github.com/its-pablo/windows99)                             | Frontend code for Windows 99. Main repository      |
-| [windows99-signup-screen](https://github.com/its-pablo/windows99-signup-screen) | Standalone signup and config screen for Windows 99 |
+| [open99](https://github.com/system41/open99)                             | Frontend code for open99. Main repository      |
 
 ### Links
-* Windows 99
-  * [Live (stable)](https://windows99.vercel.app)
-  * [Live (development)](https://windows99dev.vercel.app)
-  * [Github](https://github.com/its-pablo/windows99)
-  * [Vercel overview](https://vercel.com/its-pablo/windows99)
-* Windows 99 standalone signup screen
-  * [Github](https://github.com/its-pablo/windows99-signup-screen)
-  * [Live](https://windows99-signup-screen.vercel.app)
-  * [Vercel overview](https://vercel.com/its-pablo/windows99-signup-screen)
-#### Windows 99 Stable
-* [Live (stable)](https://windows99.vercel.app)
-* [Live (development)](https://windows99dev.vercel.app)
-* [Github](https://github.com/its-pablo/windows99)
-* [Vercel overview](https://vercel.com/its-pablo/windows99)  
-windows99.vercel.app is the main Windows 99 site. It is completely stable, with no bugs, and is the channel you should usually use. windows99dev.vercel.app, on the other hand, is completely unstable and filled with bugs - development happens **directly on it**. Refrain from using our development server. Windows 99 is served and hosted using Vercel. Our Vercel overview is only meant for administrators to view (for now), so most of the general public cannot access this portal.
-#### Windows 99 standalone signup screen
-* [Github](https://github.com/its-pablo/windows99-signup-screen)
-* [Live](https://windows99-signup-screen.vercel.app)  
-* [Vercel overview](https://vercel.com/its-pablo/windows99-signup-screen)  
-This is the open-sourced setup screen end users view when first booting Windows 99. It does not synchronize directly with Windows 99 itself - all changes made on `windows99-signup-screen` must be reviewed manually and merged via a pull request.  
+| Project                                                                         | Short description                                  |
+|---------------------------------------------------------------------------------|----------------------------------------------------|
+| [open99](https://github.com/system41/open99)                                    | Frontend code for open99. Main repository          |
+| [open99-plugin](https://github.com/system41/open99-plugin)                      | Plugin (JS) for open99 apps                        |
+| [99captcha](https://github.com/system41/99captcha)                              | Funny reCAPTCHA alternative for open99             |
+| [open99-apps](https://github.com/system41/open99-apps)                          | Base repo for applications' source code            |
+
+### Links
+* open99
+  * [Github](https://github.com/system41/open99)
+  * [Live](https://open99.ga)
+* open99 plugin
+  * [Github](https://github.com/system41/open99-plugin)
+  * [Live](https://system41.github.io/open99-plugin)
+* 99captcha
+  * [Github](https://github.com/system41/99captcha)
+  * [Live](https://captcha.open99.ga/)
+* open99-apps
+  * [Github](https://github.com/system41/open99-apps)
+#### open99
+* [Github](https://github.com/system41/open99)  
+* [Live](https://open99.ga) (coming soon)  
+open99.ga is the main open99 project. It is completely stable, with no bugs, and is the channel you should usually use. open99 is served and hosted using Netlify.  
+#### open99 plugin
+* [Github](https://github.com/system41/open99-plugin)
+* [Live](https://system41.github.io/open99-plugin)
+This plugin (script) should be used for all open99 applications planning on being entered into the Package Manager/App Store (coming soon!) unless it does not fit the general theme of the application - exceptions are made.
+#### 99captcha
+* [Github](https://github.com/system41/99captcha)
+* [Live](https://captcha.open99.ga/)
+This funny captcha parody is soon to be the main captcha used in forms (signup, bugs). Once open99 reaches a large amount of visitors, Google Recaptcha will be used and the `99captcha` repository will be archived.
+#### open99-apps
+* [Github](https://github.com/system41/99captcha)
+open99-apps is where the source code is stored for all applications in open99.
 ---
 ## Contributing
 Please read the contributing guidelines [here](CONTRIBUTING.md). If you make a mistake and you don't read the contributing guidelines, you are subject to a ban from this repository. Please - try to keep contributions clean. When writing a commit message, make sure to add some sort of commit message. It can be vague
@@ -36,5 +49,5 @@ Please read the contributing guidelines [here](CONTRIBUTING.md). If you make a m
 * Complete login component ('local login, for the webOS') that uses firebase. If the user does not have an internet connection, they may choose to not login, which is the same thing as logging in anonymously - which technically still gives them a firebase login ID. In other words, users have to log in whether they like it or not.
 * Support for adding multiple drives (up to 26)
    * As well as using the filesystem API
-* A ROFS which is just the windows99 root files - we still cannot make this because it would have to be manual, because I do not know nor have the time to write a web scraping script. Feel free to contribute this, though!
+* A ROFS which is just the open99 root files - we still cannot make this because it would have to be manual, because I do not know nor have the time to write a web scraping script. Feel free to contribute this, though!
 * Boot scripts and styles

@@ -1,6 +1,6 @@
 # `system/assets/98`
 
-This directory houses all of the system and file assets used in windows99's 98 theme.
+This directory houses all of the system and file assets used in open99's 98 theme.
 ## Rundown
 * `device`: icons for device utilities
 * `directory`: icons for folders
