@@ -157,9 +157,9 @@ let sys41 = {
     },
     get channel() {
       let chan;
-      if (location.href === "windows99.vercel.app") {
+      if (location.href === "https://open99.ga") {
         chan = "main"
-      } else if (location.href === "windows99dev.vercel.app") {
+      } else if (location.href === "https://dev.open99.ga") {
         chan = "devel"
       } else {
         chan = "custom"
@@ -229,7 +229,7 @@ let sys41 = {
       current: null,
       win7: {
         url: "system/styles/themes/7.css",
-        abt: "Standard Windows 7 theme. Comes with windows99",
+        abt: "Standard Windows 7 theme. Comes with open99",
         current: false,
         name: "Windows 7",
         img: null,
@@ -241,7 +241,7 @@ let sys41 = {
       },
       win98: {
         url: "system/styles/themes/98.css",
-        abt: "Standard Windows 98 theme. Comes with windows99 and is the default theme on first boot",
+        abt: "Standard Windows 98 theme. Comes with open99 and is the default theme on first boot",
         current: true,
         name: "Windows 98",
         img: null,
@@ -253,7 +253,7 @@ let sys41 = {
       },
       winxp: {
         url: "system/styles/themes/xp.css",
-        abt: "Standard Windows XP theme. Comes with windows99",
+        abt: "Standard Windows XP theme. Comes with open99",
         current: false,
         name: "Windows XP",
         img: null,
