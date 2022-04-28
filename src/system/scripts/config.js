@@ -103,7 +103,7 @@ let sys41 = {
   fs: {
     get: async function (key) {
       if (key[1] !== ":" && key[0] === "/") {
-        return localforage.removeItem(sys41.user.fs.utils.defaultDrive + "/" + key)
+        return localforage.removeItem(sys41.fs.utils.defaultDrive + "/" + key)
       } else if (key[1 || 2] === ":") {
         return localforage.getItem(key)
       } else {
@@ -112,20 +112,20 @@ let sys41 = {
     },
     set: async function (key, value) {
       if (key[1] !== ":" && key[0] === "/") {
-        localforage.setItem(sys41.user.fs.utils.defaultDrive + "/" + key, value)
+        localforage.setItem(sys41.fs.utils.defaultDrive + "/" + key, value)
       } else if (key[1] === ":" && key[0] !== "/") {
         localforage.setItem(key, value)
       } else {
         return new Error("Not valid format, check docs")
       }
-      return sys41.user.fs.get(key)
+      return sys41.fs.get(key)
 
     },
     delete: async function (key) {
-      if (!sys41.user.fs.getItem[key]) {
+      if (!sys41.fs.getItem[key]) {
         return Error("File doesn't exist")
       } else if (key[1] !== ":" && key[0] === "/") {
-        localforage.removeItem(sys41.user.fs.utils.defaultDrive + "/" + key, value)
+        localforage.removeItem(sys41.fs.utils.defaultDrive + "/" + key, value)
       } else if (key[1] === ":" && key[0] !== "/") {
         localforage.removeItem(key, value)
       } else {
@@ -439,7 +439,7 @@ let sys41 = {
   }
 };
 
-const $fs = sys41.user.fs;
+const $fs = sys41.fs;
 const $window = sys41.system.createWindow;
 const $prompt = null;
 const $alert = null;

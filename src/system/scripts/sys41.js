@@ -76,10 +76,10 @@
   })
   if (accountExist) {
     localforage.iterate(function (value, key, iterationNumber) {
-      sys41.user.fs.set(key, value)
+      sys41.fs.set(key, value)
       sys41.system.boot.set("Extracted " + key, { "color": "yellow" })
     }).then(function () {
-      sys41.system.boot.set('File iteration has completed. localforage files are now on sys41.user.fs.files');
+      sys41.system.boot.set('File iteration has completed. localforage files are now on sys41.fs.files');
     }).catch(function (err) {
       sys41.system.boot.set(err, { "icon": "error", "blink": true });
       console.error(err)
@@ -105,14 +105,14 @@
 
 
   html2canvas(document.body).then(image => {
-    sys41.user.fs.set("/b:/script.png", image.toDataURL())
+    sys41.fs.set("/b:/script.png", image.toDataURL())
   })
-  sys41.user.fs.set("/b:/script.html", sys41.dom.boot.innerHTML)
+  sys41.fs.set("/b:/script.html", sys41.dom.boot.innerHTML)
   //finish boot
   if (accountExist) {
     sys41.system.boot.finish();
   } else {
-    sys41.user.fs.set("_profile", { accountType: "local", firstTime: true })
+    sys41.fs.set("_profile", { accountType: "local", firstTime: true })
   }
 
   /* ------------------ Post boot */
