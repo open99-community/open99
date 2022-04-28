@@ -2,7 +2,7 @@
   sys41.system.boot.set(`
     system41 presents <a class="rainbow-text">open99</a> version 0.4 (official.dev)`)
   let dateNav = sys41.system.boot.set(
-    `booting on ` + Date() + `<br />in ` + sys41.user.profile.data.navigator + `<br />`)
+    `booting on ` + Date() + `<br />in ` + window.navigator.userAgent + `<br />`)
   if (location.href === "https://open99.ga") {
     dateNav.classList.add("hidden");
   } else {
