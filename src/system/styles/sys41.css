@@ -214,6 +214,7 @@ label {
   margin-left: -50px;
   background-position: 0px-16px
 }
+
 /************************************************************/
 
 .boot .boot-image {
@@ -230,4 +231,13 @@ label {
 
 .boot br {
   font-size: 150%;
+}
+
+#tskbar {
+  width: 100vw;
+  position: fixed;
+  bottom: 0%;
+  overflow: hidden;
+  left: 0%;
+  background-color: gainsboro;
 }

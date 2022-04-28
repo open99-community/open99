@@ -19,9 +19,9 @@ const ASSETS = [
   "system/styles/themes/xp.css"
 ]
 
-self.addEventListener('install', function(event) {
+self.addEventListener('install', event => {
   event.waitUntil(
-    caches.open('main').then(function(cache) {
+    caches.open('main').then(cache => {
       return cache.addAll(ASSETS);
     })
   );
