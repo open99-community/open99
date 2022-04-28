@@ -1,4 +1,4 @@
-(function () {
+(() => {
   sys41.system.boot.set(`
     system41 presents <a class="rainbow-text">open99</a> version 0.4 (official.dev)`)
   let dateNav = sys41.system.boot.set(
@@ -89,7 +89,7 @@
       JSZipUtils.getBinaryContent('./system/fs/rootfs.zip', function (err, data) {
         if (err) {
           reject(err);
-          sys41.system.boot.set(err, {'error': true})
+          sys41.system.boot.set(err, { 'error': true })
         } else {
           resolve(data);
         }
@@ -102,18 +102,32 @@
         })
       })
   }
-  
-  //Finish boot!
-  setTimeout(function () {
-    html2canvas(document.body).then(image => {
-      sys41.user.fs.set("/b:/script.png", image.toDataURL())
-    })
-    sys41.user.fs.set("/b:/script.html", sys41.system.boot.dom.innerHTML)
-    //finish boot
-    if (accountExist) {
-      sys41.system.boot.finish();
-    } else {
-      sys41.user.fs.set("_profile", { accountType: "local", firstTime: true })
-    }
-  }, 3000);
+
+
+  html2canvas(document.body).then(image => {
+    sys41.user.fs.set("/b:/script.png", image.toDataURL())
+  })
+  sys41.user.fs.set("/b:/script.html", sys41.dom.boot.innerHTML)
+  //finish boot
+  if (accountExist) {
+    sys41.system.boot.finish();
+  } else {
+    sys41.user.fs.set("_profile", { accountType: "local", firstTime: true })
+  }
+
+  /* ------------------ Post boot */
+  sys41.dom.boot.remove()
+  let dsktop = document.createElement("div")
+  dsktop.id = "dsktop"
+  document.body.appendChild(dsktop)
+
+  let tskbar = document.createElement("div")
+  tskbar.id = "tskbar"
+  dsktop.appendChild(tskbar)
+  let startbtn = document.createElement("button")
+  startbtn.innerHTML = 
+  `
+  <img src="/system/assets/98/system/img/open99-16.png" /><b>Start</b>
+  `
+  tskbar.appendChild(startbtn)
 })()

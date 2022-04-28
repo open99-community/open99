@@ -7,43 +7,6 @@ const uid = new ShortUniqueId({ length: 10 });
 })();
 let sys41 = {
   user: {
-    fs: {
-      get: async function (key) {
-        if (key[1] !== ":" && key[0] === "/") {
-          return localforage.removeItem(sys41.user.fs.utils.defaultDrive + "/" + key)
-        } else if (key[1] === ":" && key[0] !== "/") {
-          return localforage.getItem(key)
-        } else {
-          return new Error("Not valid format, check docs")
-        }
-      },
-      set: async function (key, value) {
-        if (key[1] !== ":" && key[0] === "/") {
-          localforage.setItem(sys41.user.fs.utils.defaultDrive + "/" + key, value)
-        } else if (key[1] === ":" && key[0] !== "/") {
-          localforage.setItem(key, value)
-        } else {
-          return new Error("Not valid format, check docs")
-        }
-        return sys41.user.fs.get(key)
-
-      },
-      delete: async function (key) {
-        if (!sys41.user.fs.getItem[key]) {
-          return Error("File doesn't exist")
-        } else if (key[1] !== ":" && key[0] === "/") {
-          localforage.removeItem(sys41.user.fs.utils.defaultDrive + "/" + key, value)
-        } else if (key[1] === ":" && key[0] !== "/") {
-          localforage.removeItem(key, value)
-        } else {
-          return new Error("Not valid format, check docs")
-        }
-      },
-      utils: {
-        "config": async function () { localforage.getItem("_profile") },
-        "defaultDrive": "C:",
-      }
-    },
     appAddress: "",
     apps: [
       {
@@ -135,21 +98,49 @@ let sys41 = {
       },
       email: null,
       firstTime: null,
-      data: {
-        webAPI: {/*
-          indexeddb: webfs.INDEXEDDB,
-          webSQL: webfs.WEBSQL,
-          localStorage: webfs.LOCALSTORAGE,*/ //webfs is undefined
-        },
-        platform: {
-          name: platform.name,
-          version: platform.version,
-          os: platform.os,
-          description: platform.description,
-          userAgent: platform.ua
-        }
+    },
+  },
+  fs: {
+    get: async function (key) {
+      if (key[1] !== ":" && key[0] === "/") {
+        return localforage.removeItem(sys41.user.fs.utils.defaultDrive + "/" + key)
+      } else if (key[1 || 2] === ":") {
+        return localforage.getItem(key)
+      } else {
+        return new Error("Not valid format, check docs")
       }
     },
+    set: async function (key, value) {
+      if (key[1] !== ":" && key[0] === "/") {
+        localforage.setItem(sys41.user.fs.utils.defaultDrive + "/" + key, value)
+      } else if (key[1] === ":" && key[0] !== "/") {
+        localforage.setItem(key, value)
+      } else {
+        return new Error("Not valid format, check docs")
+      }
+      return sys41.user.fs.get(key)
+
+    },
+    delete: async function (key) {
+      if (!sys41.user.fs.getItem[key]) {
+        return Error("File doesn't exist")
+      } else if (key[1] !== ":" && key[0] === "/") {
+        localforage.removeItem(sys41.user.fs.utils.defaultDrive + "/" + key, value)
+      } else if (key[1] === ":" && key[0] !== "/") {
+        localforage.removeItem(key, value)
+      } else {
+        return new Error("Not valid format, check docs")
+      }
+    },
+    utils: {
+      "config": async function () { localforage.getItem("_profile") },
+      "defaultDrive": "C:",
+    }
+  },
+  dom: {
+    boot: document.getElementsByClassName("boot")[0],
+    desktop: document.getElementById("dsktop"),
+    taskbar: document.getElementById("tskbar"),
   },
   system: {
     get version() {
@@ -168,7 +159,6 @@ let sys41 = {
     set channel(value) { return new Error("modify api file to change channel name.") },
     boot: {
       stopped: false,
-      dom: document.getElementsByClassName("boot")[0],
       set: function (text = "", features = {}, id) {
         let el = id || document.createElement("p");
         el.innerHTML = text || el.innerHTML;
@@ -355,10 +345,23 @@ let sys41 = {
     },
   },
   Window: class {
-    constructor({ title: winTitle, body: winBody, draggable: isDraggable = true } = {}) {
+    constructor({ title: winTitle = "", body: winBody = "", draggable: isDraggable = true, dockable: isDockable = true, icon: icon,} = {}) {
       this.title = winTitle;
       this.body = winBody;
       this.draggable = isDraggable;
+      if (isDockable) {
+        let dckthing = document.createElement("button")
+        dckthing.innerHTML = 
+        `
+        <img src="${icon}"><p>${title}</p>
+        `
+        sys41.dom.tskbar.appendChild(dckthing)
+        this.dockitem = dckthing
+      } else {
+        this.dockable = false
+      }
+      sys41.dom.dsktop.style.cursor = "wait"
+      sys41.dom.tskbar.style.cursor = "wait"
       /* ---- */
       let winInner = `
             <div class="title-bar">
@@ -413,7 +416,7 @@ let sys41 = {
       } else {
         this.draggable = false;
       }
-      this.element = newWin;
+      this.el = newWin;
       return this;
     }
     get footer() {
@@ -423,14 +426,17 @@ let sys41 = {
       return this;
     }
     get title() {
-      //return this.newWin.firstChild.firstChild.innerText
+      return this.el.firstChild.firstChild.innerText
     }
     set title(value) {
-      //this.newWin.firstChild.firstChild.innerText = value
+      this.el.firstChild.firstChild.innerText = value
       return this;
     }
-  },
-  apiUrl: "https://jacqfjuuakfrhukrzlfu.supabase.co"
+    close() {
+      this.el.remove()
+      this.dockitem.remove()
+    }
+  }
 };
 
 const $fs = sys41.user.fs;
