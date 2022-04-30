@@ -241,3 +241,7 @@ label {
   left: 0%;
   background-color: gainsboro;
 }
+
+#tskbar button > img{
+  vertical-align: middle;
+}
