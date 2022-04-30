@@ -103,7 +103,8 @@ let sys41 = {
   fs: {
     get: async function (key) {
       if (key[1] !== ":" && key[0] === "/") {
-        return localforage.removeItem(sys41.fs.utils.defaultDrive + "/" + key)
+        
+      return new sys41.fs._File(sys41.fs.utils.defaultDrive + "/" + key)
       } else if (key[1 || 2] === ":") {
         return localforage.getItem(key)
       } else {
@@ -115,11 +116,11 @@ let sys41 = {
         localforage.setItem(sys41.fs.utils.defaultDrive + "/" + key, value)
       } else if (key[1] === ":" && key[0] !== "/") {
         localforage.setItem(key, value)
+        continue;
       } else {
         return new Error("Not valid format, check docs")
       }
-      return sys41.fs.get(key)
-
+      return new sys41.fs._File(key, value)
     },
     delete: async function (key) {
       if (!sys41.fs.getItem[key]) {
@@ -131,10 +132,23 @@ let sys41 = {
       } else {
         return new Error("Not valid format, check docs")
       }
+      return true;
     },
     utils: {
-      "config": async function () { localforage.getItem("_profile") },
-      "defaultDrive": "C:",
+      "config": async function () { await localforage.getItem("_profile") },
+      "defaultDrive": "C:/",
+    },
+    _File: class {
+      constructor(path, content = localforage.getItem(path)){ /* I don't want developers handling this class, EVER. this should only be an internal
+      thing used by sys41.fs.* apis. In fact, the entire reason this isn't in the sys41.fs.set and sys41.fs.get functions is because of the DRY principle*/
+        this.path = path
+        this.content = content
+        this.hasContent = !!content
+        this.drive = path.slice(0,3)
+        this.ext = null
+        this.mime = null
+        this.icon = null
+      }
     }
   },
   dom: {

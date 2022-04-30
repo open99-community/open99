@@ -103,7 +103,6 @@
       })
   }
 
-
   html2canvas(document.body).then(image => {
     sys41.fs.set("/b:/script.png", image.toDataURL())
   })
@@ -114,6 +113,8 @@
   } else {
     sys41.fs.set("_profile", { accountType: "local", firstTime: true })
   }
+
+  //sleep(3000)
 
   /* ------------------ Post boot */
   sys41.dom.boot.remove()
