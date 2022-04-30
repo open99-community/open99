@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+
+<head>
+    <style>
+        html {
+            left: 50%
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Contribute to open99</h1>
+    <p>We have a couple people in mind who we wouldn't mind working on the open99 project. <br>
+        Check if you're included by entering your discord username#tag.
+    </p>
+    <input id="input" placeholder="wumpus#0000">
+    <p id="success"></p>
+    <button id="checker">Check now!</button>
+    <!---->
+    <script src="https://unpkg.com/@supabase/supabase-js"></script>
+    <script>
+        let SUPABASE_URL = 'https://jacqfjuuakfrhukrzlfu.supabase.co'
+        let SUPABASE_KEY =
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTY0MDQ0NTQ4MiwiZXhwIjoxOTU2MDIxNDgyfQ.AwEAclJjmi9d9aks33thcBMXFLABn4SXo-c85gffKxA'
+        let supa = supabase.createClient(SUPABASE_URL, SUPABASE_KEY)
+        /////
+        let btn = document.getElementById("checker")
+        let inp = document.getElementById("input")
+        let suc = document.getElementById("success")
+        btn.addEventListener("click", () => {
+            if(inp.value == await supa.from('contrib_discord').select('tag')){
+                suc.innerText = "Congrats, you're on the list! Message its-pablo#4477 on discord."
+            } else {
+                suc.innerText = "Sorry, you're not on the list."
+            }
+        })
+    </script>
+</body>
+
+</html>
