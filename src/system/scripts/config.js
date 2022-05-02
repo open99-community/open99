@@ -158,7 +158,9 @@ let sys41 = {
   },
   system: {
     get version() {
-      fetch("version.txt").then(function (ver) { return ver })
+      let gg;
+      fetch("version.txt").then(function (ver) { ver.text() }).then(data => {data = gg})
+      return gg;
     },
     get channel() {
       let chan;
