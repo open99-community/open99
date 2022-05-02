@@ -30,7 +30,7 @@
         let suc = document.getElementById("success")
         btn.addEventListener("click", () => {
             let val = await supa.from('contrib_discord').select('tag')
-            alert(val)
+            alert(JSON.stringify(val))
             if(inp.value == await supa.from('contrib_discord').select('tag')){
                 suc.innerText = "Congrats, you're on the list! Message its-pablo#4477 on discord."
             } else {
