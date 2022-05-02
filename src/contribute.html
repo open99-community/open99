@@ -17,7 +17,7 @@
     <input id="input" placeholder="wumpus#0000">
     <p id="success"></p>
     <button id="checker">Check now!</button>
-    <!---->
+    <!-- supabase, a firebase alternative (even though google rocks) -->
     <script src="https://unpkg.com/@supabase/supabase-js"></script>
     <script>
         let SUPABASE_URL = 'https://jacqfjuuakfrhukrzlfu.supabase.co'
@@ -29,6 +29,8 @@
         let inp = document.getElementById("input")
         let suc = document.getElementById("success")
         btn.addEventListener("click", () => {
+            let val = await supa.from('contrib_discord').select('tag')
+            alert(val)
             if(inp.value == await supa.from('contrib_discord').select('tag')){
                 suc.innerText = "Congrats, you're on the list! Message its-pablo#4477 on discord."
             } else {
