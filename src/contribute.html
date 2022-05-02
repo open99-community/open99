@@ -7,11 +7,12 @@
             left: 50%
         }
     </style>
+    <title>Contribute to open99</title>
 </head>
 
 <body>
     <h1>Contribute to open99</h1>
-    <p>We have a couple people in mind who we wouldn't mind working on the open99 project. <br>
+    <p>System41 gives full source code access to people who want to work on the project and that are trusted. Enter your username <br>
         Check if you're included by entering your discord username#tag.
     </p>
     <input id="input" placeholder="wumpus#0000">
@@ -31,7 +32,7 @@
         btn.addEventListener("click", () => {
             let val = await supa.from('contrib_discord').select('tag')
             alert(JSON.stringify(val))
-            if(inp.value == await supa.from('contrib_discord').select('tag')){
+            if(inp.value == val){
                 suc.innerText = "Congrats, you're on the list! Message its-pablo#4477 on discord."
             } else {
                 suc.innerText = "Sorry, you're not on the list."
