@@ -116,7 +116,6 @@ let sys41 = {
         localforage.setItem(sys41.fs.utils.defaultDrive + "/" + key, value)
       } else if (key[1] === ":" && key[0] !== "/") {
         localforage.setItem(key, value)
-        continue;
       } else {
         return new Error("Not valid format, check docs")
       }
