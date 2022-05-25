@@ -168,10 +168,10 @@ let sys41 = {
       } else if (location.href === "https://dev.open99.ga") {
         chan = "devel"
       } else {
-        chan = "custom"
+        chan = "illegal"
       }
+      return chan
     },
-    set channel(value) { return new Error("modify api file to change channel name.") },
     boot: {
       stopped: false,
       set: function (text = "", features = {}, id) {

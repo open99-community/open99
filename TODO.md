@@ -17,3 +17,5 @@ in no particular order
 - [ ] *it is impossible* to cache all of the app files into the fs. consider moving open99-apps/src to system/applications or system/apps and reserve open99-apps for community-made apps. This way, the service worker will cache them.
 - [x] make File class and add utilities to it - this way, sys41.fs api will return a new File instance with the file
 - [ ] make my own drag and drop thing for the window
+- [ ] make a .d.ts file (i really need to do this)
+- [ ] merge config.js and sys41.js
