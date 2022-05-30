@@ -315,6 +315,7 @@ let sys41 = {
     removeWindow: function () {
       return;
     },
+    settings: {}
   },
   ui: {
     createProgBar: function (element, features) {
