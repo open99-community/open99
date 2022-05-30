@@ -49,5 +49,5 @@ Please read the contributing guidelines [here](CONTRIBUTING.md). If you make a m
 * Complete login component ('local login, for the webOS') that uses firebase. If the user does not have an internet connection, they may choose to not login, which is the same thing as logging in anonymously - which technically still gives them a firebase login ID. In other words, users have to log in whether they like it or not.
 * Support for adding multiple drives (up to 26)
    * As well as using the filesystem API
-* A ROFS which is just the open99 root files - we still cannot make this because it would have to be manual, because I do not know nor have the time to write a web scraping script. Feel free to contribute this, though!
+* [done] A ROFS which is just the open99 root files - still a work in progress, but this is done with dir2json
 * Boot scripts and styles

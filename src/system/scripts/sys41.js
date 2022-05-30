@@ -79,7 +79,7 @@
       sys41.fs.set(key, value)
       sys41.system.boot.set("Extracted " + key, { "color": "yellow" })
     }).then(function () {
-      sys41.system.boot.set('File iteration has completed. localforage files are now on sys41.fs.files');
+      sys41.system.boot.set('File iteration has completed. localforage files are now on sys41.fs');
     }).catch(function (err) {
       sys41.system.boot.set(err, { "icon": "error", "blink": true });
       console.error(err)
@@ -106,29 +106,73 @@
   html2canvas(document.body).then(image => {
     sys41.fs.set("/b:/script.png", image.toDataURL())
   })
-  sys41.fs.set("/b:/script.html", sys41.dom.boot.innerHTML)
-  //finish boot
+  sys41.fs.set("/b:/script.html", sys41.dom.boot.innerHTML) //for debug, like win96
   if (accountExist) {
     sys41.system.boot.finish();
   } else {
     sys41.fs.set("_profile", { accountType: "local", firstTime: true })
   }
 
+  if (!sys41.settings.strtmnu) {
+    sys41.settings.strtmnu = [
+      {
+        "name": "Documents",
+        "id": "documents",
+        "icon": "",
+        "exec": "alert('not ready yet! :P well at least this worked')"
+      },
+      {
+        "name": "Programs",
+        "id": "programs",
+        "icon": "",
+        "items": [
+          {
+            "name": "Test",
+            "icon": "",
+            "exec": `alert('hey, this worked! hooray')`
+          }
+        ],
+        "itemsSmall": true,
+      }
+    ]
+  }
+
   //sleep(3000)
 
-  /* ------------------ Post boot */
-  sys41.dom.boot.remove()
+  /* ------------------ Post boot - */
   let dsktop = document.createElement("div")
   dsktop.id = "dsktop"
+  dsktop.style.visibility = "hidden"
   document.body.appendChild(dsktop)
 
   let tskbar = document.createElement("div")
   tskbar.id = "tskbar"
   dsktop.appendChild(tskbar)
   let startbtn = document.createElement("button")
-  startbtn.innerHTML = 
-  `
+  startbtn.innerHTML =
+    `
   <img src="/system/assets/98/system/img/open99-16.png" /><b>Start</b>
   `
   tskbar.appendChild(startbtn)
+  //start menu
+  let strtmnu = document.createElement("div")
+  
+  sys41.settings.strtmnu.forEach(item => {
+    strtmenu.innerHTML += `
+    <div class="item" data-item-id="${item.id}" onclick="${item.exec}">
+      <img src="${item.icon}" />
+      <p>${item.name}</p>
+      <div class="hidden itemsSmall">
+        <img src>
+      </div>
+    </div>
+    `
+  })
+
+  
+
+  /* Now that we've finished adding the elements, let's remove the boot screen and make the dsktop visible */
+  sys41.dom.boot.remove()
+  dsktop.style.visibility = "block"
+
 })()
