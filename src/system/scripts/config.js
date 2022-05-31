@@ -315,8 +315,8 @@ let sys41 = {
     removeWindow: function () {
       return;
     },
-    settings: {}
   },
+  settings: {},
   ui: {
     createProgBar: function (element, features) {
       if (sys41.system.themes.current.supports.progBar) {
