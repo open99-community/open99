@@ -158,7 +158,7 @@
   let strtmnu = document.createElement("div")
   
   sys41.settings.strtmnu.forEach(item => {
-    strtmenu.innerHTML += `
+    strtmnu.innerHTML += `
     <div class="item" data-item-id="${item.id}" onclick="${item.exec}">
       <img src="${item.icon}" />
       <p>${item.name}</p>
