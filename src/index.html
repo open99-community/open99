@@ -33,7 +33,10 @@
         <!-- Necessary scripts -->
         <script defer src="system/scripts/config.js"></script>
         <script defer src="system/scripts/sys41.js"></script>
-        <script async src="system/scripts/signin.js"></script>
+        <div id="supabase">
+            <script src="https://unpkg.com/@supabase/supabase-js"></script>
+            <script src="system/scripts/signin.js"></script>
+        </div>
         <!-- SW -->
         <script>if ('serviceWorker' in navigator) { navigator.serviceWorker.register("/sw.js", { scope: "./" }) }
         </script>
@@ -46,9 +49,6 @@
                 gtag('js', new Date());
                 gtag('config', 'G-MSQ0XB265H');
             </script>
-        </div>
-        <div id="supabase">
-            <script src="https://unpkg.com/@supabase/supabase-js"></script>
         </div>
     </div>
 </body>
