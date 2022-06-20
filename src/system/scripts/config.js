@@ -102,20 +102,19 @@ let sys41 = {
   },
   fs: {
     get: async function (key) {
-      if (key[1] !== ":" && key[0] === "/") {
-        
-      return new sys41.fs._File(sys41.fs.utils.defaultDrive + "/" + key)
-      } else if (key[1 || 2] === ":") {
+      if (/^[a-zA-Z]:\/[a-zA-Z]/.test(key)) { //regex for seeing if entire query includes drive
         return localforage.getItem(key)
+      } else if (/^\/[a-zA-Z]/.test(key)) { //regex for seeing if query does not include drive & starts with a slash
+        return localforage.getItem(sys41.fs.utils.defaultDrive + key)
       } else {
         return new Error("Not valid format, check docs")
       }
     },
     set: async function (key, value) {
-      if (key[1] !== ":" && key[0] === "/") {
-        localforage.setItem(sys41.fs.utils.defaultDrive + "/" + key, value)
-      } else if (key[1] === ":" && key[0] !== "/") {
+      if (/^[a-zA-Z]:\/[a-zA-Z]/.test(key)) {
         localforage.setItem(key, value)
+      } else if (/^\/[a-zA-Z]/.test(key)) {
+        localforage.setItem(sys41.fs.utils.defaultDrive + key, value)
       } else {
         return new Error("Not valid format, check docs")
       }
@@ -124,10 +123,10 @@ let sys41 = {
     delete: async function (key) {
       if (!sys41.fs.getItem[key]) {
         return Error("File doesn't exist")
-      } else if (key[1] !== ":" && key[0] === "/") {
-        localforage.removeItem(sys41.fs.utils.defaultDrive + "/" + key, value)
-      } else if (key[1] === ":" && key[0] !== "/") {
+      } else if (/^[a-zA-Z]:\/[a-zA-Z]/.test(key)) {
         localforage.removeItem(key, value)
+      } else if (/^\/[a-zA-Z]/.test(key)) {
+        localforage.removeItem(sys41.fs.utils.defaultDrive + key, value)
       } else {
         return new Error("Not valid format, check docs")
       }
@@ -135,7 +134,7 @@ let sys41 = {
     },
     utils: {
       "config": async function () { await localforage.getItem("_profile") },
-      "defaultDrive": "C:/",
+      "defaultDrive": "C:",
     },
     _File: class {
       constructor(path, content = localforage.getItem(path)){ /* I don't want developers handling this class, EVER. this should only be an internal
