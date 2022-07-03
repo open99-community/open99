@@ -25,7 +25,10 @@ const sys41 : {
         taskbar: HTMLDivElement
     },
     system: {
-        boot: {}
+        boot: {
+            stopped: boolean,
+            set: (text: string, features: {icon: string,blink: boolean,}[], id) => void
+        }
     },
     settings: {},
     ui: {},
