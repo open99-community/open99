@@ -27,7 +27,10 @@ const sys41 : {
     system: {
         boot: {
             stopped: boolean,
-            set: (text: string, features: {icon: string,blink: boolean,}[], id) => void
+            set: (text: string, features: {icon: string,blink: boolean,}[], id) => void,
+        },
+        themes: {
+            change: (name:string) => void
         }
     },
     settings: {},
