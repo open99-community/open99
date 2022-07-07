@@ -1,4 +1,4 @@
-const sys41 : {
+declare const sys41 : {
     user: {
         apps: {
             short_name: string,
@@ -27,13 +27,16 @@ const sys41 : {
     system: {
         boot: {
             stopped: boolean,
-            set: (text: string, features: {icon: string,blink: boolean,}[], id) => void,
+            set: (text: string, features: {icon: string, blink: boolean,}[], id) => void,
         },
         themes: {
-            change: (name:string) => void
+            change: (name:string) => void,
+            current: string,
         }
     },
     settings: {},
-    ui: {},
+    ui: {
+        createProgBar: (element: HTMLElement, features: {min:number,max:number,now:number,width:string}) => void,
+    },
     Window: null
 }
