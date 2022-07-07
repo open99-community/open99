@@ -329,7 +329,7 @@ let sys41 = {
         elIn.append(el);
         el.append(element);
       } else {
-        return Error(
+        throw Error(
           "Theme " +
           sys41.system.themes.current.name +
           " does not support progress bar"
