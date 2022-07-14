@@ -25,9 +25,12 @@ declare const sys41 : {
         taskbar: HTMLDivElement
     },
     system: {
+        getVersion: () => string,
+        getChannel: () => string,
         boot: {
             stopped: boolean,
             set: (text: string, features: {icon: string, blink: boolean,}[], id) => void,
+            finish: () => void,
         },
         themes: {
             change: (name:string) => void,
@@ -37,6 +40,12 @@ declare const sys41 : {
     settings: {},
     ui: {
         createProgBar: (element: HTMLElement, features: {min:number,max:number,now:number,width:string}) => void,
+        createBalloon: (element: HTMLElement, features: {text:string}) => void,
+        cursors: {
+            default: "/system/cursors/default.cur",
+            pointer: "/system/cursors/pointer.cur",
+            text: "/system/cursors/text.cur",
+        }
     },
     Window: null
 }

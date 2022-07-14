@@ -155,12 +155,10 @@ let sys41 = {
     taskbar: document.getElementById("tskbar"),
   },
   system: {
-    get version() {
-      let gg;
-      fetch("version.txt").then(function (ver) { ver.text() }).then(data => {data = gg})
-      return gg;
+    getVersion() {
+      fetch("/version.txt").then(function (ver) { ver.text() }).then(data => {return data})
     },
-    get channel() {
+    getChannel() {
       let chan;
       if (location.href === "https://open99.ga") {
         chan = "main"
@@ -207,23 +205,11 @@ let sys41 = {
           return el
         }
       },
-      get bootable() {
-        if (sys41.user.files) {
-          return true;
-        } else {
-          return false;
-        }
-      },
       finish: function () {
-        if (sys41.system.boot.bootable) {
           let boot = document.getElementsByClassName("boot")[0];
           boot.parentNode.removeChild(boot);
           let el = document.createElement("div");
           el.classList.add("postboot");
-        }
-      },
-      stop: function () {
-        sys41.system.boot.finish = null;
       },
     },
     themes: {
@@ -268,52 +254,6 @@ let sys41 = {
         },
       },
     },
-    iframeUrls: [],
-    createWindow: function (
-      data = { draggable: true, resizable: true, html: `<p>No data</p>` }
-    ) {
-      if (!typeof data === "object") {
-        return TypeError("Must be a valid WinObject object");
-      }
-      let winMain = document.createElement("div");
-      let titleBar = document.createElement("div");
-      let titleBarText = document.createElement("div");
-      let titleBarIcon = null; //for now
-      let titleBarControls = document.createElement("div");
-      let titleBarControlsMinimize = document.createElement("button");
-      let titleBarControlsMaximize = document.createElement("button");
-      let titleBarControlsClose = document.createElement("button");
-      let winContent = document.createElement("div");
-
-      titleBar.append(winMain);
-      winContent.append(winMain);
-      titleBarText.append(titleBar);
-      titleBarControls.append(titleBar);
-      titleBarControlsMaximize.append(titleBarControls);
-      titleBarControlsMinimize.append(titleBarControls);
-      titleBarControlsClose.append(titleBarControls);
-
-      titleBar.classList.add("title-bar");
-      titleBarText.classList.add("title-bar-text");
-      titleBarText.innerText = data.title;
-      titleBarControls.classList.add("title-bar-controls");
-      titleBarControlsClose.setAttribute("aria-label", "Close");
-      titleBarControlsMaximize.setAttribute("aria-label", "Maximize");
-      titleBarControlsMinimize.setAttribute("aria-label", "Minimize");
-      winContent = data.html;
-      winContent.classList.add("window-body");
-
-      winMain.appendChild(document.body);
-      if (data.draggable) {
-        winMain.draggable();
-      }
-      if (data.resizable) {
-        winMain.resizable();
-      }
-    },
-    removeWindow: function () {
-      return;
-    },
   },
   settings: {},
   ui: {
@@ -346,7 +286,7 @@ let sys41 = {
         el.innerText = features.text;
         el.append(element);
       } else {
-        return Error(
+        throw Error(
           "Theme " +
           sys41.system.themes.current.name +
           " does not support tooltip/balloon"
@@ -354,8 +294,9 @@ let sys41 = {
       }
     },
     cursors: {
-      "default": "",
-      "pointer": "",
+      "default": "/system/cursors/default.cur",
+      "pointer": "/system/cursors/pointer.cur",
+      "text": "/system/cursors/text.cur",
 
     },
   },
