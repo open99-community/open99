@@ -562,3 +562,9 @@ label {
 #tskbar button > img{
   vertical-align: middle;
 }
+
+#dsktop #strtmenu {
+	padding: 10px;
+	background-color: gray;
+	width: 120px;
+}
