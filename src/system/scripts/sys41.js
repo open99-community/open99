@@ -513,7 +513,7 @@ window.onbeforeunload = () => { return "Are you sure?" }
     promise.then(JSZip.loadAsync)
       .then(function (zip) {
         zip.forEach(function (path, file) {
-          sys41.system.boot.set("Extracting " + path)
+          //sys41.system.boot.set("Extracting " + path)
         })
       })
   }
