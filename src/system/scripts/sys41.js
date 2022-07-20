@@ -151,8 +151,9 @@ let sys41 = {
   },
   dom: {
     boot: document.getElementsByClassName("boot")[0],
-    desktop: document.getElementById("dsktop"),
-    taskbar: document.getElementById("tskbar"),
+    desktop: null,
+    taskbar: null,
+    strtmnu: null,
   },
   system: {
     getVersion() {
@@ -556,11 +557,13 @@ window.onbeforeunload = () => { return "Are you sure?" }
 
   /* ------------------ Post boot - */
   let dsktop = document.createElement("div")
+  sys41.dom.desktop = dsktop
   dsktop.id = "dsktop"
   dsktop.style.display = "none"
   document.body.appendChild(dsktop)
 
   let tskbar = document.createElement("div")
+  sys41.dom.taskbar = tskbar
   tskbar.id = "tskbar"
   dsktop.appendChild(tskbar)
   let startbtn = document.createElement("button")
@@ -571,7 +574,7 @@ window.onbeforeunload = () => { return "Are you sure?" }
   tskbar.appendChild(startbtn)
   //start menu
   let strtmnu = document.createElement("div")
-  
+  sys41.dom.strtmnu = strtmnu
   sys41.settings.strtmnu.forEach(item => {
     strtmnu.innerHTML += `
     <div class="item" data-item-id="${item.id}" onclick="${item.exec}">
@@ -584,7 +587,7 @@ window.onbeforeunload = () => { return "Are you sure?" }
     `
   })
 
-  
+  dsktop.appendChild(strtmnu)
 
   /* Now that we've finished adding the elements, let's remove the boot screen and make the dsktop visible */
   sys41.dom.boot.remove()
