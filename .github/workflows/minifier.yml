@@ -1,17 +1,19 @@
-name: Auto Minifier CSS
+name: minisauras
 
-on: push
+on: [push]
 
 jobs:
-
-  build:
-    runs-on: ubuntu-latest
+  read:
+    runs-on: ubuntu-18.04
 
     steps:
-      - name: HTML/CSS/JS Minifier
-        uses: docker://devatherock/minify-js:1.0.3
-        with:
-          directory: src
-      - uses: actions/checkout@v2
-        with:
-          ref: ${{ github.head_ref }}
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: minisauras
+      uses: TeamTigers/minisauras@v2.0.0
+      env:
+        GITHUB_TOKEN: ${{ secrets.TOKEN }}
+      id: dir
+      with:
+        directory: 'src/' 
+## https://dev.to/shunjid/minisauras-a-github-action-to-minify-css-and-js-files-34b9
