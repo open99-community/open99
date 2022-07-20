@@ -557,7 +557,7 @@ window.onbeforeunload = () => { return "Are you sure?" }
   /* ------------------ Post boot - */
   let dsktop = document.createElement("div")
   dsktop.id = "dsktop"
-  dsktop.style.visibility = "hidden"
+  dsktop.style.display = "none"
   document.body.appendChild(dsktop)
 
   let tskbar = document.createElement("div")
@@ -588,6 +588,6 @@ window.onbeforeunload = () => { return "Are you sure?" }
 
   /* Now that we've finished adding the elements, let's remove the boot screen and make the dsktop visible */
   sys41.dom.boot.remove()
-  dsktop.style.visibility = "block"
+  dsktop.style.display = "block"
 
 })()
