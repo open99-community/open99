@@ -18,19 +18,5 @@
   "display": "standalone",
   "scope": "/",
   "theme_color": "#000",
-  "shortcuts": [
-    {
-      "name": "Report bug",
-      "short_name": "Bug report",
-      "description": "Report a bug or an error. Requires an internet connection.",
-      "url": "/bugs",
-      "icons": [
-        {
-          "src": "system/assets/98/system/img/win99-192.png",
-          "sizes": "192x192"
-        }
-      ]
-    }
-  ],
   "description": "open99 as an installable program"
 }
