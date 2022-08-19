@@ -534,7 +534,7 @@ window.onbeforeunload = () => { return "Are you sure?" }
       {
         "name": "Documents",
         "id": "documents",
-        "icon": "",
+        "icon": "./system/assets/98/directory/directory_closed.png",
         "exec": "alert('not ready yet! :P well at least this worked')"
       },
       {
@@ -544,7 +544,7 @@ window.onbeforeunload = () => { return "Are you sure?" }
         "items": [
           {
             "name": "Test",
-            "icon": "",
+            "icon": "./system/assets/98/directory/directory_computer.png",
             "exec": `alert('hey, this worked! hooray')`
           }
         ],
@@ -574,6 +574,12 @@ window.onbeforeunload = () => { return "Are you sure?" }
   tskbar.appendChild(startbtn)
   //start menu
   let strtmnu = document.createElement("div")
+  strtmnu.classList.add('startmenu')
+  let sidebar = document.createElement('div')
+  sidebar.classList.add('startmenu-sidebar')
+  let headline = document.createElement('div')
+  headline.classList.add('headline')
+  headline.innerHTML = `<strong>Open</strong> 99`
   sys41.dom.strtmnu = strtmnu
   sys41.settings.strtmnu.forEach(item => {
     strtmnu.innerHTML += `
@@ -588,6 +594,9 @@ window.onbeforeunload = () => { return "Are you sure?" }
   })
 
   dsktop.appendChild(strtmnu)
+  strtmnu.appendChild(sidebar)
+  sidebar.appendChild(headline)
+
 
   /* Now that we've finished adding the elements, let's remove the boot screen and make the dsktop visible */
   sys41.dom.boot.remove()
