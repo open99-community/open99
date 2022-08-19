@@ -137,7 +137,8 @@ const ASSETS = [
 	"system/assets/7/system/img/win99-192.png",
 	"system/assets/7/system/img/win99-32.png",
 	"system/assets/7/system/img/win99-512.png",
-	"system/assets/7/system/audio/boot.mp3"
+	"system/assets/7/system/audio/boot.mp3",
+	"index.html"
 ]
 
 self.addEventListener('install', event => {
