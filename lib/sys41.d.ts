@@ -9,6 +9,14 @@ declare const sys41 : {
             permissions: string[],
             removeable: boolean,
         }[],
+        profile: {
+            accountType: "local" | "cloud",
+            userName: string,
+            icon: string,
+            background: string,
+            email: string,
+            firstTime: boolean,
+        }
     },
     fs: {
         async get: (key) => string | Error
