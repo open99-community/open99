@@ -5,97 +5,14 @@ const uid = new ShortUniqueId({ length: 10 });
     description: "Main offline storage backend for open99. Uses IndexedDB.",
   });
 })();
-let sys41 = {
+const sys41 = {
   user: {
-    appAddress: "",
-    apps: [
-      {
-        short_name: "bsod",
-        name: "Blue screen of death",
-        action: function (text = "Your system encountered an error and needs to reboot", title = "Fatal error") {
-          document.body.innerHTML = `
-            <link rel="stylesheet" href="/system/styles/bs.css">
-            <script>function gohome() {window.location.href='/';}</script>
-
-            <div onclick="gohome()" onkeydown="gohome()" class="bsod">
-              <span class="title">${title}</span>
-              <p>${text}</p>
-              <p>&bull; Press CTRL+ALT+DEL to reboot your computer - You will<br /> &nbsp; lose any unsaved information in any programs that are running.</p>
-              <a href="/">Press any key to reboot <blink>_</blink></a>
-            </div>
-            `;
-        },
-        categories: ["Fun"],
-        system: true,
-        permissions: ["administrateSystem"],
-      },
-      {
-        short_name: "reboot",
-        name: "Reboot system",
-        action: function () {
-          location.reload();
-        },
-        categories: ["Utility"],
-        system: true,
-        removeable: false,
-        permissions: ["administrateSystem"],
-      },
-      {
-        short_name: "power",
-        name: "Shut down",
-        action: function () {
-          document.body.innerHTML = ``;
-          window.close();
-          self.close();
-        },
-        categories: ["Utility"],
-        system: true,
-        removeable: false,
-        permissions: ["administrateSystem"],
-      },
-      {
-        short_name: "battery",
-        name: "Battery Detector",
-        action: function () { },
-        categories: ["System"],
-        system: true,
-        removeable: false,
-        permissions: ["widget", "background"],
-      },
-      {
-        short_name: "antivirus",
-        name: "Antivirus",
-        action: function () {
-          if (!sys41 || !sys41.system || !sys41.user || !sys41.user.apps || !sys41.user.profile || !sys41.user.profile.data || !sys41.system.boot) {
-            (function () {
-              document.body.innerHTML = `
-                <link rel="stylesheet" href="/system/styles/bs.css">
-                <script>function gohome() {window.location.href='/';}</script>
-                <div onclick="gohome()" onkeydown="gohome()" class="bsod">
-                  <span class="title">Fatal error</span>
-                  <p>Your computer suffered a fatal error that ocurrs when malicious code runs and removes important parts of the system41 API. You can clear your cache if rebooting doesn't work</p>
-                  <p>&bull; Press CTRL+ALT+DEL to reboot your computer - You will<br /> &nbsp; lose any unsaved information in any programs that are running.</p>
-                  <p>&bull; &bull; After this, try rebooting in Safe Mode and clearing all boot scripts. You should also rid your PC of suspicious apps.</p>
-                  <a href="/">Press any key to reboot <blink>_</blink></a>
-                </div>
-                `;
-            })()
-          }
-        },
-        categories: ["System"],
-        system: true,
-        removeable: true,
-        permissions: ["administrateSystem", "antivirusBypass"],
-      },
-    ],
+    apps: {},
     profile: {
       accountType: null,
       userName: null,
       icon: null,
-      background: {
-        type: null,
-        url: null,
-      },
+      background: null,
       email: null,
       firstTime: null,
     },
