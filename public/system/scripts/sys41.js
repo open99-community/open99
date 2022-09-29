@@ -520,3 +520,5 @@ window.onbeforeunload = () => { return "Are you sure?" }
   dsktop.style.display = "block"
 
 })()
+
+export default sys41
