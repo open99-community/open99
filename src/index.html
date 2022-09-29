@@ -37,7 +37,7 @@
             <script src="system/scripts/signin.js"></script>
         </div>
         <!-- SW -->
-        <script>if ('serviceWorker' in navigator) { navigator.serviceWorker.register("/sw.js", { scope: "./" }) }
+        <script>if ('serviceWorker' in navigator) { navigator.serviceWorker.register("/sw.js", { scope: "./" }).then(() => {console.log("Service Worker Initialized!")}).catch(e => console.log(e)); }
         </script>
         <div id="googanal">
             <!-- Google Analytics -->
