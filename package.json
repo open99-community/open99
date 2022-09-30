@@ -1,0 +1,29 @@
+{
+  "name": "open99",
+  "version": "0.0.5",
+  "description": "open-source online web OS",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "dependencies": {
+    "wepback": "^1.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/system41/open99.git"
+  },
+  "keywords": [
+    "web-os"
+  ],
+  "author": "system41",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "bugs": {
+    "url": "https://github.com/system41/open99/issues"
+  },
+  "homepage": "https://github.com/system41/open99#readme"
+}
