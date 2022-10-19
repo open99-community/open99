@@ -418,7 +418,7 @@ window.onbeforeunload = () => { return "Are you sure?" }
       console.error(err)
     });
   } else {
-    let promise = new JSZip.external.Promise(function (resolve, reject) {
+   /*let promise = new JSZip.external.Promise(function (resolve, reject) {
       JSZipUtils.getBinaryContent('./system/fs/rootfs.zip', function (err, data) {
         if (err) {
           reject(err);
@@ -433,7 +433,7 @@ window.onbeforeunload = () => { return "Are you sure?" }
         zip.forEach(function (path, file) {
           //sys41.system.boot.set("Extracting " + path)
         })
-      })
+      })*/
   }
 
   html2canvas(document.body).then(image => {
