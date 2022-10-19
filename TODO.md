@@ -1,12 +1,13 @@
-# TO-DO
+# TO-DO (now in github projects)
 in no particular order
 
 - [ ] ready things up for linux
     - [ ] make fs directory build into public/system/fs or something like that
+    - [ ] make service worker functional by scraping all the `public` files
 - [x] finish boot (hooray about time)
 - [x] finalize boot add api
 - [x] finalize other boot logging API's
-- [x] create better fs api
+- [ ] create better fs api
 - [ ] create fs utils
 - [x] make boot logs classes - *discarded*
 - [x] fix bug with localforage not working (haha this was because I was trying to save a function which isn't supported - I forgot the parentheses)
