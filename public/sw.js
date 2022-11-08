@@ -9,7 +9,6 @@ const ASSETS = [
 	"system/styles/themes/xp.css",
 	"system/styles/3party/README.md",
 	"system/scripts/README.md",
-	"system/scripts/signin.js",
 	"system/scripts/sys41.js",
 	"system/scripts/3party/jszip.js",
 	"system/scripts/3party/localforage.js",
