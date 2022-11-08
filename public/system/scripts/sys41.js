@@ -1,4 +1,6 @@
-const uid = new ShortUniqueId({ length: 10 });
+function genUID() {
+  return "id" + Math.random().toString(16).slice(2) // thanks: https://stackoverflow.com/questions/3231459/how-can-i-create-unique-ids-with-javascript/3231532#3231532
+}
 (function () {
   localforage.config({
     driver: localforage.INDEXEDDB,
