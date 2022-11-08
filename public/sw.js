@@ -7,7 +7,6 @@ const ASSETS = [
 	"system/styles/themes/98.css",
 	"system/styles/themes/README.md",
 	"system/styles/themes/xp.css",
-	"system/styles/3party/menu98.css",
 	"system/styles/3party/README.md",
 	"system/scripts/README.md",
 	"system/scripts/signin.js",
