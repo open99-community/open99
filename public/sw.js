@@ -12,8 +12,6 @@ const ASSETS = [
 	"system/scripts/README.md",
 	"system/scripts/signin.js",
 	"system/scripts/sys41.js",
-	"system/scripts/3party/clippy.js",
-	"system/scripts/3party/id.js",
 	"system/scripts/3party/jszip.js",
 	"system/scripts/3party/localforage.js",
 	"system/scripts/3party/README.md",
