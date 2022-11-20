@@ -55,18 +55,14 @@ const sys41 = {
       "config": async function () { await localforage.getItem("_profile") },
       "defaultDrive": "C:",
     },
-    _File: class {
-      constructor(path, content = localforage.getItem(path)){ /* I don't want developers handling this class, EVER. this should only be an internal
-      thing used by sys41.fs.* apis. In fact, the entire reason this isn't in the sys41.fs.set and sys41.fs.get functions is because of the DRY principle*/
-        this.path = path
-        this.content = content
-        this.hasContent = !!content
-        this.drive = path.slice(0,3)
-        this.ext = null
-        this.mime = null
-        this.icon = null
+    File: class {
+      constructor(path) {
+        if(localforage.getItem(path)) {
+          this.path = path
+        }
       }
-    }
+    } //this is a beta file api; when a user does sys41.fs.File("C:/user/root/documents") it returns a class instance with a bunch of
+      //methods available for this file, such as delete, create, edit, download, etc
   },
   dom: {
     boot: document.getElementsByClassName("boot")[0],
