@@ -1,7 +1,7 @@
 # open99
 go back a few commits to see a more complete version of this readme.
 ## About
-open99 is an open-sourced Web OS, similar to Windows93 or Windows96. It is based on the System41 open99 project, and   
+open99 is an open-sourced Web OS, similar to Windows93 or Windows96. It intends to be the most sophisticated, complete, and developer-friendly web OS.
 ## Structure
 `/fs` gets built into `/public` as a zip file.
 
