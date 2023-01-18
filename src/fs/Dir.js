@@ -3,10 +3,10 @@ import FileSystemItem from "./FileSystemItem";
 class Dir extends FileSystemItem {
     constructor({
         name,
-        path,
-        content
+        path
     }){
-        super({name, path, content})
+        super({name, path})
+        return this
     }
     rename(){
 
