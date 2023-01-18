@@ -3,9 +3,10 @@ import FileSystemItem from "./FileSystemItem";
 class File extends FileSystemItem {
     constructor({
         name,
-        path
+        path,
+        content
     }){
-        super({name, path})
+        super({name, path, content})
     }
     save(){
         
