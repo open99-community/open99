@@ -1,5 +1,6 @@
 import File from "./File";
 import Dir from "./Dir";
+import Drive from "./Drive";
 
 const fsApi = {
     async createFile({
@@ -13,7 +14,12 @@ const fsApi = {
         name,
         path
     }){
-        return new Dir({name, path, content})
+        return new Dir({name, path})
+    },
+    async createDrive({
+        name
+    }){
+        return new Drive({name})
     }
 }
 

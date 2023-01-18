@@ -7,6 +7,7 @@ class File extends FileSystemItem {
         content
     }){
         super({name, path, content})
+        return this
     }
     save(){
         
