@@ -13,6 +13,9 @@ const FileSystemItem = class {
         this.path = path
         this.content = content
     }
+    save(){
+        
+    }
 }
 
 export default FileSystemItem
