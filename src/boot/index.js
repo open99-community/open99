@@ -1,2 +1,4 @@
-import tasksys from "./tasks";
+import fsTask from "./tasks/fs";
 
+
+fsTask()

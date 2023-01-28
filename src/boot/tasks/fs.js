@@ -1,5 +1,3 @@
-import tasksys from "../tasks"
-
 const fsTask = function(){
 
     let openRequest = window.indexedDB.open("open99", 1)
@@ -13,5 +11,4 @@ const fsTask = function(){
 
 }
 
-tasksys.register("fs", fsTask)
 export default fsTask
