@@ -3,11 +3,12 @@
   "version": "0.0.5",
   "description": "open-source online web OS",
   "main": "index.js",
+  "private": true,
   "directories": {
     "lib": "lib"
   },
   "dependencies": {
-    "webpack": "^5.74.0",
+    "webpack": "^5.74.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -25,5 +26,5 @@
     "url": "https://github.com/system41/open99/issues"
   },
   "homepage": "https://github.com/system41/open99#readme",
-  "type": "module",
+  "type": "module"
 }
