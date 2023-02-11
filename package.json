@@ -8,11 +8,13 @@
     "lib": "lib"
   },
   "dependencies": {
+    "express": "^4.18.2",
     "webpack": "^5.74.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack"
+    "build": "webpack",
+    "serve": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -27,5 +29,8 @@
     "url": "https://github.com/system41/open99/issues"
   },
   "homepage": "https://github.com/system41/open99#readme",
-  "type": "module"
+  "type": "module",
+  "devDependencies": {
+    "webpack-cli": "^5.0.1"
+  }
 }
