@@ -1,4 +1,4 @@
-const fsTask = function(){
+const fsTask = async () => {
 
     let openRequest = window.indexedDB.open("open99", 1)
     openRequest.onerror = e => {
@@ -8,7 +8,10 @@ const fsTask = function(){
     openRequest.onsuccess = e => {
         db = openRequest.result
     }
-
+    if (db) {
+        sys41._db = db
+    }
+    db.createObjectStore("C:/")
 }
 
 export default fsTask

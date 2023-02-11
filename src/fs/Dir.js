@@ -1,4 +1,4 @@
-import FileSystemItem from "./FileSystemItem";
+import FileSystemItem from "./FileSystemItem.js";
 
 class Dir extends FileSystemItem {
     constructor({

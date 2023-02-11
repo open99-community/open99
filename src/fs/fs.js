@@ -1,6 +1,6 @@
-import File from "./File";
-import Dir from "./Dir";
-import Drive from "./Drive";
+import File from "./File.js";
+import Dir from "./Dir.js";
+import Drive from "./Drive.js";
 
 const fsApi = {
     async createFile({
