@@ -16,5 +16,8 @@ export default {
                 use: "raw-loader"
             }
         ]
+    },
+    experiments: {
+        topLevelAwait: true
     }
 }

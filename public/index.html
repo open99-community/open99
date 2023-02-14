@@ -24,15 +24,15 @@
     <div class="boot">
     </div>
     <div id="scripts">
+        <!-- SW -->
+        <script>if ('serviceWorker' in navigator) { navigator.serviceWorker.register("/sw2.js", { scope: "./" }).then(() => {console.log("Service Worker Initialized!")}).catch(e => console.log(e)); }
+        </script>
         <!-- Third party scripts -->
         <script src="system/scripts/3party/screenshot.js"></script>
         <script src="system/scripts/3party/localforage.js"></script>
         <script src="system/scripts/3party/jszip.js"></script>
         <!-- Necessary script -->
         <script defer type="module" src="system/scripts/sys41.min.js"></script>
-        <!-- SW -->
-        <script>/*if ('serviceWorker' in navigator) { navigator.serviceWorker.register("/sw.js", { scope: "./" }).then(() => {console.log("Service Worker Initialized!")}).catch(e => console.log(e)); }*/
-        </script>
     </div>
 </body>
 
