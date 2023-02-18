@@ -1,8 +1,9 @@
 import fsApi from "./fs/fs.js";
-import fsTask from "./boot/tasks/fs.js";
+import fsTask from "./boot/fs.js";
 
 window.sys41 = {
-    fsApi
+    fs: fsApi,
+    _db: await fsTask()
 }
 
 await fsTask()
