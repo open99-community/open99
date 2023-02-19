@@ -6,7 +6,7 @@ class AppRuntime {
     /**
      * Run the application
      * @param {string} code Code to be executed in 41worker runtime
-     * @param {{title: string}} appInfo Application metadata. Accessible within runtime
+     * @param {{title: string, id: string}} appInfo Application metadata. Accessible within runtime
      */
     constructor(code, appInfo) {
         this.code = code
