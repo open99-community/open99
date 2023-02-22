@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: index.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,30 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: index.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import fsApi from "./fs/fs.js"
+import idb from "./boot/idb.js"
+import Bootscreen from "./boot/boot.js"
 
-
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+window.sys41 = {
+    fs: fsApi,
+    /**
+     * the raw database
+     * @type {IDBDatabase}
+     */
+    _db: await idb(),
+    _boot: new Bootscreen(document.getElementsByClassName("boot")[0])
+}</code></pre>
+        </article>
+    </section>
 
 
 

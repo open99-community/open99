@@ -1,5 +1,5 @@
 import fsApi from "./fs/fs.js"
-import fsTask from "./boot/idb.js"
+import idb from "./boot/idb.js"
 import Bootscreen from "./boot/boot.js"
 
 window.sys41 = {
@@ -8,6 +8,6 @@ window.sys41 = {
      * the raw database
      * @type {IDBDatabase}
      */
-    _db: await fsTask(),
+    _db: await idb(),
     _boot: new Bootscreen(document.getElementsByClassName("boot")[0])
 }
