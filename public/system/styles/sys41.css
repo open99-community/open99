@@ -118,7 +118,7 @@ body {
 
 html {
   overflow: hidden;
-  cursor: url("../cursors/default.cur"), default;
+  cursor: default;
 }
 
 button,
@@ -127,12 +127,12 @@ select,
 input[type="checkbox"],
 input[type="radio"],
 .ld {
-  cursor: url("../cursors/pointer.cur"), pointer;
+  cursor: pointer;
 }
 
 input,
 textarea {
-  cursor: url("../cursors/text.cur"), text;
+  cursor: text;
 }
 
 #container {
@@ -149,7 +149,7 @@ textarea {
 }
 
 label {
-  cursor: url("../cursors/default.cur"), default;
+  cursor: default;
 }
 
 .boot .boot-image {

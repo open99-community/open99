@@ -10,7 +10,7 @@ console.log(`Building in mode: ${mode}`)
 export default {
     entry: "./src/index.js",
     output: {
-        path: path.resolve(__dirname, "public/system/scripts"),
+        path: path.resolve(__dirname, "public"),
         filename: "sys41.min.js"
     },
     module: {
