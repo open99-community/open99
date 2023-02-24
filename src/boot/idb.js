@@ -1,5 +1,8 @@
+/**
+ * IDB
+ * @returns {Promise<IDBDatabase> | Promise<Error>}
+ */
 const idb = () => {
-
     let openRequest = window.indexedDB.open("open99", 1)
     return new Promise((resolve, reject) => {
         openRequest.onsuccess = e => {

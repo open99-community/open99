@@ -1,4 +1,9 @@
 class BootEntry {
+    /**
+     * 
+     * @param {{text: string, features: {error: boolean, color: string, success: boolean, warning: boolean}}} content 
+     * @param {HTMLElement} bootscreen The Bootscreen instance this BootEntry should be appended to
+     */
     constructor(content, bootscreen) {
         this.content = content
         let el = document.createElement("p")
