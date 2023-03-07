@@ -11,10 +11,17 @@ class AppRuntime {
     constructor(code, appInfo) {
         this.code = code
         this.appInfo = appInfo
-        this.execCode = exposedapis + sysApis({appInfo: appInfo}) + code
+        this.execCode = sysApis({appInfo: appInfo}) + exposedapis + code
         this.blob = new Blob([this.execCode], {type: "application/javascript"})
         this.url = URL.createObjectURL(this.blob)
-        this.worker = new Worker(url, {type: "classic"})
+        window.addEventListener("message", ev => {
+            // From the event: we expect ev.data.op to be a string of the operation
+            // and ev.data.args to be {/* uhh anything */}[]
+            // i.e. ev.data.op is "fs.createFile", ev.data.args is [{path: "C:/Users/admin/ILOVEYOU.txt"}]
+            console.log("NEW MESSAGE EVENT COMING FROM 41worker", ev.data)
+            this.handleReceivedMessage(ev.data.op, ev.data.args)
+        })
+        this.worker = new Worker(this.url, {type: "classic"})
     }
     /**
      * 
@@ -23,6 +30,7 @@ class AppRuntime {
      */
     terminate(reason){
         this.worker.terminate()
+        console.log("[41worker] worker terminated. Reason:", reason)
         return this
     }
     /**
@@ -30,10 +38,17 @@ class AppRuntime {
      * @param {string} msg Message to communicate to main thread
      * @returns {string} Message to communicate to runtime
      */
-    handleReceivedMessage(msg){
+    handleReceivedMessage(op, data){
         //here is where we put a super long switch statement to determine what to return
-        switch (msg) {
-            
+        switch (op) {
+            case "fs.createFile": 
+                console.log("Worker environment tried creating a file:", data)
+                break
+            case "fs.createDir":
+                console.log("[41worker] Worker tried creating a dir:", data)
+                break
+            default:
+                alert("41worker op unknown: " + op)
         }
     }
 }

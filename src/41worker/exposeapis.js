@@ -20,7 +20,7 @@ delete globalThis.ServiceWorkerRegistration;
 delete globalThis.Worker;
 delete globalThis.WorkerNavigator;
 //network perm? Yes, you can use the internet. No network perm? Unfortunate!
-if(!__app.permissions.native.network) {
+if(!__app.permissions?.native?.network) {
     delete globalThis.fetch;
     delete globalThis.WebSocket;
     delete globalThis.XMLHttpRequest;
