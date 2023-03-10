@@ -3,12 +3,12 @@
   "name": "open99 beta",
   "icons": [
     {
-      "src": "assets/img/win99-512.png",
+      "src": "assets/open99-512.png",
       "type": "image/png",
       "sizes": "512x512"
     },
     {
-      "src": "assets/win99-192.png",
+      "src": "assets/open99-192.png",
       "type": "image/png",
       "sizes": "192x192"
     }
