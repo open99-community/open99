@@ -1,4 +1,4 @@
-import Bootscreen from "./boot/boot.js"
+const Bootscreen = await import("./boot/boot.js")
 
 const sys41 = {
     _boot: new Bootscreen(document.getElementsByClassName("boot")[0])
@@ -9,7 +9,7 @@ sys41._boot.write({ text: "open99 BETA rewrite booting on " + navigator.userAgen
 
 //IDB
 sys41._boot.write({ text: "Loading IDB..." })
-import idb from "./boot/idb.js"
+const idb = await import("./boot/idb.js")
 try {
     sys41._db = await idb()
 } catch (e) {
@@ -19,12 +19,12 @@ sys41._boot.write({ text: "IDB loaded!", features: { success: true } })
 
 //FS
 sys41._boot.write({ text: "Loading FileSystem..." })
-import fsApi from "./fs/fs.js"
+const fsApi = await import("./fs/fs.js")
 sys41.fs = fsApi
 sys41._boot.write({ text: "Filesystem loaded!", features: { success: true } })
 
 //41WORKER
 sys41._boot.write({text: "Loading application runtime..."})
-import AppRuntime from "./41worker/AppRuntime.js"
+const AppRuntime = await import("./41worker/AppRuntime.js")
 sys41.AppRuntime = AppRuntime
 sys41._boot.write({text: "Application runtime loaded!", features: {success: true}})
