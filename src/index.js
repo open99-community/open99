@@ -1,5 +1,4 @@
-const Bootscreen = await import("./boot/boot.js")
-
+import Bootscreen from "./boot/boot.js"
 const sys41 = {
     _boot: new Bootscreen(document.getElementsByClassName("boot")[0])
 }
