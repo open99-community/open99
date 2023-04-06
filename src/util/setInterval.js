@@ -9,6 +9,6 @@ export default (handler, interval) => {
     if (globalThis.sys41.inApp){
         // Good! (functionality coming soon)
     } else {
-        throw new Error("Not in 41worker environment")
+        return window.setInterval(handler, interval)
     }
 }

@@ -14,13 +14,14 @@ class AppRuntime {
         this.execCode = sysApis({appInfo: appInfo}) + exposedapis + code
         this.blob = new Blob([this.execCode], {type: "application/javascript"})
         this.url = URL.createObjectURL(this.blob)
-        window.addEventListener("message", ev => {
-            // From the event: we expect ev.data.op to be a string of the operation
-            // and ev.data.args to be {/* uhh anything */}[]
-            // i.e. ev.data.op is "fs.createFile", ev.data.args is [{path: "C:/Users/admin/ILOVEYOU.txt"}]
-            console.log("NEW MESSAGE EVENT COMING FROM 41worker", ev.data)
-            this.handleReceivedMessage(ev.data.op, ev.data.args)
-        })
+        window.addEventListener("message", 
+            /**
+             * @param {{op: string, args: {}[]}} ev String of the operation ("fs.createFile"), and args of operation ([{path: "C:/Users/admin/ILOVEYOU.txt"}])
+            */
+            ev => {
+                console.log("NEW MESSAGE EVENT COMING FROM 41worker", ev.data)
+                this.handleReceivedMessage(ev.data.op, ev.data.args)
+            })
         this.worker = new Worker(this.url, {type: "classic"})
     }
     /**
