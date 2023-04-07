@@ -11,10 +11,10 @@ class AppRuntime {
     constructor(code, appInfo) {
         this.code = code
         this.appInfo = appInfo
-        this.execCode = sysApis({appInfo: appInfo}) + exposedapis + code
-        this.blob = new Blob([this.execCode], {type: "application/javascript"})
+        this.execCode = sysApis({ appInfo: appInfo }) + exposedapis + code
+        this.blob = new Blob([this.execCode], { type: "application/javascript" })
         this.url = URL.createObjectURL(this.blob)
-        window.addEventListener("message", 
+        window.addEventListener("message",
             /**
              * @param {{op: string, args: {}[]}} ev String of the operation ("fs.createFile"), and args of operation ([{path: "C:/Users/admin/ILOVEYOU.txt"}])
             */
@@ -22,14 +22,20 @@ class AppRuntime {
                 console.log("NEW MESSAGE EVENT COMING FROM 41worker", ev.data)
                 this.handleReceivedMessage(ev.data.op, ev.data.args)
             })
-        this.worker = new Worker(this.url, {type: "classic"})
+        this.worker = new Worker(this.url, { type: "classic" })
+        this.channel = new MessageChannel()
+        //remember, port1 is mainthread, port2 is worker
+        this.channel.port1.onmessage = (event) => {
+            const returnValue = this.handleReceivedMessage(event.data.op, event.data.args)
+            this.worker.postMessage(returnValue, this.channel.port2)
+        }
     }
     /**
      * 
      * @param {string} reason 
      * @returns {this}
      */
-    terminate(reason){
+    terminate(reason) {
         this.worker.terminate()
         console.log("[41worker] worker terminated. Reason:", reason)
         return this
@@ -39,10 +45,10 @@ class AppRuntime {
      * @param {string} msg Message to communicate to main thread
      * @returns {string} Message to communicate to runtime
      */
-    handleReceivedMessage(op, data){
+    handleReceivedMessage(op, data) {
         //here is where we put a super long switch statement to determine what to return
         switch (op) {
-            case "fs.createFile": 
+            case "fs.createFile":
                 console.log("Worker environment tried creating a file:", data)
                 break
             case "fs.createDir":
