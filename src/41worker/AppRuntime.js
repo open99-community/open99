@@ -16,7 +16,7 @@ class AppRuntime {
         this.url = URL.createObjectURL(this.blob)
         window.addEventListener("message",
             /**
-             * @param {{op: string, args: {}[]}} ev String of the operation ("fs.createFile"), and args of operation ([{path: "C:/Users/admin/ILOVEYOU.txt"}])
+             * @param {import("../types/messageEvent.js").default} ev
             */
             ev => {
                 console.log("NEW MESSAGE EVENT COMING FROM 41worker", ev.data)
