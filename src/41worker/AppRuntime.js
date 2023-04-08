@@ -14,21 +14,17 @@ class AppRuntime {
         this.execCode = sysApis({ appInfo: appInfo }) + exposedapis + code
         this.blob = new Blob([this.execCode], { type: "application/javascript" })
         this.url = URL.createObjectURL(this.blob)
-        window.addEventListener("message",
-            /**
-             * @param {import("../types/messageEvent.js").default} ev
-            */
-            ev => {
-                console.log("NEW MESSAGE EVENT COMING FROM 41worker", ev.data)
-                this.handleReceivedMessage(ev.data.op, ev.data.args)
-            })
         this.worker = new Worker(this.url, { type: "classic" })
         this.channel = new MessageChannel()
         //remember, port1 is mainthread, port2 is worker
-        this.channel.port1.onmessage = (event) => {
-            const returnValue = this.handleReceivedMessage(event.data.op, event.data.args)
-            this.worker.postMessage(returnValue, this.channel.port2)
-        }
+        this.channel.port1.onmessage =
+            /**
+             * @param {import("../types/messageEvent.js").default} event
+            */
+            (event) => {
+                const returnValue = this.handleReceivedMessage(event.op, event.args)
+                this.worker.postMessage(returnValue, this.channel.port2)
+            }
     }
     /**
      * 
