@@ -31,6 +31,7 @@
   "homepage": "https://github.com/system41/open99#readme",
   "type": "module",
   "devDependencies": {
+    "cli-41": "^0.0.2",
     "eslint": "^8.34.0",
     "jsdoc": "^4.0.1",
     "webpack-cli": "^5.0.1"
