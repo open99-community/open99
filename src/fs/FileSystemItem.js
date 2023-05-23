@@ -1,3 +1,5 @@
+import idb from "../fs/idb.js"
+
 /**
  * file system item (should be extended)
  */
@@ -15,7 +17,7 @@ const FileSystemItem = class {
         this.path = path
         this.content = content
     }
-    save(){
+    async save(){
         
     }
 }

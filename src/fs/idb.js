@@ -13,5 +13,13 @@ const idb = () => {
         }
     })
 }
+/**
+ * lets just assume this isn't an error for now
+ * @type {IDBDatabase}
+ */
+const result = await idb()
+result.onversionchange = (ev) => {
+    
+}
 
-export default idb
+export default result
