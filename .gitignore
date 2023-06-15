@@ -1,5 +1,6 @@
 .vscode
 out
+.idea
 
 # Logs
 logs
