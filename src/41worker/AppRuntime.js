@@ -27,8 +27,7 @@ class AppRuntime {
             }
     }
     /**
-     * 
-     * @param {string} reason 
+     * Terminates the worker
      * @returns {this}
      */
     terminate() {
@@ -38,7 +37,8 @@ class AppRuntime {
     }
     /**
      * handles the received message
-     * @param {string} msg Message to communicate to main thread
+     * @param {string} op Message type to communicate to main thread
+     * @param {string} data Arguments for the op
      * @returns {string} Message to communicate to runtime
      */
     handleReceivedMessage(op, data) {
