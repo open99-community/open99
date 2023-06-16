@@ -16,7 +16,7 @@ class AppRuntime {
         this.url = URL.createObjectURL(this.blob)
         this.worker = new Worker(this.url, { type: "classic" })
         this.channel = new MessageChannel()
-        //remember, port1 is mainthread, port2 is worker
+        //remember, port1 is main thread, port2 is worker
         this.channel.port1.onmessage =
             /**
              * @param {import("../types/messageEvent.js").default} event
@@ -31,9 +31,9 @@ class AppRuntime {
      * @param {string} reason 
      * @returns {this}
      */
-    terminate(reason) {
+    terminate() {
         this.worker.terminate()
-        console.log("[41worker] worker terminated. Reason:", reason)
+        console.log("[41worker] worker terminated.")
         return this
     }
     /**

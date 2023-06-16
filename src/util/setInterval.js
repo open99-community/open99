@@ -6,7 +6,7 @@
  */
 export default (handler, interval) => {
     /* eslint-disable no-undef */
-    if (globalThis.sys41.inApp){
+    if (globalThis.sys41?.inApp){
         // Good! (functionality coming soon)
     } else {
         return window.setInterval(handler, interval)
