@@ -9,7 +9,7 @@ export default {
     entry: "./src/index.js",
     output: {
         publicPath: "", //for some reason this needs to be set to an empty string: https://stackoverflow.com/questions/64294706/webpack5-automatic-publicpath-is-not-supported-in-this-browser
-        path: path.resolve(__dirname, "public"),
+        path: path.resolve(__dirname, "public/assets/sys"),
         filename: "sys41.min.js"
     },
     module: {
