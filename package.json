@@ -18,7 +18,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/system41/open99.git"
+    "url": "git+https://github.com/open99-community/open99.git"
   },
   "keywords": [
     "web-os"
@@ -26,9 +26,9 @@
   "author": "system41",
   "license": "SEE LICENSE IN LICENSE.md",
   "bugs": {
-    "url": "https://github.com/system41/open99/issues"
+    "url": "https://github.com/open99-community/open99/issues"
   },
-  "homepage": "https://github.com/system41/open99#readme",
+  "homepage": "https://github.com/open99-community/open99#readme",
   "type": "module",
   "devDependencies": {
     "cli-41": "^0.0.2",
