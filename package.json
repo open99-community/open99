@@ -15,7 +15,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack"
+    "build": "node scripts/build.js fs-build fs/ && webpack"
   },
   "repository": {
     "type": "git",
@@ -32,8 +32,9 @@
   "homepage": "https://github.com/open99-community/open99#readme",
   "type": "module",
   "devDependencies": {
-    "cli-41": "^0.0.2",
+    "commander": "^11.0.0",
     "eslint": "^8.34.0",
+    "file-zippy": "^1.1.0",
     "jsdoc": "^4.0.1",
     "webpack-cli": "^5.0.1"
   }
