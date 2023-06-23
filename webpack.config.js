@@ -1,8 +1,10 @@
 import path from "path"
+import dotenv from "dotenv"
 import { fileURLToPath } from "url"
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 const mode = process.env.NODE_ENV || "production"
+dotenv.config()
 
 console.log(`Building in mode: ${mode}`)
 export default {

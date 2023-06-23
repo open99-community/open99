@@ -19,7 +19,7 @@ const idb = () => {
  */
 const result = await idb()
 result.onversionchange = (ev) => {
-    
+    console.log("IndexedDB version change detected", ev)
 }
 
 export default result

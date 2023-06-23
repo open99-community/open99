@@ -13,7 +13,6 @@
     <link rel="shortcut icon" type="image/ico" href="favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="assets/sys41.css">
-    <link rel="stylesheet" id="stylelink" href="assets/themes/98.css">
     <link rel="manifest" href="manifest.json">
 </head>
 
@@ -22,7 +21,7 @@
     </div>
     <div id="scripts">
         <!-- SW -->
-        <script>if ('serviceWorker' in navigator) { navigator.serviceWorker.register("/sw2.js", { scope: "./" }).then(() => {console.log("Service Worker Initialized!")}).catch(e => console.log(e)); }
+        <script>if ('serviceWorker' in navigator) { navigator.serviceWorker.register("assets/sw.js", { scope: "./" }).then(() => {console.log("Service Worker Initialized!")}).catch(e => console.log(e)); }
         </script>
         <!-- Third party scripts -->
         <script src="assets/jszip.js"></script>

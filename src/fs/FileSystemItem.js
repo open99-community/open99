@@ -2,23 +2,57 @@ import idb from "../fs/idb.js"
 
 /**
  * file system item (should be extended)
+ * @abstract
  */
 const FileSystemItem = class {
     /**
      * creates an entry in the idb
      * @param {Object} arg
      * @param {string} arg.path Path to item
-     * @param {*} arg.content Item content
+     * @param {string} [arg.content] Item content
      */
     constructor({
         path,
-        content
+        content= ""
     }){
         this.path = path
         this.content = content
     }
-    async save(){
-        
+
+    /**
+     * Saves the file system item.
+     * @returns {Promise<void> | Promise<ErrorEvent>}
+     */
+    save(){
+        return new Promise((resolve, reject) => {
+            const transaction = idb.transaction("c", "readwrite")
+            const store = transaction.objectStore("c")
+            const request = store.put(this.content, this.path)
+            request.onsuccess = () => {
+                resolve()
+            }
+            request.onerror = (error) => {
+                reject(error)
+            }
+        })
+    }
+
+    /**
+     * Removes the file system item
+     * @returns {Promise<void> | Promise<ErrorEvent>}
+     */
+    remove() {
+        return new Promise((resolve, reject) => {
+            const transaction = idb.transaction("c", "readwrite")
+            const store = transaction.objectStore("c")
+            const request = store.delete(this.path)
+            request.onsuccess = () => {
+                resolve()
+            }
+            request.onerror = (error) => {
+                reject(error)
+            }
+        })
     }
 }
 
