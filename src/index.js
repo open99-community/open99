@@ -18,6 +18,12 @@ try {
 }
 await sys41._boot.write({ text: "IDB loaded!", features: { success: true } })
 
+//ROOTFS-LOAD
+await sys41._boot.write({text: "Writing root fs..."})
+const loadRootFs = await import("./fs/loadRootFs.js").loadRootFs
+loadRootFs()
+await sys41._boot.write({text: "Root filesystem loaded!", features: {success: true}})
+
 //FS
 await sys41._boot.write({ text: "Loading FileSystem..." })
 const fsApi = await import("./fs/fs.js").default
