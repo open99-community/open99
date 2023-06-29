@@ -1,6 +1,6 @@
 {
   "name": "open99",
-  "version": "0.0.5",
+  "version": "0.0.7",
   "description": "open-source online web OS",
   "main": "index.js",
   "private": true,
