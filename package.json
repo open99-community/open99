@@ -14,7 +14,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "node scripts/build.js fs-build fs/ && node scripts/esbuild.js"
+    "build": "node scripts/build.js fs-build fs/ && rm -rf dist && node scripts/esbuild.js"
   },
   "repository": {
     "type": "git",
