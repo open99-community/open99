@@ -49,10 +49,10 @@ export default class Bootscreen {
     constructor(el) {
         this.el = el
     }
-    async write(content) {
+    write(content) {
         return new BootEntry(content, this.el)
     }
-    async error(text) {
+    error(text) {
         return new BootEntry({ text: text })
     }
 }

@@ -7,10 +7,12 @@ await esbuild.build({
     bundle: true,
     minify: true,
     sourcemap: true,
-    target: ["esnext"],
+    target: ["esnext", "node18"],
     outdir: "./dist",
     plugins: [env(), copy({
-        from: "./public",
-        to: "./dist",
+        from: "../public",
+        to: "../dist",
     })],
+    platform: "browser",
+    format: "esm"
 })
