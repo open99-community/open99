@@ -8,11 +8,12 @@ await esbuild.build({
     minify: true,
     sourcemap: true,
     target: ["esnext", "node18"],
-    outdir: "./dist",
+    outfile: "./dist/index.js",
     plugins: [env(), copy({
-        from: "../public",
-        to: "../dist",
+        from: "./public",
+        to: ".",
     })],
     platform: "browser",
-    format: "esm"
+    format: "esm",
+    loader: {".zip": "copy"}
 })
