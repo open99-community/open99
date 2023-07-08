@@ -4,9 +4,6 @@
   "description": "open-source online web OS",
   "main": "index.js",
   "private": true,
-  "directories": {
-    "lib": "lib"
-  },
   "dependencies": {
     "dotenv": "^16.0.3",
     "esbuild": "0.18.10",
@@ -23,7 +20,7 @@
   "keywords": [
     "web-os"
   ],
-  "author": "system41",
+  "author": "open99-community",
   "license": "SEE LICENSE IN LICENSE.md",
   "bugs": {
     "url": "https://github.com/open99-community/open99/issues"
@@ -31,12 +28,10 @@
   "homepage": "https://github.com/open99-community/open99#readme",
   "type": "module",
   "devDependencies": {
-    "commander": "^11.0.0",
     "esbuild-copy-plugin": "^1.0.0",
     "esbuild-plugin-env": "^1.0.7",
     "eslint": "^8.34.0",
     "file-zippy": "^1.1.0",
-    "jsdoc": "^4.0.1",
-    "webpack-cli": "^5.0.1"
+    "jsdoc": "^4.0.1"
   }
 }
