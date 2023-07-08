@@ -21,7 +21,7 @@
     </div>
     <div id="scripts">
         <!-- SW -->
-        <script>if ('serviceWorker' in navigator) { navigator.serviceWorker.register("assets/sw.js", { scope: "./" }).then(() => {console.log("Service Worker Initialized!")}).catch(e => console.log(e)); }
+        <script>if ('serviceWorker' in navigator) { navigator.serviceWorker.register("/sw.js", { scope: "./" }).then(() => {console.log("Service Worker Initialized!")}).catch(e => console.log(e)); }
         </script>
         <!-- Necessary script -->
         <script defer type="module" src="index.js"></script>
