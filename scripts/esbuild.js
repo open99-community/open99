@@ -15,5 +15,5 @@ await esbuild.build({
     })],
     platform: "browser",
     format: "esm",
-    loader: {".zip": "copy"}
+    //loader: {".zip": "copy"}
 })
