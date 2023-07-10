@@ -4,6 +4,7 @@
  * @returns {string}
  */
 let sysApis = (context) => {
+    // noinspection UnnecessaryLocalVariableJS
     let returnValue =  `
 const sys41 = {
     fs: {}
