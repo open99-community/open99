@@ -1,17 +1,17 @@
-import exposedapis from "./exposeapis.js"
-import sysApis from "./sysApis.js"
+import {applyApis} from "./applyApis.js"
 
 /** Class representing 41worker runtime */
 class AppRuntime {
+    //TODO: look at @typedef
     /**
      * Run the application
      * @param {string} code Code to be executed in 41worker runtime
-     * @param {{title: string, id: string}} appInfo Application metadata. Accessible within runtime
+     * @param {import("../../types/appInfo.ts").default} appInfo Application metadata. Accessible within runtime
      */
     constructor(code, appInfo) {
         this.code = code
         this.appInfo = appInfo
-        this.execCode = sysApis({ appInfo: appInfo }) + exposedapis + code
+        this.execCode = applyApis(appInfo) + code
         this.blob = new Blob([this.execCode], { type: "application/javascript" })
         this.url = URL.createObjectURL(this.blob)
         this.worker = new Worker(this.url, { type: "classic" })
@@ -19,7 +19,7 @@ class AppRuntime {
         //remember, port1 is main thread, port2 is worker
         this.channel.port1.onmessage =
             /**
-             * @param {import("../types/messageEvent.js").default} event
+             * @typedef {import("../../types/messageEvent.ts").default} event
             */
             (event) => {
                 const returnValue = this.handleReceivedMessage(event.op, event.args)
