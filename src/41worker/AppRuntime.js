@@ -6,12 +6,13 @@ class AppRuntime {
     /**
      * Run the application
      * @param {string} code Code to be executed in 41worker runtime
-     * @param {import("../../types/appInfo.ts").default} appInfo Application metadata. Accessible within runtime
+     //* @param {import("../../types/appInfo.ts").default} context Application metadata. Accessible within runtime
      */
-    constructor(code, appInfo) {
+    constructor(code, context) {
+        context.AppRuntime = AppRuntime
         this.code = code
-        this.appInfo = appInfo
-        this.execCode = applyApis(appInfo) + code
+        this.context = context
+        this.execCode = applyApis(context) + code
         this.blob = new Blob([this.execCode], { type: "application/javascript" })
         this.url = URL.createObjectURL(this.blob)
         this.worker = new Worker(this.url, { type: "classic" })

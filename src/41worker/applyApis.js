@@ -8,7 +8,7 @@ const decl = {
     app(appInfo) {
         return `const __app = ${JSON.stringify(appInfo)}`
     },
-    worker: "const worker = {send: function(op, args) {self.postMessage({op: op, args: args})}}"
+    worker: "const worker = {send: function(op, args) {self.postMessage({op: op, args: args})}}",
 }
 class ExposedApis {
     constructor() {
@@ -27,7 +27,7 @@ class ExposedApis {
     }
 }
 
-function applyApis(appInfo) {
+function applyApis(context) {
     const exposedapis = new ExposedApis
     exposedapis
         .removeApi("BroadcastChannel")
@@ -46,13 +46,14 @@ function applyApis(appInfo) {
         .removeApi("ServiceWorkerRegistration")
         .removeApi("Worker")
         .removeApi("WorkerNavigator")
-    if (appInfo.permissions?.network) {
+    if (context.appInfo.permissions?.network) {
         exposedapis
             .removeApi("fetch")
             .removeApi("WebSocket")
             .removeApi("XMLHttpRequest")
     }
-    return exposedapis.getExposedApis() + decl.app(appInfo) + decl.sys41 + decl.worker
+    let spawn_child = context.appInfo.permissions?.spawn_child ? "alert('spawn_child permission granted')" : "function(){throw new Error('Lacking spawn_child permission')})}"
+    return exposedapis.getExposedApis() + decl.app(context.appInfo) + decl.sys41 + spawn_child + decl.worker
 }
 
 export {applyApis}
