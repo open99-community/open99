@@ -4,11 +4,11 @@
  * @returns {string}
  */
 const decl = {
-    sys41: "const sys41 = {fs:{}}",
+    sys41: "const sys41 = {fs:{}};",
     app(appInfo) {
-        return `const __app = ${JSON.stringify(appInfo)}`
+        return `const __app = ${JSON.stringify(appInfo)};`
     },
-    worker: "const worker = {send: function(op, args) {self.postMessage({op: op, args: args})}}",
+    worker: "const worker = {send: function(op, args) {self.postMessage({op: op, args: args})}};",
 }
 class ExposedApis {
     constructor() {
@@ -52,7 +52,7 @@ function applyApis(context) {
             .removeApi("WebSocket")
             .removeApi("XMLHttpRequest")
     }
-    let spawn_child = context.appInfo.permissions?.spawn_child ? "alert('spawn_child permission granted')" : "function(){throw new Error('Lacking spawn_child permission')})}"
+    let spawn_child = "" //context.appInfo.permissions?.spawn_child ? "alert('spawn_child permission granted');" : "alert('Lacking spawn_child permission');"
     return exposedapis.getExposedApis() + decl.app(context.appInfo) + decl.sys41 + spawn_child + decl.worker
 }
 
