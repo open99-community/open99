@@ -2,6 +2,8 @@ import zippy from "file-zippy"
 import esbuild from "esbuild"
 import env from "esbuild-plugin-env"
 import copy from "esbuild-copy-plugin"
+import {config} from "dotenv"
+config()
 
 zippy("fs/", "./public/assets/rootfs.zip")
 
@@ -18,5 +20,7 @@ await esbuild.build({
     })],
     platform: "browser",
     format: "esm",
-    //loader: {".zip": "copy"}
+    define: {
+        "process.env.NODE_ENV": "\"" + process.env.NODE_ENV + "\"" || "production",
+    },
 })
