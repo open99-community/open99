@@ -8,7 +8,7 @@ const decl = {
     app(appInfo) {
         return `const __app = ${JSON.stringify(appInfo)};`
     },
-    worker: "const worker = {send: function(op, args) {self.postMessage({op: op, args: args})}};",
+    worker: "const worker = {send: async function(op, args) {self.postMessage({op: op, args: args})}};",
 }
 class ExposedApis {
     constructor() {
