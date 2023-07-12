@@ -1,5 +1,5 @@
 import zippy from "file-zippy"
-import esbuild from "esbuild"
+import { build } from "esbuild"
 import env from "esbuild-plugin-env"
 import copy from "esbuild-copy-plugin"
 import {config} from "dotenv"
@@ -7,7 +7,7 @@ config()
 
 zippy("fs/", "./public/assets/rootfs.zip")
 
-await esbuild.build({
+await build({
     entryPoints: ["./src/index.js"],
     bundle: true,
     minify: true,
