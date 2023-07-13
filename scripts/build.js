@@ -23,4 +23,7 @@ await build({
     define: {
         "process.env.NODE_ENV": "\"" + process.env.NODE_ENV + "\"" || "production",
     },
+    banner: {
+        js: `/*\nOPEN99 BETA REWRITE\nCopyright open99-community, 2023\n*/`,
+    }
 })
