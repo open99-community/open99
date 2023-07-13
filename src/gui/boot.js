@@ -17,9 +17,15 @@ class BootEntry {
         this.el = el
     }
 
-    update(content) {
+    update(text, features) {
         try {
-            this.el.innerHTML = content.text
+            this.el.innerHTML = text
+            this.content.text = text
+            this.content.features = features
+            features?.forEach((feature) => {
+                this.el.className = "" //clear features first
+                this.el.classList.add(feature)
+            })
         } catch (e) {
             throw new Error("Could not change boot entry content")
         }
