@@ -12,9 +12,15 @@ sys41._db = idb
 sys41.fs = fsApi
 sys41.AppRuntime = AppRuntime
 
-sys41._boot.write({ text: "open99 BETA rewrite booting on " + navigator.userAgent + " at " + new Date() })
+sys41._boot.write("open99 BETA rewrite booting on " + navigator.userAgent + " at " + new Date() + "...")
 
 //ROOTFS-LOAD
-sys41._boot.write({text: "Writing root fs..."})
-await loadRootFs()
-sys41._boot.write({text: "Root filesystem loaded!", features: {success: true}})
+sys41._boot.write("Writing root fs...")
+try {
+    await loadRootFs()
+    //throw new Error("test catch of the error!!!")
+    sys41._boot.write("Root filesystem loaded", ["success"])
+} catch (e) {
+    sys41._boot.write("Root filesystem failed to load", ["error"])
+    sys41._boot.write(e, ["error", "blink"])
+}
