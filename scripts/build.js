@@ -24,6 +24,10 @@ await build({
         "process.env.NODE_ENV": "\"" + process.env.NODE_ENV + "\"" || "production",
     },
     banner: {
-        js: "/*\nOPEN99 BETA REWRITE\nCopyright open99-community, 2023\n*/",
+        js: `/*
+ * OPEN99 - A simple, fast and secure web operating system.
+ * Copyright stretch07, 2023, All rights reserved.
+ * Copying this project is prohibited.
+*/`,
     }
 })
