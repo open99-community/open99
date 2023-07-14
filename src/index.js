@@ -1,9 +1,9 @@
-import Bootscreen from "./gui/boot.js"
+import Bootscreen from "./gui/boot.ts"
 import { db } from "./fs/idb.js"
 import { load } from "./fs/loadRootFs.js"
 import fsApi from "./fs/fs.js"
 import AppRuntime from "./41worker/AppRuntime.js"
-import {pointerlock} from "./gui/pointerlock.js"
+import {pointerLock} from "./gui/pointerLock.ts"
 const sys41 = {}
 if (process.env.NODE_ENV === "development") {
     window.sys41 = sys41
@@ -24,5 +24,5 @@ try {
     sys41._boot.write(e, ["error", "blink"])
 }
 const clickListen = sys41._boot.write("Click once anywhere on the screen...", ["blink"])
-await pointerlock()
+await pointerLock()
 clickListen.update(clickListen.content.text + " done", ["success"])

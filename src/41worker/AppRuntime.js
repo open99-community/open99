@@ -6,7 +6,7 @@ class AppRuntime {
     /**
      * Run the application
      * @param {string} code Code to be executed in 41worker runtime
-     //* @param {import("../../types/App.ts").default} context Application metadata. Accessible within runtime
+     * @param {import("../../types/App.ts").App} context Application metadata. Accessible within runtime
      */
     constructor(code, context) {
         context.AppRuntime = AppRuntime
