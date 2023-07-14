@@ -1,22 +1,24 @@
-/**
- * IDB
- * @returns {IDBDatabase}
- */
-const idb = async () => {
-    let openRequest = window.indexedDB.open("open99", 1)
+export async function loadStore() {
     return new Promise((resolve, reject) => {
-        openRequest.onsuccess = () => {
-            resolve(openRequest.result)
+        const request = indexedDB.open("open99", 2)
+        request.onupgradeneeded = event => {
+            console.log("Database upgrade needed!")
+            const db = event.target.result
+            const filesys = db.createObjectStore("c", {keyPath: "path"})
+            console.log(filesys)
         }
-        openRequest.onerror = e => {
-            reject("Error attempting to open db:" + e)
+        request.onsuccess = event => {
+            console.log("Database created successfully!")
+            const db = event.target.result
+            const transaction = db.transaction("c", "readwrite")
+            const store = transaction.objectStore("c")
+            store.add({path: "test-key", content: "test-content"})
+            resolve(db)
+        }
+        request.onerror = event => {
+            console.error("An error occurred while creating the database:", event)
+            reject(event)
         }
     })
 }
-
-const result = await idb()
-result.onversionchange = (ev) => {
-    console.log("IndexedDB version change detected", ev)
-}
-
-export default result
+export const db = await loadStore()

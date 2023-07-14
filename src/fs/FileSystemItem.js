@@ -1,4 +1,4 @@
-import idb from "../fs/idb.js"
+import { db } from "../fs/idb.js"
 
 /**
  * file system item (should be extended)
@@ -25,9 +25,9 @@ const FileSystemItem = class {
      */
     save(){
         return new Promise((resolve, reject) => {
-            const transaction = idb.transaction("c", "readwrite")
+            const transaction = db.transaction("c", "readwrite")
             const store = transaction.objectStore("c")
-            const request = store.put(this.content, this.path)
+            const request = store.add({path: this.path, content: this.content})
             request.onsuccess = () => {
                 resolve()
             }
@@ -43,7 +43,7 @@ const FileSystemItem = class {
      */
     remove() {
         return new Promise((resolve, reject) => {
-            const transaction = idb.transaction("c", "readwrite")
+            const transaction = db.transaction("c", "readwrite")
             const store = transaction.objectStore("c")
             const request = store.delete(this.path)
             request.onsuccess = () => {
