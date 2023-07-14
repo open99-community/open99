@@ -5,8 +5,7 @@
       "dom",
       "es5",
       "scripthost",
-      "es2015.promise",
-      "allowImportingTsExtensions"
+      "es2015.promise"
     ]
   }
 }
