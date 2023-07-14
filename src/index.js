@@ -4,14 +4,18 @@ import { load } from "./fs/loadRootFs.js"
 import fsApi from "./fs/fs.ts"
 import AppRuntime from "./41worker/AppRuntime.js"
 import {pointerLock} from "./gui/pointerLock.ts"
-const sys41 = {}
+import {components} from "./gui/components/index.js"
+
+const sys41 = {
+    _db: db,
+    _boot: new Bootscreen(document.getElementsByClassName("boot")[0]),
+    fs: fsApi,
+    AppRuntime,
+    components
+}
 if (process.env.NODE_ENV === "development") {
     window.sys41 = sys41
 }
-sys41._boot = new Bootscreen(document.getElementsByClassName("boot")[0])
-sys41._db = db
-sys41.fs = fsApi
-sys41.AppRuntime = AppRuntime
 
 sys41._boot.write("open99 BETA rewrite booting on " + navigator.userAgent + " at " + new Date() + "...")
 
