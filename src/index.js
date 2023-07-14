@@ -1,7 +1,7 @@
 import Bootscreen from "./gui/boot.ts"
 import { db } from "./fs/idb.js"
 import { load } from "./fs/loadRootFs.js"
-import fsApi from "./fs/fs.js"
+import fsApi from "./fs/fs.ts"
 import AppRuntime from "./41worker/AppRuntime.js"
 import {pointerLock} from "./gui/pointerLock.ts"
 const sys41 = {}

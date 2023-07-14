@@ -1,4 +1,4 @@
-import FileSystemItem from "./FileSystemItem.js"
+import FileSystemItem from "./FileSystemItem"
 
 /**
  * Drive class
@@ -6,19 +6,17 @@ import FileSystemItem from "./FileSystemItem.js"
 class Drive extends FileSystemItem {
     /**
      * Initializes new Drive
-     * @param {string} arg 
-     * @param {string} arg.name
-     * @throws {Error}
-     * @returns {this}
      */
-    constructor({name}){
+    name: string
+    constructor(data: {name:string}){
+        const name = data.name
         if((name[1]) || ("string" !== typeof name)){
             //name should be a string, but only one char (drive letter)
             throw new Error("Drive letter is not a string or is longer than one char")
         } else {
-            super({path: name})
-            super.save()
+            super({path: name, content: ""})
         }
+        data.name = this.name
     }
 
     /**

@@ -1,35 +1,31 @@
-import { db } from "../fs/idb.js"
+import { db } from "./idb.js"
 
 /**
  * file system item (should be extended)
- * @abstract
  */
-const FileSystemItem = class {
-    /**
-     * creates an entry in the idb
-     * @param {Object} arg
-     * @param {string} arg.path Path to item
-     * @param {string} [arg.content] Item content
-     */
-    constructor({
-        path,
-        content= ""
+class FileSystemItem {
+    path: string
+    content: string
+    constructor(data: {
+        //https://github.com/Microsoft/TypeScript/issues/5326
+        path: string,
+        content: string,
     }){
-        this.path = path
-        this.content = content
+        data.path = this.path
+        data.content = this.content
+        this.save()
     }
 
     /**
      * Saves the file system item.
-     * @returns {Promise<void> | Promise<ErrorEvent>}
      */
-    save(){
+    save(): Promise<this> {
         return new Promise((resolve, reject) => {
             const transaction = db.transaction("c", "readwrite")
             const store = transaction.objectStore("c")
             const request = store.add({path: this.path, content: this.content})
             request.onsuccess = () => {
-                resolve()
+                resolve(this)
             }
             request.onerror = (error) => {
                 reject(error)
@@ -39,9 +35,8 @@ const FileSystemItem = class {
 
     /**
      * Removes the file system item
-     * @returns {Promise<void> | Promise<ErrorEvent>}
      */
-    remove() {
+    remove(): Promise<void> {
         return new Promise((resolve, reject) => {
             const transaction = db.transaction("c", "readwrite")
             const store = transaction.objectStore("c")

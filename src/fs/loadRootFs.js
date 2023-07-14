@@ -2,7 +2,7 @@
 // because my IDE is dumb
 
 import JSZip from "jszip"
-import fileSystemItem from "./FileSystemItem.js"
+import fileSystemItem from "./FileSystemItem.ts"
 
 export async function load() {
     let zip = await JSZip.loadAsync(await (await fetch("/assets/rootfs.zip")).blob())
