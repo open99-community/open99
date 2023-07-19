@@ -2,8 +2,6 @@ import zippy from "file-zippy"
 import { build } from "esbuild"
 import env from "esbuild-plugin-env"
 import copy from "esbuild-copy-plugin"
-import {config} from "dotenv"
-config()
 console.log("Building...")
 
 zippy("fs/", "./public/assets/rootfs.zip")
