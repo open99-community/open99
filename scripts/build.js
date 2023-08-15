@@ -25,6 +25,7 @@ await build({
     define: {
         "process.env.NODE_ENV": "\"" + process.env.NODE_ENV + "\"" || "production",
     },
+    legalComments: "none",
     drop: [
         process.env.NODE_ENV === "development" ? "" : "debugger",
         process.env.NODE_ENV === "development" ? "" : "console",
