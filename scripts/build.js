@@ -1,21 +1,22 @@
 import zippy from "file-zippy"
 import { build } from "esbuild"
-import env from "esbuild-plugin-env"
 import copy from "esbuild-copy-plugin"
 import {config} from "dotenv"
 config()
-console.log("Building...")
+
+console.log("Starting build...\nBuilding rootfs...")
 
 zippy("fs/", "./public/assets/rootfs.zip")
 
+console.log("Rootfs built!\nBuilding kernel...")
 await build({
     entryPoints: ["./src/index.js"],
     bundle: true,
     minify: true,
-    sourcemap: true,
-    target: ["esnext", "node18"],
+    sourcemap: process.env.NODE_ENV === "development" ? true : false,
+    target: ["esnext"],
     outfile: "./dist/index.js",
-    plugins: [env(), copy({
+    plugins: [copy({
         from: "./public",
         to: ".",
     })],
@@ -24,6 +25,10 @@ await build({
     define: {
         "process.env.NODE_ENV": "\"" + process.env.NODE_ENV + "\"" || "production",
     },
+    drop: [
+        process.env.NODE_ENV === "development" ? "" : "debugger",
+        process.env.NODE_ENV === "development" ? "" : "console",
+    ],
     banner: {
         js: `/*
  * OPEN99 - A simple, fast and secure web operating system.

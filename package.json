@@ -6,7 +6,6 @@
   "private": true,
   "dependencies": {
     "browser-detect-devtools": "1.0.4",
-    "dotenv": "^16.0.3",
     "jszip": "^3.10.1"
   },
   "scripts": {
@@ -32,9 +31,9 @@
     "@commitlint/config-conventional": "^17.7.0",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
+    "dotenv": "^16.3.1",
     "esbuild": "0.18.10",
     "esbuild-copy-plugin": "^1.0.0",
-    "esbuild-plugin-env": "^1.0.7",
     "eslint": "^8.44.0",
     "file-zippy": "^1.1.0",
     "husky": "^8.0.3",
