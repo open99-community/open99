@@ -3,7 +3,7 @@ import { db } from "./fs/idb.js"
 import { load } from "./fs/loadRootFs.js"
 import fsApi from "./fs/fs.ts"
 import AppRuntime from "./41worker/AppRuntime.js"
-import {pointerLock} from "./gui/pointerLock.ts"
+import {pointerLock} from "./util/pointerLock.ts"
 import {components} from "./gui/components/index.js"
 
 const sys41 = {
