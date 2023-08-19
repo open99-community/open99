@@ -1,7 +1,7 @@
 import { db } from "./idb.js"
 
 /**
- * file system item (should be extended)
+ * file Pluto item (should be extended)
  */
 class FileSystemItem {
     path: string
@@ -17,7 +17,7 @@ class FileSystemItem {
     }
 
     /**
-     * Saves the file system item.
+     * Saves the file Pluto item.
      */
     save(): Promise<this> {
         return new Promise((resolve, reject) => {
@@ -34,7 +34,7 @@ class FileSystemItem {
     }
 
     /**
-     * Removes the file system item
+     * Removes the file Pluto item
      */
     remove(): Promise<void> {
         return new Promise((resolve, reject) => {

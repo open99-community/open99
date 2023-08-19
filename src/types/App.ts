@@ -9,7 +9,7 @@ export default interface App {
      */
     name: string,
     /**
-     * The ID of the app. Should be unique throughout the system; we recommend the format "author.name".
+     * The ID of the app. Should be unique throughout the Pluto; we recommend the format "author.name".
      */
     id: string,
     /**

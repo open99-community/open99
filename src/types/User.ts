@@ -7,7 +7,7 @@ export interface User {
      */
     name: string,
     /**
-     * The ID of the user. Must be unique across the system.
+     * The ID of the user. Must be unique across the Pluto.
      */
     id: string,
     /**
@@ -21,7 +21,7 @@ export interface User {
 }
 
 /**
- * An online user object. Online users are logged in with open99 cloud.
+ * An online user object. Online Users are logged in with open99 cloud.
  */
 export interface OnlineUser extends User {
     /**

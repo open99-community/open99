@@ -1,5 +1,5 @@
 /**
- * system apis such as sys41.*, __app, worker, etc
+ * Pluto apis such as sys41.*, __app, worker, etc
  * @param {import("../../types/appInfo.ts").default} appInfo Application metadata. Accessible within runtime
  * @returns {string}
  */
