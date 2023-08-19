@@ -12,7 +12,7 @@ class BootEntry {
         this.el = el
     }
 
-    update(text, features) {
+    update(text: string, features?: string[]) {
         try {
             this.el.innerHTML = text
             this.content.text = text

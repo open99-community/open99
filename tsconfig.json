@@ -7,5 +7,6 @@
       "scripthost",
       "es2015.promise"
     ]
-  }
+  },
+  "checkJs": false,
 }
