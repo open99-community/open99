@@ -11,9 +11,10 @@ class FileSystemItem {
         path: string,
         content: string,
     }){
-        data.path = this.path
-        data.content = this.content
+        this.path = data.path
+        this.content = data.content
         this.save()
+        console.log(this.path, this.content)
     }
 
     /**
