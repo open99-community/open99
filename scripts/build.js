@@ -4,13 +4,7 @@ import copy from "esbuild-copy-plugin"
 import {config} from "dotenv"
 
 config()
-let conditionals = {}
-if (process.env.NODE_ENV === "development") {
-    conditionals.drops = [
-        "debugger",
-        "console",
-    ]
-}
+
 const content = {
     entryPoints: ["./src/index.js"],
     bundle: true,
@@ -28,7 +22,10 @@ const content = {
         "process.env.NODE_ENV": "\"" + process.env.NODE_ENV + "\"" || "production",
     },
     legalComments: "none", //we don't want people to know what dependencies we rely on
-    drop: conditionals.drops,
+    drop: process.env.NODE_ENV === "development" ? undefined : [
+        "debugger",
+        "console",
+    ],
     banner: {
         js: `/*
  * OPEN99 - A simple, fast and secure web operating system.
