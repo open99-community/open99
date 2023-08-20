@@ -41,6 +41,7 @@ let isDevMode = false
 process.argv.forEach(arg => {
     if (arg === "--watch") {
         isDevMode = true
+        console.log("WATCH MODE ON - CHANGES IN FS WILL NOT REBUILD. ONLY KERNEL CHANGES")
     }
 })
 
@@ -62,9 +63,7 @@ if (!isDevMode) {
 } else {
     const ctx = await context(content)
     console.log("Watching!")
-    const {host, port} = await ctx.serve(
-        {servedir: "./dist"},
-    )
+    const {host, port} = await ctx.serve({servedir: "./dist"})
     console.log(`Serving on ${host}:${port}`)
     await ctx.watch()
 }
