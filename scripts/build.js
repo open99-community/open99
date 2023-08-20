@@ -18,6 +18,7 @@ const content = {
     })],
     platform: "browser",
     format: "esm",
+    loader: { ".zip": "file"},
     define: {
         "process.env.NODE_ENV": "\"" + process.env.NODE_ENV + "\"" || "production",
     },
