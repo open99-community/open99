@@ -17,8 +17,7 @@
     font-family: courier;
     font-size: 12pt;
     text-align: center;
-    margin: 100px;
-    margin-top: 14%;
+    margin: 14% 100px 100px;
 }
 
 .bsod .title {
@@ -29,11 +28,9 @@
 }
 
 .bsod p {
-    margin: 30px 100px;
     text-align: left;
     width: 650px;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 30px auto;
 }
 
 .bsod a,

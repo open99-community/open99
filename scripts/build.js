@@ -2,6 +2,8 @@ import zippy from "file-zippy"
 import {build, context} from "esbuild"
 import copy from "esbuild-copy-plugin"
 import {config} from "dotenv"
+import JavascriptObfuscator from "javascript-obfuscator"
+import fs from "fs/promises"
 
 config()
 
@@ -21,6 +23,7 @@ const content = {
     loader: { ".zip": "file"},
     define: {
         "process.env.NODE_ENV": "\"" + process.env.NODE_ENV + "\"" || "production",
+        //"SYSVER": `"${packageJson.version}"`,
     },
     legalComments: "none", //we don't want people to know what dependencies we rely on
     drop: process.env.NODE_ENV === "development" ? undefined : [
@@ -51,6 +54,11 @@ console.log("Rootfs packed!\nBuilding kernel...")
 if (!isDevMode) {
     try {
         await build(content)
+        if (process.env.NODE_ENV !== "development") {
+            console.log("Obfuscating...")
+            //const obfuscated = JavascriptObfuscator.obfuscate(await fs.readFile("./dist/index.js", {encoding:"utf8"}))
+            //await fs.writeFile(obfuscated.getObfuscatedCode(), "./dist/index.js")
+        }
         console.log("Build complete!")
         process.exit(0)
     } catch (e) {
