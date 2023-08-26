@@ -2,11 +2,10 @@ import FileSystemItem from "./FileSystemItem.ts"
 
 class File extends FileSystemItem {
     constructor({
-        name,
         path,
         content
     }){
-        super({name, path, content})
+        super({path, content})
         return this
     }
     save(){

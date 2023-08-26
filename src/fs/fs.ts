@@ -1,5 +1,5 @@
 import File from "./File.js"
-import Dir from "./Dir.js"
+import Dir from "./Dir"
 import Drive from "./Drive"
 
 const fsApi = {

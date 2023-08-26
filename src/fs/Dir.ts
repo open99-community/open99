@@ -1,11 +1,8 @@
 import FileSystemItem from "./FileSystemItem.ts"
 
 class Dir extends FileSystemItem {
-    constructor({
-        name,
-        path
-    }){
-        super({name, path})
+    constructor(params: {path: string}) {
+        super({path: params.path, content: ""})
         return this
     }
     rename(){

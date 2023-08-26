@@ -1,5 +1,5 @@
 import Bootscreen from "./gui/boot.ts"
-import { db } from "./fs/idb.js"
+import { database } from "./fs/idb.js"
 import { load } from "./fs/loadRootFs.js"
 import fsApi from "./fs/fs.ts"
 import AppRuntime from "./41worker/AppRuntime.js"
@@ -11,7 +11,7 @@ import devWatcher from "./util/devWatcher.js"
 devWatcher()
 
 const sys41 = {
-    _db: db,
+    _db: database,
     _boot: new Bootscreen(document.getElementsByClassName("boot")[0]),
     fs: fsApi,
     AppRuntime,
