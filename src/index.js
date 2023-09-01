@@ -18,6 +18,8 @@ const sys41 = {
     components
 }
 if (process.env.NODE_ENV === "development") {
+    // Yes, this is a hack. I'm sorry.
+    //window.indexedDB.deleteDatabase("open99")
     window.sys41 = sys41
 }
 
