@@ -87,3 +87,5 @@ if (!isDevMode) {
     console.log(`🍽️Serving on https://localhost:${port}. Press Ctrl+C to stop.`)
     await ctx.watch()
 }
+
+//@TODO make the fs zips stop appearing in /public/assets. they should be in /dist/assets
