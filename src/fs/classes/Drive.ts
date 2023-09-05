@@ -2,6 +2,7 @@ import FileSystemItem from "./FileSystemItem"
 
 /**
  * Drive class
+ * @TODO rewrite drive completely - should create object stores in indexedDB
  */
 class Drive extends FileSystemItem {
     /**

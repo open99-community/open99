@@ -1,24 +1,23 @@
-import { database } from "./idb.js"
+import { database } from "../idb.js"
 
 /**
- * file Pluto item (should be extended)
+ * file item (should be extended)
  */
 class FileSystemItem {
     path: string
-    content: string | Blob
+    content: string | Blob | undefined
     constructor(data: {
         //https://github.com/Microsoft/TypeScript/issues/5326
         path: string,
-        content: string | Blob,
+        content?: string | Blob | undefined,
     }){
         this.path = data.path
         this.content = data.content
-        this.save()
-        console.log(this.path, this.content)
+        console.log("ACCESS FILE", this.path, this.content)
     }
 
     /**
-     * Saves the file Pluto item.
+     * Saves the file item.
      */
     save(): Promise<this> {
         return new Promise((resolve, reject) => {
@@ -35,7 +34,7 @@ class FileSystemItem {
     }
 
     /**
-     * Removes the file Pluto item
+     * Removes the file item
      */
     remove(): Promise<void> {
         return new Promise((resolve, reject) => {
@@ -45,10 +44,24 @@ class FileSystemItem {
             request.onsuccess = () => {
                 resolve()
             }
-            request.onerror = (error) => {
+            request.onerror = (error: unknown) => {
                 reject(error)
             }
         })
+    }
+
+    /**
+     * Returns the content of the item.
+     */
+    async Vcontent(): Promise<string | Blob | undefined> {
+        return this.content
+    }
+
+    /**
+     * writes to file
+     */
+    async write(content: string | Blob): Promise<this> {
+        return this
     }
 }
 

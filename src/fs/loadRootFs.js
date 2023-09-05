@@ -2,8 +2,8 @@
 // because my IDE is dumb
 
 import JSZip from "jszip"
-import fileSystemItem from "./FileSystemItem.ts"
-import rootfs from "../../public/assets/rootfs.zip"
+import fileSystemItem from "./classes/FileSystemItem.ts"
+import rootfs from "../../public/assets/rootfs.zip" //this only imports an external URL
 
 export async function load() {
     //@TODO check if lockfile exists before formatting and writing rootfs
