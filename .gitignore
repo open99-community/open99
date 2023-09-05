@@ -1,4 +1,6 @@
-public/assets/rootfs.zip
+# temporary folders that get zipped
+target_fs_BUILD/
+installer_fs_BUILD/
 
 .vscode
 out
