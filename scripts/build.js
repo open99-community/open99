@@ -67,8 +67,8 @@ if (!isDevMode) {
     }
 } else {
     const ctx = await context(content)
-    const {host, port} = await ctx.serve({servedir: "./dist"})
-    console.log("\t\t✅ Kernel built!\n👓 Watching!")
-    console.log(`🍽️Serving on ${host}:${port}`)
+    const {port} = await ctx.serve({servedir: "./dist"})
+    console.log("\t\t✅  Kernel built!\n👓 Watching!")
+    console.log(`🍽️Serving on https://localhost:${port}. Press Ctrl+C to stop.`)
     await ctx.watch()
 }
