@@ -23,7 +23,7 @@ const content = {
     loader: { ".zip": "file"},
     define: {
         "process.env.NODE_ENV": "\"" + process.env.NODE_ENV + "\"" || "production",
-        //"SYSVER": `"${packageJson.version}"`,
+        "SYSVER": `"${process.env.npm_package_version}"`,
     },
     legalComments: "none", //we don't want people to know what dependencies we rely on
     drop: process.env.NODE_ENV === "development" ? undefined : [
@@ -42,15 +42,14 @@ let isDevMode = false
 process.argv.forEach(arg => {
     if (arg === "--watch") {
         isDevMode = true
-        console.log("WATCH MODE ON - CHANGES IN FS WILL NOT REBUILD. ONLY KERNEL CHANGES")
     }
 })
 
-console.log(`Starting build in "${process.env.NODE_ENV}" mode... ${!isDevMode ? "Filewatch off" : "Filewatch on"}\nPacking rootfs...`)
+console.log(`🌌 Starting ${process.env.NODE_ENV} build... ${!isDevMode ? "👓 Watch off" : "👓 Watch on"}\n\t📦 Packing target fs...`)
 
 zippy("fs/", "./public/assets/rootfs.zip")
 
-console.log("Rootfs packed!\nBuilding kernel...")
+console.log("\t\t✅  Target fs packed!\n\t🍿 Building kernel...")
 if (!isDevMode) {
     try {
         await build(content)
@@ -59,7 +58,7 @@ if (!isDevMode) {
             //const obfuscated = JavascriptObfuscator.obfuscate(await fs.readFile("./dist/index.js", {encoding:"utf8"}))
             //await fs.writeFile(obfuscated.getObfuscatedCode(), "./dist/index.js")
         }
-        console.log("Build complete!")
+        console.log("\t\t✅  Kernel built!\n✅ Build complete!")
         process.exit(0)
     } catch (e) {
         console.log("Kernel build failed! Details below")
@@ -68,8 +67,8 @@ if (!isDevMode) {
     }
 } else {
     const ctx = await context(content)
-    console.log("Watching!")
     const {host, port} = await ctx.serve({servedir: "./dist"})
-    console.log(`Serving on ${host}:${port}`)
+    console.log("\t\t✅ Kernel built!\n👓 Watching!")
+    console.log(`🍽️Serving on ${host}:${port}`)
     await ctx.watch()
 }
