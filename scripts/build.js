@@ -2,7 +2,7 @@ import zippy from "file-zippy"
 import {build, context} from "esbuild"
 import copy from "esbuild-copy-plugin"
 import {config} from "dotenv"
-import { buildFs } from "./fsbuild.js"
+import { buildTargetFs, buildInstallerFs } from "./fsbuild.js"
 import { rimraf } from "rimraf"
 
 config()
@@ -53,19 +53,25 @@ console.log("\t\t✅  Cleaned up!")
 
 
 console.log(`🌌 Starting ${process.env.NODE_ENV} build... ${!isDevMode ? "👓 Watch off" : "👓 Watch on"}\n\t🛠️Building target fs...`)
-await buildFs()
+await buildTargetFs()
 
 console.log("\t\t✅  Target fs built!\n\t📦 Packing target fs...")
 zippy("target_fs_BUILD/", "./public/assets/rootfs.zip")
 
-console.log("\t\t✅  Target fs packed!\n\t🍿 Building kernel...")
+console.log("\t\t✅  Target fs packed!\n\t🛠️Building installer fs...")
+await buildInstallerFs()
+
+console.log("\t\t✅  Installer fs built!\n\t📦 Packing installer fs...")
+zippy("installer_fs_BUILD/", "./public/assets/installerfs.zip")
+
+console.log("\t\t✅  Installer fs packed!\n\t🍿 Building kernel...")
 if (!isDevMode) {
     try {
         await build(content)
         if (process.env.NODE_ENV !== "development") {
             console.log("Obfuscating...")
-            //const obfuscated = JavascriptObfuscator.obfuscate(await fs.readFile("./dist/index.js", {encoding:"utf8"}))
-            //await fs.writeFile(obfuscated.getObfuscatedCode(), "./dist/index.js")
+            //const obfuscated = JavascriptObfuscator.obfuscate(await target_fs.readFile("./dist/index.js", {encoding:"utf8"}))
+            //await target_fs.writeFile(obfuscated.getObfuscatedCode(), "./dist/index.js")
         }
         console.log("\t\t✅  Kernel built!\n✅  Build complete!")
         process.exit(0)

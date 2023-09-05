@@ -47,6 +47,9 @@ async function handleFile(sourcePath, targetPath) {
     await copyFile(sourcePath, targetPath)
 }
 
-export async function buildFs() {
-    await recursiveCopy("./fs/Pluto/System41", "./target_fs_BUILD/Pluto/System41")
+export async function buildTargetFs() {
+    await recursiveCopy("./target_fs/Pluto/System41", "./target_fs_BUILD/Pluto/System41")
+}
+export async function buildInstallerFs() {
+    await recursiveCopy("./target_fs/Pluto/System41", "./installer_fs_BUILD/Pluto/System41")
 }
