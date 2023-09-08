@@ -1,7 +1,7 @@
-import { DevtoolBlocker} from "devtool-blocker"
+import { DevToolsDetector } from "devtool-blocker"
 export const monitorDevtools = () => {
     if (process.env.NODE_ENV !== "development") {
-        const blocker = new DevtoolBlocker()
+        const blocker = new DevToolsDetector()
         blocker.config.onDetectOpen = () => {
             alert("Do not use devtools.")
         }

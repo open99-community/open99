@@ -7,7 +7,7 @@ import { rimraf } from "rimraf"
 
 config()
 
-const content = {
+const build_options = {
     entryPoints: ["./src/index.js"],
     bundle: true,
     minify: true,
@@ -67,23 +67,24 @@ zippy("installer_fs_BUILD/", "./public/assets/installerfs.zip")
 console.log("\t\t✅  Installer fs packed!\n\t🍿 Building kernel...")
 if (!isDevMode) {
     try {
-        await build(content)
+        await build(build_options)
         if (process.env.NODE_ENV !== "development") {
-            console.log("Obfuscating...")
+            console.log("Obfuscating kernel...")
             //const obfuscated = JavascriptObfuscator.obfuscate(await target_fs.readFile("./dist/index.js", {encoding:"utf8"}))
             //await target_fs.writeFile(obfuscated.getObfuscatedCode(), "./dist/index.js")
         }
         console.log("\t\t✅  Kernel built!\n✅  Build complete!")
         process.exit(0)
     } catch (e) {
+        await rimraf("../dist")
         console.log("Kernel build failed! Details below")
         console.error(e)
         process.exit(1)
     }
 } else {
-    const ctx = await context(content)
+    const ctx = await context(build_options)
     const {port} = await ctx.serve({servedir: "./dist"})
-    console.log("\t\t✅  Kernel built!\n👓 Watching!")
+    console.log("\t\t✅  Kernel built!\n✅  Build complete!\n👓 Watching!")
     console.log(`🍽️Serving on https://localhost:${port}. Press Ctrl+C to stop.`)
     await ctx.watch()
 }

@@ -5,9 +5,9 @@ import fsApi from "./fs/fs.ts"
 import AppRuntime from "./41worker/AppRuntime.js"
 import {pointerLock} from "./util/pointerLock.ts"
 import {components} from "./gui/components/index.js"
-//import { monitorDevtools } from "./util/noDevtools.js"
+import { monitorDevtools } from "./util/noDevtools.js"
 import devWatcher from "./util/devWatcher.js"
-//monitorDevtools()
+monitorDevtools()
 devWatcher()
 
 const sys41 = {

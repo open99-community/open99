@@ -8,7 +8,6 @@ export async function loadStore() {
             const db = request.result
             if (!db.objectStoreNames.contains("c")) {
                 const filesys = db.createObjectStore("c", {keyPath: "path"})
-                console.log(filesys)
             }
         }
 

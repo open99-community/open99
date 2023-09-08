@@ -5,7 +5,7 @@
   "main": "index.js",
   "private": true,
   "dependencies": {
-    "devtool-blocker": "git+https://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:x-oauth-basic@github.com/open99-community/devtool-blocker.git",
+    "devtool-blocker": "git+https://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:x-oauth-basic@github.com/use-pluto/devtool-blocker.git",
     "i18next": "^23.4.4",
     "jszip": "^3.10.1"
   },
@@ -21,12 +21,12 @@
   "keywords": [
     "web-os"
   ],
-  "author": "open99-community",
-  "license": "SEE LICENSE IN LICENSE.md",
+  "author": "stretch07",
+  "license": "UNLICENSED",
   "bugs": {
-    "url": "https://github.com/open99-community/open99/issues"
+    "url": "https://github.com/use-pluto/pluto/issues"
   },
-  "homepage": "https://github.com/open99-community/open99#readme",
+  "homepage": "https://github.com/use-pluto/pluto#readme",
   "type": "module",
   "devDependencies": {
     "@commitlint/cli": "^17.7.1",
@@ -41,7 +41,8 @@
     "husky": "^8.0.3",
     "javascript-obfuscator": "^4.0.2",
     "jsdoc": "^4.0.1",
-    "typescript": "^5.1.6",
-    "rimraf": "^5.0.1"
+    "portalog": "^1.0.0",
+    "rimraf": "^5.0.1",
+    "typescript": "^5.1.6"
   }
 }
