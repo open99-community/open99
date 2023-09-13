@@ -2,12 +2,13 @@ import { rimraf } from "rimraf";
 import { context, build as esbuild } from "esbuild";
 import JavascriptObfuscator from "javascript-obfuscator";
 import { promises as fs } from "fs"
+import {args} from "../meta/esbuild.js"
 
-export async function build(session, isWatchMode, NODE_ENV, build_options) {
+export async function build(session, isWatchMode, NODE_ENV) {
     const msg = session.addItem("Building kernel...", "🛠")
     if (!isWatchMode) {
         try {
-            await esbuild(build_options)
+            await esbuild(args)
             if (NODE_ENV !== "development") {
                 msg.addItem("Obfuscating kernel...", "🕶")
                 const obfuscated = JavascriptObfuscator.obfuscate(await fs.readFile("./dist/index.js", {encoding:"utf8"}))
