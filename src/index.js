@@ -7,7 +7,9 @@ import {pointerLock} from "./util/pointerLock.ts"
 import {components} from "./gui/components/index.js"
 import { monitorDevtools } from "./util/noDevtools.js"
 import devWatcher from "./util/devWatcher.js"
+import {noPiracy} from "./util/noPiracy.js"
 monitorDevtools()
+noPiracy()
 devWatcher()
 
 const sys41 = {
