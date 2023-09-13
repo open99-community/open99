@@ -47,6 +47,13 @@ async function handleFile(sourcePath, targetPath) {
     await copyFile(sourcePath, targetPath)
 }
 
+try {
+    await mkdir("./target_fs_BUILD")
+    await mkdir("./target_fs_BUILD")
+} catch {
+    // ignore
+}
+
 export async function buildTargetFs() {
     await recursiveCopy("./target_fs/Pluto/System41", "./target_fs_BUILD/Pluto/System41")
 }

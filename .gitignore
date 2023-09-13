@@ -1,4 +1,4 @@
-# temporary folders that get zipped
+# temporary folders that get zipped... @TODO remove these folders after they get zipped
 target_fs_BUILD/
 installer_fs_BUILD/
 
