@@ -1,4 +1,4 @@
-import { buildTargetFs } from "../fsbuild.js"
+import { buildTargetFs } from "../meta/fsbuild.js"
 import zippy from "file-zippy"
 
 export async function build(session) {
@@ -7,6 +7,6 @@ export async function build(session) {
     await buildTargetFs()
     buildingMsg.addItem("Built", "✅")
     const packingMsg = msg.addItem("Packing", "📦")
-    zippy("installer_fs_BUILD/", "./public/assets/rootfs.zip")
+    zippy("installer_fs_BUILD/", "./dist/assets/rootfs.zip")
     packingMsg.addItem("Packed", "✅")
 }
