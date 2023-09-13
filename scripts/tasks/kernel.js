@@ -24,6 +24,7 @@ export async function build(session, isWatchMode, NODE_ENV, build_options) {
         }
     } else {
         //@TODO implement watch mode
-        msg.addItem("NOT IMPLEMENTED", "❌")
+        msg.addItem("WATCH MODE NOT IMPLEMENTED", "❌")
+        process.exit(1)
     }
 }

@@ -1,7 +1,6 @@
 // noinspection ES6MissingAwait
 // because my IDE is dumb
 
-import JSZip from "jszip"
 import fileSystemItem from "./classes/FileSystemItem.ts"
 import rootfs from "../../public/assets/rootfs.zip" //this only imports an external URL
 
@@ -9,7 +8,7 @@ export async function load() {
     //@TODO check if lockfile exists before formatting and writing rootfs
     try {
         const blob = await (await fetch(rootfs)).blob()
-        let zip = await JSZip.loadAsync(blob)
+        let zip = await window.JSZip.loadAsync(blob)
         const filePromises = []
 
         zip.forEach((relativePath, file) => {
