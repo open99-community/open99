@@ -1,6 +1,8 @@
 import tasks from "./tasks/index.js"
 import { LogSession} from "portalog"
 import copy from "esbuild-copy-plugin";
+import { config } from "dotenv"
+config()
 
 const build_options = {
     entryPoints: ["./src/index.js"],
@@ -35,7 +37,7 @@ const build_options = {
 }
 
 const session = new LogSession
-const logger = session.addItem("PLUTO OS building on " + new Date(), "🌌")
+const logger = session.addItem(`PLUTO OS building on ${new Date()}\nin ${process.env.NODE_ENV} mode. Watch mode is ${process.argv.includes("--watch") ? "on" : "off"}`, "🌌")
 const args = [
     logger,
     process.argv.includes("--watch"),

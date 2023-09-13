@@ -1,17 +1,18 @@
 import { rimraf } from "rimraf";
 import { context, build as esbuild } from "esbuild";
+import JavascriptObfuscator from "javascript-obfuscator";
+import { promises as fs } from "fs"
 
 export async function build(session, isWatchMode, NODE_ENV, build_options) {
-    const msg = session.addItem("Building kernel...", "🛠️")
-
+    const msg = session.addItem("Building kernel...", "🛠")
     if (!isWatchMode) {
         try {
             await esbuild(build_options)
             if (NODE_ENV !== "development") {
-                //console.log("Obfuscating kernel...")
-                // wow this doesnt seem to work... @TODO do file splitting (split dependencies and kernel into separate files and obfuscate only the kernel)
-                //const obfuscated = JavascriptObfuscator.obfuscate(await target_fs.readFile("./dist/index.js", {encoding:"utf8"}))
-                //await target_fs.writeFile(obfuscated.getObfuscatedCode(), "./dist/index.js")
+                msg.addItem("Obfuscating kernel...", "🕶")
+                const obfuscated = JavascriptObfuscator.obfuscate(await fs.readFile("./dist/index.js", {encoding:"utf8"}))
+                await fs.writeFile("./dist/index.js", obfuscated.getObfuscatedCode())
+                msg.addItem("Kernel obfuscated!", "✅")
             }
             msg.addItem("Kernel built!", "✅")
         } catch (e) {
