@@ -3,7 +3,6 @@ import { database } from "./fs/idb.js"
 import { load } from "./fs/loadRootFs.js"
 import fsApi from "./fs/fs.ts"
 import AppRuntime from "./41worker/AppRuntime.js"
-import {pointerLock} from "./util/pointerLock.ts"
 import {components} from "./gui/components/index.js"
 import { monitorDevtools } from "./util/noDevtools.js"
 import devWatcher from "./util/devWatcher.js"
@@ -35,6 +34,3 @@ try {
     sys41._boot.write("Root filesystem failed to load", ["error"])
     sys41._boot.write(e, ["error", "blink"])
 }
-const clickListen = sys41._boot.write("Click once anywhere on the screen...", ["blink"])
-await pointerLock()
-clickListen.update(clickListen.content.text + " done", ["success"])
