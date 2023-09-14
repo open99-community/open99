@@ -7,6 +7,6 @@ export async function build(session) {
     await buildTargetFs()
     buildingMsg.addItem("Built", "✅")
     const packingMsg = msg.addItem("Packing", "📦")
-    zippy("installer_fs_BUILD/", "./dist/assets/rootfs.zip")
+    zippy("installer_fs_BUILD/", "./dist/assets/installer.zip")
     packingMsg.addItem("Packed", "✅")
 }
