@@ -8,5 +8,5 @@ export default [
     clean, //clean should ALWAYS go first
     kernel,
     target_fs,
-    installer_fs,
+    installer_fs, //@TODO add clean last so that *_BUILD directories are removed
 ]

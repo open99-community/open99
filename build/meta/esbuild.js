@@ -9,7 +9,7 @@ export function args(){
         bundle: true,
         minify: true,
         sourcemap: process.env.NODE_ENV === "development",
-        target: ["esnext"],
+        target: ["esnext"], //@TODO fix esbuild target
         outfile: "./dist/index.js",
         plugins: [copy({
             from: "./public",
@@ -29,9 +29,9 @@ export function args(){
         ],
         banner: {
             js: `/*
- * OPEN99 - A simple, fast and secure web operating system.
+ * PLUTO - A sophisticated, fast and secure web operating system.
  * Copyright stretch07, 2023, All rights reserved.
- * Copying this project is prohibited.
+ * Copying this project is prohibited by law.
 */`,
         }
     }

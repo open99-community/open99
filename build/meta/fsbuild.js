@@ -49,14 +49,15 @@ async function handleFile(sourcePath, targetPath) {
 
 try {
     await mkdir("./target_fs_BUILD")
-    await mkdir("./target_fs_BUILD")
+    await mkdir("./installer_fs_BUILD")
 } catch {
     // ignore
 }
 
+//I won't lie I have no idea how these paths are working.
 export async function buildTargetFs() {
     await recursiveCopy("./target_fs/Pluto/System41", "./target_fs_BUILD/Pluto/System41")
 }
 export async function buildInstallerFs() {
-    await recursiveCopy("./target_fs/Pluto/System41", "./installer_fs_BUILD/Pluto/System41")
+    await recursiveCopy("./installer_fs/Pluto/System41", "./installer_fs_BUILD/Pluto/System41")
 }
