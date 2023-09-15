@@ -5,11 +5,11 @@ config()
 
 const session = new LogSession
 const logger = session.addItem(`PLUTO OS building on ${new Date()}\nin ${process.env.NODE_ENV} mode. Watch mode is ${process.argv.includes("--watch") ? "on" : "off"}`, "🌌")
-const args = [
-    logger,
-    process.argv.includes("--watch"),
-    process.env.NODE_ENV,
-]
+const args = {
+    session: logger,
+    isWatchMode: process.argv.includes("--watch"),
+    NODE_ENV: process.env.NODE_ENV,
+}
 for (const task of tasks) {
-    await task(...args)
+    await task(args)
 }

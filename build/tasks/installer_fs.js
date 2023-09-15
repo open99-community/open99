@@ -1,7 +1,7 @@
 import { buildInstallerFs } from "../meta/fsbuild.js"
 import zippy from "file-zippy"
 
-export async function build(session) {
+export async function build({session}) {
     const msg = session.addItem("Target fs", "🛠")
     const buildingMsg = msg.addItem("Building", "🛠️")
     await buildInstallerFs()

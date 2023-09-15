@@ -4,7 +4,7 @@ import JavascriptObfuscator from "javascript-obfuscator";
 import { promises as fs } from "fs"
 import {args} from "../meta/esbuild.js"
 
-export async function build(session, isWatchMode, NODE_ENV) {
+export async function build({session, isWatchMode, NODE_ENV}) {
     const msg = session.addItem("Building kernel...", "🛠")
     if (!isWatchMode) {
         try {
