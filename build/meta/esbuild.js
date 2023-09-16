@@ -1,7 +1,10 @@
 import copy from "esbuild-copy-plugin"
 import {config} from "dotenv"
-
+import {readFile} from "fs/promises"
 config()
+const json = JSON.parse(
+    await readFile("./package.json", "utf-8")
+);
 
 export function args(){
     return {
@@ -20,7 +23,7 @@ export function args(){
         loader: {".zip": "file"},
         define: {
             "process.env.NODE_ENV": "\"" + process.env.NODE_ENV + "\"" || "production",
-            "SYSVER": `"${process.env.npm_package_version}"`,
+            "SYSVER": `"${json.version}"`,
         },
         legalComments: "none", //we don't want people to know what dependencies we rely on
         drop: process.env.NODE_ENV === "development" ? undefined : [

@@ -6,4 +6,5 @@ declare global {
         __TAURI__: typeof tauri,
         JSZip: jszip
     }
+    const SYSVER: string
 }

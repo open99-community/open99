@@ -18,7 +18,6 @@ export async function loadStore() {
             try {
                 const transaction = db.transaction("c", "readwrite")
                 const store = transaction.objectStore("c")
-                store.add({path: "test-key", content: "test-content"})
                 resolve(db)
             } catch (error) {
                 console.error("An error occurred while creating the transaction or storing the record:", error)
