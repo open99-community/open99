@@ -4,12 +4,7 @@ import { load } from "./fs/loadRootFs.js"
 import fsApi from "./fs/fs.ts"
 import AppRuntime from "./41worker/AppRuntime.js"
 import {components} from "./gui/components/index.js"
-import { monitorDevtools } from "./util/noDevtools.js"
-import devWatcher from "./util/devWatcher.js"
-import {noPiracy} from "./util/noPiracy.js"
-monitorDevtools()
-noPiracy()
-devWatcher()
+import {startup} from "./startup/index.js"
 
 const sys41 = {
     _db: database,
@@ -19,11 +14,10 @@ const sys41 = {
     components
 }
 if (process.env.NODE_ENV === "development") {
-    // Yes, this is a hack. I'm sorry.
-    //window.indexedDB.deleteDatabase("open99")
     window.sys41 = sys41
 }
 
+await startup()
 sys41._boot.write(`🌌 <span class=\"rainbow-text\">Pluto</span> v${SYSVER} booting on ${navigator.userAgent} at ${new Date()}...`)
 
 try {
