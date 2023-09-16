@@ -24,7 +24,7 @@ if (process.env.NODE_ENV === "development") {
     window.sys41 = sys41
 }
 
-sys41._boot.write("open99 BETA rewrite booting on " + navigator.userAgent + " at " + new Date() + "...")
+sys41._boot.write("🌌 <span class=\"rainbow-text\">Pluto</span> booting on " + navigator.userAgent + " at " + new Date() + "...")
 
 try {
     await load()
