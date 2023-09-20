@@ -35,7 +35,7 @@ class BootEntry {
 export default class Bootscreen {
     constructor(public el: HTMLElement) {}
 
-    write(text: string, features: string[]) {
+    write(text: string, features?: string[]) {
         return new BootEntry({text, features}, this.el)
     }
 
