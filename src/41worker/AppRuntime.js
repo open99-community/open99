@@ -2,7 +2,6 @@ import {applyApis} from "./applyApis.js"
 
 /** Class representing 41worker runtime */
 class AppRuntime {
-    //TODO: look at @typedef
     /**
      * Run the application
      * @param {string} code Code to be executed in 41worker runtime

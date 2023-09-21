@@ -1,5 +1,5 @@
 import tasks from "./tasks/index.js"
-import { LogSession} from "portalog"
+import { LogSession } from "portalog"
 import { config } from "dotenv"
 config()
 

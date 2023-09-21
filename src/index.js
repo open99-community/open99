@@ -1,6 +1,6 @@
-import Bootscreen from "./gui/boot.ts"
+import Bootscreen from "./startup/gui.ts"
 import { database } from "./fs/idb.js"
-import { load } from "./fs/loadRootFs.js"
+import { load } from "./startup/loadRootFs.js"
 import fsApi from "./fs/fs.ts"
 import AppRuntime from "./41worker/AppRuntime.js"
 import {components} from "./gui/components/index.js"
