@@ -2,7 +2,7 @@
 // because my IDE is dumb
 
 import fileSystemItem from "../fs/classes/FileSystemItem.ts"
-import rootfs from "../../dist/assets/installerfs.zip" //this only imports an external URL
+import rootfs from "../../dist/assets/installer.zip" //this only imports an external URL
 
 export async function load() {
     //@TODO check if lockfile exists before formatting and writing rootfs

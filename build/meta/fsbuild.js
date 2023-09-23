@@ -50,6 +50,7 @@ async function handleFile(sourcePath, targetPath) {
 try {
     await mkdir("./target_fs_BUILD")
     await mkdir("./installer_fs_BUILD")
+    await mkdir("./dist")
 } catch {
     // ignore
 }
