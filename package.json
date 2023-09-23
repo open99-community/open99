@@ -5,6 +5,7 @@
   "main": "index.js",
   "private": true,
   "dependencies": {
+    "@tauri-apps/cli": "^1.4.0",
     "devtool-blocker": "git+https://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:x-oauth-basic@github.com/use-pluto/devtool-blocker.git",
     "i18next": "^23.4.4",
     "portalog": "^1.0.0"
@@ -13,7 +14,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "node build/index.js",
     "serve": "npm run build && serve -l 8000 dist",
-    "dev": "node build/index.js --watch"
+    "dev": "node build/index.js --watch",
+    "tauri": "tauri"
   },
   "repository": {
     "type": "git",
