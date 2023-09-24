@@ -6,9 +6,13 @@ import AppRuntime from "./41worker/AppRuntime.js"
 import {components} from "./gui/components/index.js"
 import {startup} from "./startup/index.js"
 
+const bootElement = document.createElement("div")
+bootElement.classList.add("boot")
+document.body.appendChild(bootElement)
+
 const sys41 = {
     _db: database,
-    _boot: new Bootscreen(document.getElementsByClassName("boot")[0]),
+    _boot: new Bootscreen(bootElement),
     fs: fsApi,
     AppRuntime,
     components
