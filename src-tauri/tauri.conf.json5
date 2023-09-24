@@ -1,7 +1,7 @@
 {
   "$schema": "../node_modules/@tauri-apps/cli/schema.json",
   "build": {
-    "beforeBuildCommand": "npm run build --prodmode",
+    "beforeBuildCommand": "npm run build --prodmode", //builds are always in production mode. If you dont want to make a build use tauri dev instead
     "beforeDevCommand": "npm run serve",
     "devPath": "http://localhost:8000",
     "distDir": "../dist",
@@ -9,16 +9,16 @@
   },
   "package": {
     "productName": "pluto",
-    "version": "0.1.0"
+    "version": "../package.json"
   },
   "tauri": {
     "allowlist": {
-      "all": true
+      "all": true //@TODO allowlist only the necessary things
     },
     "bundle": {
       "active": true,
       "category": "DeveloperTool",
-      "copyright": "",
+      "copyright": "Copyright stretch07 2023",
       "deb": {
         "depends": []
       },
@@ -31,7 +31,7 @@
         "icons/icon.ico"
       ],
       "identifier": "com.pluto.pluto",
-      "longDescription": "",
+      "longDescription": "Pluto is a sophisticated new Web OS that can be run on any platform.",
       "macOS": {
         "entitlements": null,
         "exceptionDomain": "",
@@ -56,11 +56,9 @@
     },
     "windows": [
       {
-        "fullscreen": false,
-        "height": 600,
+        "fullscreen": true,
         "resizable": true,
-        "title": "pluto",
-        "width": 800
+        "title": "pluto desktop",
       }
     ]
   }
