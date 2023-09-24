@@ -8,21 +8,21 @@
     <meta name="description"
         content="Pluto is a sophisticated, fast, and lightweight Web OS">
     <meta name="og:title" content="Pluto">
-    <meta name="og:image" content="assets/open99-512.png">
+    <meta name="og:image" content="assets/pluto-512.png">
     <meta name="og:description"
         content="Pluto is a sophisticated, fast, and lightweight Web OS">
     <title>Pluto</title>
     <link rel="shortcut icon" type="image/ico" href="favicon.ico" />
-    <link rel="stylesheet" href="assets/sys41.css">
+    <link rel="stylesheet" href="sys41.css">
     <link rel="manifest" href="manifest.json">
 </head>
 
 <body>
     <div id="scripts">
         <!-- SW -->
-        <script>if ('serviceWorker' in navigator) { navigator.serviceWorker.register("/sw.js", { scope: "./" }).catch(e => console.error(e)); }
+        <script>if ('serviceWorker' in navigator && !window.__TAURI__) { navigator.serviceWorker.register("/sw.js", { scope: "./" }).catch(e => console.error(e)); }
         </script>
-        <!-- Necessary script -->
+        <!-- Necessary scripts -->
         <script defer type="module" src="vendor.js"></script>
         <script defer type="module" src="index.js"></script>
     </div>
