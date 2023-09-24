@@ -6,9 +6,10 @@ Applications in open99 run under the 41worker environment, which is comparable t
 ## Usage
 You can build pluto by running `npm run build`. This will build the OS and put it in the `/dist` folder.
 ## Structure
-`/installer_fs` gets built into `/public/assets/installer.zip` as a zip file.  
-`/target_fs` gets built into `/public/assets/rootfs.zip` as a zip file.  
+`/installer_fs` gets built into `/dist/assets/installer.zip` as a zip file.  
+`/target_fs` gets built into `/dist/assets/rootfs.zip` as a zip file.  
 `/build` is the build scripts.  
 `/public` is static files. This includes CSS as well as images.  
 `/src` is the OS kernel and gets built to `/dist/index.js`.  
+`/src-tauri` is the Tauri application code (contains rust and tauri config, mainly)  
 `/dist` is your ready-to-run build of Pluto.  
