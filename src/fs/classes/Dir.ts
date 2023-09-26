@@ -1,4 +1,4 @@
-import FileSystemItem from "./FileSystemItem.ts"
+import FileSystemItem from "./FileSystemItem"
 
 class Dir extends FileSystemItem {
     constructor(params: {path: string}) {

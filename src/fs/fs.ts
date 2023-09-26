@@ -11,10 +11,9 @@ const fsApi = {
         return new File({name, path, content})
     },
     async createDir({
-        name,
-        path
+        path: string
     }){
-        return new Dir({name, path})
+        return new Dir({path})
     },
     async createDrive({
         name
