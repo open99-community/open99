@@ -1,6 +1,6 @@
 import Bootscreen from "./startup/gui.ts"
 import { database } from "./fs/idb.js"
-import { load } from "./startup/loadRootFs.js"
+import { load } from "./startup/loadInstaller.js"
 import fsApi from "./fs/fs.ts"
 import AppRuntime from "./41worker/AppRuntime.js"
 import {components} from "./gui/components/index.js"
@@ -31,4 +31,5 @@ try {
 } catch (e) {
     sys41._boot.write("Root filesystem failed to load", ["error"])
     sys41._boot.write(e, ["error", "blink"])
+    console.error(e)
 }

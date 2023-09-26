@@ -5,6 +5,7 @@
   "main": "index.js",
   "private": true,
   "dependencies": {
+    "@minify-html/node": "^0.11.1",
     "@tauri-apps/cli": "^1.4.0",
     "devtool-blocker": "git+https://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:x-oauth-basic@github.com/use-pluto/devtool-blocker.git",
     "i18next": "^23.4.4",

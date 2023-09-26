@@ -1,4 +1,5 @@
 import { database } from "../idb.js"
+import { Store } from "../../types/fs";
 
 /**
  * file item (should be extended)
@@ -6,13 +7,16 @@ import { database } from "../idb.js"
 class FileSystemItem {
     path: string
     content: string | Blob | undefined
+    store: Store
     constructor(data: {
         //https://github.com/Microsoft/TypeScript/issues/5326
         path: string,
         content?: string | Blob | undefined,
+        store?: Store
     }){
         this.path = data.path
-        this.content = data.content
+        this.content = data.content ?? ""
+        this.store = data.store ?? "C"
         console.log("ACCESS FILE", this.path, this.content)
     }
 
@@ -21,8 +25,8 @@ class FileSystemItem {
      */
     save(): Promise<this> {
         return new Promise((resolve, reject) => {
-            const transaction = database.transaction("c", "readwrite")
-            const store = transaction.objectStore("c")
+            const transaction = database.transaction(this.store, "readwrite")
+            const store = transaction.objectStore(this.store)
             const request = store.add({path: this.path, content: this.content})
             request.onsuccess = () => {
                 resolve(this)
@@ -38,8 +42,8 @@ class FileSystemItem {
      */
     remove(): Promise<void> {
         return new Promise((resolve, reject) => {
-            const transaction = database.transaction("c", "readwrite")
-            const store = transaction.objectStore("c")
+            const transaction = database.transaction(this.store, "readwrite")
+            const store = transaction.objectStore(this.store)
             const request = store.delete(this.path)
             request.onsuccess = () => {
                 resolve()

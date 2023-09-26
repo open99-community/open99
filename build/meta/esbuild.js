@@ -20,7 +20,7 @@ export function args(){
         })],
         platform: "browser",
         format: "esm",
-        loader: {".zip": "file"},
+        loader: {".zip": "file", ".css": "text"},
         define: {
             "process.env.NODE_ENV": "\"" + process.env.NODE_ENV + "\"" || "production",
             "SYSVER": `"${json.version}"`,

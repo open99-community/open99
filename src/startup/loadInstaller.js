@@ -2,7 +2,7 @@
 // because my IDE is dumb
 
 import fileSystemItem from "../fs/classes/FileSystemItem.ts"
-import rootfs from "../../dist/assets/installer.zip" //this only imports an external URL
+import rootfs from "../../dist/assets/installer.zip" //this only imports an external URL. URL is randomized on build
 
 export async function load() {
     //@TODO check if lockfile exists before formatting and writing rootfs
@@ -31,7 +31,7 @@ export async function load() {
 
     } catch(error) {
         // Handle error
-        if (error.target.error.name === "ConstraintError") {
+        if (error.name === "ConstraintError") {
             console.warn("Root filesystem already loaded")
             return
         }
