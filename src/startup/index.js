@@ -1,6 +1,6 @@
-import devWatcher from "./devWatcher.ts"
-import {monitorDevtools} from "./noDevtools.js"
-import {noPiracy} from "./noPiracy.ts"
+import devWatcher from "./background/devWatcher.ts"
+import {monitorDevtools} from "./background/noDevtools.js"
+import {noPiracy} from "./background/noPiracy.ts"
 
 export async function startup() {
     const order = [
