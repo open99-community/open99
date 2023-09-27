@@ -1,0 +1,1 @@
+if ('serviceWorker' in navigator && !window.__TAURI__) { navigator.serviceWorker.register("/sw.js", { scope: "./" }).catch(e => console.error(e)); }

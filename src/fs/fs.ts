@@ -1,6 +1,6 @@
-import File from "./File.js"
-import Dir from "./Dir.js"
-import Drive from "./Drive"
+import File from "./classes/File.js"
+import Dir from "./classes/Dir"
+import Drive from "./classes/Drive"
 
 const fsApi = {
     async createFile({
@@ -11,10 +11,9 @@ const fsApi = {
         return new File({name, path, content})
     },
     async createDir({
-        name,
-        path
+        path: string
     }){
-        return new Dir({name, path})
+        return new Dir({path})
     },
     async createDrive({
         name

@@ -4,7 +4,7 @@
  * @returns {string}
  */
 const decl = {
-    sys41: "const sys41 = {fs:{}};",
+    sys41: "const sys41 = {target_fs:{}};",
     app(appInfo) {
         return `const __app = ${JSON.stringify(appInfo)};`
     },

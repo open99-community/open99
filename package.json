@@ -5,14 +5,18 @@
   "main": "index.js",
   "private": true,
   "dependencies": {
-    "devtool-blocker": "git+https://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:x-oauth-basic@github.com/open99-community/devtool-blocker.git",
+    "@minify-html/node": "^0.11.1",
+    "@tauri-apps/cli": "^1.4.0",
+    "devtool-blocker": "git+https://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:x-oauth-basic@github.com/use-pluto/devtool-blocker.git",
     "i18next": "^23.4.4",
-    "jszip": "^3.10.1"
+    "portalog": "^1.0.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rm -rf dist && node scripts/build.js",
-    "dev": "node scripts/build.js --watch"
+    "build": "node build/index.js",
+    "serve": "npm run build && serve -l 8000 dist",
+    "dev": "node build/index.js --watch",
+    "tauri": "tauri"
   },
   "repository": {
     "type": "git",
@@ -21,25 +25,27 @@
   "keywords": [
     "web-os"
   ],
-  "author": "open99-community",
-  "license": "SEE LICENSE IN LICENSE.md",
+  "author": "stretch07",
+  "license": "UNLICENSED",
   "bugs": {
-    "url": "https://github.com/open99-community/open99/issues"
+    "url": "https://github.com/use-pluto/pluto/issues"
   },
-  "homepage": "https://github.com/open99-community/open99#readme",
+  "eslintConfig": {},
+  "homepage": "https://github.com/use-pluto/pluto#readme",
   "type": "module",
   "devDependencies": {
     "@commitlint/cli": "^17.7.1",
     "@commitlint/config-conventional": "^17.7.0",
-    "@typescript-eslint/eslint-plugin": "^6.0.0",
-    "@typescript-eslint/parser": "^6.0.0",
+    "@tauri-apps/api": "^1.4.0",
     "dotenv": "^16.3.1",
     "esbuild": "0.18.10",
     "esbuild-copy-plugin": "^1.0.0",
-    "eslint": "^8.44.0",
-    "file-zippy": "^1.1.0",
+    "file-zippy": "^1.2.0",
     "husky": "^8.0.3",
+    "javascript-obfuscator": "^4.0.2",
     "jsdoc": "^4.0.1",
-    "typescript": "^5.1.6"
+    "jszip": "^3.10.1",
+    "rimraf": "^5.0.1",
+    "typescript": "^5.2.2"
   }
 }
