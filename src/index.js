@@ -21,6 +21,8 @@ if (process.env.NODE_ENV === "development") {
     window.sys41 = sys41
 }
 
+
+//@TODO turn these into sequential tasks
 await startup()
 sys41._boot.write(`🌌 <span class=\"rainbow-text\">Pluto</span> v${SYSVER} booting on ${navigator.userAgent} at ${new Date()}...`)
 
