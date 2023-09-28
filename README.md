@@ -13,6 +13,6 @@ You can build pluto by running `npm run build`. This will build the OS and copy 
 `/target_fs` gets built into `/dist/assets/rootfs.zip` as a zip file.  
 `/build` is the build scripts.  
 `/public` is static files. This includes CSS as well as images.  
-`/src` is the OS kernel and gets built to `/dist/index.js`.  
+`/src` is the OS kernel and gets built to `/dist/index.ts`.  
 `/src-tauri` is the Tauri application code (contains rust and tauri config, mainly)  
 `/dist` is your ready-to-run build of Pluto.  

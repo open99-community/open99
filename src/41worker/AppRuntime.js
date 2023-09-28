@@ -1,7 +1,7 @@
 import {applyApis} from "./applyApis.js"
 
 /** Class representing 41worker runtime */
-class AppRuntime {
+export default class AppRuntime {
     /**
      * Run the application
      * @param {string} code Code to be executed in 41worker runtime
@@ -44,10 +44,10 @@ class AppRuntime {
     handleReceivedMessage(op, data) {
         //here is where we put a super long switch statement to determine what to return
         switch (op) {
-            case "target_fs.createFile":
+            case "fs.createFile":
                 console.log("Worker environment tried creating a file:", data)
                 break
-            case "target_fs.createDir":
+            case "fs.createDir":
                 console.log("[41worker] Worker tried creating a dir:", data)
                 break
             default:
@@ -55,5 +55,3 @@ class AppRuntime {
         }
     }
 }
-
-export default AppRuntime

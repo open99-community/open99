@@ -4,6 +4,7 @@
 import fileSystemItem from "../fs/classes/FileSystemItem.ts"
 import rootfs from "../../dist/assets/installer.zip" //this only imports an external URL. URL is randomized on build
 
+//@TODO make sure this function is called during installation and target fs writing. also make sure installer is loaded in memory
 export async function load() {
     //@TODO check if lockfile exists before formatting and writing rootfs
     try {
@@ -23,7 +24,8 @@ export async function load() {
             files.map(async ({ relativePath, content }) => {
                 const item = new fileSystemItem({
                     path: relativePath,
-                    content: content
+                    content: content,
+                    store: "C"
                 })
                 return item.save()
             })

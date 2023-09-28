@@ -6,8 +6,8 @@ export async function loadStore() {
         request.onupgradeneeded = event => {
             console.log("Database upgrade needed!")
             const db = request.result
-            if (!db.objectStoreNames.contains("c")) {
-                const filesys = db.createObjectStore("c", {keyPath: "path"})
+            if (!db.objectStoreNames.contains("C")) {
+                const filesys = db.createObjectStore("C", {keyPath: "path"})
             }
         }
 
@@ -16,8 +16,8 @@ export async function loadStore() {
             const db = request.result
 
             try {
-                const transaction = db.transaction("c", "readwrite")
-                const store = transaction.objectStore("c")
+                const transaction = db.transaction("C", "readwrite")
+                const store = transaction.objectStore("C")
                 resolve(db)
             } catch (error) {
                 console.error("An error occurred while creating the transaction or storing the record:", error)
