@@ -6,6 +6,6 @@ export const monitorDevtools = () => {
             alert("Do not use devtools.")
         }
     } else {
-        console.log("devtools is not monitored in development mode")
+        // devtools isnt blocked in development
     }
 }

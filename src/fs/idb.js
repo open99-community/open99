@@ -12,7 +12,7 @@ export async function loadStore() {
         }
 
         request.onsuccess = () => {
-            console.log("Database created successfully!")
+            //console.log("Database loaded successfully!")
             const db = request.result
 
             try {
