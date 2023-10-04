@@ -8,7 +8,7 @@ const json = JSON.parse(
 
 export function args(){
     return {
-        entryPoints: ["./src/index.js"],
+        entryPoints: ["./src/index.ts"],
         bundle: true,
         minify: true,
         sourcemap: process.env.NODE_ENV === "development",

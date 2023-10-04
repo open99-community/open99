@@ -1,8 +1,7 @@
 {
-  "name": "open99",
-  "version": "0.0.8",
-  "description": "open-source online web OS",
-  "main": "index.js",
+  "name": "pluto",
+  "version": "0.1.0",
+  "description": "closed-source online web OS",
   "private": true,
   "dependencies": {
     "@minify-html/node": "^0.11.1",
@@ -22,15 +21,11 @@
     "type": "git",
     "url": "git+https://github.com/open99-community/open99.git"
   },
-  "keywords": [
-    "web-os"
-  ],
   "author": "stretch07",
   "license": "UNLICENSED",
   "bugs": {
     "url": "https://github.com/use-pluto/pluto/issues"
   },
-  "eslintConfig": {},
   "homepage": "https://github.com/use-pluto/pluto#readme",
   "type": "module",
   "devDependencies": {

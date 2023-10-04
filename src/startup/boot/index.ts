@@ -1,23 +1,12 @@
 import { background } from "../background";
 import { fn as welcome } from "./tasks/welcome";
-import { load } from "../loadInstaller"
+import { fn as load } from "../installer"
 import {Bootscreen} from "../gui";
 
-const bootElement = document.createElement("div")
-bootElement.classList.add("boot")
-document.body.appendChild(bootElement)
-
 export async function boot() {
-    const bootscreen = new Bootscreen(bootElement)
+    await background() //background doesn't need any write method, etc
+    const bootscreen = new Bootscreen(document.getElementsByClassName("boot")[0] as HTMLElement)
     const write = (text: string, features?: string[]) => bootscreen.write(text, features)
     await welcome({ write })
-    await background()
-    try {
-        await load()
-        write("Root filesystem loaded", ["success"])
-    } catch (e) {
-        write("Root filesystem failed to load", ["error"])
-        write(e, ["error", "blink"])
-        console.error(e)
-    }
+    await load({ write })
 }

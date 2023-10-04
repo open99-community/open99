@@ -2,6 +2,7 @@ import tasks from "./tasks/index.js"
 import { LogSession } from "portalog"
 import { config } from "dotenv"
 config()
+//@TODO make this less redundant yet still compact
 process.env.NODE_ENV = process.argv.includes("--devmode") ? "development" : process.env.NODE_ENV || "production"
 process.env.NODE_ENV = process.argv.includes("--prodmode") ? "production" : process.env.NODE_ENV || "production"
 
