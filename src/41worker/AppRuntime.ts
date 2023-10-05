@@ -1,13 +1,23 @@
 import {applyApis} from "./applyApis.js"
+import type { App } from '../types/App'
+import type { MessageEvent } from '../types/messageEvent'
 
 /** Class representing 41worker runtime */
 export default class AppRuntime {
+    code: string;
+    context: App;
+    execCode: string;
+    blob: Blob;
+    url: string;
+    worker: Worker;
+    channel: MessageChannel;
+
     /**
      * Run the application
      * @param {string} code Code to be executed in 41worker runtime
-     * @param {import("../../types/App.ts").App} context Application metadata. Accessible within runtime
+     * @param {App} context Application metadata. Accessible within runtime
      */
-    constructor(code, context) {
+    constructor(code: string, context: App) {
         context.AppRuntime = AppRuntime
         this.code = code
         this.context = context
@@ -17,20 +27,16 @@ export default class AppRuntime {
         this.worker = new Worker(this.url, { type: "classic" })
         this.channel = new MessageChannel()
         //remember, port1 is main thread, port2 is worker
-        this.channel.port1.onmessage =
-            /**
-             * @typedef {import("../../types/messageEvent.ts").default} event
-            */
-            (event) => {
-                const returnValue = this.handleReceivedMessage(event.op, event.args)
-                this.worker.postMessage(returnValue, this.channel.port2)
-            }
+        this.channel.port1.onmessage = (event: MessageEvent) => {
+            const returnValue = this.handleReceivedMessage(event.op, event.args)
+            this.worker.postMessage(returnValue, this.channel.port2)
+        }
     }
     /**
      * Terminates the worker
      * @returns {this}
      */
-    terminate() {
+    terminate(): AppRuntime {
         this.worker.terminate()
         console.log("[41worker] worker terminated.")
         return this
@@ -41,7 +47,7 @@ export default class AppRuntime {
      * @param {string} data Arguments for the op
      * @returns {string} Message to communicate to runtime
      */
-    handleReceivedMessage(op, data) {
+    handleReceivedMessage(op: string, data: string): string {
         //here is where we put a super long switch statement to determine what to return
         switch (op) {
             case "fs.createFile":
@@ -53,5 +59,6 @@ export default class AppRuntime {
             default:
                 alert("41worker op unknown: " + op)
         }
+        return "";
     }
 }
