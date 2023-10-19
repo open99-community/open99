@@ -16,7 +16,25 @@ const decl: Decl = {
     app(appInfo: App): string {
         return `const __app=${JSON.stringify(appInfo)};`
     },
-    worker: "const worker={send:async function(op, args){self.postMessage({op: op, args: args})}};",
+    worker: `const worker= 
+    {send: 
+    function(op, args){
+         return new Promise((resolve, reject) => {
+      const channel = new MessageChannel();
+      
+      channel.port1.onmessage = event => {
+        if (event.data.error) {
+          reject(event.data.error);  // Reject the promise in case of error.
+        } else {
+          resolve(event.data.result);  // Resolve the promise with response result.
+        }
+      };
+  
+      self.postMessage({op: op, args: args}, [channel.port2]);
+    });
+        }
+    
+    };`,
 };
 
 class ExposedApis {
@@ -39,7 +57,7 @@ class ExposedApis {
     }
 }
 
-function applyApis(context: { appInfo: App }): string {
+function applyApis(context: { App: App }): string {
     const exposedapis = new ExposedApis();
     exposedapis
         .removeApi("BroadcastChannel")
@@ -59,7 +77,7 @@ function applyApis(context: { appInfo: App }): string {
         .removeApi("Worker")
         .removeApi("WorkerNavigator");
 
-    if (!context.appInfo.permissions?.includes("network")) {
+    if (!context.App.permissions?.includes("network")) {
         exposedapis
             .removeApi("fetch")
             .removeApi("WebSocket")
@@ -68,7 +86,7 @@ function applyApis(context: { appInfo: App }): string {
 
     let spawn_child = "" //context.appInfo.permissions?.spawn_child ? "alert('spawn_child permission granted');" : "alert('Lacking spawn_child permission');"
 
-    return exposedapis.getExposedApis() + decl.app(context.appInfo) + decl.sys41 + spawn_child + decl.worker;
+    return exposedapis.getExposedApis() + decl.app(context.App) + decl.sys41 + spawn_child + decl.worker;
 }
 
 export { applyApis };

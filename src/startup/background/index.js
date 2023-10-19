@@ -1,6 +1,7 @@
 import devWatcher from "./devWatcher.ts"
 import {monitorDevtools} from "./noDevtools.js"
 import {noPiracy} from "./noPiracy.ts"
+import {fn as setGlobals} from "./setGlobals"
 import {fn as createScreen} from "./createScreen.ts"
 
 export async function background() {
@@ -8,7 +9,8 @@ export async function background() {
         noPiracy,
         monitorDevtools,
         devWatcher,
-        createScreen
+        createScreen,
+        setGlobals
     ]
 
     for (const fn of order) {

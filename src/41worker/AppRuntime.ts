@@ -1,11 +1,11 @@
 import {applyApis} from "./applyApis.js"
 import type { App } from '../types/App'
-import type { MessageEvent } from '../types/messageEvent'
+import type { MessageData } from '../types/messageEvent'
 
 /** Class representing 41worker runtime */
 export default class AppRuntime {
     code: string;
-    context: App;
+    context: { App: App, AppRuntime?: typeof AppRuntime };
     execCode: string;
     blob: Blob;
     url: string;
@@ -14,10 +14,8 @@ export default class AppRuntime {
 
     /**
      * Run the application
-     * @param {string} code Code to be executed in 41worker runtime
-     * @param {App} context Application metadata. Accessible within runtime
      */
-    constructor(code: string, context: App) {
+    constructor(code: string, context: {App: App, AppRuntime?: typeof AppRuntime}) {
         context.AppRuntime = AppRuntime
         this.code = code
         this.context = context
@@ -28,13 +26,16 @@ export default class AppRuntime {
         this.channel = new MessageChannel()
         //remember, port1 is main thread, port2 is worker
         this.channel.port1.onmessage = (event: MessageEvent) => {
-            const returnValue = this.handleReceivedMessage(event.op, event.args)
-            this.worker.postMessage(returnValue, this.channel.port2)
+            const data: MessageData = event.data as MessageData
+            const returnValue = this.handleReceivedMessage(data)
+            this.worker.postMessage({result: returnValue}, [this.channel.port2])
+        }
+        this.worker.onerror = e => {
+            console.error("[41worker] Worker error:", e)
         }
     }
     /**
      * Terminates the worker
-     * @returns {this}
      */
     terminate(): AppRuntime {
         this.worker.terminate()
@@ -43,22 +44,17 @@ export default class AppRuntime {
     }
     /**
      * handles the received message
-     * @param {string} op Message type to communicate to main thread
-     * @param {string} data Arguments for the op
-     * @returns {string} Message to communicate to runtime
      */
-    handleReceivedMessage(op: string, data: string): string {
+    handleReceivedMessage(data: MessageData): any { //this can literally be anything!
         //here is where we put a super long switch statement to determine what to return
-        switch (op) {
+        switch (data.op) {
             case "fs.createFile":
                 console.log("Worker environment tried creating a file:", data)
-                break
+                return "HELLO! I AM A FILE!" + data
             case "fs.createDir":
-                console.log("[41worker] Worker tried creating a dir:", data)
-                break
+                return "[41worker] Worker tried creating a dir:" + data
             default:
-                alert("41worker op unknown: " + op)
+                return "41worker op unknown: " + data.op
         }
-        return "";
     }
 }
