@@ -1,4 +1,4 @@
-import { build as clean} from "./clean.js"
+import { buil1 as clean, buil2 as clea2} from "./clean.js"
 import { build as kernel } from "./kernel.js"
 import { build as target_fs } from "./target_fs.js"
 import { build as installer_fs } from "./installer_fs.js"
@@ -11,5 +11,5 @@ export default [
     installer_fs,
     kernel,
     minifyHtml,
-    clean
+    clea2
 ]
