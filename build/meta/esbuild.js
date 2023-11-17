@@ -16,7 +16,7 @@ export function args(){
         outfile: "./dist/index.js",
         plugins: [copy({
             from: "./public",
-            to: "./dist",
+            to: ".",
         })],
         platform: "browser",
         format: "esm",
