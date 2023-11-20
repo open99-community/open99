@@ -12,5 +12,5 @@ declare global {
         sys41: {fs:{}, balloon: (text:string) => void}, //@TODO actually narrow this down
         worker: {send: (op: string, args: any) => Promise<any>}
     }
-    const SYSVER: string
+    const $SYSVER: string
 }

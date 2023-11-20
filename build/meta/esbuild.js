@@ -23,7 +23,7 @@ export function args(){
         loader: {".zip": "file", ".css": "text"},
         define: {
             "process.env.NODE_ENV": "\"" + process.env.NODE_ENV + "\"" || "production",
-            "SYSVER": `"${json.version}"`,
+            "$SYSVER": `"${json.version}"`,
         },
         legalComments: "none", //we don't want people to know what dependencies we rely on
         drop: process.env.NODE_ENV === "development" ? undefined : [
