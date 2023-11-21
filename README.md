@@ -8,7 +8,7 @@ Pluto programs run under the program runtime (codename 41worker), which is compa
 You can install the codebase onto your system by cloning the repo and running `npm i -g serve && npm i -g nodemon && npm i`.  
 Note that installing both of those packages globally is required.
 ## Usage
-You can build pluto by running `npm run build`. This will build the OS and copy it into the `/dist` folder.
+You can build pluto by running `npm run build`. This will build the OS and copy it into the `/dist` folder. Additionally, you may use `npm run serve` to build and serve Pluto locally on port 8000.
 ## Structure
 ### Directories
 * `/installer_fs/` gets built into `/dist/installer-{random sequence}.zip` as a zip file. It is temporarily located in `/installer_fs_BUILD/` during the build process.
@@ -21,9 +21,9 @@ You can build pluto by running `npm run build`. This will build the OS and copy 
 ### Versioning
 - ***Kernel***: Similarly to Windows, it is versioned using a build string. 
     - The scheme looks like this: `major.minor.build.branch-commit.timestamp`
-    - Major and minor are self-explanatory - they are retrieved from package.json
-    - The build number of the build string increments by 1 every time it is *pushed* on git (built on the global network), **not** whenever it is built locally.
+    - Major and minor are self-explanatory - they are retrieved from the version property in package.json. The version property should ONLY be `major.minor`
+    - The build number of the build string increments by 1 every time it is *pushed* on git (aka built on Cloudflare Pages), **not** whenever it is built locally.
     - Branch, commit and timestamp are applied automatically at global network build—timestamp should be a Unix timestamp.
     - The build string is accessible in the kernel via the `$SYSVER` global.
-    - When pluto is built on the local network, the build string is `major.minor.00000.LOCAL-00000.timestamp`
+    - When pluto is built on the local network, the build string is `major.minor.00000.LOCAL-0000000.timestamp`
 - ***Specific applications***: Usually semver, but sometimes a build string.

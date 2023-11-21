@@ -3,9 +3,6 @@ import { context, build as esbuild } from "esbuild";
 import JavascriptObfuscator from "javascript-obfuscator"; //remember this is CommonJS so its wonky
 import { promises as fs } from "fs"
 import {args} from "../meta/esbuild.js"
-
-console.log(args())
-
 export async function build({session, isWatchMode, NODE_ENV}) {
     const msg = session.addItem("Kernel")
     if (!isWatchMode) {

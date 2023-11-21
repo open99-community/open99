@@ -11,5 +11,5 @@ export default [
     installer_fs,
     kernel,
     minifyHtml,
-    clea2
+    clea2 //this is a lil hack
 ]

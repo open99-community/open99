@@ -1,10 +1,8 @@
 import copy from "esbuild-copy-plugin"
 import {config} from "dotenv"
-import {readFile} from "fs/promises"
+import {handle} from "./versionhandler.js"
 config()
-const json = JSON.parse(
-    await readFile("./package.json", "utf-8")
-);
+const value = await handle()
 
 export function args(){
     return {
@@ -23,7 +21,7 @@ export function args(){
         loader: {".zip": "file", ".css": "text"},
         define: {
             "process.env.NODE_ENV": "\"" + process.env.NODE_ENV + "\"" || "production",
-            "$SYSVER": `"${json.version}"`,
+            "$SYSVER": `"${value}"`,
         },
         legalComments: "none", //we don't want people to know what dependencies we rely on
         drop: process.env.NODE_ENV === "development" ? undefined : [
