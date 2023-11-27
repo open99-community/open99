@@ -31,6 +31,7 @@ export function args(){
         banner: {
             js: `/*
  * PLUTO - A sophisticated, fast and secure web operating system.
+ * VERSION ${value}
  * Copyright stretch07, 2023, All rights reserved.
  * Copying this project is prohibited by law.
 */`,
