@@ -24,7 +24,7 @@ export async function handle() {
             const content = await res.text()
             console.log(content)
             const lines = content.split("\n")
-            const match = lines[2].match(/VERSION\s+(.*)\n/)[2] //third line, version string
+            const match = lines[2].match(/\*\s+VERSION\s+(.*)/)[1] //third line, version string
 
             console.log(`Previous build: ${match}`)
 
