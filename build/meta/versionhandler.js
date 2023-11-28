@@ -23,6 +23,9 @@ export async function handle() {
             const content = await res.text()
             const lines = content.split("\n")
             const match = lines[2].match(/VERSION\s+(.*)\n/)[2] //third line, version string
+
+            console.log(`Previous build: ${match}`)
+
             // remember: version is current, match is previous
             const previousBuild = {
                 majorMinor: `${match.split(".")[0]}.${match.split(".")[1]}`,
@@ -31,6 +34,7 @@ export async function handle() {
             if (version === previousBuild.majorMinor) { //if major.minor is the same
                 // increment build number by converting to int, adding 1, then converting back to string and padding with 0s
                 buildNum = (parseInt(previousBuild.build) + 1).toString().padStart(5, "0")
+                console.log(`Build number: ${buildNum}`)
             }
             return `${version}.${buildNum}.${branch}-${commit.substring(0,7)}.${date}`
         } catch (e) {
