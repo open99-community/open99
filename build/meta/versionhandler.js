@@ -4,45 +4,41 @@ import {readFile} from "fs/promises"
 const {version} = JSON.parse( //this should be major.minor
     await readFile("./package.json", "utf-8")
 );
-import { Octokit } from "octokit"
 
 export async function handle() {
     const date = Date.now() //milliseconds since UNIX epoch in UTC
+    let buildNum = "00000"
     if (process.env.CF_PAGES_BRANCH && process.env.CF_PAGES_COMMIT_SHA) { //if we are on cloudflare pages
         //@TODO: build number functionality
         const branch = process.env.CF_PAGES_BRANCH
         const commit = process.env.CF_PAGES_COMMIT_SHA
+        try {
+            if (!process.env.ACCESS_SERVICE_TOKEN) throw new Error("Cloudflare access service token expected in process.env.ACCESS_SERVICE_TOKEN")
+            const res = await fetch(`https://${branch}.pluto-40t.pages.dev/index.js`, {
+                method: "GET",
+                headers: {
+                    "CF-Access-Client-Secret": process.env.ACCESS_SERVICE_TOKEN
+                }
+            })
+            const content = await res.text()
+            const lines = content.split("\n")
+            const match = lines[2].match(/VERSION\s+(.*)\n/)[2] //third line, version string
+            // remember: version is current, match is previous
+            const previousBuild = {
+                majorMinor: `${match.split(".")[0]}.${match.split(".")[1]}`,
+                build: match.split(".")[2],
+            }
+            if (version === previousBuild.majorMinor) { //if major.minor is the same
+                // increment build number by converting to int, adding 1, then converting back to string and padding with 0s
+                buildNum = (parseInt(previousBuild.build) + 1).toString().padStart(5, "0")
+            }
+            return `${version}.${buildNum}.${branch}-${commit.substring(0,7)}.${date}`
+        } catch (e) {
+            console.error(e)
+            return `${version}.${buildNum}.${branch}-${commit.substring(0,7)}.${date}`
+        }
 
-        const octokit = new Octokit({auth: process.env.GITHUB_TOKEN})
-
-        const getPackageJsonVersion = async (repo, owner, commit) => {
-            const { data: fileData } = await octokit.repos.getContent({
-                owner,
-                repo,
-                path: 'package.json',
-                ref: commit,
-            });
-
-            const fileContents = Buffer.from(fileData.content, 'base64').toString();
-            const packageJsonContent = JSON.parse(fileContents);
-
-            return packageJsonContent.version;
-        };
-
-        const {data: commits} = await octokit.repos.listCommits({
-            repo: "pluto",
-            owner: "use-pluto",
-            sha: branch,
-            per_page: 2,
-        });
-
-        const previousVersion = await getPackageJsonVersion("pluto", "use-pluto", commits[1].sha);
-        const currentVersion = await getPackageJsonVersion("pluto", "use-pluto", commits[0].sha);
-
-
-
-        return `${version}.00000.${branch}-${commit.substring(0,7)}.${date}`
     } else {
-        return `${version}.00000.LOCAL-0000000.${date}`
+        return `${version}.${buildNum}.LOCAL-0000000.${date}`
     }
 }
