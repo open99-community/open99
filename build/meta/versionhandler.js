@@ -1,5 +1,5 @@
 import {config} from "dotenv"
-config() //THIS SHOULDNT BE NECESSARY SINCE YOU SHOULD NOT BE SETTING THESE VALUES MANUALLY
+config() //THIS SHOULDN'T BE NECESSARY SINCE YOU SHOULD NOT BE SETTING THESE VALUES MANUALLY
 import {readFile} from "fs/promises"
 const {version} = JSON.parse( //this should be major.minor
     await readFile("./package.json", "utf-8")
