@@ -1,4 +1,5 @@
 import { load } from "./loadInstaller.js"
+import {libIDB} from "../../../fs/libIDB"
 import type { BootEntryWriteMethod } from "../../gui.ts"
 
 export async function fn({write}: { write: BootEntryWriteMethod}) {

@@ -5,11 +5,11 @@
     "beforeDevCommand": "npm run serve",
     "devPath": "http://localhost:8000",
     "distDir": "../dist",
-    "withGlobalTauri": true
+    "withGlobalTauri": true //this is how we access the API
   },
   "package": {
     "productName": "pluto",
-    "version": "./version.json" //this is hacky but we need a semver string. for code, look in build/tasks/clean.js
+    "version": "0.0.1" //this is hacky but we need a semver string. for code, look in build/tasks/clean.js
   },
   "tauri": {
     "allowlist": {

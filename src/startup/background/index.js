@@ -16,4 +16,5 @@ export async function background() {
     for (const fn of order) {
         await fn()
     }
+    return window.sys41
 }

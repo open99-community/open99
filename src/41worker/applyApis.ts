@@ -1,7 +1,6 @@
 import { App } from '../types/App';
 
 interface Decl {
-    sys41: string;
     app(appInfo: App): string;
     worker: string;
 }
@@ -12,29 +11,29 @@ interface Decl {
  * @returns {string}
  */
 const decl: Decl = {
-    sys41: "const sys41={target_fs:{}};",
     app(appInfo: App): string {
         return `const __app=${JSON.stringify(appInfo)};`
     },
-    worker: `const worker= 
-    {send: 
-    function(op, args){
-         return new Promise((resolve, reject) => {
-      const channel = new MessageChannel();
-      
-      channel.port1.onmessage = event => {
-        if (event.data.error) {
-          reject(event.data.error);  // Reject the promise in case of error.
-        } else {
-          resolve(event.data.result);  // Resolve the promise with response result.
-        }
-      };
-  
-      self.postMessage({op: op, args: args}, [channel.port2]);
-    });
-        }
-    
-    };`,
+    worker: `
+    function sendMessage(data) {
+        // activity ID: 7 char random numbers
+        const activityID = Math.random().toString().substring(2, 9)
+        return new Promise((resolve, reject) => {
+            if (!data) reject("No data provided")
+            self.onmessage = event => {
+                // 0: data, 1: activityID
+                if (event.data[1] === activityID) {
+                    resolve("received" + event.data)
+                    console.log("[41worker:work] Main thread responded:", event.data)
+                } else {
+                    self.postMessage("received" + event.data)
+                    console.log("[41worker:work] Main thread requested:", event.data)
+                }
+            }
+            self.postMessage([data, activityID])
+        });
+    }
+    `,
 };
 
 class ExposedApis {
@@ -77,7 +76,7 @@ function applyApis(context: { App: App }): string {
         .removeApi("Worker")
         .removeApi("WorkerNavigator");
 
-    if (!context.App.permissions?.includes("network")) {
+    if (!context.App?.permissions?.includes("network")) {
         exposedapis
             .removeApi("fetch")
             .removeApi("WebSocket")
@@ -86,7 +85,7 @@ function applyApis(context: { App: App }): string {
 
     let spawn_child = "" //context.appInfo.permissions?.spawn_child ? "alert('spawn_child permission granted');" : "alert('Lacking spawn_child permission');"
 
-    return exposedapis.getExposedApis() + decl.app(context.App) + decl.sys41 + spawn_child + decl.worker;
+    return exposedapis.getExposedApis() + decl.app(context.App) + spawn_child + decl.worker;
 }
 
 export { applyApis };

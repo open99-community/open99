@@ -20,13 +20,13 @@ export async function buil2({session}) {
     await rimraf("./target_fs_BUILD")
     await rimraf("./installer_fs_BUILD")
 
-    // Miscellanious things- Tauri needs a semver string, so we limit it to major.minor.build
+    // Miscellaneous things- Tauri needs a semver string, so we limit it to major.minor.build
     // We put this in the version property of src-tauri/version.json
 
     const version = await handle()
-    const versionFile = JSON.parse(await fs.readFile("./src-tauri/version.json", "utf-8"))
+    const versionFile = JSON.parse(await fs.readFile("./src-tauri/versioning.json", "utf-8"))
     versionFile.version = version.split(/\.(?=[^\d])/)[0] //limit to major.minor.build
-    await fs.writeFile("./src-tauri/version.json", JSON.stringify(versionFile))
+    await fs.writeFile("./src-tauri/versioning.json", JSON.stringify(versionFile))
 
     msg.addItem("Cleaned up", "success")
 }

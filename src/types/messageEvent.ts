@@ -3,11 +3,12 @@
  */
 export interface MessageData {
     /**
-     * Operation ID
+     * Operation ID.
+     * Some obfuscated ones are system app-only and are numbers
      */
-    op: string,
+    op: `${"fs" | "gui" | "REG"}.${string}` | "run" | number,
     /**
      * Arguments
      */
-    args: {}[]
+    args: any[]
 }
