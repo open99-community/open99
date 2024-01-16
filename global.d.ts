@@ -12,5 +12,13 @@ declare global {
         sys41: {fs:{}, balloon: (text:string) => void}, //@TODO actually narrow this down
         worker: {send: (op: string, args: any) => Promise<any>}
     }
+
+    /**
+     * Full version string of the Pluto kernel
+     */
     const $SYSVER: string
+    /**
+     * Author of the Pluto kernel. Can be set in package.json
+     */
+    const $SYSAUT: string
 }

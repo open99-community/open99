@@ -10,6 +10,7 @@ export async function buil1({session}) {
     await rimraf("./target_fs_BUILD")
     await rimraf("./installer_fs_BUILD")
     await fs.mkdir("./dist")
+    await fs.mkdir("./dist/assets") // windows fix
 
     msg.addItem("Cleaned up", "success")
 }

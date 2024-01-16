@@ -3,6 +3,10 @@ import {config} from "dotenv"
 import {handle} from "./versionhandler.js"
 config()
 const value = await handle()
+import {readFile} from "fs/promises"
+const {author} = JSON.parse( //this should be major.minor
+    await readFile("./package.json", "utf-8")
+);
 
 export function args(){
     return {
@@ -22,6 +26,7 @@ export function args(){
         define: {
             "process.env.NODE_ENV": "\"" + process.env.NODE_ENV + "\"" || "production",
             "$SYSVER": `"${value}"`,
+            "$SYSAUT": `"${author}"`
         },
         legalComments: "none", //we don't want people to know what dependencies we rely on
         drop: process.env.NODE_ENV === "development" ? undefined : [

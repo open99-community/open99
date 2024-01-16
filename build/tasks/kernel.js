@@ -9,7 +9,6 @@ export async function build({session, isWatchMode, NODE_ENV}) {
         try {
             await esbuild(args())
             if (NODE_ENV !== "development") {
-                msg.addItem("Obfuscating kernel...")
                 const obfuscated = JavascriptObfuscator.obfuscate(await fs.readFile("./dist/index.js", {encoding:"utf8"}))
                 await fs.writeFile("./dist/index.js", obfuscated.getObfuscatedCode())
                 msg.addItem("Obfuscated", "success")

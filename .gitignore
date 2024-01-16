@@ -1,10 +1,11 @@
-# temporary folders that get zipped... @TODO remove these folders after they get zipped
+# temporary folders that get deleted after build but if build fails they are still there
 target_fs_BUILD/
 installer_fs_BUILD/
 
 .vscode
 out
 .idea
+dist
 
 # Logs
 logs
@@ -88,7 +89,6 @@ typings/
 
 # Nuxt.js build / generate output
 .nuxt
-dist
 
 # Gatsby files
 .cache/
