@@ -1,4 +1,4 @@
-import FileSystemItem from "./FileSystemItem.ts"
+import FileSystemItem from "./FileSystemItem"
 
 class File extends FileSystemItem {
     constructor({
@@ -8,8 +8,8 @@ class File extends FileSystemItem {
         super({path, content})
         return this
     }
-    save(){
-        
+    async save(){
+        return this
     }
     delete(){
 

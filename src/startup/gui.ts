@@ -1,4 +1,4 @@
-class BootEntry {
+export class BootEntry {
     el: HTMLParagraphElement
     constructor(public content: {text: string, features?: string[]}, bootscreen: HTMLElement) {
         const el = document.createElement("p")
@@ -32,7 +32,7 @@ class BootEntry {
     }
 }
 
-export default class Bootscreen {
+export class Bootscreen {
     constructor(public el: HTMLElement) {}
 
     write(text: string, features?: string[]) {
@@ -43,3 +43,5 @@ export default class Bootscreen {
         return new BootEntry({text: text}, document.getElementById("bootscreen"))
     }
 }
+
+export type BootEntryWriteMethod = (text: string, features?: string[]) => BootEntry

@@ -18,5 +18,11 @@
   "display": "standalone",
   "scope": "/",
   "theme_color": "#000",
-  "description": "Pluto as an installable PWA (NOT Pluto desktop)"
+  "description": "Pluto PWA",
+  "protocol_handlers": [
+    {
+      "protocol": "web+os",
+      "url": "/?url=%s"
+    }
+  ]
 }

@@ -1,14 +1,16 @@
 import copy from "esbuild-copy-plugin"
 import {config} from "dotenv"
-import {readFile} from "fs/promises"
+import {handle} from "./versionhandler.js"
 config()
-const json = JSON.parse(
+const value = await handle()
+import {readFile} from "fs/promises"
+const {author} = JSON.parse( //this should be major.minor
     await readFile("./package.json", "utf-8")
 );
 
 export function args(){
     return {
-        entryPoints: ["./src/index.js"],
+        entryPoints: ["./src/index.ts"],
         bundle: true,
         minify: true,
         sourcemap: process.env.NODE_ENV === "development",
@@ -23,7 +25,8 @@ export function args(){
         loader: {".zip": "file", ".css": "text"},
         define: {
             "process.env.NODE_ENV": "\"" + process.env.NODE_ENV + "\"" || "production",
-            "SYSVER": `"${json.version}"`,
+            "$SYSVER": `"${value}"`,
+            "$SYSAUT": `"${author}"`
         },
         legalComments: "none", //we don't want people to know what dependencies we rely on
         drop: process.env.NODE_ENV === "development" ? undefined : [
@@ -33,6 +36,7 @@ export function args(){
         banner: {
             js: `/*
  * PLUTO - A sophisticated, fast and secure web operating system.
+ * VERSION ${value}
  * Copyright stretch07, 2023, All rights reserved.
  * Copying this project is prohibited by law.
 */`,

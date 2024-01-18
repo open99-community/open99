@@ -1,15 +1,14 @@
 {
-  "name": "open99",
-  "version": "0.0.8",
-  "description": "open-source online web OS",
-  "main": "index.js",
+  "name": "pluto",
+  "version": "0.49",
+  "description": "closed-source online web OS",
   "private": true,
   "dependencies": {
     "@minify-html/node": "^0.11.1",
     "@tauri-apps/cli": "^1.4.0",
     "devtool-blocker": "git+https://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:x-oauth-basic@github.com/use-pluto/devtool-blocker.git",
     "i18next": "^23.4.4",
-    "portalog": "^1.0.0"
+    "portalog": "^1.7.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -22,21 +21,18 @@
     "type": "git",
     "url": "git+https://github.com/open99-community/open99.git"
   },
-  "keywords": [
-    "web-os"
-  ],
   "author": "stretch07",
   "license": "UNLICENSED",
   "bugs": {
     "url": "https://github.com/use-pluto/pluto/issues"
   },
-  "eslintConfig": {},
   "homepage": "https://github.com/use-pluto/pluto#readme",
   "type": "module",
   "devDependencies": {
     "@commitlint/cli": "^17.7.1",
     "@commitlint/config-conventional": "^17.7.0",
     "@tauri-apps/api": "^1.4.0",
+    "chalk": "^5.3.0",
     "dotenv": "^16.3.1",
     "esbuild": "0.18.10",
     "esbuild-copy-plugin": "^1.0.0",

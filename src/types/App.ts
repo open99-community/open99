@@ -3,7 +3,7 @@ export type Permissions = "dummy1" | "dummy2" | "network"
 /**
  * An App object
  */
-export default interface App {
+export interface App {
     /**
      * Friendly name of the app
      */
@@ -23,7 +23,7 @@ export default interface App {
     /**
      * The permissions the app requires.
      */
-    permissions: Permissions[],
+    permissions?: Permissions[],
     /**
      * Executes the app.
      */

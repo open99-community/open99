@@ -3,8 +3,22 @@ import * as jszip from "jszip"
 
 declare global {
     interface Window {
+        // THE FOLLOWING ARE AVAILABLE IN THE MAIN THREAD
+
         __TAURI__: typeof tauri | undefined,
-        JSZip: jszip
+        JSZip: jszip,
+        // THE FOLLOWING ARE AVAILABLE IN WORKERS
+
+        sys41: {fs:{}, balloon: (text:string) => void}, //@TODO actually narrow this down
+        worker: {send: (op: string, args: any) => Promise<any>}
     }
-    const SYSVER: string
+
+    /**
+     * Full version string of the Pluto kernel
+     */
+    const $SYSVER: string
+    /**
+     * Author of the Pluto kernel. Can be set in package.json
+     */
+    const $SYSAUT: string
 }

@@ -17,7 +17,7 @@ class FileSystemItem {
         this.path = data.path
         this.content = data.content ?? ""
         this.store = data.store ?? "C"
-        console.log("ACCESS FILE", this.path, this.content)
+        // console.log("ACCESS FILE", this.path, this.content)
     }
 
     /**
