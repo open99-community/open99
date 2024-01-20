@@ -13,7 +13,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "node build/index.js",
-    "serve": "npm run build && serve -l 8000 dist",
+    "serve": "npm run build && npx serve -l 8000 dist",
     "dev": "node build/index.js --watch",
     "tauri": "tauri"
   },

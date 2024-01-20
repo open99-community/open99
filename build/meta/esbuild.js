@@ -37,7 +37,7 @@ export function args(){
             js: `/*
  * PLUTO - A sophisticated, fast and secure web operating system.
  * VERSION ${value}
- * Copyright stretch07, 2023, All rights reserved.
+ * Copyright stretch07, ${new Date().getFullYear()}, All rights reserved.
  * Copying this project is prohibited by law.
 */`,
         }
