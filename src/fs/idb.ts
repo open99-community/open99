@@ -31,6 +31,4 @@ export async function loadStore(): Promise<IDBDatabase> {
     });
 }
 
-// Execution context must be within an async function to use `await` keyword.
-// Therefore, export it as a Promise:
-export const database: Promise<IDBDatabase> = loadStore();
+export const database: IDBDatabase = await loadStore();

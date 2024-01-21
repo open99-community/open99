@@ -34,7 +34,7 @@ export async function load() {
     } catch(error) {
         // Handle error
         if (error.target?.error?.name === "ConstraintError") {
-            console.warn("Root filesystem already loaded")
+            console.log("Root filesystem already loaded")
             return
         }
         console.error(error)
