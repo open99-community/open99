@@ -8,14 +8,16 @@ Pluto programs run under the program runtime (codename 41worker), which is compa
 You can install the codebase onto your system by cloning the repo and running `npm i -g serve && npm i -g nodemon && npm i`.  
 Note that installing both of those packages globally is required.
 ## Usage
-You can build pluto by running `npm run build`. This will build the OS and copy it into the `/dist` folder. Additionally, you may use `npm run serve` to build and serve Pluto locally on port 8000.
+You can build pluto by running `npm run build`.
+This will build the OS and copy it into the `/dist` folder.
+Additionally, you may use `npm start` to build and serve Pluto locally on port 8000.
 ## Structure
 ### Directories
-* `/installer_fs/` gets built into `/dist/installer-{random sequence}.zip` as a zip file. It is temporarily located in `/installer_fs_BUILD/` during the build process.
-* `/target_fs/` gets built into `/dist/assets/rootfs-{random sequence}.zip` as a zip file. It is temporarily located in `/target_fs_BUILD/` during the build process.  
+* `/installer_fs/` gets built into `/dist/installer-{random sequence}.zip` as a zip file. It is temporarily located in `/installer_fs_BUILD/` during the build process. If the build fails, this directory will not be deleted.
+* `/target_fs/` gets built into `/dist/assets/rootfs-{random sequence}.zip` as a zip file. It is temporarily located in `/target_fs_BUILD/` during the build process. If the build fails, this directory will not be deleted.
 * `/build/` is the build scripts.  
 * `/public/` is static files. This includes CSS as well as images.  
-* `/src/` is the OS kernel and gets built to `/dist/index.ts`.  
+* `/src/` is the OS kernel and gets built to `/dist/index.js`.  
 * `/src-tauri/` is the Tauri application code (contains rust and tauri config, mainly)  
 * `/dist/` is your ready-to-run build of Pluto.  
 ### Versioning
@@ -27,3 +29,4 @@ You can build pluto by running `npm run build`. This will build the OS and copy 
     - The build string is accessible in the kernel via the `$SYSVER` global.
     - When pluto is built on the local network, the build string is `major.minor.00000.LOCAL-0000000.timestamp`
 - ***Specific applications***: Usually semver, but sometimes a build string.
+- ***Desktop*** Pluto desktop's version is always 1.0.0.
