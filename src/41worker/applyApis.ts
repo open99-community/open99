@@ -16,21 +16,21 @@ const decl: Decl = {
     },
     worker: `
     function sendMessage(data) {
-        // activity ID: 7 char random numbers
-        const activityID = Math.random().toString().substring(2, 9)
+        const callID = Math.random().toString().substring(2, 9)
+        console.log(\`[41worker:work] (\${callID}) Sent Request\n\`, data);
         return new Promise((resolve, reject) => {
             if (!data) reject("No data provided")
             self.onmessage = event => {
-                // 0: data, 1: activityID
-                if (event.data[1] === activityID) {
+                // 0: data, 1: callID
+                if (event.data[1] === callID) {
                     resolve("received" + event.data)
-                    console.log("[41worker:work] Main thread responded:", event.data)
+                    console.log(\`[41worker:work] (\${callID}) Received Response\n\`, event.data[0]);
                 } else {
-                    self.postMessage("received" + event.data)
-                    console.log("[41worker:work] Main thread requested:", event.data)
+                    console.log(\`[41worker:work] (\${event.data[1]}) Responding to\n\`, event.data[0]);
+                    self.postMessage(["received" + event.data[0], event.data[1]]);
                 }
             }
-            self.postMessage([data, activityID])
+            self.postMessage([data, callID])
         });
     }
     `,

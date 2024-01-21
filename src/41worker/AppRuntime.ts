@@ -10,7 +10,6 @@ export default class AppRuntime {
     blob: Blob;
     url: string;
     worker: Worker;
-    channel: MessageChannel;
     procID: string;
 
     /**
@@ -25,7 +24,7 @@ export default class AppRuntime {
         this.blob = new Blob([this.execCode], { type: "application/javascript" })
         this.url = URL.createObjectURL(this.blob)
 
-        console.log(`[41worker:main] proc-${this.procID} created. URL: ${this.url} Run this.exec() to start the worker.`)
+        console.log(`[41worker:main] PID ${this.procID} created. URL: ${this.url} Run this.exec() to start the worker.`)
     }
     async exec() {
         this.worker = new Worker(this.url, { type: "classic" })
@@ -33,6 +32,7 @@ export default class AppRuntime {
             console.error("[41worker:main] Worker error:", e)
             this.terminate()
         }
+        // This is how program knows it has entered running scope
         return await this.postMessageToWorker("init")
     }
     /**
@@ -61,23 +61,23 @@ export default class AppRuntime {
         return data
     }
     postMessageToWorker(data: any){
-        // activity ID: 7 char random numbers
-        const activityID = Math.random().toString().substring(2, 9)
-        const realData = [data, activityID]
-        console.log("[41worker:main] Main thread requested:", realData)
+        // API callID: 7 char random numbers, collision improbable but possible
+        const callID = Math.random().toString().substring(2, 9)
+        const realData = [data, callID]
+        console.log(`[41worker:main] (${callID}) Sent Request\n`, realData[0])
         return new Promise((resolve, reject) => {
             if (!data) reject("No data provided")
             this.worker.onmessage = event => {
-                // 0: data, 1: activityID
-                if (event.data[1] === activityID) {
-                    console.log("[41worker:main] Worker responded:", event.data)
+                // 0: data, 1: callID
+                if (event.data[1] === callID) {
+                    console.log(`[41worker:main] (${callID}) Received Response\n`, event.data[0])
                     resolve(this.handleReceivedResponse(event.data))
                 } else {
-                    console.log("[41worker:main] Worker requested:", event.data)
-                    this.handleReceivedRequest(event.data)
+                    console.log(`[41worker:main] (${event.data[1]}) Responding to\n`, event.data[0]);
+                    this.worker.postMessage(["received" + event.data[0], event.data[1]])
                 }
             }
-            this.worker.postMessage([data, activityID])
+            this.worker.postMessage([data, callID])
         });
     }
 }
