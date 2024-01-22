@@ -41,6 +41,7 @@ export default class AppRuntime {
     terminate(): void {
         this.worker.terminate()
         console.log(`[41worker] proc-${this.procID} terminated.`)
+        URL.revokeObjectURL(this.url)
     }
     /**
      * handles the received message
