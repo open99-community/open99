@@ -9,7 +9,7 @@ process.env.NODE_ENV = process.argv.includes("--devmode") ? "development" : proc
 process.env.NODE_ENV = process.argv.includes("--prodmode") ? "production" : process.env.NODE_ENV || "production"
 
 const session = new LogSession
-const logger = session.addItem(`🌌 PLUTO OS building on ${new Date()}\n- Mode: ${process.env.NODE_ENV}\n- Watch mode: ${process.argv.includes("--watch") ? "on" : "off"}\n- Version: ${value}`, "info")
+const logger = session.addItem(`----------\n🌌 PLUTO\n----------\nbuilding on ${new Date()}\n- Mode: ${process.env.NODE_ENV}\n- Watch mode: ${process.argv.includes("--watch") ? "on" : "off"}\n- Version: ${value}`, "info")
 const args = {
     session: logger,
     isWatchMode: process.argv.includes("--watch"),

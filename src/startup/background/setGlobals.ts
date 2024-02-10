@@ -1,7 +1,7 @@
 import {database} from "../../fs/idb";
 import fsApi from "../../fs/fs";
 import {components} from "../../gui/components";
-import AppRuntime from "../../41worker/AppRuntime"
+import ProgramRuntime from "../../41worker/ProgramRuntime"
 import { libIDB } from "../../fs/libIDB"
 
 export async function fn() {
@@ -10,7 +10,7 @@ export async function fn() {
                 _db: database,
                 _boot: undefined, //@TODO fix this
                 fs: fsApi,
-                AppRuntime,
+                AppRuntime: ProgramRuntime,
                 components,
                 libIDB
             }

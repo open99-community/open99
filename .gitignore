@@ -2,6 +2,9 @@
 target_fs_BUILD/
 installer_fs_BUILD/
 
+target_fs/Pluto/System41/**/build/*
+installer_fs/Pluto/System41/**/build/*
+
 .vscode
 out
 .idea

@@ -36,7 +36,7 @@ export class LibIDB {
         return this;
     }
 
-    async file(filePath: string): Promise<Blob | null> {
+    async file(filePath: string): Promise<unknown> {
         if (!this.db)
             throw new Error('Database is not initialized.');
 

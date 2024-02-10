@@ -1,26 +1,26 @@
-import {applyApis} from "./applyApis.js"
+import {removeAccessApis} from "./RemoveAccessApis"
 import type { App } from '../types/App'
 import type { MessageData } from '../types/messageEvent'
 
 /** Class representing 41worker runtime */
-export default class AppRuntime {
+export default class ProgramRuntime {
     code: string;
-    context: { App: App, AppRuntime?: typeof AppRuntime };
+    context: { App: App, AppRuntime?: typeof ProgramRuntime };
     execCode: string;
     blob: Blob;
     url: string;
-    worker: Worker;
+    worker: Worker | undefined;
     procID: string;
 
     /**
      * Run the application
      */
-    constructor(code: string, context: {App: App, AppRuntime?: typeof AppRuntime}) {
+    constructor(code: string, context: {App: App, AppRuntime?: typeof ProgramRuntime}) {
         this.procID = Math.random().toString().substring(2, 10)
-        context.AppRuntime = AppRuntime
+        context.AppRuntime = ProgramRuntime
         this.code = code
         this.context = context
-        this.execCode = applyApis(context) + code
+        this.execCode = removeAccessApis() + code
         this.blob = new Blob([this.execCode], { type: "application/javascript" })
         this.url = URL.createObjectURL(this.blob)
 

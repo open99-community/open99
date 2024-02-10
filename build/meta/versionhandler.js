@@ -13,7 +13,7 @@ export async function handle() {
         const branch = process.env.CF_PAGES_BRANCH
         const commit = process.env.CF_PAGES_COMMIT_SHA
         try {
-            if (!process.env.ACCESS_SERVICE_TOKEN || !process.env.ACCESS_CLIENT_ID) throw new Error("Cloudflare access service token expected in process.env.ACCESS_SERVICE_TOKEN")
+            if (!process.env.ACCESS_SERVICE_TOKEN || !process.env.ACCESS_CLIENT_ID) return `${version}.${buildNum}.ILLGL-0000000.${date}`
             const res = await fetch(`https://${branch}.pluto-40t.pages.dev/index.js`, {
                 method: "GET",
                 headers: {

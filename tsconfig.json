@@ -1,12 +1,14 @@
 {
-  "strict": true,
   "compilerOptions": {
+    "target": "es2017",
+    "module": "commonjs",
     "lib": [
       "dom",
       "es5",
       "scripthost",
       "es2015.promise"
-    ]
+    ],
+    "strict": true
   },
   "checkJs": false,
 }

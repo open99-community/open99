@@ -1,8 +1,8 @@
 import { readdir, mkdir, copyFile } from "fs/promises"
 import { join, extname } from "path"
-import esbuild from "esbuild"
+import { exec } from "child_process"
 
-async function recursiveCopy(sourceDir, targetDir) {
+async function recursiveCopy(sourceDir, targetDir, session) {
     const dirents = await readdir(sourceDir, { withFileTypes: true })
 
     for (const dirent of dirents) {
@@ -10,13 +10,13 @@ async function recursiveCopy(sourceDir, targetDir) {
         let targetPath
 
         if (dirent.isDirectory()) {
-            if (dirent.name.startsWith("DIR_")) {
+            if (dirent.name.startsWith("DIR_")) { // if it's a directory that shouldn't be built into an executable
                 targetPath = join(targetDir, dirent.name.replace(/^DIR_/, ""))
                 await mkdir(targetPath, { recursive: true })
                 await recursiveCopy(sourcePath, targetPath)
             } else {
                 let bundlePath = join(targetDir, `${dirent.name}.js`)
-                await handleDirectory(sourcePath, bundlePath)
+                await handleDirectory(sourcePath, bundlePath, session)
             }
         } else {
             targetPath = join(targetDir, dirent.name)
@@ -25,18 +25,26 @@ async function recursiveCopy(sourceDir, targetDir) {
     }
 }
 
-async function handleDirectory(sourcePath, bundlePath) {
+async function handleDirectory(sourcePath, bundlePath, session) {
     const files = await readdir(sourcePath)
-    const indexExists = files.includes("index.js")
-    if (!indexExists) {
+
+    // run the directory's preferred build script (in build/index.js)
+
+    const directorySeparator = process.platform === "win32" ? "\\" : "/"
+    const sourcePathSplit = sourcePath.split(directorySeparator)
+    const sourcePathLast = sourcePathSplit[sourcePathSplit.length - 1]
+    if (!files.includes("build")) {
+        session.addItem(`Skipping '${sourcePathLast}' executable because it has no build script`, "warning")
         return
     }
-    await esbuild.build({
-        entryPoints: [join(sourcePath, "index.js")],
-        outfile: bundlePath,
-        bundle: true,
-        minify: true,
-        format: "esm",
+
+    exec(`node ${join(sourcePath, "build/index.js")}`, (err, stdout, stderr) => {
+        console.log(stdout)
+        if (err) {
+            console.error(err)
+            process.exit(1)
+            return
+        }
     })
 }
 
@@ -55,10 +63,9 @@ try {
     // ignore
 }
 
-//I won't lie I have no idea how these paths are working.
-export async function buildTargetFs() {
-    await recursiveCopy("./target_fs/Pluto/System41", "./target_fs_BUILD/Pluto/System41")
+export async function buildTargetFs(session) {
+    await recursiveCopy("./target_fs/Pluto/System41", "./target_fs_BUILD/Pluto/System41", session)
 }
-export async function buildInstallerFs() {
-    await recursiveCopy("./installer_fs/Pluto/System41", "./installer_fs_BUILD/Pluto/System41")
+export async function buildInstallerFs(session) {
+    await recursiveCopy("./installer_fs/Pluto/System41", "./installer_fs_BUILD/Pluto/System41", session)
 }
