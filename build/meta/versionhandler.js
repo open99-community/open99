@@ -8,13 +8,12 @@ const {version} = JSON.parse( //this should be major.minor
 export async function handle() {
     const date = Date.now() //milliseconds since UNIX epoch in UTC
     let buildNum = "00000"
-    if (process.env.CF_PAGES_BRANCH && process.env.CF_PAGES_COMMIT_SHA) { //if we are on cloudflare pages
-        //@TODO: build number functionality
-        const branch = process.env.CF_PAGES_BRANCH
-        const commit = process.env.CF_PAGES_COMMIT_SHA
+    let branch = process.env.CF_PAGES_BRANCH || "LOCAL"
+    let commit = process.env.CF_PAGES_COMMIT_SHA || "0000000"
+    if (process.env.CF_PAGES_BRANCH && process.env.CF_PAGES_COMMIT_SHA) {// if deploying in cloudflare pages
+        branch = "FAILED" // default to failed instead of LOCAL
         try {
-            if (!process.env.ACCESS_SERVICE_TOKEN || !process.env.ACCESS_CLIENT_ID) return `${version}.${buildNum}.ILLGL-0000000.${date}`
-            const res = await fetch(`https://${branch}.pluto-40t.pages.dev/index.js`, {
+            const res = await fetch(`https://${branch}.${process.env.GLOBAL_ROOT}/index.js`, {
                 method: "GET",
                 headers: {
                     "CF-Access-Client-ID": process.env.ACCESS_CLIENT_ID,
