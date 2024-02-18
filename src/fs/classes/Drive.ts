@@ -10,14 +10,8 @@ class Drive extends FileSystemItem {
      */
     name: string
     constructor(data: {name:string}){
-        const name = data.name
-        if((name[1]) || ("string" !== typeof name)){
-            //name should be a string, but only one char (drive letter)
-            throw new Error("Drive letter is not a string or is longer than one char")
-        } else {
-            super({path: name, content: ""})
-        }
-        data.name = this.name
+        super({path: data.name, content: ""})
+        this.name = data.name
     }
 
     /**

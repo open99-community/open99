@@ -1,12 +1,12 @@
 import FileSystemItem from "./FileSystemItem"
+type args = {
+    path: string,
+    content?: string | Blob | undefined
+}
 
 class File extends FileSystemItem {
-    constructor({
-        path,
-        content
-    }){
-        super({path, content})
-        return this
+    constructor(args: args) {
+        super(args)
     }
     async save(){
         return this

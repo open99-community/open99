@@ -1,11 +1,9 @@
-import type { tauri } from "@tauri-apps/api"
 import * as jszip from "jszip"
 
 declare global {
     interface Window {
         // THE FOLLOWING ARE AVAILABLE IN THE MAIN THREAD
-
-        __TAURI__: typeof tauri | undefined,
+        PlatformUtility: any,
         JSZip: jszip,
     }
 
