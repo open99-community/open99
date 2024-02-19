@@ -5,7 +5,7 @@ import { promises as fs } from "fs"
 import {args} from "../meta/esbuild.js"
 export async function build({session, isWatchMode, NODE_ENV}) {
     const msg = session.addItem("Kernel")
-    if (!isWatchMode) {
+    // if (!isWatchMode) {
         try {
             await esbuild(args())
             if (NODE_ENV !== "development") {
@@ -22,9 +22,9 @@ export async function build({session, isWatchMode, NODE_ENV}) {
             console.error(e)
             process.exit(1)
         }
-    } else {
-        //@TODO implement watch mode
-        msg.addItem("WATCH MODE NOT IMPLEMENTED", "error")
-        process.exit(1)
-    }
+    // } else {
+    //    //@TODO implement watch mode
+    //    msg.addItem("WATCH MODE NOT IMPLEMENTED", "error")
+    //    process.exit(1)
+    // }
 }

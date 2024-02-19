@@ -37,16 +37,17 @@ export class LibIDB {
     }
 
     async file(filePath: string): Promise<unknown> {
-        if (!this.db)
-            throw new Error('Database is not initialized.');
+        if (!this.db) throw new Error('Database is not initialized.');
+        const db = this.db;
 
         return new Promise((resolve, reject) => {
-            const transaction = this.db.transaction('$LOOKUP', 'readonly');
-            const store = transaction.objectStore('$LOOKUP');
-            const request = store.get(filePath);
+            const transaction = this.db?.transaction('$LOOKUP', 'readonly');
+            const store = transaction?.objectStore('$LOOKUP');
+            const request = store?.get(filePath);
 
+            if (!request) throw new Error('Request is null');
             request.onsuccess = () => {
-                const fileId = request.result;
+                const fileId = request?.result;
 
                 // If fileId is not found, resolve with null
                 if(!fileId) {
@@ -54,7 +55,7 @@ export class LibIDB {
                     return;
                 }
 
-                const transItems = this.db.transaction('$ITEMS', 'readonly');
+                const transItems = db.transaction('$ITEMS', 'readonly');
                 const storeItems = transItems.objectStore('$ITEMS');
                 const reqItem = storeItems.get(fileId.toString());
 
@@ -144,11 +145,11 @@ export class LibIDB {
     }
 
     private async getFileId(filePath: string): Promise<string> {
-        if (!this.db)
-            throw new Error('Database is not initialized.');
 
+        if (!this.db) throw new Error('Database is not initialized.');
+        const db = this.db
         return new Promise((resolve, reject) => {
-            const transaction = this.db.transaction(['$LOOKUP'], 'readonly');
+            const transaction = db.transaction(['$LOOKUP'], 'readonly');
             const lookupStore = transaction.objectStore('$LOOKUP');
 
             const request = lookupStore.get(filePath);

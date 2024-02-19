@@ -6,7 +6,7 @@ import { libIDB } from "../../fs/libIDB"
 
 export async function fn() {
     if (process.env.NODE_ENV === "development") {
-            window.sys41 = {
+            window.PlatformUtility = {
                 _db: database,
                 _boot: undefined, //@TODO fix this
                 fs: fsApi,

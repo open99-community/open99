@@ -1,8 +1,8 @@
-import devWatcher from "./devWatcher.ts"
-import {monitorDevtools} from "./noDevtools.js"
-import {noPiracy} from "./noPiracy.ts"
+import devWatcher from "./devWatcher"
+import {monitorDevtools} from "./noDevtools"
+import {noPiracy} from "./noPiracy"
 import {fn as setGlobals} from "./setGlobals"
-import {fn as createScreen} from "./createScreen.ts"
+import {fn as createScreen} from "./createScreen"
 
 export async function background() {
     const order = [
@@ -16,5 +16,5 @@ export async function background() {
     for (const fn of order) {
         await fn()
     }
-    return window.sys41
+    return window.PlatformUtility
 }

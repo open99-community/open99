@@ -39,6 +39,7 @@ export default class ProgramRuntime {
      * Terminates the worker
      */
     terminate(): void {
+        if (!this.worker) throw new Error("No such worker exists.")
         this.worker.terminate()
         console.log(`[41worker] proc-${this.procID} terminated.`)
         URL.revokeObjectURL(this.url)
@@ -62,23 +63,27 @@ export default class ProgramRuntime {
         return data
     }
     postMessageToWorker(data: any){
+        if (!this.worker) throw new Error("No such worker exists.")
+
+        // doing worker instead of this.worker because of TS
+        const worker = this.worker
         // API callID: 7 char random numbers, collision improbable but possible
         const callID = Math.random().toString().substring(2, 9)
         const realData = [data, callID]
         console.log(`[41worker:main] (${callID}) Sent Request\n`, realData[0])
         return new Promise((resolve, reject) => {
             if (!data) reject("No data provided")
-            this.worker.onmessage = event => {
+            worker.onmessage = event => {
                 // 0: data, 1: callID
                 if (event.data[1] === callID) {
                     console.log(`[41worker:main] (${callID}) Received Response\n`, event.data[0])
                     resolve(this.handleReceivedResponse(event.data))
                 } else {
                     console.log(`[41worker:main] (${event.data[1]}) Responding to\n`, event.data[0]);
-                    this.worker.postMessage(["received" + event.data[0], event.data[1]])
+                    worker.postMessage(["received" + event.data[0], event.data[1]])
                 }
             }
-            this.worker.postMessage([data, callID])
+            worker.postMessage([data, callID])
         });
     }
 }

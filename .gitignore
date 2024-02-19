@@ -2,13 +2,15 @@
 target_fs_BUILD/
 installer_fs_BUILD/
 
-target_fs/Pluto/System41/**/build/*
-installer_fs/Pluto/System41/**/build/*
+target_fs/Pluto/System41/**/dist/*
+installer_fs/Pluto/System41/**/dist/*
 
 .vscode
 out
 .idea
 dist
+temp/
+tmp/
 
 # Logs
 logs

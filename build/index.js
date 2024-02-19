@@ -1,5 +1,6 @@
 import tasks from "./tasks/index.js"
 import { LogSession } from "portalog"
+import { serve } from "./serve.js"
 import {handle} from "./meta/versionhandler.js"
 const value = await handle()
 import { config } from "dotenv"
@@ -18,4 +19,9 @@ const args = {
 for (const task of tasks) {
     await task(args)
 }
-session.addItem("🌌 Build complete!", "info")
+session.addItem("Build complete!", "info")
+
+if (process.argv.includes("--watch")) {
+    session.addItem("Starting server...", "info")
+    serve({session})
+}

@@ -40,7 +40,9 @@ export class Bootscreen {
     }
 
     error(text: string) {
-        return new BootEntry({text: text}, document.getElementById("bootscreen"))
+        const element = document.getElementById("bootscreen")
+        if (!element) throw new Error("No bootscreen")
+        return new BootEntry({text: text}, element)
     }
 }
 
