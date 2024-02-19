@@ -1,9 +1,7 @@
 import handler from "serve-handler"
 import http from "http"
-import open from "open"
 import { config } from "dotenv"
 config()
-let isFirstBuild = true
 
 export async function serve({session}) {
     http.createServer((req, res) => {
@@ -13,11 +11,6 @@ export async function serve({session}) {
         })
     }).listen(process.env.DEV_SERVER_PORT, async () => {
         const url = `http://localhost:${process.env.DEV_SERVER_PORT}`
-
         session.addItem(`Server running at ${url}`, "success")
-        if (isFirstBuild) {
-            await open(url)
-            isFirstBuild = false
-        }
-    })
+    });
 }
