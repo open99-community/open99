@@ -1,3 +1,8 @@
+function createIfNotExists(db: IDBDatabase, objectStoreName: string) {
+    if (!db.objectStoreNames.contains(objectStoreName))
+        db.createObjectStore(objectStoreName);
+}
+
 export class LibIDB {
     private db: IDBDatabase | null = null;
 
@@ -9,15 +14,13 @@ export class LibIDB {
             openRequest.onupgradeneeded = (e) => {
                 if (e.oldVersion === 0) {
                     const req = indexedDB.deleteDatabase(dbName)
-                    req.onsuccess = e => {
+                    req.onsuccess = () => {
                         reject(new Error("Database not found"))
                     }
                 }
                 const db = openRequest.result;
-                if (!db.objectStoreNames.contains('$LOOKUP'))
-                    db.createObjectStore('$LOOKUP');
-                if (!db.objectStoreNames.contains('$ITEMS'))
-                    db.createObjectStore('$ITEMS');
+                createIfNotExists(db, '$LOOKUP');
+                createIfNotExists(db, '$ITEMS');
             };
 
             openRequest.onsuccess = () => {

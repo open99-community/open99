@@ -13,7 +13,7 @@ export async function handle() {
     if (process.env.CF_PAGES_BRANCH && process.env.CF_PAGES_COMMIT_SHA) {// if deploying in cloudflare pages
         branch = "FAILED" // default to failed instead of LOCAL
         try {
-            const res = await fetch(`https://${branch}.${process.env.GLOBAL_ROOT}/index.js`, {
+            const res = await fetch(`https://${branch}.${process.env.VERSION_HANDLER_ROOT}/index.js`, {
                 method: "GET",
                 headers: {
                     "CF-Access-Client-ID": process.env.ACCESS_CLIENT_ID,

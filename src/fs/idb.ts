@@ -27,7 +27,7 @@ export async function loadStore(): Promise<IDBDatabase> {
                 db.transaction("C", "readwrite");
                 resolve(db);
             } catch (error) {
-                console.error("An error occurred while creating the transaction or storing the record:", error);
+                console.error("[fatal] Error occured when calling IDB transaction:", error);
                 reject(error);
             }
         };
