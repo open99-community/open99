@@ -11,7 +11,7 @@ export async function handle() {
     let branch = process.env.CF_PAGES_BRANCH || "LOCAL"
     let commit = process.env.CF_PAGES_COMMIT_SHA || "0000000"
     if (process.env.CF_PAGES_BRANCH && process.env.CF_PAGES_COMMIT_SHA) {// if deploying in cloudflare pages
-        branch = "FAILED" // default to failed instead of LOCAL
+        branch = "FAILED" // default to 'failed' instead of 'LOCAL'
         try {
             const res = await fetch(`https://${branch}.${process.env.VERSION_HANDLER_ROOT}/index.js`, {
                 method: "GET",

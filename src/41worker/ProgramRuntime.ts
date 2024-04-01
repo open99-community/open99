@@ -32,7 +32,7 @@ export default class ProgramRuntime {
             console.error("[41worker:main] Worker error:", e)
             this.terminate()
         }
-        // This is how program knows it has entered running scope
+        // This is how the program knows it has entered running scope
         return await this.postMessageToWorker("init")
     }
     /**

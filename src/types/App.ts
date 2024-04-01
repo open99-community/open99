@@ -12,6 +12,7 @@ export interface App {
      * The ID of the app. Should be unique throughout the Pluto; we recommend the format "author.name".
      */
     id: string,
+    // noinspection GrazieInspection
     /**
      * The version of the app. We recommend following Semantic Versioning (https://semver.org/).
      */

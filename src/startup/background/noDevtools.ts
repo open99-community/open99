@@ -6,6 +6,6 @@ export const monitorDevtools = () => {
             alert("Do not use devtools.")
         }
     } else {
-        // devtools isnt blocked in development
+        // devtools isn't blocked in development
     }
 }

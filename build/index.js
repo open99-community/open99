@@ -22,6 +22,8 @@ for (const task of tasks) {
 session.addItem("Build complete!", "info")
 
 if (process.argv.includes("--watch")) {
-    session.addItem("Starting server...", "info")
-    serve({session})
+    session.addItem("Starting server...", "info");
+    (async () => {
+        await serve({session})
+    })()
 }

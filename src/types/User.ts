@@ -7,7 +7,7 @@ export interface User {
      */
     name: string,
     /**
-     * The ID of the user. Must be unique across the Pluto.
+     * The ID of the user. Must be unique across Pluto.
      */
     id: string,
     /**
