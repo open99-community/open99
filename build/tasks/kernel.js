@@ -1,15 +1,17 @@
 import { rimraf } from "rimraf";
-import { context, build as esbuild } from "esbuild";
+import { build as esbuild } from "esbuild";
 import JavascriptObfuscator from "javascript-obfuscator"; //remember this is CommonJS so its wonky
 import { promises as fs } from "fs"
 import {args} from "../meta/esbuild.js"
-export async function build({session, isWatchMode, NODE_ENV}) {
+import {obfuscateOptions} from "../meta/obfuscateOptions.js";
+
+export async function build({session, NODE_ENV}) {
     const msg = session.addItem("Kernel")
     // if (!isWatchMode) {
         try {
             await esbuild(args())
             if (NODE_ENV !== "development") {
-                const obfuscated = JavascriptObfuscator.obfuscate(await fs.readFile("./dist/index.js", {encoding:"utf8"}))
+                const obfuscated = JavascriptObfuscator.obfuscate(await fs.readFile("./dist/index.js", obfuscateOptions))
                 await fs.writeFile("./dist/index.js", obfuscated.getObfuscatedCode())
                 msg.addItem("Obfuscated", "success")
             }

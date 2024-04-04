@@ -2,29 +2,38 @@
 import rootfs from "../../../../dist/assets/installer.zip" //this only imports an external URL. URL is randomized on build
 import {Drive} from "../../../fs/drivers";
 
+interface FilePromise {
+    relativePath: string;
+    content: Blob;
+}
+
 export async function load() {
     try {
         const blob = await (await fetch(rootfs)).blob()
         let zip = await window.JSZip.loadAsync(blob)
-        let filePromises = []
+        let filePromises: Promise<FilePromise>[] = []
 
         zip.forEach((relativePath: string, file: window.JSZip.JSZipObject) => {
             filePromises.push(
-                file.async("blob").then(content => { return { relativePath, content } })
+                file.async("blob").then((content: Blob) => { return { relativePath, content } })
             )
         })
 
         const files = await Promise.all(filePromises)
 
+        let noDrive: boolean = false;
         await Promise.all(
             files.map(async ({ relativePath, content }) => {
                 // File saving mechanism here
 
+                if (Drive.getByDriveLetter("C") === undefined) {noDrive = true; return}
                 Drive.getByDriveLetter("C")?.driverInstance?.write(relativePath, content)
             })
         )
+        if (noDrive) throw new Error("C: drive not found")
 
     } catch(error) {
         console.error(error)
+        return error
     }
 }
