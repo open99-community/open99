@@ -1,5 +1,6 @@
 import tasks from "./tasks/index.js"
 import { LogSession } from "portalog"
+import { serve } from "./serve.js"
 import {handle} from "./meta/versionhandler.js"
 const value = await handle()
 import { config } from "dotenv"
@@ -9,7 +10,7 @@ process.env.NODE_ENV = process.argv.includes("--devmode") ? "development" : proc
 process.env.NODE_ENV = process.argv.includes("--prodmode") ? "production" : process.env.NODE_ENV || "production"
 
 const session = new LogSession
-const logger = session.addItem(`🌌 PLUTO OS building on ${new Date()}\n- Mode: ${process.env.NODE_ENV}\n- Watch mode: ${process.argv.includes("--watch") ? "on" : "off"}\n- Version: ${value}`, "info")
+const logger = session.addItem(`----------\n🌌 PLUTO\n----------\nbuilding on ${new Date()}\n- Mode: ${process.env.NODE_ENV}\n- Watch mode: ${process.argv.includes("--watch") ? "on" : "off"}\n- Version: ${value}`, "info")
 const args = {
     session: logger,
     isWatchMode: process.argv.includes("--watch"),
@@ -18,4 +19,11 @@ const args = {
 for (const task of tasks) {
     await task(args)
 }
-session.addItem("🌌 Build complete!", "info")
+session.addItem("Build complete!", "info")
+
+if (process.argv.includes("--watch")) {
+    session.addItem("Starting server...", "info");
+    (async () => {
+        await serve({session})
+    })()
+}

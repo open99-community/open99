@@ -4,7 +4,7 @@ import {handle} from "../meta/versionhandler.js";
 
 // BEFORE BUILD
 export async function buil1({session}) {
-    const msg = session.addItem("Cleaning up...")
+    const msg = session.addItem("Preparing...")
     await rimraf("./dist")
     //these two are probably unnecessary but who cares
     await rimraf("./target_fs_BUILD")
@@ -12,7 +12,7 @@ export async function buil1({session}) {
     await fs.mkdir("./dist")
     await fs.mkdir("./dist/assets") // windows fix
 
-    msg.addItem("Cleaned up", "success")
+    msg.addItem("Prepared", "success")
 }
 
 // AFTER BUILD

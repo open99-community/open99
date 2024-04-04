@@ -27,6 +27,7 @@ export class BootEntry {
         return this
     }
 
+    // noinspection JSUnusedGlobalSymbols
     remove() {
         this.el.remove()
     }
@@ -40,7 +41,9 @@ export class Bootscreen {
     }
 
     error(text: string) {
-        return new BootEntry({text: text}, document.getElementById("bootscreen"))
+        const element = document.getElementById("bootscreen")
+        if (!element) throw new Error("No bootscreen")
+        return new BootEntry({text: text}, element)
     }
 }
 

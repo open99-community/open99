@@ -12,4 +12,4 @@ export default [
     kernel,
     minifyHtml,
     clea2 //this is a lil hack
-]
+];

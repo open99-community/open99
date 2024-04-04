@@ -53,8 +53,8 @@ self.addEventListener("fetch", event => {
         const fetchedCopy = fetched.then(resp => resp.clone())
 
         // Call respondWith() with whatever we get first.
-        // If the fetch fails (e.g. disconnected), wait for the cache.
-        // If there’s nothing in cache, wait for the fetch.
+        // If the fetch fails (e.g., disconnected), wait for the cache.
+        // If there’s nothing in the cache, wait for the fetch.
         // If neither yields a response, return offline pages.
         event.respondWith(
             Promise.race([fetched.catch(), cached])

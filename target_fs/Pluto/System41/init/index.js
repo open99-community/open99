@@ -1,2 +1,3 @@
-// remember this runs in its own memory space just like all applications
-globalThis.sys41.balloon("hey")
+import { process } from "@use-pluto/satellite";
+
+await process.send("hello from init")

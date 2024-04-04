@@ -1,2 +1,2 @@
-import { boot } from "./startup/boot/index.js"
+import { boot } from "./startup/boot"
 await boot()

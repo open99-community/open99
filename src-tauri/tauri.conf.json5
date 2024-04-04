@@ -1,7 +1,8 @@
 {
   "$schema": "../node_modules/@tauri-apps/cli/schema.json",
   "build": {
-    "beforeBuildCommand": "npm run build --prodmode", //builds are always in production mode. If you dont want to make a build use tauri dev instead
+    "beforeBuildCommand": "npm run build --prodmode", //builds are always in production mode
+                                                      //If you don't want to make a `build` use tauri dev instead
     "beforeDevCommand": "npm run serve",
     "devPath": "http://localhost:8000",
     "distDir": "../dist",
@@ -9,7 +10,7 @@
   },
   "package": {
     "productName": "pluto",
-    "version": "0.0.1" //this is hacky but we need a semver string. for code, look in build/tasks/clean.js
+    "version": "0.0.1" //this is 'hacky' but we need a semver string. for code, look at build/tasks/clean.js
   },
   "tauri": {
     "allowlist": {
