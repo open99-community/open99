@@ -27,6 +27,7 @@ export class BootEntry {
         return this
     }
 
+    // noinspection JSUnusedGlobalSymbols
     remove() {
         this.el.remove()
     }

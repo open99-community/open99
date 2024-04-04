@@ -38,7 +38,7 @@ async function handleDirectory(sourcePath, bundlePath, session) {
         return
     }
 
-    exec(`node ${join(sourcePath, "build/index.js")}`, (err, stdout, stderr) => {
+    exec(`node ${join(sourcePath, "build/index.js")}`, (err, stdout) => {
         console.log(stdout)
         if (err) {
             console.error(err)

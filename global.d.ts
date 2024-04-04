@@ -1,3 +1,5 @@
+// noinspection JSUnusedGlobalSymbols
+
 import * as jszip from "jszip"
 
 declare global {

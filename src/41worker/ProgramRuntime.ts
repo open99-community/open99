@@ -44,6 +44,7 @@ export default class ProgramRuntime {
         console.log(`[41worker] proc-${this.procID} terminated.`)
         URL.revokeObjectURL(this.url)
     }
+    // noinspection JSUnusedGlobalSymbols
     /**
      * handles the received message
      */

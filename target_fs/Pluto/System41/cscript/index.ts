@@ -1,7 +1,17 @@
 // COFFEESCRIPT SERVICE
 
+// @ts-ignore
 import { compile } from "./bundled/__coffeescript-parse.js"
 /* argument[0] = shell? argument[1] = cscript argument[2] = filename */
+
+declare global {
+    const sys41: {
+        fs: {
+            getFile: (path: string) => Promise<string>
+        }
+    }
+    const __process: any
+}
 
 let content
 try {

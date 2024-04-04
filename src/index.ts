@@ -1,2 +1,2 @@
-import { boot } from "./startup/boot/index"
+import { boot } from "./startup/boot"
 await boot()

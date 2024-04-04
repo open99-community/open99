@@ -1,6 +1,8 @@
 // @ts-ignore
 import rootfs from "../../../../dist/assets/installer.zip" //this only imports an external URL. URL is randomized on build
 import {Drive} from "../../../fs/drivers";
+import type * as JSZip from "jszip"
+import {KernelError} from "../../../util/errors";
 
 interface FilePromise {
     relativePath: string;
@@ -13,7 +15,7 @@ export async function load() {
         let zip = await window.JSZip.loadAsync(blob)
         let filePromises: Promise<FilePromise>[] = []
 
-        zip.forEach((relativePath: string, file: window.JSZip.JSZipObject) => {
+        zip.forEach((relativePath: string, file: JSZip.JSZipObject) => {
             filePromises.push(
                 file.async("blob").then((content: Blob) => { return { relativePath, content } })
             )
@@ -30,7 +32,11 @@ export async function load() {
                 Drive.getByDriveLetter("C")?.driverInstance?.write(relativePath, content)
             })
         )
-        if (noDrive) throw new Error("C: drive not found")
+        if (noDrive) {
+            const err = new KernelError("C drive not found")
+            console.error(err)
+            return err
+        }
 
     } catch(error) {
         console.error(error)
