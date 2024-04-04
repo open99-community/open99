@@ -4,7 +4,7 @@ import {noPiracy} from "./noPiracy"
 import {fn as setGlobals} from "./setGlobals"
 import {fn as createScreen} from "./createScreen"
 
-export async function background() {
+export function background() {
     const order = [
         noPiracy,
         monitorDevtools,
@@ -14,7 +14,6 @@ export async function background() {
     ]
 
     for (const fn of order) {
-        await fn()
+        fn()
     }
-    return window.PlatformUtility
 }
