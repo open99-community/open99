@@ -1,13 +1,20 @@
-import * as fs from "fs/promises"
-import minifyHtml from "@minify-html/node"
-import {config} from "dotenv"
-config()
+import minify from "@node-minify/core";
+import minifyHTMLMinifier from "@node-minify/html-minifier";
 
 export async function build() {
     if (process.env.NODE_ENV !== "development") {
-        await fs.writeFile("./dist/index.html", minifyHtml.minify(await fs.readFile("./dist/index.html",), {
-            do_not_minify_doctype: true,
-            keep_spaces_between_attributes: true,
-        }))
+
+        await minify({
+            compressor: minifyHTMLMinifier,
+            input: "public/index.html",
+            output: "dist/index.html",
+            options: {
+                collapseWhitespace: true,
+                removeComments: true,
+                minifyJS: false,
+                minifyCSS: true
+            }
+        })
+
     }
 }

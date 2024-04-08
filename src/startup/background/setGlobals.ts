@@ -6,7 +6,7 @@ export function fn() {
             window.PlatformUtility = {
                 Drive,
                 _boot: undefined, //@TODO fix this
-                AppRuntime: ProgramRuntime,
+                ProgramRuntime: ProgramRuntime,
             }
     }
 }

@@ -4,7 +4,8 @@
   "description": "closed-source online web OS",
   "private": true,
   "dependencies": {
-    "@minify-html/node": "^0.11.1",
+    "@node-minify/core": "^8.0.6",
+    "@node-minify/html-minifier": "^8.0.6",
     "@tauri-apps/cli": "^1.4.0",
     "devtool-blocker": "git+https://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:x-oauth-basic@github.com/use-pluto/devtool-blocker.git",
     "i18next": "^23.4.4",
@@ -35,7 +36,7 @@
     "dotenv": "^16.3.1",
     "esbuild": "0.18.10",
     "esbuild-copy-plugin": "^1.0.0",
-    "file-zippy": "^1.2.0",
+    "file-zippy": "^1.4.0",
     "husky": "^8.0.3",
     "javascript-obfuscator": "^4.0.2",
     "jsdoc": "^4.0.1",
