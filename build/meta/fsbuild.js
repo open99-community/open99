@@ -1,6 +1,10 @@
 import { readdir, mkdir, copyFile } from "fs/promises"
-import { join, extname } from "path"
+import { join, extname, resolve } from "path"
 import { exec } from "child_process"
+import { config } from "dotenv"
+import { promisify } from "util"
+const execPromise = promisify(exec)
+config()
 
 async function recursiveCopy(sourceDir, targetDir, session) {
     const dirents = await readdir(sourceDir, { withFileTypes: true })
@@ -33,19 +37,15 @@ async function handleDirectory(sourcePath, bundlePath, session) {
     const directorySeparator = process.platform === "win32" ? "\\" : "/"
     const sourcePathSplit = sourcePath.split(directorySeparator)
     const sourcePathLast = sourcePathSplit[sourcePathSplit.length - 1]
-    if (!files.includes("build")) {
+    if (!files.includes("build") || !(await readdir(sourcePath + directorySeparator + "build")).includes("index.js")) {
         session.addItem(`Skipping '${sourcePathLast}' executable because it has no build script`, "warning")
         return
     }
 
-    exec(`node ${join(sourcePath, "build/index.js")}`, (err, stdout) => {
-        console.log(stdout)
-        if (err) {
-            console.error(err)
-            process.exit(1)
-            return
-        }
-    })
+    await execPromise(`${process.env.PACKAGE_MANAGER || "npm"} install`, {cwd: sourcePath})
+
+    const { stdout } = await execPromise(`node ${join(sourcePath, "build/index.js")}`)
+    console.log(stdout)
 }
 
 async function handleFile(sourcePath, targetPath) {
