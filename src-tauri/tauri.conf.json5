@@ -1,7 +1,7 @@
 {
   "$schema": "../node_modules/@tauri-apps/cli/schema.json",
   "build": {
-    "beforeBuildCommand": "npm run build --prodmode", //builds are always in production mode
+    "beforeBuildCommand": "npm run build --env=production", //builds are always in production mode
                                                       //If you don't want to make a `build` use tauri dev instead
     "beforeDevCommand": "npm run serve",
     "devPath": "http://localhost:8000",

@@ -1,19 +1,30 @@
 # 🌌 pluto
 a complete web OS
-> **Note:** Along with all the source code, this document is confidential.
+> **Note:** Along with all the source code, this document is closed-source and private. If you find this document floating around the internet or if someone sends it to you, [contact me](https://stretch.wtf/contact).
 ## About
-Pluto is a close-sourced Web OS, similar to Windows93 or Windows96. It intends to be the most sophisticated, complete, and developer-friendly web OS.  
+Pluto is an offline, close-sourced Web OS, similar to Windows93 or Windows96. It intends to be the most sophisticated, complete, and developer-friendly web OS.  
 Pluto programs run under the program runtime (codename 41worker), which is comparable to WRT for Windows 96. These applications run in workers to improve speed, security, and convenience. To learn more, visit [the docs page](https://learn.d.pluto.stretch.wtf/api/41worker).
 ## Installation
 1. Clone the repository locally by running `git clone https://github.com/use-pluto/pluto.git`.
-2. Install the dependencies by running `npm i`.
-3. Copy the environment variables by running `cp .env.example .env`.
+2. Copy the environment variables by running `cp .env.example .env`.
+3. Install the dependencies by running `npm i`.
 ## Usage
 You can build pluto by running `npm run build`.
 This will build the OS into the `/dist` folder.
-Additionally, you may use `npm start` to build and serve Pluto locally on port 8000.  
+Because Pluto is a static application, it does not require any server-side shenanigans.
+Additionally, you may use `npm start` to build and serve Pluto locally on port 8000.
 
-To build Pluto on the global network, you must push to the RELEASE branch.
+To build Pluto on the global network, Cloudflare Pages, you must push to the RELEASE branch.
+
+### Build Mode
+Pluto requires for a build mode environment variable to be set. Currently, this can either be in `development` or `production` modes.
+This is declared using the NODE_ENV environment variable (yes, capitalized).
+Alternatively, you may also use the `.env` file to declare this value. You may also set the `-- --env=buildmode` flag, where 'buildmode' is one of the accepted build modes, to either value when running `npm start` or `npm run build`. Note that the two extra dashes are required.
+Setting this value using the command-line flag overrides process.env.NODE_ENV and .env.
+
+Certain parts of the Pluto Kernel rely on NODE_ENV (for example, anti-piracy, devtools detector, obfuscation, etc.).
+Code that references `process.env.NODE_ENV` is simplified at build, for both development and production modes.
+
 ## Structure
 ### Directories
 * `/installer_fs/` gets built into `/dist/installer-{random sequence}.zip` as a zip file. It is temporarily located in `/installer_fs_BUILD/` during the build process. If the build fails, this directory will not be deleted.
