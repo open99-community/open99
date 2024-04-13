@@ -38,14 +38,19 @@ async function handleDirectory(sourcePath, bundlePath, session) {
     const sourcePathSplit = sourcePath.split(directorySeparator)
     const sourcePathLast = sourcePathSplit[sourcePathSplit.length - 1]
     if (!files.includes("build") || !(await readdir(sourcePath + directorySeparator + "build")).includes("index.js")) {
-        session.addItem(`Skipping '${sourcePathLast}' executable because it has no build script`, "warning")
+        session.addItem(`[${sourcePathLast}]: Skipping executable because it has no build script`, "warning")
         return
     }
 
     await execPromise(`${process.env.PACKAGE_MANAGER || "npm"} install`, {cwd: sourcePath})
 
-    const { stdout } = await execPromise(`node ${join(sourcePath, "build/index.js")}`)
-    console.log(stdout)
+    const { stderr } = await execPromise(`node ${join(sourcePath, "build/index.js")}`)
+    if (stderr) {
+        session.addItem(`[${sourcePathLast}]: Error ocurred while executing build script`, "error")
+        console.log(stderr)
+        process.exit(1)
+    }
+    session.addItem(`[${sourcePathLast}]: Success`, "success")
 }
 
 async function handleFile(sourcePath, targetPath) {
