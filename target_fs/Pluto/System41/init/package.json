@@ -5,13 +5,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "satellite"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "stretch07",
   "license": "UNLICENSED",
   "type": "module",
-  "devDependencies": {
+  "dependencies": {
     "@use-pluto/satellite": "^0.0.13",
     "esbuild": "^0.20.0"
   }

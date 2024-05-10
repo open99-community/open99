@@ -1,10 +1,27 @@
 import { readdir, mkdir, copyFile } from "fs/promises"
-import { join, extname, resolve } from "path"
-import { exec } from "child_process"
+import { join, extname } from "path"
+import { exec, spawn } from "child_process"
 import { config } from "dotenv"
 import { promisify } from "util"
-const execPromise = promisify(exec)
 config()
+const execPromise = promisify(exec)
+function spawnPromise(command, args, options) {
+    return new Promise((resolve, reject) => {
+        const childProcess = spawn(command, args, options);
+
+        childProcess.on('error', (error) => {
+            reject(error);
+        });
+
+        childProcess.on('close', (code) => {
+            if (code !== 0) {
+                reject(new Error(`Command "${command}" exited with code ${code}`));
+            } else {
+                resolve();
+            }
+        });
+    });
+}
 
 async function recursiveCopy(sourceDir, targetDir, session) {
     const dirents = await readdir(sourceDir, { withFileTypes: true })
@@ -42,11 +59,11 @@ async function handleDirectory(sourcePath, bundlePath, session) {
         return
     }
 
-    await execPromise(`${process.env.PACKAGE_MANAGER || "npm"} install`, {cwd: sourcePath})
+    await spawnPromise("npm", ["ci"], { cwd: sourcePath, shell: true})
 
     const { stderr } = await execPromise(`node ${join(sourcePath, "build/index.js")}`)
     if (stderr) {
-        session.addItem(`[${sourcePathLast}]: Error ocurred while executing build script`, "error")
+        session.addItem(`[${sourcePathLast}]: Error occurred while executing build script`, "error")
         console.log(stderr)
         process.exit(1)
     }
