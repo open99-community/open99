@@ -71,6 +71,7 @@ async function handleDirectory(sourcePath, bundlePath, session) {
 }
 
 async function handleFile(sourcePath, targetPath) {
+    //TODO: why is this here?
     if (extname(sourcePath) === ".js") {
         return
     }

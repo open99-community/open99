@@ -13,7 +13,7 @@ export class RAMDriver implements DBDriver {
            data persistence.
          */
 
-        function shuffle(array) {
+        function shuffle(array: any[]) {
             let currentIndex = array.length;
 
             // While there remain elements to shuffle...
@@ -46,9 +46,11 @@ export class RAMDriver implements DBDriver {
             [this.$MAP2]: {}, //maps IDs to content
         };
 
-        if (process.env.NODE_ENV === "development") {
+        /* //TODO: fix the shuffle function, it was causing memory leaks, etc
+        if (process.env.NODE_ENV !== "development") {
             shuffle(this._DB)
         }
+        */
 
     }
 

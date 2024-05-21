@@ -30,7 +30,7 @@ export function args(NODE_ENV, realVersion){
             "debugger",
             "console",
         ],
-        banner: {
+        banner: {   // ATTENTION: The Pluto Version Handler REQUIRES for the VERSION string to be exactly there. Do not mofidy
             js: `/*
  * PLUTO - A sophisticated, fast and secure web operating system.
  * VERSION ${realVersion}
