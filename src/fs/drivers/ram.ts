@@ -29,7 +29,7 @@ export class RAMDriver implements DBDriver {
             }
         }
 
-        if (process.env.NODE_ENV !== "development") {
+        if (process.env.NODE_ENV === "development") {
             this.$LOOKUP = Symbol.for("$LOOKUP");
             this.$MAP1 = Symbol.for("$MAP1");
             this.$MAP2 = Symbol.for("$MAP2");
@@ -168,19 +168,18 @@ export class RAMDriver implements DBDriver {
                 switch (i) {
                     case 0:
                         if (val !== this.$LOOKUP) {
-                            return symNotFound(i)
+                            throw symNotFound(i)
                         }
                         break;
                     default:
                         if (val !== Symbol.for(`MAP${i}`)) {
-                            return symNotFound(i)
+                            throw symNotFound(i)
                         }
                         break;
                 }
             })
         } catch {
-            return new Error("Error checking store symbol keys.")
+            throw new Error("Error checking store symbol keys.")
         }
-        return new Error("stretch was here") //this will never be reached, typescript is just weird
     }
 }

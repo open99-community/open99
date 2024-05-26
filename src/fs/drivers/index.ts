@@ -6,7 +6,7 @@ export let drives: Drive[] = [];
 export class Drive {
     driver: string;
     driverInstance: RAMDriver | undefined;
-    driveLetter: driveLetter;
+    driveLetter: string & driveLetter;
     constructor(driver: string, driveLetter: driveLetter) {
         this.driver = driver;
         this.driveLetter = driveLetter;
@@ -15,7 +15,7 @@ export class Drive {
         }
     }
     static getByDriveLetter(driveLetter: driveLetter): Drive | undefined {
-        return drives.find(drive => drive.driveLetter === driveLetter)
+        return drives.find(drive => drive.driveLetter.toUpperCase() === driveLetter)
     }
     async mount(): Promise<this> {
         if (this.checkValidity() === 1) {
