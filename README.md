@@ -8,11 +8,17 @@ Pluto programs run under the program runtime (codename 41worker), which is compa
 1. Clone the repository locally by running `git clone https://github.com/use-pluto/pluto.git`.
 2. Copy the environment variables by running `cp .env.example .env`.
 3. Install the dependencies by running `npm i`.
+### Tauri Installation
+Pluto uses the Tauri framework to build the desktop application.
+This is not required for the web version.
+1. Follow the instructions [here](https://tauri.app/v1/guides/getting-started/prerequisites)
+2. Run `npm install --save-dev @tauri-apps/cli` to install Tauri.
 ## Usage
 You can build pluto by running `npm run build`.
 This will build the OS into the `/dist` folder.
-Because Pluto is a static application, it does not require any server-side shenanigans.
+Because Pluto is a static application, it does not require any server-side shenanigans.  
 Additionally, you may use `npm start` to build and serve Pluto locally on port 8000.
+This enables the watch mode, meaning every time you save a file, the application will rebuild.
 
 To build Pluto on the global network, Cloudflare Pages, you must push to the RELEASE branch.
 
@@ -35,4 +41,5 @@ Code that references `process.env.NODE_ENV` is simplified at build, for both dev
 * `/src-tauri/` is the Tauri application code (contains rust and tauri config, mainly)  
 * `/dist/` is your ready-to-run build of Pluto.  
 
+## CLOC
 You may accurately count lines of code by running `cloc --exclude-dir="node_modules,src-tauri,dist,package-lock.json" --quiet .` in the root directory.

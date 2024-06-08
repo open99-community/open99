@@ -1,5 +1,5 @@
 import { readdir, mkdir, copyFile } from "fs/promises"
-import { join, extname } from "path"
+import { join } from "path"
 import { exec, spawn } from "child_process"
 import { config } from "dotenv"
 import { promisify } from "util"
@@ -41,14 +41,14 @@ async function recursiveCopy(sourceDir, targetDir, session) {
             }
         } else {
             targetPath = join(targetDir, dirent.name)
-            await handleFile(sourcePath, targetPath)
+            await copyFile(sourcePath, targetPath)
         }
     }
 }
 
 async function handleDirectory(sourcePath, bundlePath, session) {
     const files = await readdir(sourcePath)
-
+    //console.log("directory:" + sourcePath)
     // run the directory's preferred build script (in build/index.js)
 
     const directorySeparator = process.platform === "win32" ? "\\" : "/"
@@ -59,7 +59,7 @@ async function handleDirectory(sourcePath, bundlePath, session) {
         return
     }
 
-    await spawnPromise("npm", ["ci"], { cwd: sourcePath, shell: true})
+    await spawnPromise("npm", ["install"], { cwd: sourcePath, shell: true})
 
     const { stderr } = await execPromise(`node ${join(sourcePath, "build/index.js")}`)
     if (stderr) {
@@ -67,15 +67,8 @@ async function handleDirectory(sourcePath, bundlePath, session) {
         console.log(stderr)
         process.exit(1)
     }
+    await copyFile(join(sourcePath, "dist", "index.js"), bundlePath)
     session.addItem(`[${sourcePathLast}]: Success`, "success")
-}
-
-async function handleFile(sourcePath, targetPath) {
-    //TODO: why is this here?
-    if (extname(sourcePath) === ".js") {
-        return
-    }
-    await copyFile(sourcePath, targetPath)
 }
 
 try {
