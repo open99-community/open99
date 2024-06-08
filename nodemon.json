@@ -1,7 +1,14 @@
 {
-  "verbose": false,
-  "ignore": ["node_modules", "**/dist/**", "./target_fs_BUILD", "./installer_fs_BUILD", "./src-tauri/versioning.json"],
-  "ext": "js,json,ts,html,css",
+  "verbose": true,
+  "ignore": [
+    "**/node_modules/**",
+    "**/dist/**",
+    "./target_fs_BUILD/**",
+    "./installer_fs_BUILD/**",
+    "./src-tauri/versioning.json",
+    "**/package-lock.json"
+  ],
+  "ext": "js,json,ts,html,css,coffee",
   "quiet": true,
   "events": {
     "restart": "echo Rebuilding..."

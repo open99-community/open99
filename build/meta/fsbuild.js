@@ -1,6 +1,27 @@
 import { readdir, mkdir, copyFile } from "fs/promises"
-import { join, extname } from "path"
-import { exec } from "child_process"
+import { join } from "path"
+import { exec, spawn } from "child_process"
+import { config } from "dotenv"
+import { promisify } from "util"
+config()
+const execPromise = promisify(exec)
+function spawnPromise(command, args, options) {
+    return new Promise((resolve, reject) => {
+        const childProcess = spawn(command, args, options);
+
+        childProcess.on('error', (error) => {
+            reject(error);
+        });
+
+        childProcess.on('close', (code) => {
+            if (code !== 0) {
+                reject(new Error(`Command "${command}" exited with code ${code}`));
+            } else {
+                resolve();
+            }
+        });
+    });
+}
 
 async function recursiveCopy(sourceDir, targetDir, session) {
     const dirents = await readdir(sourceDir, { withFileTypes: true })
@@ -20,39 +41,34 @@ async function recursiveCopy(sourceDir, targetDir, session) {
             }
         } else {
             targetPath = join(targetDir, dirent.name)
-            await handleFile(sourcePath, targetPath)
+            await copyFile(sourcePath, targetPath)
         }
     }
 }
 
 async function handleDirectory(sourcePath, bundlePath, session) {
     const files = await readdir(sourcePath)
-
+    //console.log("directory:" + sourcePath)
     // run the directory's preferred build script (in build/index.js)
 
     const directorySeparator = process.platform === "win32" ? "\\" : "/"
     const sourcePathSplit = sourcePath.split(directorySeparator)
     const sourcePathLast = sourcePathSplit[sourcePathSplit.length - 1]
-    if (!files.includes("build")) {
-        session.addItem(`Skipping '${sourcePathLast}' executable because it has no build script`, "warning")
+    if (!files.includes("build") || !(await readdir(sourcePath + directorySeparator + "build")).includes("index.js")) {
+        session.addItem(`[${sourcePathLast}]: Skipping executable because it has no build script`, "warning")
         return
     }
 
-    exec(`node ${join(sourcePath, "build/index.js")}`, (err, stdout) => {
-        console.log(stdout)
-        if (err) {
-            console.error(err)
-            process.exit(1)
-            return
-        }
-    })
-}
+    await spawnPromise("npm", ["install"], { cwd: sourcePath, shell: true})
 
-async function handleFile(sourcePath, targetPath) {
-    if (extname(sourcePath) === ".js") {
-        return
+    const { stderr } = await execPromise(`node ${join(sourcePath, "build/index.js")}`)
+    if (stderr) {
+        session.addItem(`[${sourcePathLast}]: Error occurred while executing build script`, "error")
+        console.log(stderr)
+        process.exit(1)
     }
-    await copyFile(sourcePath, targetPath)
+    await copyFile(join(sourcePath, "dist", "index.js"), bundlePath)
+    session.addItem(`[${sourcePathLast}]: Success`, "success")
 }
 
 try {

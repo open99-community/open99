@@ -9,7 +9,7 @@ export async function fn({write}: { write: BootEntryWriteMethod}) {
         ramDrive = new Drive("RAM", "C")
         await ramDrive.mount()
     } catch (e) {
-        t.update("[FATAL] Failed to initiate storage driver\n" + e, ["error", "blink"])
+        t.update("[FATAL] Failed to initiate storage driver: " + e, ["error", "blink"])
         console.error(e)
         return
     }

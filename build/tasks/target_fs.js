@@ -4,7 +4,6 @@ import zippy from "file-zippy"
 export async function build({session}) {
     const msg = session.addItem("Target fs")
     await buildTargetFs(msg)
-    msg.addItem("Built", "success")
     zippy("target_fs_BUILD/", "./dist/assets/rootfs.zip")
     msg.addItem("Packed", "success")
 }

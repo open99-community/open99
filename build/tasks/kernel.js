@@ -1,32 +1,26 @@
-import { rimraf } from "rimraf";
-import { build as esbuild } from "esbuild";
+import {rimraf} from "rimraf";
+import {build as esbuild} from "esbuild";
 import JavascriptObfuscator from "javascript-obfuscator"; //remember this is CommonJS so its wonky
-import { promises as fs } from "fs"
+import {promises as fs} from "fs"
 import {args} from "../meta/esbuild.js"
 import {obfuscateOptions} from "../meta/obfuscateOptions.js";
 
-export async function build({session, NODE_ENV}) {
+export async function build({session, NODE_ENV, realVersion}) {
     const msg = session.addItem("Kernel")
-    // if (!isWatchMode) {
-        try {
-            await esbuild(args())
-            if (NODE_ENV !== "development") {
-                const obfuscated = JavascriptObfuscator.obfuscate(await fs.readFile("./dist/index.js", obfuscateOptions))
-                await fs.writeFile("./dist/index.js", obfuscated.getObfuscatedCode())
-                msg.addItem("Obfuscated", "success")
-            }
-            msg.addItem("Built", "success")
-        } catch (e) {
-            // First, we'll just remove the directory to begin with
-            await rimraf("./dist")
-            // error handling
-            msg.addItem("Kernel build failed! Details below", "error")
-            console.error(e)
-            process.exit(1)
+    try {
+        await esbuild(args(NODE_ENV, realVersion))
+        if (NODE_ENV !== "development") {
+            const obfuscated = JavascriptObfuscator.obfuscate(await fs.readFile("./dist/index.js", obfuscateOptions))
+            await fs.writeFile("./dist/index.js", obfuscated.getObfuscatedCode())
+            msg.addItem("Obfuscated", "success")
         }
-    // } else {
-    //    //@TODO implement watch mode
-    //    msg.addItem("WATCH MODE NOT IMPLEMENTED", "error")
-    //    process.exit(1)
-    // }
+        msg.addItem("Built", "success")
+    } catch (e) {
+        // First, we'll just remove the directory to begin with
+        await rimraf("./dist")
+        // error handling
+        msg.addItem("Kernel build failed! Details below", "error")
+        console.error(e)
+        process.exit(1)
+    }
 }

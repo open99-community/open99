@@ -9,6 +9,14 @@ declare global {
         JSZip: jszip,
     }
 
+    // this is a little browser hack to make the NODE_ENV variable available
+    // @ts-ignore
+    const process: {
+        env: {
+            NODE_ENV: string,
+        },
+    }
+
     /**
      * Full version string of the Pluto kernel
      */

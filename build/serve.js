@@ -9,8 +9,8 @@ export async function serve({session}) {
             public: "./dist",
             cleanUrls: true,
         })
-    }).listen(process.env.DEV_SERVER_PORT, async () => {
-        const url = `http://localhost:${process.env.DEV_SERVER_PORT}`
+    }).listen(process.env.DEV_SERVER_PORT ?? 8000, async () => {
+        const url = `http://localhost:${process.env.DEV_SERVER_PORT ?? 8000}`
         session.addItem(`Server running at ${url}`, "success")
     });
 }

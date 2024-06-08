@@ -3,10 +3,14 @@ import {Drive} from "../../fs/drivers";
 
 export function fn() {
     if (process.env.NODE_ENV === "development") {
+        try {
             window.PlatformUtility = {
                 Drive,
                 _boot: undefined, //@TODO fix this
-                AppRuntime: ProgramRuntime,
+                ProgramRuntime: ProgramRuntime,
             }
+        } catch (e) {
+            console.error(e)
+        }
     }
 }
