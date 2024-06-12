@@ -20,7 +20,7 @@ export default class ProgramRuntime {
         context.AppRuntime = ProgramRuntime
         this.code = code
         this.context = context
-        this.execCode = removeAccessApis() + code
+        this.execCode = removeAccessApis() + "(async () => {" + code + "})()"
         this.blob = new Blob([this.execCode], { type: "application/javascript" })
         this.url = URL.createObjectURL(this.blob)
 
@@ -33,7 +33,7 @@ export default class ProgramRuntime {
             this.terminate()
         }
         // This is how the program knows it has entered running scope
-        return await this.postMessageToWorker("init")
+        await this.postMessageToWorker("init")
     }
     /**
      * Terminates the worker
@@ -48,16 +48,14 @@ export default class ProgramRuntime {
     /**
      * handles the received message
      */
-    handleReceivedRequest(data: MessageData): any { //this can literally be anything!
-        //here is where we put a super long switch statement to determine what to return
+    handleReceivedRequest(data: MessageData): any {
         switch (data.op) {
             case "fs.createFile":
-                console.log("Worker environment tried creating a file:", data)
-                return "HELLO! I AM A FILE!" + data
+                return "HELLO! I AM A FILE!"
             case "fs.createDir":
-                return "[41worker] Worker tried creating a dir:" + data
+                return "HELLO! I AM A DIRECTORY!"
             default:
-                return "41worker op unknown: " + data.op
+                return "41worker op unknown or missing: " + data.op
         }
     }
     handleReceivedResponse(data: MessageData): any {
@@ -80,8 +78,8 @@ export default class ProgramRuntime {
                     console.log(`[41worker:main] (${callID}) Received Response\n`, event.data[0])
                     resolve(this.handleReceivedResponse(event.data))
                 } else {
-                    console.log(`[41worker:main] (${event.data[1]}) Responding to\n`, event.data[0]);
-                    worker.postMessage(["received" + event.data[0], event.data[1]])
+                    //console.log(`[41worker:main] (${event.data[1]}) Responding to\n`, event.data[0]);
+                    worker.postMessage([this.handleReceivedRequest(event.data[0]), event.data[1]])
                 }
             }
             worker.postMessage([data, callID])
