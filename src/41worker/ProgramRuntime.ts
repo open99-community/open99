@@ -1,6 +1,9 @@
 import {removeAccessApis} from "./RemoveAccessApis"
 import type { App } from '../types/App'
 import type { MessageData } from '../types/messageEvent'
+import {PIDBroker} from "./misc/PIDBroker";
+
+const broker = PIDBroker()
 
 /** Class representing 41worker runtime */
 export default class ProgramRuntime {
@@ -15,8 +18,9 @@ export default class ProgramRuntime {
     /**
      * Run the application
      */
+    // @TODO: provide the path, not the code. also inject the path somewhere into the executable
     constructor(code: string, context: {App: App, AppRuntime?: typeof ProgramRuntime}) {
-        this.procID = Math.random().toString().substring(2, 10)
+        this.procID = broker.next().value
         context.AppRuntime = ProgramRuntime
         this.code = code
         this.context = context
@@ -54,6 +58,9 @@ export default class ProgramRuntime {
                 return "HELLO! I AM A FILE!"
             case "fs.createDir":
                 return "HELLO! I AM A DIRECTORY!"
+            case 10:
+
+                return "New process!"
             default:
                 return "41worker op unknown or missing: " + data.op
         }
