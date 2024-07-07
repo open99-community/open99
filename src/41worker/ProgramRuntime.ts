@@ -1,16 +1,18 @@
 import {removeAccessApis} from "./RemoveAccessApis"
-import type { App } from '../types/App'
 import type { MessageData } from '../types/messageEvent'
 import {PIDBroker} from "./misc/PIDBroker";
+import {Drive} from "../fs/drivers";
+import {ArgsAndEnv} from "./misc/ArgsAndEnv";
 
 const broker = PIDBroker()
 
 /** Class representing 41worker runtime */
 export default class ProgramRuntime {
-    code: string;
-    context: { App: App, AppRuntime?: typeof ProgramRuntime };
+    path: string;
     execCode: string;
     blob: Blob;
+    cmdLine: string[];
+    env: { [key: string]: string };
     url: string;
     worker: Worker | undefined;
     procID: string;
@@ -19,18 +21,27 @@ export default class ProgramRuntime {
      * Run the application
      */
     // @TODO: provide the path, not the code. also inject the path somewhere into the executable
-    constructor(code: string, context: {App: App, AppRuntime?: typeof ProgramRuntime}) {
+    constructor(path: string, cmdLine: string, env: { [key: string]: string }) {
         this.procID = broker.next().value
-        context.AppRuntime = ProgramRuntime
-        this.code = code
-        this.context = context
-        this.execCode = removeAccessApis() + "(async () => {" + code + "})()"
+        this.path = path
+
+        this.execCode = "" //for TS
+        this.blob = new Blob //for TS
+        this.url = "" //for TS
+
+        this.cmdLine = cmdLine.split(" ")
+        this.env = env
+        console.log(`[41worker:main] PID ${this.procID} created. Run this.exec() to start the worker.`)
+    }
+    async exec() {
+
+        const code = await Drive.getByDriveLetter("C")?.driverInstance?.read(this.path)
+
+        this.execCode = removeAccessApis() + ArgsAndEnv(this.cmdLine, this.env) + "(async () => {" + code + "})()"
         this.blob = new Blob([this.execCode], { type: "application/javascript" })
         this.url = URL.createObjectURL(this.blob)
 
-        console.log(`[41worker:main] PID ${this.procID} created. URL: ${this.url} Run this.exec() to start the worker.`)
-    }
-    async exec() {
+
         this.worker = new Worker(this.url, { type: "classic" })
         this.worker.onerror = e => {
             console.error("[41worker:main] Worker error:", e)
