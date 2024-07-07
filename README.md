@@ -10,9 +10,8 @@ Pluto programs run under the program runtime (codename 41worker), which is compa
 3. Install the dependencies by running `npm i`.
 ### Tauri Installation
 Pluto uses the Tauri framework to build the desktop application.
-This is not required for the web version.
-1. Follow the instructions [here](https://tauri.app/v1/guides/getting-started/prerequisites)
-2. Run `npm install --save-dev @tauri-apps/cli` to install Tauri.
+This is not required for the web version.  
+> Follow the instructions [here](https://tauri.app/v1/guides/getting-started/prerequisites) to install the required tools for building for desktop.
 ## Usage
 You can build pluto by running `npm run build`.
 This will build the OS into the `/dist` folder.
