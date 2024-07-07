@@ -14,6 +14,7 @@ const outputFile = resolve(__dirname, "../dist/index.js");
 build({
     entryPoints: [entryPoint],
     bundle: true,
+    minify: true,
     outfile: outputFile,
     platform: "browser", // Explicitly specify the target platform as 'browser'
     format: "esm",
