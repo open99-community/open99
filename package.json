@@ -13,7 +13,8 @@
   "scripts": {
     "build": "node build/index.js",
     "start": "npx nodemon build/index.js -- --watch",
-    "tauri": "tauri"
+    "tauri": "tauri",
+    "clean": "node build/scripts/clean.js"
   },
   "repository": {
     "type": "git",

@@ -3,14 +3,16 @@ import * as fs from "fs/promises"
 import {handle} from "../meta/versionhandler.js";
 
 // BEFORE BUILD
-export async function buil1({session}) {
+export async function buil1({session, noPrepare}) {
     const msg = session.addItem("Preparing...")
     await rimraf("./dist")
     //these two are probably unnecessary but who cares
     await rimraf("./target_fs_BUILD")
     await rimraf("./installer_fs_BUILD")
-    await fs.mkdir("./dist")
-    await fs.mkdir("./dist/assets") // windows fix
+    if (!noPrepare) {
+        await fs.mkdir("./dist")
+        await fs.mkdir("./dist/assets") // windows fix
+    }
 
     msg.addItem("Prepared", "success")
 }
