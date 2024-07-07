@@ -1,3 +1,5 @@
+// noinspection DuplicatedCode
+
 import { build } from "esbuild";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";

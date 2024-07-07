@@ -14,6 +14,7 @@ export class RAMDriver implements DBDriver {
            data persistence.
          */
 
+        // noinspection JSUnusedLocalSymbols
         function shuffle(array: any[]) {
             let currentIndex = array.length;
 

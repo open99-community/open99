@@ -6,6 +6,7 @@ import {ArgsAndEnv} from "./misc/ArgsAndEnv";
 
 const broker = PIDBroker()
 
+// noinspection JSUnusedGlobalSymbols
 /** Class representing 41worker runtime */
 export default class ProgramRuntime {
     path: string;

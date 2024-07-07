@@ -1,3 +1,4 @@
+// noinspection JSUnusedGlobalSymbols
 export const PathParser = (path: string): [string, string] => {
     //this parses something like "C:/Something/test.txt" into ["C", "\\Something\\test.txt"]
     //this parses something like "C:\Something\test.txt" into ["C", "\\Something\\test.txt"]

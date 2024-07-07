@@ -1,7 +1,8 @@
+// noinspection DuplicatedCode
+
 import { build } from "esbuild";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
-import {exec} from "child_process"
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
