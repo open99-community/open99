@@ -1,3 +1,1 @@
-import { process } from "@use-pluto/satellite";
-
-await process.send("hello from init")
+import * as Satellite from "@use-pluto/satellite"

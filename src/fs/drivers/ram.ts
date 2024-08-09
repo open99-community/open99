@@ -110,10 +110,11 @@ export class RAMDriver implements DBDriver {
 
     async read(path: string): Promise<FileContentTypes | Error> {
         const id = this._DB[this.$LOOKUP][path]
+        console.log("reading ", path) //THIS SHOULDN THAVE DRIVE
         if (id) {
             return this._DB[this.$MAP2][id];
         } else {
-            return new Error("File not found");
+            throw new Error("File not found");
         }
     }
 

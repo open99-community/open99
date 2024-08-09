@@ -30,15 +30,26 @@ export default class ProgramRuntime {
         this.blob = new Blob //for TS
         this.url = "" //for TS
 
-        this.cmdLine = cmdLine.split(" ")
+        this.cmdLine = cmdLine?.split(" ") ?? cmdLine
         this.env = env
         console.log(`[41worker:main] PID ${this.procID} created. Run this.exec() to start the worker.`)
     }
     async exec() {
 
-        const code = await Drive.getByDriveLetter("C")?.driverInstance?.read(this.path)
+        try {
+            const code = await (await Drive.getByDriveLetter("C")?.driverInstance?.read(this.path.slice(3))).text()
+            console.log("heres the code!", code)
 
-        this.execCode = removeAccessApis() + ArgsAndEnv(this.cmdLine, this.env) + "(async () => {" + code + "})()"
+
+            this.execCode = removeAccessApis() + ArgsAndEnv(this.cmdLine, this.env) + "(async () => {" + code + "})()"
+
+            console.log("and execCode:", this.execCode)
+        } catch (e) {
+            //console.error(`[41worker:main] Error reading file: ${e}`)
+            //this.terminate() actually this isnt needed since the worker hasnt been created
+            throw e
+        }
+
         this.blob = new Blob([this.execCode], { type: "application/javascript" })
         this.url = URL.createObjectURL(this.blob)
 
@@ -56,6 +67,7 @@ export default class ProgramRuntime {
      */
     terminate(): void {
         if (!this.worker) throw new Error("No such worker exists.")
+        // hey future me: maybe it just hasn't been executed?
         this.worker.terminate()
         console.log(`[41worker] proc-${this.procID} terminated.`)
         URL.revokeObjectURL(this.url)
@@ -71,8 +83,10 @@ export default class ProgramRuntime {
             case "fs.createDir":
                 return "HELLO! I AM A DIRECTORY!"
             case 10:
-
+                console.log("Worker wants a new process.")
                 return "New process!"
+            case 12:
+                return "IPCv1 message!"
             default:
                 return "41worker op unknown or missing: " + data.op
         }
