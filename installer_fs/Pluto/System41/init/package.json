@@ -11,7 +11,7 @@
   "author": "stretch07",
   "license": "UNLICENSED",
   "type": "module",
-  "devDependencies": {
+  "dependencies": {
     "@use-pluto/satellite": "^0.0.13",
     "esbuild": "^0.20.0"
   }

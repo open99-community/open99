@@ -1,3 +1,5 @@
+// noinspection JSUnusedGlobalSymbols
+
 class DevToolsDetector {
     config: {
     pollingIntervalSeconds: number;

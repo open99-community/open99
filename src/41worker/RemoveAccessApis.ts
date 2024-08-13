@@ -1,6 +1,6 @@
 import { WebAPIBlacklist } from "./misc/WebAPIBlacklist";
 
-const injectDebugScript: string = `` // for example, you can put Satellite lib here
+const injectDebugScript: string = ``
 
 export class ExposedApis {
     exposedapis: string;
@@ -21,8 +21,6 @@ export class ExposedApis {
 
 export function removeAccessApis(): string {
     const exposedapis = new ExposedApis();
-    for (const api in WebAPIBlacklist) {
-        exposedapis.removeApi(api);
-    }
+    WebAPIBlacklist.forEach(api => exposedapis.removeApi(api));
     return exposedapis.getExposedApis() + injectDebugScript;
 }

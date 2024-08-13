@@ -4,15 +4,17 @@ import {FileContentTypes, FileMetadataType} from "../../types/fs";
 export class RAMDriver implements DBDriver {
     name: string = "RAM";
     private _DB: any = {};
-    private $LOOKUP: symbol | undefined;
-    private $MAP1: symbol | undefined;
-    private $MAP2: symbol | undefined;
+    private $LOOKUP: symbol = Symbol.for("uninitiated");
+    private $MAP1: symbol = Symbol.for("uninitiated");
+    private $MAP2: symbol = Symbol.for("uninitiated");
+    #inited: boolean = false;
     async init(): Promise<void | Error> {
         /* remember, the RAM database is just a simple object stored in memory.
            it is reset after each reboot, which means that there is no
            data persistence.
          */
 
+        // noinspection JSUnusedLocalSymbols
         function shuffle(array: any[]) {
             let currentIndex = array.length;
 
@@ -52,6 +54,8 @@ export class RAMDriver implements DBDriver {
         }
         */
 
+        this.#inited = true;
+
     }
 
     async write(path: string, content: FileContentTypes, metadata?: FileMetadataType): Promise<void | Error> {
@@ -79,7 +83,7 @@ export class RAMDriver implements DBDriver {
                 this._DB[this.$LOOKUP][path] = id
 
                 if (metadata) {
-                    this._DB[this.$LOOKUP][id] = metadata;
+                    this._DB[this.$MAP1][id] = metadata;
                 } else {
                     let size
                     if (content) {
@@ -88,7 +92,7 @@ export class RAMDriver implements DBDriver {
                         size = 0;
                     }
 
-                    this._DB[this.$LOOKUP][id] = {
+                    this._DB[this.$MAP1][id] = {
                         size: size
                     };
                 }
@@ -106,10 +110,11 @@ export class RAMDriver implements DBDriver {
 
     async read(path: string): Promise<FileContentTypes | Error> {
         const id = this._DB[this.$LOOKUP][path]
+        console.log("reading ", path) //THIS SHOULDN THAVE DRIVE
         if (id) {
             return this._DB[this.$MAP2][id];
         } else {
-            return new Error("File not found");
+            throw new Error("File not found");
         }
     }
 
@@ -161,6 +166,10 @@ export class RAMDriver implements DBDriver {
     }
 
     private checkSymbolKeys(): true | Error {
+        if (!this.#inited) {
+            return new Error("Database not initialized")
+        }
+
         const symNotFound = (i: number) => {return new Error(`Symbol with index ${i} not in store`)}
         try {
             const propSymbols = Object.getOwnPropertySymbols(this._DB)
