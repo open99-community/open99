@@ -46,7 +46,7 @@ export default class ProgramRuntime {
             console.log("and execCode:", this.execCode)
         } catch (e) {
             //console.error(`[41worker:main] Error reading file: ${e}`)
-            //this.terminate() actually this isnt needed since the worker hasnt been created
+            //this.terminate() isnt needed since the worker hasnt been created
             throw e
         }
 

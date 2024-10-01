@@ -110,7 +110,7 @@ export class RAMDriver implements DBDriver {
 
     async read(path: string): Promise<FileContentTypes | Error> {
         const id = this._DB[this.$LOOKUP][path]
-        console.log("reading ", path) //THIS SHOULDN THAVE DRIVE
+        console.log("reading ", path) //THIS SHOULDNT HAVE DRIVE
         if (id) {
             return this._DB[this.$MAP2][id];
         } else {
@@ -154,7 +154,7 @@ export class RAMDriver implements DBDriver {
     }
 
     async cp(/*oldPath: string, newPath: string*/): Promise<void | Error> {
-        return new Error("Not implemented");
+        return new Error("Not implemented"); //@TODO: implement
     }
 
     async getFreeSpace(): Promise<number | Error> {
@@ -166,6 +166,8 @@ export class RAMDriver implements DBDriver {
     }
 
     private checkSymbolKeys(): true | Error {
+        if (process.env.NODE_ENV === "development") return true;
+
         if (!this.#inited) {
             return new Error("Database not initialized")
         }
@@ -179,16 +181,16 @@ export class RAMDriver implements DBDriver {
                         if (val !== this.$LOOKUP) {
                             throw symNotFound(i)
                         }
-                        break;
+                        return true
                     default:
                         if (val !== Symbol.for(`MAP${i}`)) {
                             throw symNotFound(i)
                         }
-                        break;
+                        return true
                 }
             })
         } catch {
-            throw new Error("Error checking store symbol keys.")
+            return new Error("Error checking store symbol keys.")
         }
     }
 }
