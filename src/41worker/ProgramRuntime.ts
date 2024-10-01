@@ -85,6 +85,8 @@ export default class ProgramRuntime {
             case 10:
                 console.log("Worker wants a new process.")
                 return "New process!"
+            case 70:
+                return this;
             case 12:
                 return "IPCv1 message!"
             default:
@@ -112,7 +114,12 @@ export default class ProgramRuntime {
                     resolve(this.handleReceivedResponse(event.data))
                 } else {
                     //console.log(`[41worker:main] (${event.data[1]}) Responding to\n`, event.data[0]);
-                    worker.postMessage([this.handleReceivedRequest(event.data[0]), event.data[1]])
+                    try {
+                        worker.postMessage([this.handleReceivedRequest(event.data[0]), event.data[1]])
+                    } catch (e) {
+                        console.error(`[41worker:main] Error: ${e}`)
+                        reject(e)
+                    }
                 }
             }
             worker.postMessage([data, callID])
