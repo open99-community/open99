@@ -5,9 +5,17 @@ const pidBroker = PIDBroker();
 
 export class ProcessManager {
     private processes: Map<number, ProgramRuntime>;
+    private static instance: ProcessManager;
 
     constructor() {
         this.processes = new Map();
+    }
+
+    public static getInstance(): ProcessManager {
+        if (!ProcessManager.instance) {
+            ProcessManager.instance = new ProcessManager()
+        }
+        return ProcessManager.instance
     }
 
     async createProcess(path: string, cmdLine: string, env: { [key: string]: string }) {
