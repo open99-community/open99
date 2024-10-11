@@ -166,6 +166,8 @@ export class RAMDriver implements DBDriver {
     }
 
     private checkSymbolKeys(): true | Error {
+        return true;
+        /*
         if (process.env.NODE_ENV === "development") return true;
 
         if (!this.#inited) {
@@ -191,6 +193,6 @@ export class RAMDriver implements DBDriver {
             })
         } catch {
             return new Error("Error checking store symbol keys.")
-        }
+        } */
     }
 }

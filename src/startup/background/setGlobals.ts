@@ -1,4 +1,5 @@
 import ProgramRuntime from "../../41worker/ProgramRuntime"
+import {ProcessManager} from "../../41worker/ProcessManager";
 import {Drive} from "../../fs/drivers";
 
 export function fn() {
@@ -8,6 +9,7 @@ export function fn() {
                 Drive,
                 _boot: undefined, //@TODO fix this
                 ProgramRuntime: ProgramRuntime,
+                ProcessManager,
             }
         } catch (e) {
             console.error(e)
