@@ -23,6 +23,11 @@ export class ProcessManager {
         const process = new ProgramRuntime(path, cmdLine, env);
         this.processes.set(pid, process);
 
+        this.addStreamEventListener(pid, 20, () => {
+            //console.log("SO HMMM PROCESS MANAGER JUST SAW THAT PROCESS ENDED")
+            this.processes.delete(pid)
+        })
+
         try {
             await process.exec();
 
@@ -66,7 +71,7 @@ export class ProcessManager {
         return process.postMessageToWorker(message);
     }
 
-    addStreamEventListener(pid: number, eventName: string, callback: (data: any) => void): void {
+    addStreamEventListener(pid: number, eventName: string | number, callback: (data: any) => void): void {
         const process = this.processes.get(pid);
         if (!process) {
             throw new Error(`No process found with PID: ${pid}`);
@@ -74,7 +79,7 @@ export class ProcessManager {
         process.addStreamEventListener(eventName, callback);
     }
 
-    removeStreamEventListener(pid: number, eventName: string, callback: (data: any) => void): void {
+    removeStreamEventListener(pid: number, eventName: string | number, callback: (data: any) => void): void {
         const process = this.processes.get(pid);
         if (!process) {
             throw new Error(`No process found with PID: ${pid}`);

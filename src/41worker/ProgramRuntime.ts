@@ -21,7 +21,7 @@ export default class ProgramRuntime {
     public state: string;
 
     private pendingRequests: Map<number, { resolve: (value: any) => void, reject: (reason: any) => void }>;
-    private streamEventListeners: Map<string, ((data: any) => void)[]>;
+    private streamEventListeners: Map<string | number, ((data: any) => void)[]>;
 
     // @TODO: provide the path, not the code. also inject the path somewhere into the executable
     constructor(path: string, cmdLine: string, env: { [key: string]: string }) {
@@ -171,6 +171,11 @@ export default class ProgramRuntime {
             if (!data.op) {
                 eventName = data
             }
+
+            this.streamEventListeners.get(eventName)?.forEach(func => {
+                func(data)
+            })
+
             switch (eventName) {
                 case 20:
                     this.terminate()
@@ -182,13 +187,13 @@ export default class ProgramRuntime {
         }
     }
 
-    addStreamEventListener(eventName: string, callback: (data: any) => void): void {
+    addStreamEventListener(eventName: string | number, callback: (data: any) => void): void {
         if (!this.streamEventListeners.has(eventName)) {
             this.streamEventListeners.set(eventName, [])
         }
         this.streamEventListeners.get(eventName)!.push(callback)
     }
-    removeStreamEventListener(eventName: string, callback: (data: any) => void): void {
+    removeStreamEventListener(eventName: string | number, callback: (data: any) => void): void {
         const listeners = this.streamEventListeners.get(eventName);
         if (listeners) {
             const index = listeners.indexOf(callback);
