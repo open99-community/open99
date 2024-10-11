@@ -9,7 +9,7 @@ The following terminology applies to these Terms of Service and our Privacy Poli
 
 ### **🍪 Cookies**
 A cookie is a small piece of data stored on the Client's device. We use cookies to store and retrieve your data ('files') throughout sessions. Although cookies began as a unique technology, there are now more methods of storing data on your device than traditional cookies. Pluto can use IndexedDB, localStorage, sessionStorage, and regular 'traditional' cookies. These all fall into the category of cookies. There is **no other way** for the Service to store and retrieve data without using cookies.  
-By accessing Pluto, you agreed to use cookies in agreement with this Terms Of Use document.
+By accessing Pluto, you agreed to use cookies in agreement with this "Terms Of Use" document.
 
 ### **📄 License**
 Pluto is proprietary software. Copying or redistributing the code is strictly prohibited.

@@ -18,7 +18,7 @@ class IPCManager {
         const handlerID = this.Broker().next().value
         this.registrar.set(handlerID, targetProcess)
         return [handlerID]
-        //return communication handler, and then the source process can use it to communicate with ipc an who can then forward the message to the target process
+        //return communication handler, and then the source process can use it to communicate with ipc and who can then forward the message to the target process
     }
 
     removeHandler(handlerID) {
