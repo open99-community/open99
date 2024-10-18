@@ -1,5 +1,5 @@
 import {removeAccessApis} from "./RemoveAccessApis"
-import type { MessageData } from '../types/messageEvent'
+import type {MessageData} from '../types/messageEvent'
 import {PIDBroker} from "./misc/PIDBroker";
 import {Drive} from "../fs/drivers";
 import {ArgsAndEnv} from "./misc/ArgsAndEnv";
@@ -63,11 +63,11 @@ export default class ProgramRuntime {
             throw e
         }
 
-        this.blob = new Blob([this.execCode], { type: "application/javascript" })
+        this.blob = new Blob([this.execCode], {type: "application/javascript"})
         this.url = URL.createObjectURL(this.blob)
 
 
-        this.worker = new Worker(this.url, { type: "classic" })
+        this.worker = new Worker(this.url, {type: "classic"})
 
         this.worker.onmessage = this.handleWorkerMessage.bind(this);
 
@@ -89,7 +89,7 @@ export default class ProgramRuntime {
 
         if (callID) {
             //request-response call
-            console.log("CALLID", callID)
+            //console.log("CALLID", callID)
             const pendingRequest = this.pendingRequests.get(Number(callID));
             if (pendingRequest) {
                 // It's a response to a kernel-initiated request
@@ -98,17 +98,12 @@ export default class ProgramRuntime {
                 pendingRequest.resolve(this.handleReceivedResponse(data));
             } else {
                 // It's a request from the worker
-                try {
-                    const response = this.handleReceivedRequest(data);
-                    this.worker!.postMessage([response, callID]);
-                } catch (e) {
-                    console.error(`[41worker:main] Error handling request: ${e}`);
-                    this.worker!.postMessage([{ error: String(e) }, callID]);
-                }
+                const response = this.handleReceivedRequest(data);
+                this.worker!.postMessage([response, callID]);
             }
         } else {
             // streamed event
-            console.log("STREAMED EVENT RECEIVED", data)
+            //console.log("STREAMED EVENT RECEIVED", data)
             this.handleStreamEvent(data);
         }
     }
@@ -136,9 +131,10 @@ export default class ProgramRuntime {
                 // @TODO: executable wants to register IPC
                 break;
             default:
-                return "41worker op unknown or missing: " + data.op
+                return {error: "Unknown operation"}
         }
     }
+
     handleReceivedResponse(data: MessageData): any {
         return data
     }
@@ -157,10 +153,11 @@ export default class ProgramRuntime {
                 return;
             }
 
-            this.pendingRequests.set(Number(callID), { resolve, reject });
+            this.pendingRequests.set(Number(callID), {resolve, reject});
             this.worker!.postMessage([data, callID]);
         });
     }
+
     postStreamToWorker(data: any): void {
         this.worker!.postMessage([data])
     }
@@ -193,6 +190,7 @@ export default class ProgramRuntime {
         }
         this.streamEventListeners.get(eventName)!.push(callback)
     }
+
     removeStreamEventListener(eventName: string | number, callback: (data: any) => void): void {
         const listeners = this.streamEventListeners.get(eventName);
         if (listeners) {
