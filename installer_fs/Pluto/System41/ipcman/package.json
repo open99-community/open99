@@ -9,7 +9,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "@use-pluto/satellite": "^0.0.20",
+    "@use-pluto/satellite": "^0.0.21",
     "esbuild": "^0.24.0"
   },
   "type": "module"

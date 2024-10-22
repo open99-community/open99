@@ -1,10 +1,9 @@
 import {Pluto} from "@use-pluto/satellite"
-const _core = Pluto._core
+const Comms = Pluto._core.CommsHandler.getInstance();
 
 class IPCManager {
     constructor() {
         this.registrar = new Map();
-        this.stream = _core.StreamHandler;
     }
 
     * Broker() {
@@ -32,6 +31,3 @@ class IPCManager {
 }
 
 const ipc = new IPCManager();
-_core.StreamHandler.addListener(33, e => { //33 means a process is requesting to register a handler
-    ipc.handleRegister(e.SOURCE_PID, e.TARGET_PID);
-})

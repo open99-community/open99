@@ -177,6 +177,9 @@ export default class ProgramRuntime {
                 case 20:
                     this.terminate()
                     break;
+                case 2:
+                    console.log("received heartbeat")
+                    break;
             }
 
         } else {

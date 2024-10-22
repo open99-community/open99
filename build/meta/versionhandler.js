@@ -20,9 +20,9 @@ export async function handle() {
                     "CF-Access-Client-Secret": process.env.ACCESS_SERVICE_TOKEN
                 }
             })
-            const content = await res.text()
-            const lines = content.split("\n")
-            const match = lines[2].match(/\*\s+VERSION\s+(.*)/)[1] //third line, version string
+            const content = await res?.text()
+            const lines = content?.split("\n")
+            const match = lines[2]?.match(/\*\s+VERSION\s+(.*)/)[1] //third line, version string
 
             // remember: version is current, match is previous
             const previousBuild = {

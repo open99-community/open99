@@ -71,7 +71,7 @@ async function handleDirectory(sourcePath, bundlePath, session) {
     //console.log("debug: starting " + sourcePathLast)
 
     if (!files.includes("build") || !(await readdir(sourcePath + directorySeparator + "build")).includes("index.js")) {
-        session.addItem(`[${sourcePathLast}]: Skipping executable because it has no build script`, "warning")
+        session.addItem(`[${sourcePathLast}]: Skipping (no build script)`, "warning")
         return
     }
 
