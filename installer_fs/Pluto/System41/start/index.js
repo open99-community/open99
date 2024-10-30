@@ -76,3 +76,6 @@ const comms = Pluto._core.CommsHandler.getInstance();
 await comms.call("fs.createFile");
 
 startHeartbeat();
+console.log("test")
+setInterval(() => {console.log("duhh")}, 1000);
+//while (true) {}

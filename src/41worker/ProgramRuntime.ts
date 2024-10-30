@@ -54,7 +54,13 @@ export default class ProgramRuntime {
             //console.log("here's the code!", code)
 
 
-            this.execCode = removeAccessApis() + ArgsAndEnv(this.cmdLine, this.env) + "(async () => {" + code + indicateExit() + "})();"
+            this.execCode =
+                removeAccessApis() +
+                ArgsAndEnv(this.cmdLine, this.env) +
+                "(async () => {" +
+                code +
+                indicateExit() +
+                "})();"
 
             console.log("execCode:", this.execCode)
         } catch (e) {
