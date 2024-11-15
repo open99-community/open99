@@ -103,5 +103,6 @@ export async function buildTargetFs(session) {
 }
 export async function buildInstallerFs(session) {
     await recursiveCopy("./installer_fs/", "./installer_fs_BUILD/", session, true)
+    session.addItem("[root]: Copied root directory", "success")
     await recursiveCopy("./installer_fs/Pluto/System41", "./installer_fs_BUILD/Pluto/System41", session)
 }

@@ -4,6 +4,7 @@ import {PIDBroker} from "./misc/PIDBroker";
 import {Drive} from "../fs/drivers";
 import {ArgsAndEnv} from "./misc/ArgsAndEnv";
 import {indicateExit} from "./misc/indicateExit";
+import {patchTimerFunctions} from "./misc/patchTimers";
 
 const broker = PIDBroker()
 
@@ -19,12 +20,13 @@ export default class ProgramRuntime {
     worker: Worker | undefined;
     procID: string;
     public state: string;
+    public UNSAFE_NO_FULL_TERMINATE: boolean = false;
 
     private pendingRequests: Map<number, { resolve: (value: any) => void, reject: (reason: any) => void }>;
     private streamEventListeners: Map<string | number, ((data: any) => void)[]>;
 
     // @TODO: provide the path, not the code. also inject the path somewhere into the executable
-    constructor(path: string, cmdLine: string, env: { [key: string]: string }) {
+    constructor(path: string, cmdLine: string, env: { [key: string]: string }, flags?: { [key: string]: boolean }) {
         this.procID = broker.next().value
         this.path = path
 
@@ -37,7 +39,7 @@ export default class ProgramRuntime {
 
         this.pendingRequests = new Map();
         this.streamEventListeners = new Map();
-
+        this.UNSAFE_NO_FULL_TERMINATE = flags?.UNSAFE_NO_FULL_TERMINATE ?? false
         //console.log(`[41worker:main] PID ${this.procID} created. Run this.exec() to start the worker.`)
     }
 
@@ -56,6 +58,7 @@ export default class ProgramRuntime {
 
             this.execCode =
                 removeAccessApis() +
+                patchTimerFunctions() +
                 ArgsAndEnv(this.cmdLine, this.env) +
                 "(async () => {" +
                 code +
@@ -86,8 +89,13 @@ export default class ProgramRuntime {
         // hey future me: maybe it just hasn't been executed?
         this.state = "terminated"
         this.worker.terminate()
-        console.log(`[41worker] proc-${this.procID} terminated.`)
-        URL.revokeObjectURL(this.url)
+        if (process.env.NODE_ENV !== "development"|| (process.env.NODE_ENV === "development" && !this.UNSAFE_NO_FULL_TERMINATE)) {
+            console.log(`[41worker] proc-${this.procID} terminated.`)
+            URL.revokeObjectURL(this.url)
+        } else {
+            console.log(`[41worker] proc-${this.procID} terminated.`)
+            console.warn("Full termination disabled. URL not revoked.")
+        }
     }
 
     private handleWorkerMessage(event: MessageEvent): void {

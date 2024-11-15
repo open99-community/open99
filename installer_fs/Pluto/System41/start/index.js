@@ -77,5 +77,6 @@ await comms.call("fs.createFile");
 
 startHeartbeat();
 console.log("test")
-setInterval(() => {console.log("duhh")}, 1000);
+const int = setInterval(() => {console.log("duhh")}, 1000);
+setTimeout(() => {clearInterval(int)}, 5000)
 //while (true) {}
