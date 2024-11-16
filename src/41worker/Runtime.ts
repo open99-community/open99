@@ -17,7 +17,7 @@ export class Runtime {
     public state: string;
     public UNSAFE_NO_FULL_TERMINATE: boolean = false;
 
-    private streamEventListeners: Map<string | number, ((data: any) => void)[]>;
+    streamEventListeners: Map<string | number, ((data: any) => void)[]>;
 
     constructor(path: string, cmdLine: string, env: { [key: string]: string }, flags?: { [key: string]: boolean }) {
         this.procID = broker.next().value
@@ -40,10 +40,6 @@ export class Runtime {
     }
 
     terminate(): void {
-    }
-
-    private handleMessage(event: MessageEvent): void {
-
     }
 
     // Call-based

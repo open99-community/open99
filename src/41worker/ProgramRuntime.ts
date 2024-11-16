@@ -25,7 +25,7 @@ export default class ProgramRuntime extends Runtime {
         this.state = "running"
 
         try {
-            const file = await (await Drive.getByDriveLetter("C")?.driverInstance?.read(this.path.slice(3)))
+            const file = await Drive.getByDriveLetter("C")?.driverInstance?.read(this.path.slice(3))
             if (!file || file! instanceof Error) throw new Error("File not found")
             let code = await file.text()
 

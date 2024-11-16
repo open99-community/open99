@@ -6,7 +6,7 @@ export interface MessageData {
      * Operation ID.
      * Some obfuscated ones are system app-only and are numbers
      */
-    op: `${"fs" | "gui" | "REG"}.${string}` | "run" | number,
+    op: `${"fs" | "gui" | "REG"}.${string}` | "run" | number | string,
     /**
      * Arguments
      */
