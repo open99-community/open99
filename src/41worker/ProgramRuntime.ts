@@ -1,46 +1,24 @@
 import {removeAccessApis} from "./RemoveAccessApis"
-import type {MessageData} from '../types/messageEvent'
 import {PIDBroker} from "./misc/PIDBroker";
 import {Drive} from "../fs/drivers";
 import {ArgsAndEnv} from "./misc/ArgsAndEnv";
 import {indicateExit} from "./misc/indicateExit";
 import {patchTimerFunctions} from "./misc/patchTimers";
+import {Runtime} from "./Runtime"
 
 const broker = PIDBroker()
 
-// noinspection JSUnusedGlobalSymbols
-/** Class representing 41worker runtime */
-export default class ProgramRuntime {
-    path: string;
-    execCode: string;
-    blob: Blob | undefined;
-    cmdLine: string[];
-    env: { [key: string]: string };
-    url: string;
-    worker: Worker | undefined;
-    procID: string;
-    public state: string;
+export default class ProgramRuntime extends Runtime {
     public UNSAFE_NO_FULL_TERMINATE: boolean = false;
 
-    private pendingRequests: Map<number, { resolve: (value: any) => void, reject: (reason: any) => void }>;
-    private streamEventListeners: Map<string | number, ((data: any) => void)[]>;
+    pendingRequests: Map<number, { resolve: (value: any) => void, reject: (reason: any) => void }>;
+    streamEventListeners: Map<string | number, ((data: any) => void)[]>;
 
-    // @TODO: provide the path, not the code. also inject the path somewhere into the executable
     constructor(path: string, cmdLine: string, env: { [key: string]: string }, flags?: { [key: string]: boolean }) {
-        this.procID = broker.next().value
-        this.path = path
-
-        this.execCode = ""
-        this.url = ""
-        this.state = "uninitiated"
-
-        this.cmdLine = cmdLine?.split(" ") ?? cmdLine
-        this.env = env;
-
+        super(path, cmdLine, env, flags)
         this.pendingRequests = new Map();
         this.streamEventListeners = new Map();
         this.UNSAFE_NO_FULL_TERMINATE = flags?.UNSAFE_NO_FULL_TERMINATE ?? false
-        //console.log(`[41worker:main] PID ${this.procID} created. Run this.exec() to start the worker.`)
     }
 
     async exec() {
@@ -54,7 +32,6 @@ export default class ProgramRuntime {
             code = code.endsWith(";") ? code : code + ";"
 
             //console.log("here's the code!", code)
-
 
             this.execCode =
                 removeAccessApis() +
@@ -78,10 +55,10 @@ export default class ProgramRuntime {
 
         this.worker = new Worker(this.url, {type: "classic"})
 
-        this.worker.onmessage = this.handleWorkerMessage.bind(this);
+        this.worker.onmessage = this.handleMessage.bind(this);
 
         // This is how the program knows it has entered running scope
-        this.postStreamToWorker("init")
+        this.postStream({"op": "init"})
     }
 
     terminate(): void {
@@ -98,7 +75,7 @@ export default class ProgramRuntime {
         }
     }
 
-    private handleWorkerMessage(event: MessageEvent): void {
+    private handleMessage(event: MessageEvent): void {
         const [data, callID] = event.data;
 
         if (callID) {
@@ -122,38 +99,7 @@ export default class ProgramRuntime {
         }
     }
 
-    // Call-based
-    handleReceivedRequest(data: MessageData): any {
-        switch (data.op) {
-            case "fs.createFile":
-                return "HELLO! I AM A FILE!"
-            case "fs.createDir":
-                return "HELLO! I AM A DIRECTORY!"
-            case 10: //wants to spawn new process
-                console.log("Worker wants a new process.")
-                return "New process!"
-            case 70:
-                //return this; NEVER DO THIS! WORKER OBJECT CANNOT BE CLONED
-                return "uhhh duhh"
-            case 12:
-                return "IPCv1 message!"
-            case 20:
-                return "process exited gracefully"
-            case 21:
-                return "process errored out"
-            case 33:
-                // @TODO: executable wants to register IPC
-                break;
-            default:
-                return {error: "Unknown operation"}
-        }
-    }
-
-    handleReceivedResponse(data: MessageData): any {
-        return data
-    }
-
-    postMessageToWorker(data: any): Promise<any> {
+    postMessage(data: any): Promise<any> {
         if (!this.worker) throw new Error("No such worker exists.") //has it been initiated?
 
         // API callID: 7 char random numbers, collision improbable but possible
@@ -172,7 +118,7 @@ export default class ProgramRuntime {
         });
     }
 
-    postStreamToWorker(data: any): void {
+    postStream(data: any): void {
         this.worker!.postMessage([data])
     }
 
@@ -198,23 +144,6 @@ export default class ProgramRuntime {
 
         } else {
             console.error(`[41worker:main] Received malformed Streamed Event: ${data}`)
-        }
-    }
-
-    addStreamEventListener(eventName: string | number, callback: (data: any) => void): void {
-        if (!this.streamEventListeners.has(eventName)) {
-            this.streamEventListeners.set(eventName, [])
-        }
-        this.streamEventListeners.get(eventName)!.push(callback)
-    }
-
-    removeStreamEventListener(eventName: string | number, callback: (data: any) => void): void {
-        const listeners = this.streamEventListeners.get(eventName);
-        if (listeners) {
-            const index = listeners.indexOf(callback);
-            if (index !== -1) {
-                listeners.splice(index, 1);
-            }
         }
     }
 }

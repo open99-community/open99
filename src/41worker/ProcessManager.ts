@@ -68,7 +68,7 @@ export class ProcessManager {
         if (!process) {
             throw new Error(`No process found with PID: ${pid}`);
         }
-        return process.postMessageToWorker(message);
+        return process.postMessage(message);
     }
 
     addStreamEventListener(pid: number, eventName: string | number, callback: (data: any) => void): void {
