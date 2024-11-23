@@ -1,21 +1,18 @@
 import {Runtime} from "../41worker/Runtime"
 import {Drive} from "../fs/drivers";
+import { MessageData } from "../types/messageEvent";
 
 interface WasmExports {
     memory: WebAssembly.Memory;
     [key: string]: any;
 }
 
-interface WasmInstance {
-    instance: WebAssembly.Instance;
-    module: WebAssembly.Module;
-}
-
 export default class AsmRuntime extends Runtime {
     wasmBytes: Uint8Array | undefined;
-    private wasmInstance: WasmInstance | undefined;
+    private wasmInstance: WebAssembly.Instance | undefined;
     private exports: WasmExports | undefined;
     private readonly importObject: WebAssembly.Imports;
+    pendingRequests: Map<number, { resolve: (value: any) => void, reject: (reason: any) => void }> = new Map;
 
     constructor(path: string, cmdLine: string, env: { [key: string]: string }, flags?: { [key: string]: boolean }) {
         super(path, cmdLine, env, flags);
@@ -50,7 +47,7 @@ export default class AsmRuntime extends Runtime {
 
         const module = await WebAssembly.compile(this.wasmBytes);
         this.wasmInstance = await WebAssembly.instantiate(module, this.importObject);
-        this.exports = this.wasmInstance?.instance.exports as WasmExports;
+        this.exports = this.wasmInstance?.exports as WasmExports;
     }
 
     terminate(): void {
@@ -82,7 +79,7 @@ export default class AsmRuntime extends Runtime {
             // Process the system call
             const response = this.handleReceivedRequest({
                 op: operation,
-                data: data as MessageData
+                data: data
             });
 
             // Resolve the pending request
@@ -90,6 +87,8 @@ export default class AsmRuntime extends Runtime {
             if (pendingRequest) {
                 this.pendingRequests.delete(Number(callID));
                 pendingRequest.resolve(response);
+            } else {
+                // @TODO program just initiated request. respond here
             }
         });
     }
