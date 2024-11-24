@@ -3,6 +3,7 @@ import AsmRuntime from "../../Assembly/AsmRuntime";
 import {ProcessManager} from "../../41worker/ProcessManager";
 import {Drive} from "../../fs/drivers";
 
+// Set up the PlatformUtility object for debugging
 export function fn() {
     if (process.env.NODE_ENV === "development") {
         try {
