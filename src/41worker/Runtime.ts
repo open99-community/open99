@@ -74,7 +74,7 @@ export class Runtime {
     }
 
     postMessage(data: any): Promise<any> {
-        
+        return Promise.resolve("unimplemented")
     }
 
     postStream(data: any): void {
