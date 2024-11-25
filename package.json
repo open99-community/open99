@@ -45,5 +45,9 @@
     "jszip": "^3.10.1",
     "rimraf": "^5.0.1",
     "typescript": "^5.2.2"
-  }
+  },
+  "workspaces": [
+    "executables/root/*",
+    "executables/installer/*"
+  ]
 }
