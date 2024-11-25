@@ -3,7 +3,12 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node tests",
+    "asbuild:debug": "asc assembly/index.ts --target debug",
+    "asbuild:release": "asc assembly/index.ts --target release",
+    "asbuild": "npm run asbuild:debug && npm run asbuild:release",
+    "build": "npm run asbuild:debug && npm run asbuild:release",
+    "start": "npx serve ."
   },
   "author": "",
   "license": "ISC",
@@ -12,5 +17,14 @@
     "@use-pluto/satellite": "^0.0.21",
     "esbuild": "^0.24.0"
   },
-  "type": "module"
+  "type": "module",
+  "devDependencies": {
+    "assemblyscript": "^0.27.31"
+  },
+  "exports": {
+    ".": {
+      "import": "./build/release.js",
+      "types": "./build/release.d.ts"
+    }
+  }
 }
