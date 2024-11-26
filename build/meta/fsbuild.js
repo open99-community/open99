@@ -75,7 +75,7 @@ async function handleDirectory(sourcePath, bundlePath, session) {
         return
     }
 
-    await spawnPromise("npm", ["install"], { cwd: sourcePath, shell: true})
+    await spawnPromise("yarn", ["install"], { cwd: sourcePath, shell: true})
 
     const { stderr } = await execPromise(`node ${join(sourcePath, "build/index.js")}`)
     if (stderr) {

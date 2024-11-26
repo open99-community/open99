@@ -1,5 +1,5 @@
 {
-  "name": "installer-start",
+  "name": "@installer/start",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {

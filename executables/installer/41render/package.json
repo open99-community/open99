@@ -1,5 +1,5 @@
 {
-  "name": "41render",
+  "name": "@installer/41render",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
