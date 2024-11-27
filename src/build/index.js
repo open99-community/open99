@@ -4,7 +4,7 @@ import { serve } from "./serve.js"
 import {handle} from "./meta/versionhandler.js"
 const value = await handle()
 import { config } from "dotenv"
-config()
+config({path: "../.env"})
 if (process.argv["--env"]) {
     process.env.NODE_ENV = process.argv["--env"]
 }

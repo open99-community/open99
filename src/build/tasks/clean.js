@@ -5,13 +5,13 @@ import {handle} from "../meta/versionhandler.js";
 // BEFORE BUILD
 export async function buil1({session, noPrepare}) {
     const msg = session.addItem("Preparing...")
-    await rimraf("./dist")
+    await rimraf("../dist")
     //these two are probably unnecessary but who cares
-    await rimraf("./target_fs_BUILD")
-    await rimraf("./installer_fs_BUILD")
+    await rimraf("../target_fs_BUILD")
+    await rimraf("../installer_fs_BUILD")
     if (!noPrepare) {
-        await fs.mkdir("./dist")
-        await fs.mkdir("./dist/assets") // windows fix
+        await fs.mkdir("../dist")
+        await fs.mkdir("../dist/assets") // windows fix
     }
 
     msg.addItem("Prepared", "success")
@@ -20,16 +20,16 @@ export async function buil1({session, noPrepare}) {
 // AFTER BUILD
 export async function buil2({session}) {
     const msg = session.addItem("Cleaning up...")
-    await rimraf("./target_fs_BUILD")
-    await rimraf("./installer_fs_BUILD")
+    await rimraf("../target_fs_BUILD")
+    await rimraf("../installer_fs_BUILD")
 
     // Miscellaneous things- Tauri needs a semver string, so we limit it to major.minor.build
     // We put this in the version property of src-tauri/version.json
 
     const version = await handle()
-    const versionFile = JSON.parse(await fs.readFile("./src-tauri/versioning.json", "utf-8"))
+    const versionFile = JSON.parse(await fs.readFile("../src-tauri/versioning.json", "utf-8"))
     versionFile.version = version.split(/\.(?=[^\d])/)[0] //limit to major.minor.build
-    await fs.writeFile("./src-tauri/versioning.json", JSON.stringify(versionFile))
+    await fs.writeFile("../src-tauri/versioning.json", JSON.stringify(versionFile))
 
     msg.addItem("Cleaned up", "success")
 }

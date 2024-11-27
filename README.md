@@ -5,18 +5,19 @@ a complete web OS
 Pluto is an offline, close-sourced Web OS, similar to Windows93 or Windows96. It intends to be the most sophisticated, complete, and developer-friendly web OS.  
 Pluto programs run under the program runtime (codename 41worker), which is comparable to WRT for Windows 96. These applications run in workers to improve speed, security, and convenience. To learn more, visit [the docs page](https://learn.d.pluto.stretch.wtf/api/41worker).
 ## Installation
+> Make sure you have yarn installed. Pluto does not support npm.
 1. Clone the repository locally by running `git clone https://github.com/use-pluto/pluto.git`.
 2. Copy the environment variables by running `cp .env.example .env`.
-3. Install the dependencies by running `npm i`.
+3. Install the dependencies by running `yarn`.
 ### Tauri Installation
 Pluto uses the Tauri framework to build the desktop application.
 This is not required for the web version.  
 > Follow the instructions [here](https://tauri.app/v1/guides/getting-started/prerequisites) to install the required tools for building for desktop.
 ## Usage
-You can build pluto by running `npm run build`.
+You can build pluto by running `yarn build`.
 This will build the OS into the `/dist` folder.
 Because Pluto is a static application, it does not require any server-side shenanigans.  
-Additionally, you may use `npm start` to build and serve Pluto locally on port 8000.
+Additionally, you may use `yarn start` to build and serve Pluto locally on port 8000.
 This enables the watch mode, meaning every time you save a file, the application will rebuild.
 
 To build Pluto on the global network, Cloudflare Pages, you must push to the RELEASE branch.

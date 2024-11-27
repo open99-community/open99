@@ -6,8 +6,8 @@ export async function build() {
 
         await minify({
             compressor: minifyHTMLMinifier,
-            input: "public/index.html",
-            output: "dist/index.html",
+            input: "../public/index.html",
+            output: "../dist/index.html",
             options: {
                 collapseWhitespace: true,
                 removeComments: true,

@@ -1,20 +1,20 @@
 import copy from "esbuild-copy-plugin"
 import {readFile} from "fs/promises"
 const {author} = JSON.parse(
-    await readFile("./package.json", "utf-8")
+    await readFile("../package.json", "utf-8")
 );
 
 export function args(NODE_ENV, realVersion){
     process.env.NODE_ENV = NODE_ENV
     return {
-        entryPoints: ["./src/index.ts"],
+        entryPoints: ["./index.ts"],
         bundle: true,
         minify: true,
         sourcemap: process.env.NODE_ENV === "development",
         target: ["esnext"], //@TODO fix esbuild target
         outfile: "./dist/index.js",
         plugins: [copy({
-            from: "./public",
+            from: "../public",
             to: ".",
         })],
         platform: "browser",

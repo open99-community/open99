@@ -1,5 +1,4 @@
 // @ts-ignore
-import rootfs from "../../../../dist/assets/installer.zip" //this only imports an external URL. URL is randomized on build
 import {Drive} from "../../../fs/drivers";
 import type * as JSZip from "jszip"
 import {KernelError} from "../../../util/errors";
@@ -11,7 +10,7 @@ interface FilePromise {
 
 export async function load() {
     try {
-        const blob = await (await fetch(rootfs)).blob()
+        const blob = await (await fetch("./assets/installer.zip")).blob()
         let zip = await window.JSZip.loadAsync(blob)
         let filePromises: Promise<FilePromise>[] = []
 

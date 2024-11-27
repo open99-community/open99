@@ -8,6 +8,7 @@ import {obfuscateOptions} from "../meta/obfuscateOptions.js";
 export async function build({session, NODE_ENV, realVersion}) {
     const msg = session.addItem("Kernel")
     try {
+
         await esbuild(args(NODE_ENV, realVersion))
         if (NODE_ENV !== "development") {
             const obfuscated = JavascriptObfuscator.obfuscate(await fs.readFile("./dist/index.js", obfuscateOptions))
