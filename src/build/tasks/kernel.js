@@ -5,22 +5,18 @@ import {promises as fs} from "fs"
 import {args} from "../meta/esbuild.js"
 import {obfuscateOptions} from "../meta/obfuscateOptions.js";
 
-export async function build({session, NODE_ENV, realVersion}) {
-    const msg = session.addItem("Kernel")
+export async function build({NODE_ENV, realVersion}) {
     try {
 
         await esbuild(args(NODE_ENV, realVersion))
         if (NODE_ENV !== "development") {
             const obfuscated = JavascriptObfuscator.obfuscate(await fs.readFile("./dist/index.js", obfuscateOptions))
             await fs.writeFile("./dist/index.js", obfuscated.getObfuscatedCode())
-            msg.addItem("Obfuscated", "success")
+            console.log("Obfuscated")
         }
-        msg.addItem("Built", "success")
     } catch (e) {
-        // First, we'll just remove the directory to begin with
-        await rimraf("./dist")
         // error handling
-        msg.addItem("Kernel build failed! Details below", "error")
+        console.log("Kernel build failed! Details below", "error")
         console.error(e)
         process.exit(1)
     }
