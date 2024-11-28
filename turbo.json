@@ -9,7 +9,7 @@
                 "**dist/**"
             ]
         },
-        "build:@repo/build": {
+        "@repo/build#build": {
             "dependsOn": ["^build"],
             "outputs": [
                 "dist/"
