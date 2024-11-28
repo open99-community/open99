@@ -1,13 +1,10 @@
 {
-  "name": "pluto",
-  "version": "0.55",
+  "name": "@repo/build",
+  "version": "1.0.0",
   "description": "closed-source online web OS",
   "private": true,
   "scripts": {
-    "build": "turbo run build",
-    "start": "turbo run start",
-    "tauri": "tauri",
-    "clean": "node build/scripts/clean.js"
+    "build": "node index.js"
   },
   "repository": {
     "type": "git",

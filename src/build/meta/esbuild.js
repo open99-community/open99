@@ -13,10 +13,10 @@ export function args(NODE_ENV, realVersion){
         sourcemap: process.env.NODE_ENV === "development",
         target: ["esnext"], //@TODO fix esbuild target
         outfile: "./dist/index.js",
-        plugins: [copy({
+        plugins: [/*copy({
             from: "../public",
             to: ".",
-        })],
+        })*/],
         platform: "browser",
         format: "esm",
         loader: {".zip": "file", ".css": "text"},
