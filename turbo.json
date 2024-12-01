@@ -4,13 +4,17 @@
     "globalDependencies": [".env"],
     "tasks": {
         "build": {
-            "dependsOn": ["^build"],
+            "dependsOn": ["@repo/prebuild"],
             "outputs": [
                 "**dist/**"
             ]
         },
-        "@repo/build#build": {
-            "dependsOn": ["^build"],
+        "@repo/prebuild": {
+            "outputs": [
+            ]
+        },
+        "@repo/build": {
+            "dependsOn": ["@repo/prebuild", "^build"],
             "outputs": [
                 "dist/"
             ]

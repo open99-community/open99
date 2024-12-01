@@ -1,0 +1,10 @@
+{
+  "name": "@repo/prebuild",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "node index.js"
+  },
+  "license": "MIT",
+  "type": "module"
+}
