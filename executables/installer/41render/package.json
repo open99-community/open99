@@ -9,6 +9,6 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "@use-pluto/satellite": "^0.0.19"
+    "@use-pluto/satellite": "^0.0.22"
   }
 }
