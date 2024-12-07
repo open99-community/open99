@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "build": "node scripts/prebuild/index.js && turbo run build && node scripts/postbuild/index.js",
-    "start": "turbo run start",
+    "start": "node scripts/prebuild/index.js && npx nodemon --exec \"turbo run build && node scripts/postbuild/index.js -- --watch \"",
     "tauri": "tauri",
     "clean": "node build/scripts/clean.js"
   },
