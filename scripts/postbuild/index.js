@@ -10,20 +10,24 @@ import { dirname } from 'path';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const KERNEL_LOCATION = "../src/dist/index.js"
+const KERNEL_LOCATION = "./src/dist/index.js"
 
-cpSync("../../public", "../../dist", {recursive: true});
+cpSync("./public", "./dist", {recursive: true});
+cpSync(KERNEL_LOCATION, "./dist/index.js");
+if (process.env.NODE_ENV !== "production") {
+    cpSync(KERNEL_LOCATION+".map", "./dist/index.js.map");
+}
 
 // Zip installer executables
 zipExecutableFiles(
-    path.join(__dirname, "../../", 'executables', 'installer'), 
-    path.join(__dirname, "../../", "dist", "assets", 'installer.zip')
+    path.join('executables', 'installer'), 
+    path.join("dist", "assets", 'installer.zip')
   );
   
   // Zip root executables
   zipExecutableFiles(
-    path.join(__dirname, "../../", 'executables', 'root'), 
-    path.join(__dirname, "../../", "dist", "assets", 'rootfs.zip')
+    path.join('executables', 'root'), 
+    path.join("dist", "assets", 'rootfs.zip')
   );
 
 if (process.argv.includes("--watch")) {
@@ -31,7 +35,7 @@ if (process.argv.includes("--watch")) {
     (async () => {
         http.createServer((req, res) => {
             return handler(req, res, {
-                public: "../../dist",
+                public: "./dist",
                 cleanUrls: true,
             })
         }).listen(process.env.DEV_SERVER_PORT ?? 8000, async () => {

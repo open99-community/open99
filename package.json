@@ -4,7 +4,7 @@
   "description": "closed-source online web OS",
   "private": true,
   "scripts": {
-    "build": "turbo run build",
+    "build": "node scripts/prebuild/index.js && turbo run build && node scripts/postbuild/index.js",
     "start": "turbo run start",
     "tauri": "tauri",
     "clean": "node build/scripts/clean.js"
@@ -21,7 +21,6 @@
   "homepage": "https://github.com/use-pluto/pluto#readme",
   "type": "module",
   "workspaces": [
-    "scripts/*",
     "src/",
     "executables/root/*",
     "executables/installer/*"
