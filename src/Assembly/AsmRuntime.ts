@@ -1,5 +1,5 @@
-import {Runtime} from "../41worker/Runtime"
-import {Drive} from "../fs/drivers";
+import { Runtime } from "../41worker/Runtime";
+import { Drive } from "../fs/drivers";
 import { MessageData } from "../types/messageEvent";
 
 interface WasmExports {
@@ -12,7 +12,7 @@ export default class AsmRuntime extends Runtime {
     private wasmInstance: WebAssembly.Instance | undefined;
     private exports: WasmExports | undefined;
     private readonly importObject: WebAssembly.Imports;
-    pendingRequests: Map<number, { resolve: (value: any) => void, reject: (reason: any) => void }> = new Map;
+    pendingRequests: Map<number, { resolve: (value: any) => void, reject: (reason: any) => void }> = new Map();
     streamEventListeners: Map<string | number, ((data: any) => void)[]> = new Map();
 
     constructor(path: string, cmdLine: string, env: { [key: string]: string }, flags?: { [key: string]: boolean }) {
@@ -34,39 +34,40 @@ export default class AsmRuntime extends Runtime {
                     const element = this.readWasmString(elementPtr, elementLen);
                     return this.handleSysCall("render.element", { element });
                 },
-                // Add more syscalls as needed
-            },
-            // Additional import objects can be added here
+                // Add more system calls as needed
+            }
         };
-
     }
 
-    public async exec(): Promise<void> {
-        this.state = "running";
-        try {
-            const file = await Drive.getByDriveLetter("C")?.driverInstance?.read(this.path.slice(3));
-            if (!file || file instanceof Error) throw new Error("File not found");
-            this.wasmBytes = new Uint8Array(await file.arrayBuffer());
+    private readWasmString(ptr: number, len: number): string {
+        const bytes = new Uint8Array(this.exports!.memory.buffer, ptr, len);
+        return new TextDecoder('utf-8').decode(bytes);
+    }
 
-            const module = await WebAssembly.compile(this.wasmBytes);
-            this.wasmInstance = await WebAssembly.instantiate(module, this.importObject);
-            this.exports = this.wasmInstance?.exports as WasmExports;
-        } catch (e) {
-            throw e;
+    private handleSysCall(op: string, data: any): any {
+        const message: MessageData = { op, args: data };
+        return this.handleReceivedRequest(message);
+    }
+
+    async loadWasm(wasmBytes: Uint8Array) {
+        this.wasmBytes = wasmBytes;
+        const { instance } = await WebAssembly.instantiate(wasmBytes, this.importObject);
+        this.wasmInstance = instance;
+        this.exports = instance.exports as WasmExports;
+    }
+
+    async exec() {
+        if (!this.wasmInstance) {
+            throw new Error("WASM instance not loaded");
         }
+        this.state = "running";
+        (this.exports!._start as Function)();
     }
 
     terminate(): void {
-        if (this.state !== "running") throw new Error("Runtime not running");
-
+        if (this.state !== "running") throw new Error("WASM instance not running");
         this.state = "terminated";
-
-        // Clean up WASM resources
-        this.exports = undefined;
-        this.wasmInstance = undefined;
-        this.wasmBytes = undefined;
-
-        console.log(`[AssemblyRuntime] proc-${this.procID} terminated.`);
+        // Perform any necessary cleanup
     }
 
     postMessage(data: any): Promise<any> {
@@ -121,35 +122,5 @@ export default class AsmRuntime extends Runtime {
         } else {
             console.error(`[AssemblyRuntime] Received malformed Streamed Event: ${data}`);
         }
-    }
-
-    private readWasmString(ptr: number, len: number): string {
-        if (!this.exports) throw new Error("WASM instance not initialized");
-        const memory = new Uint8Array(this.exports.memory.buffer);
-        const stringBytes = memory.slice(ptr, ptr + len);
-        return new TextDecoder().decode(stringBytes);
-    }
-
-    private async handleSysCall(operation: string, data: any): Promise<any> {
-        const callID = Math.random().toString().substring(2, 9);
-
-        return new Promise((resolve, reject) => {
-            this.pendingRequests.set(Number(callID), { resolve, reject });
-
-            // Process the system call
-            const response = this.handleReceivedRequest({
-                op: operation,
-                args: data
-            });
-
-            // Resolve the pending request
-            const pendingRequest = this.pendingRequests.get(Number(callID));
-            if (pendingRequest) {
-                this.pendingRequests.delete(Number(callID));
-                pendingRequest.resolve(response);
-            } else {
-                // @TODO program just initiated request. respond here
-            }
-        });
     }
 }

@@ -45,6 +45,14 @@ export function zipExecutableFiles(baseDir, outputZipName) {
             // Add the file to the archive
             archive.file(distIndexPath, { name: executableName + ".js" });
           }
+
+          // Check for build/release.wasm
+          const releaseWasmPath = path.join(fullPath, "build", "release.wasm");
+          if (fs.existsSync(releaseWasmPath)) {
+            const executableName = path.basename(fullPath);
+            // Add the file to the archive
+            archive.file(releaseWasmPath, { name: executableName + ".wasm" });
+          }
         }
       });
     };
@@ -57,7 +65,7 @@ export function zipExecutableFiles(baseDir, outputZipName) {
 
     // Listen for the archive to be complete
     output.on("close", function () {
-      resolve({vytes:archive.pointer()});
+      resolve({ vytes: archive.pointer() });
       console.log(
         `Archive ${outputZipName} created. Total bytes: ${archive.pointer()}`
       );
