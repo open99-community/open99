@@ -28,7 +28,7 @@ export async function load() {
                 // File saving mechanism here
 
                 if (Drive.getByDriveLetter("C") === undefined) {noDrive = true; return}
-                Drive.getByDriveLetter("C")?.driverInstance?.write(relativePath, content)
+                Drive.getByDriveLetter("C")?.driverInstance?.write("Pluto/System41/" + relativePath, content)
             })
         )
         if (noDrive) {

@@ -49,19 +49,21 @@ export default class AsmRuntime extends Runtime {
         return this.handleReceivedRequest(message);
     }
 
-    async loadWasm(wasmBytes: Uint8Array) {
-        this.wasmBytes = wasmBytes;
-        const { instance } = await WebAssembly.instantiate(wasmBytes, this.importObject);
+    async exec() {
+        const file = await Drive.getByDriveLetter("C")?.driverInstance?.read(this.path.slice(3));
+        if (!file || file! instanceof Error) throw new Error("File not found");
+        this.wasmBytes = new Uint8Array(await file.arrayBuffer());
+        const { instance } = await WebAssembly.instantiate(this.wasmBytes, this.importObject);
         this.wasmInstance = instance;
         this.exports = instance.exports as WasmExports;
-    }
 
-    async exec() {
-        if (!this.wasmInstance) {
-            throw new Error("WASM instance not loaded");
-        }
         this.state = "running";
-        (this.exports!._start as Function)();
+        try {
+            (this.exports!._start as Function)();
+        } catch (e) {
+            console.error(`[AssemblyRuntime] Error running WASM module: ${e}`);
+            this.terminate();
+        }
     }
 
     terminate(): void {

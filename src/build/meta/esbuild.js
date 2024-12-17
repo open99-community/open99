@@ -13,10 +13,6 @@ export function args(NODE_ENV, realVersion){
         sourcemap: process.env.NODE_ENV === "development",
         target: ["esnext"], //@TODO fix esbuild target
         outfile: "./dist/index.js",
-        plugins: [/*copy({
-            from: "../public",
-            to: ".",
-        })*/],
         platform: "browser",
         format: "esm",
         loader: {".zip": "file", ".css": "text"},
@@ -34,7 +30,7 @@ export function args(NODE_ENV, realVersion){
             js: `/*
  * PLUTO - A sophisticated, fast and secure web operating system.
  * VERSION ${realVersion}
- * Copyright stretch07, ${new Date().getFullYear()}, All rights reserved.
+ * Copyright ${author ?? "AUTHORS"}, ${new Date().getFullYear()}, All rights reserved.
  * Copying this project is prohibited by law.
 */`,
         }
