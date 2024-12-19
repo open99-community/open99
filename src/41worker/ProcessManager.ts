@@ -38,11 +38,12 @@ export class ProcessManager {
 
         try {
             await process.exec();
-
-            process.worker!.onerror = e => {
-                console.error("[41worker:main] Worker error:", e);
-                this.terminateProcess(pid);
-            };
+            if (process instanceof ProgramRuntime) {
+                process!.worker!.onerror = e => {
+                    console.error("[41worker:main] Worker error:", e);
+                    this.terminateProcess(pid);
+                };
+            }
 
             return process;
         } catch (e) {
