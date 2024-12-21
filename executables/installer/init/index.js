@@ -1,3 +1,5 @@
-import { process } from "@use-pluto/satellite";
+import { Pluto } from "@use-pluto/satellite";
+const { CommsHandler } = Pluto._core;
+const comms = CommsHandler.getInstance();
 
-await process.send("hello from init")
+await comms.call("hello from init")

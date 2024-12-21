@@ -59,7 +59,8 @@ export default class AsmRuntime extends Runtime {
 
         this.state = "running";
         try {
-            (this.exports!._start as Function)();
+            const run = this.exports!._start as Function;
+            console.log(run());
         } catch (e) {
             console.error(`[AssemblyRuntime] Error running WASM module: ${e}`);
             this.terminate();

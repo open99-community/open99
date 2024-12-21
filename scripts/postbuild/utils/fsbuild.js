@@ -47,7 +47,7 @@ export function zipExecutableFiles(baseDir, outputZipName) {
           }
 
           // Check for build/release.wasm
-          const releaseWasmPath = path.join(fullPath, "build", "release.wasm");
+          const releaseWasmPath = path.join(fullPath, "dist", "release.wasm");
           if (fs.existsSync(releaseWasmPath)) {
             const executableName = path.basename(fullPath);
             // Add the file to the archive
