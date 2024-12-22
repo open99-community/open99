@@ -52,6 +52,13 @@ export function zipExecutableFiles(baseDir, outputZipName) {
               // Add the file to the archive
               archive.file(bindingsWasmPath, { name: executableName + ".js" });
             }
+
+            //if there is a source map
+            const releaseWasmMapPath = path.join(fullPath, "dist", "release.wasm.map");
+            if (fs.existsSync(releaseWasmMapPath)) {
+              // Add the file to the archive
+              archive.file(releaseWasmMapPath, { name: executableName + ".wasm.map" });
+            }
           }
 
           // 41Worker - Check for dist/index.js

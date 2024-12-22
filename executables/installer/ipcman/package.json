@@ -3,12 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "node tests",
-    "asbuild:debug": "npx asc assembly/index.ts --target debug --exportRuntime",
-    "asbuild:release": "npx asc assembly/index.ts --target release --exportRuntime",
-    "asbuild": "yarn run asbuild:release",
-    "build": "yarn run asbuild:release",
-    "start": "npx serve ."
+    "asbuild:debug": "node build/index.js",
+    "asbuild:release": "node build/index.js",
+    "asbuild": "node build/index.js",
+    "build": "node build/index.js"
   },
   "author": "",
   "license": "ISC",
