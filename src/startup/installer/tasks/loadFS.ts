@@ -4,9 +4,12 @@ import type { BootEntryWriteMethod } from "../../gui.ts"
 
 export async function fn({write}: { write: BootEntryWriteMethod}) {
     const t = write("Initiating and mounting new storage driver")
+
+    const driverType = (process.env.DEV_INSTALLER_PERSISTENT == "true" && process.env.NODE_ENV == "development") ? "IDB" : "RAM";
+
     let ramDrive: Drive | undefined
     try {
-        ramDrive = new Drive("RAM", "C")
+        ramDrive = new Drive(driverType, "C")
         await ramDrive.mount()
     } catch (e) {
         t.update("[FATAL] Failed to initiate storage driver: " + e, ["error", "blink"])
@@ -14,7 +17,7 @@ export async function fn({write}: { write: BootEntryWriteMethod}) {
         return
     }
     t.update("Storage driver mounted successfully", ["success"])
-    write("Unpacking installerFS into RAM")
+    write("Unpacking installerFS into " + driverType + " drive", ["info"])
     try {
         await load()
     } catch (e) {

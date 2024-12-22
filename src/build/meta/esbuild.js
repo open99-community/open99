@@ -6,6 +6,23 @@ const {author} = JSON.parse(
 
 export function args(NODE_ENV, realVersion){
     process.env.NODE_ENV = NODE_ENV
+
+    // Create define object with all process.env variables
+    const define = {
+        "process.env.NODE_ENV": "\"" + process.env.NODE_ENV + "\"" || "production",
+        "$SYSVER": `"${realVersion}"`,
+        "$SYSAUT": `"${author}"`
+    };
+
+    for (const [key, value] of Object.entries(process.env)) {
+        define[`process.env.${key}`] = JSON.stringify(value);
+    }
+
+    if (process.env.NODE_ENV === "development") {
+        //its ok to do this even when not in development, as it will be removed by esbuild
+        define["process.env"] = JSON.stringify(process.env);
+    }
+
     return {
         entryPoints: ["./index.ts"],
         bundle: true,
@@ -16,11 +33,7 @@ export function args(NODE_ENV, realVersion){
         platform: "browser",
         format: "esm",
         loader: {".zip": "file", ".css": "text"},
-        define: {
-            "process.env.NODE_ENV": "\"" + process.env.NODE_ENV + "\"" || "production",
-            "$SYSVER": `"${realVersion}"`,
-            "$SYSAUT": `"${author}"`
-        },
+        define: define,
         legalComments: "none", //we don't want people to know what dependencies we rely on
         drop: process.env.NODE_ENV === "development" ? undefined : [
             "debugger",
@@ -34,5 +47,5 @@ export function args(NODE_ENV, realVersion){
  * Copying this project is prohibited by law.
 */`,
         }
-    }
+    };
 }
