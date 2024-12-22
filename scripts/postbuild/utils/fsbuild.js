@@ -38,20 +38,28 @@ export function zipExecutableFiles(baseDir, outputZipName) {
         const stat = fs.statSync(fullPath);
 
         if (stat.isDirectory()) {
-          // If it's a directory, check for dist/index.js
-          const distIndexPath = path.join(fullPath, "dist", "index.js");
-          if (fs.existsSync(distIndexPath)) {
-            const executableName = path.basename(fullPath);
-            // Add the file to the archive
-            archive.file(distIndexPath, { name: executableName + ".js" });
-          }
 
-          // Check for build/release.wasm
+          // AsmRuntime - Check for dist/release.wasm
           const releaseWasmPath = path.join(fullPath, "dist", "release.wasm");
           if (fs.existsSync(releaseWasmPath)) {
             const executableName = path.basename(fullPath);
             // Add the file to the archive
             archive.file(releaseWasmPath, { name: executableName + ".wasm" });
+
+            // if it uses assemblyscript host bindings
+            const bindingsWasmPath = path.join(fullPath, "dist", "release.js");
+            if (fs.existsSync(bindingsWasmPath)) {
+              // Add the file to the archive
+              archive.file(bindingsWasmPath, { name: executableName + ".js" });
+            }
+          }
+
+          // 41Worker - Check for dist/index.js
+          const distIndexPath = path.join(fullPath, "dist", "index.js");
+          if (fs.existsSync(distIndexPath)) {
+            const executableName = path.basename(fullPath);
+            // Add the file to the archive
+            archive.file(distIndexPath, { name: executableName + ".js" });
           }
         }
       });
@@ -67,7 +75,7 @@ export function zipExecutableFiles(baseDir, outputZipName) {
     output.on("close", function () {
       resolve({ vytes: archive.pointer() });
       console.log(
-        `Archive ${outputZipName} created. Total bytes: ${archive.pointer()}`
+        `Archive .\\${outputZipName} created. Total bytes: ${archive.pointer()}`
       );
     });
   });

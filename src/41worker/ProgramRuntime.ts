@@ -5,8 +5,7 @@ import {ArgsAndEnv} from "./misc/ArgsAndEnv";
 import {indicateExit} from "./misc/indicateExit";
 import {patchTimerFunctions} from "./misc/patchTimers";
 import {Runtime} from "./Runtime"
-
-const broker = PIDBroker()
+import { handler } from "../util/URLHandler";
 
 export default class ProgramRuntime extends Runtime {
     public UNSAFE_NO_FULL_TERMINATE: boolean = false;
@@ -49,8 +48,9 @@ export default class ProgramRuntime extends Runtime {
             throw e
         }
 
-        this.blob = new Blob([this.execCode], {type: "application/javascript"})
-        this.url = URL.createObjectURL(this.blob)
+        const {url, blob} = handler.createBlobUrl(this.execCode, {type: "application/javascript"})
+        this.url = url;
+        this.blob = blob;
 
 
         this.worker = new Worker(this.url, {type: "classic"})
@@ -68,7 +68,7 @@ export default class ProgramRuntime extends Runtime {
         this.worker.terminate()
         if (process.env.NODE_ENV !== "development"|| (process.env.NODE_ENV === "development" && !this.UNSAFE_NO_FULL_TERMINATE)) {
             console.log(`[41worker] proc-${this.procID} terminated.`)
-            URL.revokeObjectURL(this.url)
+            handler.revokeBlobUrl(this.url)
         } else {
             console.log(`[41worker] proc-${this.procID} terminated.`)
             console.warn("Full termination disabled. URL not revoked.")

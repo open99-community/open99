@@ -1,5 +1,6 @@
 import ProgramRuntime from "./ProgramRuntime";
 import AsmRuntime from "../Assembly/AsmRuntime";
+import PWSM from "../Assembly/PWSM";
 import {PIDBroker} from "./misc/PIDBroker";
 
 const pidBroker = PIDBroker();
@@ -24,9 +25,16 @@ export class ProcessManager {
         let process: ProgramRuntime | AsmRuntime;
 
         if (path.endsWith(".js")) {
+            console.log("Using ProgramRuntime");
             process = new ProgramRuntime(path, cmdLine, env);
         } else {
-            process = new AsmRuntime(path, cmdLine, env);
+            if (!cmdLine.includes(" --PWSM")) {
+                console.log("Using AsmRuntime");
+                process = new AsmRuntime(path, cmdLine, env);
+            } else {
+                console.log("Using PWSM");
+                process = new PWSM(path, cmdLine, env);
+            }
         }
 
         this.processes.set(pid, process);
