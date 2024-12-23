@@ -1,5 +1,5 @@
 // @ts-ignore
-import {Drive} from "../../../fs/drivers";
+import {Drive} from "../../../fs";
 import type * as JSZip from "jszip"
 import {KernelError} from "../../../util/errors";
 

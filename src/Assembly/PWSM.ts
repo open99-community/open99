@@ -1,5 +1,5 @@
 import AsmRuntime from "./AsmRuntime";
-import { Drive } from "../fs/drivers";
+import { Drive } from "../fs";
 import { handler } from "../util/URLHandler";
 
 export default class PWSM extends AsmRuntime {

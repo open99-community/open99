@@ -1,6 +1,6 @@
 import {removeAccessApis} from "./RemoveAccessApis"
 import {PIDBroker} from "./misc/PIDBroker";
-import {Drive} from "../fs/drivers";
+import {Drive} from "../fs";
 import {ArgsAndEnv} from "./misc/ArgsAndEnv";
 import {indicateExit} from "./misc/indicateExit";
 import {patchTimerFunctions} from "./misc/patchTimers";

@@ -1,5 +1,6 @@
-import {DBDriver} from "./interface";
+import {DBDriver} from "../interface";
 import {FileContentTypes, FileMetadataType} from "../../types/fs";
+import { Drive } from "..";
 
 export class RAMDriver implements DBDriver {
     name: string = "RAM";
@@ -8,7 +9,7 @@ export class RAMDriver implements DBDriver {
     private $MAP1: symbol = Symbol.for("uninitiated");
     private $MAP2: symbol = Symbol.for("uninitiated");
     #inited: boolean = false;
-    async init(): Promise<void | Error> {
+    async init(drive: Drive): Promise<void | Error> {
         /* remember, the RAM database is just a simple object stored in memory.
            it is reset after each reboot, which means that there is no
            data persistence.

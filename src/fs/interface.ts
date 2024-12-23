@@ -1,4 +1,5 @@
-import {FileContentTypes, FileMetadataType} from "../../types/fs";
+import {FileContentTypes, FileMetadataType} from "../types/fs";
+import { Drive } from ".";
 
 //remember!!! when this file is updated, update https://learn.d.pluto.stretch.wtf/guide/fs/drivers
 
@@ -16,5 +17,5 @@ export interface DBDriver {
     mv: (oldPath: string, newPath: string) => Promise<void | Error>,
     cp: (oldPath: string, newPath: string) => Promise<void | Error>,
     getFreeSpace: () => Promise<number | Error>,
-    init: () => Promise<void | Error>
+    init: (drive: Drive) => Promise<void | Error>
 }

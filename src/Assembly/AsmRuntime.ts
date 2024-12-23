@@ -1,5 +1,5 @@
 import { Runtime } from "../41worker/Runtime";
-import { Drive } from "../fs/drivers";
+import { Drive } from "../fs";
 import { MessageData } from "../types/messageEvent";
 
 interface WasmExports {
