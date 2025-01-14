@@ -1,17 +1,17 @@
 import { Runtime } from "../41worker/Runtime";
-import { Drive } from "../fs";
+import { Drive } from "../fs/";
 import { MessageData } from "../types/messageEvent";
 
-interface WasmExports {
+export interface WasmExports {
     memory: WebAssembly.Memory;
     [key: string]: any;
 }
 
 export default class AsmRuntime extends Runtime {
     wasmBytes: Uint8Array | undefined;
-    private wasmInstance: WebAssembly.Instance | undefined;
-    private exports: WasmExports | undefined;
-    private readonly importObject: WebAssembly.Imports;
+    protected wasmInstance: WebAssembly.Instance | undefined;
+    protected exports: WasmExports | undefined;
+    protected importObject: WebAssembly.Imports;
     pendingRequests: Map<number, { resolve: (value: any) => void, reject: (reason: any) => void }> = new Map();
     streamEventListeners: Map<string | number, ((data: any) => void)[]> = new Map();
 
@@ -35,6 +35,12 @@ export default class AsmRuntime extends Runtime {
                     return this.handleSysCall("render.element", { element });
                 },
                 // Add more system calls as needed
+                logString: (strin: string) => {
+                    console.log("string: " + strin)
+                },
+                abort: () => {
+                    throw new Error("Abort called from WASM module");
+                }
             }
         };
     }
@@ -51,14 +57,14 @@ export default class AsmRuntime extends Runtime {
 
     async exec() {
         const file = await Drive.getByDriveLetter("C")?.driverInstance?.read(this.path.slice(3));
-        if (!file || file! instanceof Error) throw new Error("File not found");
-        this.wasmBytes = new Uint8Array(await file.arrayBuffer());
-        const { instance } = await WebAssembly.instantiate(this.wasmBytes, this.importObject);
-        this.wasmInstance = instance;
-        this.exports = instance.exports as WasmExports;
+        if (!file || file instanceof Error) throw new Error("File not found");
 
         this.state = "running";
         try {
+            this.wasmBytes = new Uint8Array(await file.arrayBuffer());
+            const { instance } = await WebAssembly.instantiate(this.wasmBytes, this.importObject);
+            this.wasmInstance = instance;
+            this.exports = instance.exports as WasmExports;
             const run = this.exports!._start as Function;
             console.log(run());
         } catch (e) {

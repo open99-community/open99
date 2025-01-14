@@ -1,4 +1,4 @@
-const RUNTIME = "open99Offline"
+const RUNTIME = "WEB_OFFLINE_RUNTIME"
 const HOSTNAME_WHITELIST = [
     self.location.hostname,
 ]

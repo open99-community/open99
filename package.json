@@ -1,6 +1,6 @@
 {
   "name": "pluto",
-  "version": "0.55",
+  "version": "0.57",
   "description": "closed-source online web OS",
   "private": true,
   "scripts": {
