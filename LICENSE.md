@@ -1,1 +1,1 @@
-(c) Copyright 2023 stretch07, All rights reserved.
+(c) Copyright 2025 Pablo Gracia, All rights reserved.

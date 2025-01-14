@@ -1,7 +1,7 @@
 import {FileContentTypes, FileMetadataType} from "../types/fs";
 import { Drive } from ".";
 
-//remember!!! when this file is updated, update https://learn.d.pluto.stretch.wtf/guide/fs/drivers
+//remember!!! when this file is updated, update https://learn.d.pluto.pablogracia.net/guide/fs/drivers
 
 export interface DBDriver {
     /**

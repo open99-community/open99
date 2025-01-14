@@ -1,9 +1,9 @@
 # 🌌 pluto
 a complete web OS
-> **Note:** Along with all the source code, this document is closed-source and private. If you find this document floating around the internet or if someone sends it to you, [contact me](https://stretch.wtf/contact).
+> **Note:** Along with all the source code, this document is closed-source and private. If you find this document floating around the internet or if someone sends it to you, [contact me](https://pablogracia.net/contact).
 ## About
 Pluto is an offline, close-sourced Web OS, similar to Windows93 or Windows96. It intends to be the most sophisticated, complete, and developer-friendly web OS.  
-Pluto programs run under the program runtime (codename 41worker), which is comparable to WRT for Windows 96. These applications run in workers to improve speed, security, and convenience. To learn more, visit [the docs page](https://learn.d.pluto.stretch.wtf/api/41worker).
+Pluto programs run under the program runtime (codename 41worker), which is comparable to WRT for Windows 96. These applications run in workers to improve speed, security, and convenience. To learn more, visit [the docs page](https://learn.d.pluto.pablogracia.net/api/41worker).
 ## Installation
 > Make sure you have yarn installed. Pluto does not support npm/pnpm.
 1. Clone the repository locally.
