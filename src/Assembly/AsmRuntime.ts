@@ -46,7 +46,7 @@ export default class AsmRuntime extends Runtime {
     }
 
     private readWasmString(ptr: number, len: number): string {
-        const bytes = new Uint8Array(this.exports!.memory.buffer, ptr, len);
+        const bytes = new Uint8Array(this.importObject.env.memory.buffer, ptr, len);
         return new TextDecoder('utf-8').decode(bytes);
     }
 

@@ -26,7 +26,7 @@ export default class PWSM extends AsmRuntime {
             this.url = url;
             const {instantiate} = await import(url);
 
-            const instance = await instantiate(this.wasmBytes)
+            const instance = await instantiate(this.wasmBytes, this.importObject)
             this.wasmInstance = instance;
             this.exports = instance.exports as WasmExports;
             
