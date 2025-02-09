@@ -1,0 +1,66 @@
+{
+  "$schema": "../node_modules/@tauri-apps/cli/schema.json",
+  "build": {
+    "beforeBuildCommand": "npm run build --env=production", //builds are always in production mode
+                                                      //If you don't want to make a `build` use tauri dev instead
+    "beforeDevCommand": "npm start",
+    "devPath": "http://localhost:8000",
+    "distDir": "../dist",
+    "withGlobalTauri": true //this is how we access the API
+  },
+  "package": {
+    "productName": "pluto",
+    "version": "0.0.1" //this is 'hacky' but we need a semver string. for code, look at build/tasks/clean.js
+  },
+  "tauri": {
+    "allowlist": {
+      "all": true //@TODO allowlist only the necessary things
+    },
+    "bundle": {
+      "active": true,
+      "category": "DeveloperTool",
+      "copyright": "Copyright Pablo Graia 2025",
+      "deb": {
+        "depends": []
+      },
+      "externalBin": [],
+      "icon": [
+        "icons/32x32.png",
+        "icons/128x128.png",
+        "icons/128x128@2x.png",
+        "icons/icon.ico",
+        "icons/icon.icns"
+      ],
+      "identifier": "com.pluto.pluto",
+      "longDescription": "Pluto is a sophisticated new Web OS that can be run on any platform.",
+      "macOS": {
+        "entitlements": null,
+        "exceptionDomain": "",
+        "frameworks": [],
+        "providerShortName": null,
+        "signingIdentity": null
+      },
+      "resources": [],
+      "shortDescription": "",
+      "targets": "all",
+      "windows": {
+        "certificateThumbprint": null,
+        "digestAlgorithm": "sha256",
+        "timestampUrl": ""
+      }
+    },
+    "security": {
+      "csp": null
+    },
+    "updater": {
+      "active": false
+    },
+    "windows": [
+      {
+        "fullscreen": true,
+        "resizable": true,
+        "title": "pluto desktop",
+      }
+    ]
+  }
+}

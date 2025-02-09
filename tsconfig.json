@@ -1,12 +1,16 @@
 {
-  "strict": true,
   "compilerOptions": {
+    "target": "es2022",
+    "module": "es2022",
+    "moduleResolution": "node",
     "lib": [
       "dom",
       "es5",
       "scripthost",
       "es2015.promise"
-    ]
+    ],
+    "strict": true
   },
   "checkJs": false,
+  "allowJs": true,
 }

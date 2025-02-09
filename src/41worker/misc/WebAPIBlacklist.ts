@@ -1,0 +1,21 @@
+export const WebAPIBlacklist: string[] = [
+    "BroadcastChannel",
+    "Cache",
+    "CacheStorage",
+    "StorageManager",
+    "CustomEvent",
+    "FileReader",
+    "FileReaderSync",
+    "FormData",
+    "ImageData",
+    "indexedDB",
+    "NetworkInformation",
+    "Notification",
+    "NotificationEvent",
+    "ServiceWorkerRegistration",
+    "Worker",
+    "WorkerNavigator",
+    "fetch",
+    "WebSocket",
+    "XMLHttpRequest"
+];

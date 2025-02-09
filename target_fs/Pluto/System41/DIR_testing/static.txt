@@ -1,1 +1,0 @@
-this static file should be present during fs build. testtt

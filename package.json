@@ -1,48 +1,32 @@
 {
-  "name": "open99",
-  "version": "0.0.8",
-  "description": "open-source online web OS",
-  "main": "index.js",
+  "name": "pluto",
+  "version": "0.57",
+  "description": "closed-source online web OS",
   "private": true,
-  "dependencies": {
-    "devtool-blocker": "git+https://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:x-oauth-basic@github.com/use-pluto/devtool-blocker.git",
-    "i18next": "^23.4.4"
-  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "node build/index.js",
-    "serve": "npm run build && serve -l 8000 dist",
-    "dev": "node build/index.js --watch"
+    "build": "node scripts/prebuild/index.js && turbo run build && node scripts/postbuild/index.js",
+    "start": "node scripts/prebuild/index.js && npx nodemon --exec \"turbo run build && node scripts/postbuild/index.js -- --watch \"",
+    "tauri": "tauri",
+    "clean": "node build/scripts/clean.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/open99-community/open99.git"
+    "url": "git+https://github.com/use-pluto/pluto.git"
   },
-  "keywords": [
-    "web-os"
-  ],
-  "author": "stretch07",
+  "author": "Pablo Gracia",
   "license": "UNLICENSED",
   "bugs": {
     "url": "https://github.com/use-pluto/pluto/issues"
   },
-  "eslintConfig": {},
   "homepage": "https://github.com/use-pluto/pluto#readme",
   "type": "module",
-  "devDependencies": {
-    "@commitlint/cli": "^17.7.1",
-    "@commitlint/config-conventional": "^17.7.0",
-    "@tauri-apps/api": "^1.4.0",
-    "dotenv": "^16.3.1",
-    "esbuild": "0.18.10",
-    "esbuild-copy-plugin": "^1.0.0",
-    "file-zippy": "^1.2.0",
-    "husky": "^8.0.3",
-    "javascript-obfuscator": "^4.0.2",
-    "jsdoc": "^4.0.1",
-    "jszip": "^3.10.1",
-    "portalog": "^1.0.0",
-    "rimraf": "^5.0.1",
-    "typescript": "^5.2.2"
+  "workspaces": [
+    "src/",
+    "executables/root/*",
+    "executables/installer/*"
+  ],
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e",
+  "dependencies": {
+    "assemblyscript": "^0.27.31"
   }
 }

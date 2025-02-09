@@ -1,10 +1,17 @@
-# temporary folders that get zipped... @TODO remove these folders after they get zipped
+# temporary folders that get deleted after build but if build fails they are still there
 target_fs_BUILD/
 installer_fs_BUILD/
+
+target_fs/Pluto/System41/**/dist/*
+installer_fs/Pluto/System41/**/dist/*
+.turbo
 
 .vscode
 out
 .idea
+dist
+temp/
+tmp/
 
 # Logs
 logs
@@ -88,7 +95,6 @@ typings/
 
 # Nuxt.js build / generate output
 .nuxt
-dist
 
 # Gatsby files
 .cache/

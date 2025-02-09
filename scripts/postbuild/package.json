@@ -1,0 +1,24 @@
+{
+  "name": "@repo/postbuild",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/use-pluto/pluto.git"
+  },
+  "author": "Pablo Gracia",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/use-pluto/pluto/issues"
+  },
+  "homepage": "https://github.com/use-pluto/pluto#readme",
+  "type": "module",
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e",
+  "dependencies": {
+    "archiver": "^7.0.1",
+    "serve-handler": "^6.1.6"
+  }
+}

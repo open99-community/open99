@@ -1,16 +1,26 @@
 {
-  "short_name": "open99",
-  "name": "open99 beta",
+  "short_name": "Pluto",
+  "name": "Pluto",
   "icons": [
     {
-      "src": "assets/open99-512.png",
+      "src": "assets/pluto-512.png",
       "type": "image/png",
       "sizes": "512x512"
     },
     {
-      "src": "assets/open99-192.png",
+      "src": "assets/pluto-32.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "32x32"
+    },
+    {
+      "src": "assets/pluto-16.png",
+      "type": "image/png",
+      "sizes": "16x16"
+    },
+    {
+      "src": "assets/pluto-256.png",
+      "type": "image/png",
+      "sizes": "256x256"
     }
   ],
   "start_url": "/",
@@ -18,5 +28,11 @@
   "display": "standalone",
   "scope": "/",
   "theme_color": "#000",
-  "description": "open99 as an installable program"
+  "description": "Pluto PWA",
+  "protocol_handlers": [
+    {
+      "protocol": "web+os",
+      "url": "/?url=%s"
+    }
+  ]
 }
