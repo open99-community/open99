@@ -1,0 +1,27 @@
+{
+  "name": "@installer/ipcman",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "asbuild:debug": "node build/index.js",
+    "asbuild:release": "node build/index.js",
+    "asbuild": "node build/index.js",
+    "build": "node build/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "esbuild": "^0.24.0"
+  },
+  "type": "module",
+  "devDependencies": {
+    "assemblyscript": "^0.27.31"
+  },
+  "exports": {
+    ".": {
+      "import": "./build/release.js",
+      "types": "./build/release.d.ts"
+    }
+  }
+}

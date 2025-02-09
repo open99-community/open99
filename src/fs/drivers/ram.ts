@@ -1,5 +1,6 @@
-import {DBDriver} from "./interface";
+import {DBDriver} from "../interface";
 import {FileContentTypes, FileMetadataType} from "../../types/fs";
+import { Drive } from "..";
 
 export class RAMDriver implements DBDriver {
     name: string = "RAM";
@@ -8,12 +9,13 @@ export class RAMDriver implements DBDriver {
     private $MAP1: symbol = Symbol.for("uninitiated");
     private $MAP2: symbol = Symbol.for("uninitiated");
     #inited: boolean = false;
-    async init(): Promise<void | Error> {
+    async init(drive: Drive): Promise<void | Error> {
         /* remember, the RAM database is just a simple object stored in memory.
            it is reset after each reboot, which means that there is no
            data persistence.
          */
 
+        // noinspection JSUnusedLocalSymbols
         function shuffle(array: any[]) {
             let currentIndex = array.length;
 
@@ -109,10 +111,11 @@ export class RAMDriver implements DBDriver {
 
     async read(path: string): Promise<FileContentTypes | Error> {
         const id = this._DB[this.$LOOKUP][path]
+        console.log("reading ", path) //THIS SHOULDNT HAVE DRIVE
         if (id) {
             return this._DB[this.$MAP2][id];
         } else {
-            return new Error("File not found");
+            throw new Error("File not found");
         }
     }
 
@@ -152,7 +155,7 @@ export class RAMDriver implements DBDriver {
     }
 
     async cp(/*oldPath: string, newPath: string*/): Promise<void | Error> {
-        return new Error("Not implemented");
+        return new Error("Not implemented"); //@TODO: implement
     }
 
     async getFreeSpace(): Promise<number | Error> {
@@ -164,6 +167,10 @@ export class RAMDriver implements DBDriver {
     }
 
     private checkSymbolKeys(): true | Error {
+        return true;
+        /*
+        if (process.env.NODE_ENV === "development") return true;
+
         if (!this.#inited) {
             return new Error("Database not initialized")
         }
@@ -175,19 +182,18 @@ export class RAMDriver implements DBDriver {
                 switch (i) {
                     case 0:
                         if (val !== this.$LOOKUP) {
-                            return symNotFound(i)
+                            throw symNotFound(i)
                         }
-                        break;
+                        return true
                     default:
                         if (val !== Symbol.for(`MAP${i}`)) {
-                            return symNotFound(i)
+                            throw symNotFound(i)
                         }
-                        break;
+                        return true
                 }
             })
         } catch {
             return new Error("Error checking store symbol keys.")
-        }
-        return new Error("stretch was here") //this will never be reached, typescript is just weird
+        } */
     }
 }

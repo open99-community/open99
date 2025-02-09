@@ -1,90 +1,149 @@
 import {removeAccessApis} from "./RemoveAccessApis"
-import type { App } from '../types/App'
-import type { MessageData } from '../types/messageEvent'
+import {PIDBroker} from "./misc/PIDBroker";
+import {Drive} from "../fs";
+import {ArgsAndEnv} from "./misc/ArgsAndEnv";
+import {indicateExit} from "./misc/indicateExit";
+import {patchTimerFunctions} from "./misc/patchTimers";
+import {Runtime} from "./Runtime"
+import { handler } from "../util/URLHandler";
 
-/** Class representing 41worker runtime */
-export default class ProgramRuntime {
-    code: string;
-    context: { App: App, AppRuntime?: typeof ProgramRuntime };
-    execCode: string;
-    blob: Blob;
-    url: string;
-    worker: Worker | undefined;
-    procID: string;
+export default class ProgramRuntime extends Runtime {
+    public UNSAFE_NO_FULL_TERMINATE: boolean = false;
 
-    /**
-     * Run the application
-     */
-    constructor(code: string, context: {App: App, AppRuntime?: typeof ProgramRuntime}) {
-        this.procID = Math.random().toString().substring(2, 10)
-        context.AppRuntime = ProgramRuntime
-        this.code = code
-        this.context = context
-        this.execCode = removeAccessApis() + code
-        this.blob = new Blob([this.execCode], { type: "application/javascript" })
-        this.url = URL.createObjectURL(this.blob)
+    pendingRequests: Map<number, { resolve: (value: any) => void, reject: (reason: any) => void }>;
+    streamEventListeners: Map<string | number, ((data: any) => void)[]>;
 
-        console.log(`[41worker:main] PID ${this.procID} created. URL: ${this.url} Run this.exec() to start the worker.`)
+    constructor(path: string, cmdLine: string, env: { [key: string]: string }, flags?: { [key: string]: boolean }) {
+        super(path, cmdLine, env, flags)
+        this.pendingRequests = new Map();
+        this.streamEventListeners = new Map();
+        this.UNSAFE_NO_FULL_TERMINATE = flags?.UNSAFE_NO_FULL_TERMINATE ?? false
     }
+
     async exec() {
-        this.worker = new Worker(this.url, { type: "classic" })
-        this.worker.onerror = e => {
-            console.error("[41worker:main] Worker error:", e)
-            this.terminate()
-        }
-        // This is how the program knows it has entered running scope
-        return await this.postMessageToWorker("init")
-    }
-    /**
-     * Terminates the worker
-     */
-    terminate(): void {
-        if (!this.worker) throw new Error("No such worker exists.")
-        this.worker.terminate()
-        console.log(`[41worker] proc-${this.procID} terminated.`)
-        URL.revokeObjectURL(this.url)
-    }
-    // noinspection JSUnusedGlobalSymbols
-    /**
-     * handles the received message
-     */
-    handleReceivedRequest(data: MessageData): any { //this can literally be anything!
-        //here is where we put a super long switch statement to determine what to return
-        switch (data.op) {
-            case "fs.createFile":
-                console.log("Worker environment tried creating a file:", data)
-                return "HELLO! I AM A FILE!" + data
-            case "fs.createDir":
-                return "[41worker] Worker tried creating a dir:" + data
-            default:
-                return "41worker op unknown: " + data.op
-        }
-    }
-    handleReceivedResponse(data: MessageData): any {
-        return data
-    }
-    postMessageToWorker(data: any){
-        if (!this.worker) throw new Error("No such worker exists.")
+        this.state = "running"
 
-        // doing worker instead of this.worker because of TS
-        const worker = this.worker
+        try {
+            const file = await Drive.getByDriveLetter("C")?.driverInstance?.read(this.path.slice(3))
+            if (!file || file! instanceof Error) throw new Error("File not found")
+            let code = await file.text()
+
+            code = code.endsWith(";") ? code : code + ";"
+
+            //console.log("here's the code!", code)
+
+            this.execCode =
+                removeAccessApis() +
+                patchTimerFunctions() +
+                ArgsAndEnv(this.cmdLine, this.env) +
+                "(async () => {" +
+                code +
+                indicateExit() +
+                "})();"
+
+            console.log("execCode:", this.execCode)
+        } catch (e) {
+            //console.error(`[41worker:main] Error reading file: ${e}`)
+            //this.terminate() isn't needed since the worker hasn't been created
+            throw e
+        }
+
+        const {url, blob} = handler.createBlobUrl(this.execCode, {type: "application/javascript"})
+        this.url = url;
+        this.blob = blob;
+
+
+        this.worker = new Worker(this.url, {type: "classic"})
+
+        this.worker.onmessage = this.handleMessage.bind(this);
+
+        // This is how the program knows it has entered running scope
+        this.postStream({"op": "init"})
+    }
+
+    terminate(): void {
+        if (!this.worker || this.state !== "running") throw new Error("Worker not running")
+        // hey future me: maybe it just hasn't been executed?
+        this.state = "terminated"
+        this.worker.terminate()
+        if (process.env.NODE_ENV !== "development"|| (process.env.NODE_ENV === "development" && !this.UNSAFE_NO_FULL_TERMINATE)) {
+            console.log(`[41worker] proc-${this.procID} terminated.`)
+            handler.revokeBlobUrl(this.url)
+        } else {
+            console.log(`[41worker] proc-${this.procID} terminated.`)
+            console.warn("Full termination disabled. URL not revoked.")
+        }
+    }
+
+    private handleMessage(event: MessageEvent): void {
+        const [data, callID] = event.data;
+
+        if (callID) {
+            //request-response call
+            //console.log("CALLID", callID)
+            const pendingRequest = this.pendingRequests.get(Number(callID));
+            if (pendingRequest) {
+                // It's a response to a kernel-initiated request
+                this.pendingRequests.delete(callID);
+                console.log(`[41worker:main] (${callID}) Received Response\n`, data);
+                pendingRequest.resolve(this.handleReceivedResponse(data));
+            } else {
+                // It's a request from the worker
+                const response = this.handleReceivedRequest(data);
+                this.worker!.postMessage([response, callID]);
+            }
+        } else {
+            // streamed event
+            //console.log("STREAMED EVENT RECEIVED", data)
+            this.handleStreamEvent(data);
+        }
+    }
+
+    postMessage(data: any): Promise<any> {
+        if (!this.worker) throw new Error("No such worker exists.") //has it been initiated?
+
         // API callID: 7 char random numbers, collision improbable but possible
         const callID = Math.random().toString().substring(2, 9)
         const realData = [data, callID]
         console.log(`[41worker:main] (${callID}) Sent Request\n`, realData[0])
+
         return new Promise((resolve, reject) => {
-            if (!data) reject("No data provided")
-            worker.onmessage = event => {
-                // 0: data, 1: callID
-                if (event.data[1] === callID) {
-                    console.log(`[41worker:main] (${callID}) Received Response\n`, event.data[0])
-                    resolve(this.handleReceivedResponse(event.data))
-                } else {
-                    console.log(`[41worker:main] (${event.data[1]}) Responding to\n`, event.data[0]);
-                    worker.postMessage(["received" + event.data[0], event.data[1]])
-                }
+            if (!data) {
+                reject(new Error("No data provided"));
+                return;
             }
-            worker.postMessage([data, callID])
+
+            this.pendingRequests.set(Number(callID), {resolve, reject});
+            this.worker!.postMessage([data, callID]);
         });
+    }
+
+    postStream(data: any): void {
+        this.worker!.postMessage([data])
+    }
+
+    handleStreamEvent(data: any): void {
+        if (data) {
+            let eventName = data.op; //@TODO: data validators (testing ig)
+            if (!data.op) {
+                eventName = data
+            }
+
+            this.streamEventListeners.get(eventName)?.forEach(func => {
+                func(data)
+            })
+
+            switch (eventName) {
+                case 20:
+                    this.terminate()
+                    break;
+                case 2:
+                    console.log("received heartbeat")
+                    break;
+            }
+
+        } else {
+            console.error(`[41worker:main] Received malformed Streamed Event: ${data}`)
+        }
     }
 }
